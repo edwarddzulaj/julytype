@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "typefaces",
+  "info": {
+    "singularName": "typeface",
+    "pluralName": "typefaces",
+    "displayName": "Typeface",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "typeface": {
+      "displayName": "typeface",
+      "type": "component",
+      "repeatable": false,
+      "component": "typeface.typeface"
+    }
+  }
+}

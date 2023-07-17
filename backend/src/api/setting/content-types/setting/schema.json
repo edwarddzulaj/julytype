@@ -1,0 +1,27 @@
+{
+  "kind": "singleType",
+  "collectionName": "settings",
+  "info": {
+    "singularName": "setting",
+    "pluralName": "settings",
+    "displayName": "Settings",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "websiteTitle": {
+      "displayName": "Website Title",
+      "type": "component",
+      "repeatable": false,
+      "component": "website-title.website-title"
+    },
+    "footerDetails": {
+      "type": "component",
+      "repeatable": false,
+      "component": "footer-details.footer-details"
+    }
+  }
+}
