@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_website_title_website_titles",
+  "info": {
+    "displayName": "Website Title",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}
