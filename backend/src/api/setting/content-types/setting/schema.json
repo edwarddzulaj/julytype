@@ -12,16 +12,16 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "websiteTitle": {
+    "websiteDetails": {
       "displayName": "Website Title",
       "type": "component",
       "repeatable": false,
-      "component": "website-title.website-title"
+      "component": "settings.website-title"
     },
-    "footerDetails": {
+    "footerContent": {
       "type": "component",
       "repeatable": false,
-      "component": "footer-details.footer-details"
+      "component": "settings.footer-details"
     }
   }
 }

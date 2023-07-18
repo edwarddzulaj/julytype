@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_website_title_website_titles",
+  "info": {
+    "displayName": "Website Details",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "navigation_pages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::simple-page.simple-page"
+    }
+  }
+}

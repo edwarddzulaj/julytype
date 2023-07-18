@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_typeface_typetester_texts",
+  "info": {
+    "displayName": "Typetester Texts"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "text"
+    }
+  }
+}

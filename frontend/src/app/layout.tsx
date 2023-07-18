@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import './globals.css';
+import '@/styles/reset.css';
+import '@/styles/main.css';
 import { getStrapiMedia, getStrapiURL } from './utils/api-helpers';
 import { fetchAPI } from './utils/fetch-api';
 
@@ -21,10 +22,7 @@ async function getSettings(): Promise<any> {
   const options = { headers: { Authorization: `Bearer ${token}` } };
 
   const urlParamsObject = {
-    populate: [
-      'websiteTitle.title',
-      'footerDetails'
-    ],
+    populate: ['websiteTitle.title', 'footerDetails'],
   };
 
   const response = await fetchAPI(path, urlParamsObject, options);
@@ -32,14 +30,14 @@ async function getSettings(): Promise<any> {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-    const settings = await getSettings();
-    if (!settings.data) return FALLBACK_SEO;
-    const { websiteTitle } = settings.data.attributes;
+  const settings = await getSettings();
+  if (!settings.data) return FALLBACK_SEO;
+  const { websiteTitle } = settings.data.attributes;
 
-    return {
-      'title': websiteTitle.title,
-      'description': websiteTitle.description
-    };
+  return {
+    title: websiteTitle.title,
+    description: websiteTitle.description,
+  };
 }
 
 export default async function RootLayout({
@@ -49,27 +47,21 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { lang: string };
 }) {
-    const settings = await getSettings();
+  const settings = await getSettings();
   // TODO: CREATE A CUSTOM ERROR PAGE
-    if (!settings.data) return null;
+  if (!settings.data) return null;
 
-    const { websiteTitle, footerDetails } = settings.data.attributes;
+  const { websiteTitle, footerDetails } = settings.data.attributes;
 
   return (
     <html lang={params.lang}>
+      <head></head>
       <body>
-        <Navbar websiteTitle={websiteTitle}/>
+        <Navbar websiteTitle={websiteTitle} />
         <main className="dark:bg-black dark:text-gray-100 min-h-screen">
           {children}
         </main>
-
-        {/* <Footer
-          logoText={footer.footerLogo.logoText}
-          menuLinks={footer.menuLinks}
-          categoryLinks={footer.categories.data}
-          legalLinks={footer.legalLinks}
-          socialLinks={footer.socialLinks}
-        /> */}
+        <Footer footerDetails={footerDetails} />
       </body>
     </html>
   );

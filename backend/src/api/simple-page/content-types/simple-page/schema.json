@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "simple_pages",
+  "info": {
+    "singularName": "simple-page",
+    "pluralName": "simple-pages",
+    "displayName": "Simple Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "section": {
+      "displayName": "Page Section",
+      "type": "component",
+      "repeatable": true,
+      "component": "simple-page.page-section",
+      "required": true
+    },
+    "slug": {
+      "type": "string"
+    }
+  }
+}

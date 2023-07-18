@@ -12,11 +12,47 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "typeface": {
-      "displayName": "typeface",
-      "type": "component",
-      "repeatable": false,
-      "component": "typeface.typeface"
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "aboutText": {
+      "type": "richtext",
+      "required": true
+    },
+    "specimen": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "price": {
+      "type": "float",
+      "required": true
+    },
+    "wholePackageDiscount": {
+      "type": "integer",
+      "min": 0,
+      "max": 100
+    },
+    "trialFonts": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "styles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::style.style"
+    },
+    "slug": {
+      "type": "string"
     }
   }
 }

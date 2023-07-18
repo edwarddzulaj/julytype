@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_typeface_weights",
+  "info": {
+    "displayName": "Weight"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "typetesterText": {
+      "displayName": "Typetester Texts",
+      "type": "component",
+      "repeatable": true,
+      "component": "typeface.typetester-texts"
+    },
+    "price": {
+      "type": "float",
+      "required": true
+    },
+    "discount": {
+      "type": "integer",
+      "max": 100,
+      "min": 0
+    }
+  }
+}
