@@ -1,0 +1,48 @@
+import Link from "next/link";
+import Markdown from "react-markdown";
+import Section from "@/src/app/components/UI/Section";
+import { fetchAPI } from "@/src/app/utils/fetch-api";
+import { Typeface, Style } from "@/src/app/types/contentTypes";
+import { getStrapiMedia } from "@/src/app/utils/api-helpers";
+
+async function getTypeface(slug: string) {
+  const path = `/typefaces`;
+  const urlParamsObject = {
+    populate: {
+      styles: { populate: "*" },
+      specimen: { populate: "*" },
+    },
+    filters: {
+      slug: slug,
+    },
+  };
+
+  const responseData = await fetchAPI(path, urlParamsObject);
+  return responseData.data[0];
+}
+
+export default async function Typeface({ params }: { params: { slug: string } }) {
+  const typeface: Typeface = await getTypeface(params.slug);
+  const { title, slug, specimen, aboutText, styles } = typeface.attributes;
+
+  return (
+    <section className="container">
+      <h1>{title}</h1>
+      <Section title="Overview">
+        {styles.data.map((style: Style) => (
+          <Link href={`/typefaces/${slug}/${style.attributes.slug}`} key={style.id}>
+            <article>{style.attributes.title}</article>
+          </Link>
+        ))}
+      </Section>
+      <Section title="Specimen">
+        include some specimen and typetesters here
+        <Link href={getStrapiMedia(specimen.data.attributes.url)}>Download PDF Specimen ⬇</Link>
+      </Section>
+      <Section title="About">
+        <Markdown children={aboutText} />
+      </Section>
+      <Section title={`Buy ${title}`}>PurchaseSection</Section>
+    </section>
+  );
+}
