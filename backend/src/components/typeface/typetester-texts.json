@@ -1,12 +1,17 @@
 {
   "collectionName": "components_typeface_typetester_texts",
   "info": {
-    "displayName": "Typetester Texts"
+    "displayName": "Typetester Texts",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "text": {
-      "type": "text"
+      "type": "text",
+      "required": true
+    },
+    "title": {
+      "type": "string"
     }
   }
 }

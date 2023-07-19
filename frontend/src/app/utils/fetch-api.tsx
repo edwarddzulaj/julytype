@@ -1,5 +1,6 @@
 import qs from 'qs';
 import { getStrapiURL } from './api-helpers';
+const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
 export async function fetchAPI(
   path: string,
@@ -12,6 +13,7 @@ export async function fetchAPI(
       next: { revalidate: 60 },
       headers: {
         'Content-Type': 'application/json',
+         Authorization: `Bearer ${token}`,
       },
       ...options,
     };

@@ -1,7 +1,8 @@
 {
   "collectionName": "components_typeface_weights",
   "info": {
-    "displayName": "Weight"
+    "displayName": "Weight",
+    "description": ""
   },
   "options": {},
   "attributes": {

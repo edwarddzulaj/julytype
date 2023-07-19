@@ -15,7 +15,7 @@
     "title": {
       "type": "string"
     },
-    "Weights": {
+    "weights": {
       "type": "component",
       "repeatable": true,
       "component": "typeface.weight"
