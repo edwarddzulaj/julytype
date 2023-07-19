@@ -14,7 +14,7 @@
       "type": "text",
       "required": true
     },
-    "navigation_pages": {
+    "navigationPages": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::simple-page.simple-page"

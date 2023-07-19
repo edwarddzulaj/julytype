@@ -1,27 +1,27 @@
-import type { Schema, Attribute } from '@strapi/strapi';
+import type { Schema, Attribute } from "@strapi/strapi";
 
 export interface SettingsFooterDetails extends Schema.Component {
-  collectionName: 'components_footer_details_footer_details';
+  collectionName: "components_footer_details_footer_details";
   info: {
-    displayName: 'Footer Details';
-    description: '';
+    displayName: "Footer Details";
+    description: "";
   };
   attributes: {
     copyright: Attribute.String;
-    socialMediaLinks: Attribute.Component<'settings.social-media-link', true>;
-    footer_pages: Attribute.Relation<
-      'settings.footer-details',
-      'oneToMany',
-      'api::simple-page.simple-page'
+    socialMediaLinks: Attribute.Component<"settings.social-media-link", true>;
+    footerPages: Attribute.Relation<
+      "settings.footer-details",
+      "oneToMany",
+      "api::simple-page.simple-page"
     >;
   };
 }
 
 export interface SettingsSocialMediaLink extends Schema.Component {
-  collectionName: 'components_settings_social_media_links';
+  collectionName: "components_settings_social_media_links";
   info: {
-    displayName: 'Social Media Link';
-    description: '';
+    displayName: "Social Media Link";
+    description: "";
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
@@ -30,27 +30,27 @@ export interface SettingsSocialMediaLink extends Schema.Component {
 }
 
 export interface SettingsWebsiteTitle extends Schema.Component {
-  collectionName: 'components_website_title_website_titles';
+  collectionName: "components_website_title_website_titles";
   info: {
-    displayName: 'Website Details';
-    description: '';
+    displayName: "Website Details";
+    description: "";
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
     description: Attribute.Text & Attribute.Required;
-    navigation_pages: Attribute.Relation<
-      'settings.website-title',
-      'oneToMany',
-      'api::simple-page.simple-page'
+    navigationPages: Attribute.Relation<
+      "settings.website-title",
+      "oneToMany",
+      "api::simple-page.simple-page"
     >;
   };
 }
 
 export interface SimplePagePageSection extends Schema.Component {
-  collectionName: 'components_simple_page_page_sections';
+  collectionName: "components_simple_page_page_sections";
   info: {
-    displayName: 'Page Section';
-    description: '';
+    displayName: "Page Section";
+    description: "";
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
@@ -59,10 +59,10 @@ export interface SimplePagePageSection extends Schema.Component {
 }
 
 export interface TypefaceTypetesterTexts extends Schema.Component {
-  collectionName: 'components_typeface_typetester_texts';
+  collectionName: "components_typeface_typetester_texts";
   info: {
-    displayName: 'Typetester Texts';
-    description: '';
+    displayName: "Typetester Texts";
+    description: "";
   };
   attributes: {
     text: Attribute.Text & Attribute.Required;
@@ -71,14 +71,14 @@ export interface TypefaceTypetesterTexts extends Schema.Component {
 }
 
 export interface TypefaceWeight extends Schema.Component {
-  collectionName: 'components_typeface_weights';
+  collectionName: "components_typeface_weights";
   info: {
-    displayName: 'Weight';
-    description: '';
+    displayName: "Weight";
+    description: "";
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    typetesterText: Attribute.Component<'typeface.typetester-texts', true>;
+    typetesterText: Attribute.Component<"typeface.typetester-texts", true>;
     price: Attribute.Float & Attribute.Required;
     discount: Attribute.Integer &
       Attribute.SetMinMax<{
@@ -88,15 +88,15 @@ export interface TypefaceWeight extends Schema.Component {
   };
 }
 
-declare module '@strapi/strapi' {
+declare module "@strapi/strapi" {
   export module Shared {
     export interface Components {
-      'settings.footer-details': SettingsFooterDetails;
-      'settings.social-media-link': SettingsSocialMediaLink;
-      'settings.website-title': SettingsWebsiteTitle;
-      'simple-page.page-section': SimplePagePageSection;
-      'typeface.typetester-texts': TypefaceTypetesterTexts;
-      'typeface.weight': TypefaceWeight;
+      "settings.footer-details": SettingsFooterDetails;
+      "settings.social-media-link": SettingsSocialMediaLink;
+      "settings.website-title": SettingsWebsiteTitle;
+      "simple-page.page-section": SimplePagePageSection;
+      "typeface.typetester-texts": TypefaceTypetesterTexts;
+      "typeface.weight": TypefaceWeight;
     }
   }
 }

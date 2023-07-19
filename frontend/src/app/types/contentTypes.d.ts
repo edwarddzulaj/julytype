@@ -1,6 +1,5 @@
-import { TypefaceWeight } from './components';
-import type { Attribute } from '@strapi/strapi';
-
+import { PageSection, TypefaceWeight } from "./components";
+import type { Attribute } from "@strapi/strapi";
 export interface Style {
   id: number;
   attributes: {
@@ -27,7 +26,19 @@ export interface Typeface {
     updatedAt: Date;
     publishedAt: Date;
     styles: {
-      data: [Style];
+      data: Style[];
     };
+  };
+}
+
+export interface SimplePage {
+  id: number;
+  attributes: {
+    title: string;
+    section: PageSection[];
+    slug: string;
+    createdAt: Date;
+    updatedAt: Date;
+    publishedAt: Date;
   };
 }

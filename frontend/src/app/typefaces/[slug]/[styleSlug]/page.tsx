@@ -24,7 +24,6 @@ export default async function Style({ params }: { params: { styleSlug: string } 
   const style: Style = await getStyle(params.styleSlug);
   const { title, weights } = style.attributes;
 
-  console.log(weights);
   return (
     <section className="container">
       <h1>{title}</h1>

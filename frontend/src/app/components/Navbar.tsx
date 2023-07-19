@@ -25,14 +25,14 @@
 // }
 
 export default function Navbar({
-  websiteTitle,
+  websiteDetails,
 }: {
-  websiteTitle: {title: string, description: string};
+  websiteDetails: {title: string, description: string};
 }) {
   return (
     
    <nav>
-    <div className="website-name">{websiteTitle.title}</div>
+    <div className="website-name">{websiteDetails.title}</div>
     Some navigation</nav>
   );
 }

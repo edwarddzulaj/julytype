@@ -14,7 +14,7 @@
       "repeatable": true,
       "component": "settings.social-media-link"
     },
-    "footer_pages": {
+    "footerPages": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::simple-page.simple-page"

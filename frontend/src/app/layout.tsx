@@ -1,42 +1,39 @@
-import type { Metadata } from 'next';
-import '@/styles/reset.css';
-import '@/styles/main.css';
-import { getStrapiMedia, getStrapiURL } from './utils/api-helpers';
-import { fetchAPI } from './utils/fetch-api';
+import type { Metadata } from "next";
+import "@/styles/reset.css";
+import "@/styles/main.css";
+import { getStrapiMedia, getStrapiURL } from "./utils/api-helpers";
+import { fetchAPI } from "./utils/fetch-api";
 
-import Footer from './components/Footer';
-import Navbar from './components/Navbar';
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 
 const FALLBACK_SEO = {
-  title: 'JulyType',
-  description: 'Type Foundry: JulyType',
+  title: "JulyType",
+  description: "Type Foundry: JulyType",
 };
 
 async function getSettings(): Promise<any> {
-  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-
-  if (!token)
-    throw new Error('The Strapi API Token environment variable is not set.');
-
   const path = `/setting`;
-  const options = { headers: { Authorization: `Bearer ${token}` } };
 
   const urlParamsObject = {
-    populate: ['websiteTitle.title', 'footerDetails'],
+    populate: {
+      websiteDetails: { populate: "*" },
+      footerContent: { populate: "*" },
+    },
   };
 
-  const response = await fetchAPI(path, urlParamsObject, options);
+  const response = await fetchAPI(path, urlParamsObject);
   return response;
 }
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSettings();
   if (!settings.data) return FALLBACK_SEO;
-  const { websiteTitle } = settings.data.attributes;
+  const { websiteDetails } = settings.data.attributes;
 
   return {
-    title: websiteTitle.title,
-    description: websiteTitle.description,
+    title: websiteDetails.title,
+    description: websiteDetails.description,
   };
 }
 
@@ -51,17 +48,15 @@ export default async function RootLayout({
   // TODO: CREATE A CUSTOM ERROR PAGE
   if (!settings.data) return null;
 
-  const { websiteTitle, footerDetails } = settings.data.attributes;
+  const { websiteDetails, footerContent } = settings.data.attributes;
 
   return (
     <html lang={params.lang}>
       <head></head>
       <body>
-        <Navbar websiteTitle={websiteTitle} />
-        <main className="dark:bg-black dark:text-gray-100 min-h-screen">
-          {children}
-        </main>
-        <Footer footerDetails={footerDetails} />
+        <Navbar websiteDetails={websiteDetails} />
+        <main className="wrapper">{children}</main>
+        <Footer footerContent={footerContent} />
       </body>
     </html>
   );

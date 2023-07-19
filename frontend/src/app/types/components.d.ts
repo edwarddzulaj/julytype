@@ -1,3 +1,4 @@
+import type { Attribute } from "@strapi/strapi";
 export interface TypefaceWeight {
   id: number;
   attributes: {
@@ -13,4 +14,15 @@ export interface TypetesterText {
   attributes: {
     text: string;
   };
+}
+
+export interface SocialMediaLink {
+  id: number;
+  name: string;
+  url: URL | string;
+}
+
+export interface PageSection {
+  title: Attribute.String;
+  content: Attribute.RichText;
 }
