@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
+import Iconly, { icons } from "./Iconly";
 
 export default function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
-  const [switchToggle, setSwitchToggle] = useState("X");
   const { theme, setTheme } = useTheme();
 
   // useEffect only runs on the client, so now we can safely show the UI
@@ -20,12 +20,14 @@ export default function ThemeSwitcher() {
   const toggleTheme = () => {
     if (theme === "dark") {
       setTheme("light");
-      setSwitchToggle("O");
     } else {
       setTheme("dark");
-      setSwitchToggle("X");
     }
   };
 
-  return <div onClick={() => toggleTheme()}>{switchToggle}</div>;
+  return (
+    <div onClick={() => toggleTheme()}>
+      <Iconly icon={icons.contrast} />
+    </div>
+  );
 }

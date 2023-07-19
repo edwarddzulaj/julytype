@@ -49,20 +49,20 @@ www.nedkamburov.com
 
 :root {
   /* Your default theme */
-  --background: white;
-  --foreground: black;
+  --background: #fcfcfc;
+  --foreground: #191919;
 }
 
 [data-theme="dark"] {
-  --background: black;
-  --foreground: white;
+  --background: #191919;
+  --foreground: #fcfcfc;
 }
 
 // Variables
 // --------------------------------
-$background-color: var(--background, #fff);
-$color: var(--foreground, #000);
-$main-color: blue;
+$background-color: var(--background, #fcfcfc);
+$color: var(--foreground, #191919);
+$cta-blue: #008bf8;
 
 $font-size: 1.5rem;
 $line-height: 1.2;

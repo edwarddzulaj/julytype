@@ -242,13 +242,13 @@ www.nedkamburov.com
 •••••••••••••••••••••••••••••••• */
 :root {
   /* Your default theme */
-  --background: white;
-  --foreground: black;
+  --background: #fcfcfc;
+  --foreground: #191919;
 }
 
 [data-theme=dark] {
-  --background: black;
-  --foreground: white;
+  --background: #191919;
+  --foreground: #fcfcfc;
 }
 
 * {
@@ -293,8 +293,8 @@ body {
   font-kerning: normal;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  color: var(--foreground, #000);
-  background-color: var(--background, #fff);
+  color: var(--foreground, #191919);
+  background-color: var(--background, #fcfcfc);
   overflow-x: hidden;
   scrollbar-width: thin;
 }
