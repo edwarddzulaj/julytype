@@ -40,6 +40,7 @@ export default async function Typeface({ params }: { params: { slug: string } })
         <Link href={getStrapiMedia(specimen.data.attributes.url)}>Download PDF Specimen ⬇</Link>
       </Section>
       <Section title="About">
+        {/* eslint-disable-next-line react/no-children-prop */}
         <Markdown children={aboutText} />
       </Section>
       <Section title={`Buy ${title}`}>PurchaseSection</Section>

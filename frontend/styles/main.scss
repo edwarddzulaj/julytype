@@ -30,7 +30,7 @@ www.nedkamburov.com
 // @font-face {
 //   font-style: normal;
 //   font-family: "Font Regular 2 Italic";
-//   src: 
+//   src:
 //   // url(../assets/fonts/WilliamTextProRegIta.woff2) format("woff2"),
 //   // url(../assets/fonts/WilliamTextProRegIta.woff) format("woff"),
 //     url(../assets/fonts/WilliamTextProRegIta.otf) format("opentype");
@@ -47,11 +47,21 @@ www.nedkamburov.com
 //     url(../assets/fonts/KHSHRegular/KHSH_Regular.ttf) format("truetype");
 // }
 
+:root {
+  /* Your default theme */
+  --background: white;
+  --foreground: black;
+}
+
+[data-theme="dark"] {
+  --background: black;
+  --foreground: white;
+}
+
 // Variables
 // --------------------------------
-$background-color: #fff;
-$second-background-color: #f4f4f4;
-$color: #000;
+$background-color: var(--background, #fff);
+$color: var(--foreground, #000);
 $main-color: blue;
 
 $font-size: 1.5rem;
@@ -69,6 +79,7 @@ $duration: 0.8s;
 $duration-s: 0.4s;
 $easing: ease-out;
 $mobile-breakpoint: 840px;
+
 // Mixins
 // --------------------------------
 // @include vendor-prefix-attribute(attribute, value);
@@ -167,7 +178,6 @@ textarea {
 }
 
 nav {
-
 }
 
 img,

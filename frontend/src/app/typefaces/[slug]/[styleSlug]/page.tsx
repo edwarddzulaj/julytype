@@ -29,7 +29,7 @@ export default async function Style({ params }: { params: { styleSlug: string } 
       <h1>{title}</h1>
       <Section title="Overview">
         {weights.map((weight: TypefaceWeight) => (
-          <article key={weight.id}>{weight.title}</article>
+          <article key={weight.id}>{weight.attributes.title}</article>
         ))}
         <section className="typetesters">include some specimen and typetesters here</section>
       </Section>

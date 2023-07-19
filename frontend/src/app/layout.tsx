@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import "@/styles/reset.css";
 import "@/styles/main.css";
-import { getStrapiMedia, getStrapiURL } from "./utils/api-helpers";
+import { Providers } from "./providers";
 import { fetchAPI } from "./utils/fetch-api";
-
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 
@@ -51,12 +50,14 @@ export default async function RootLayout({
   const { websiteDetails, footerContent } = settings.data.attributes;
 
   return (
-    <html lang={params.lang}>
-      <head></head>
+    <html lang={params.lang} suppressHydrationWarning>
+      <head />
       <body>
-        <Navbar websiteDetails={websiteDetails} />
-        <main className="wrapper">{children}</main>
-        <Footer footerContent={footerContent} />
+        <Providers>
+          <Navbar websiteDetails={websiteDetails} />
+          <main className="wrapper">{children}</main>
+          <Footer footerContent={footerContent} />
+        </Providers>
       </body>
     </html>
   );

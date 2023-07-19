@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SimplePage } from "../types/contentTypes";
+import ThemeSwitcher from "./UI/ThemeSwitcher";
 
 export default function Navbar({
   websiteDetails,
@@ -24,7 +25,9 @@ export default function Navbar({
         ))}
       </ul>
       <div className="settings">
-        <div className="theme-switcher">O</div>
+        <div className="theme-switcher">
+          <ThemeSwitcher />
+        </div>
         <div className="cart">
           <Link href={`/cart`}>Cart</Link>
         </div>

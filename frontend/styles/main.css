@@ -240,6 +240,17 @@ acronym[title] {
 All rights reserved
 www.nedkamburov.com
 •••••••••••••••••••••••••••••••• */
+:root {
+  /* Your default theme */
+  --background: white;
+  --foreground: black;
+}
+
+[data-theme=dark] {
+  --background: black;
+  --foreground: white;
+}
+
 * {
   /* Hide scrollbar for Chrome, Safari and Opera */
   /* Hide scrollbar for IE, Edge and Firefox */
@@ -282,8 +293,8 @@ body {
   font-kerning: normal;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  color: #000;
-  background-color: #fff;
+  color: var(--foreground, #000);
+  background-color: var(--background, #fff);
   overflow-x: hidden;
   scrollbar-width: thin;
 }
