@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { fetchAPI } from "@/src/app/utils/fetch-api";
 import { SimplePage } from "@/src/app/types/contentTypes";
 import { PageSection } from "../types/components";
@@ -19,8 +18,10 @@ async function getPage(slug: string) {
   return responseData.data[0];
 }
 
-export default async function SimplePage({ params }: { params: { pageSlug: string } }) {
-  const page: SimplePage = await getPage(params.pageSlug);
+export default async function SimplePage({ params }: { params: { simplePageSlug: string } }) {
+  const page: SimplePage = await getPage(params.simplePageSlug);
+  if (!page) return;
+
   const { title, sections } = page.attributes;
 
   return (

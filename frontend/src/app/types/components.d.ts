@@ -1,19 +1,16 @@
 import type { Attribute } from "@strapi/strapi";
 export interface TypefaceWeight {
   id: number;
-  attributes: {
-    title: string;
-    typetesterText: [TypetesterText];
-    price: number;
-    discount: number;
-  };
+  title: string;
+  typetesterText: TypetesterText[];
+  price: number;
+  discount: number;
 }
 
 export interface TypetesterText {
   id: number;
-  attributes: {
-    text: string;
-  };
+  title: string;
+  text: string;
 }
 
 export interface SocialMediaLink {
