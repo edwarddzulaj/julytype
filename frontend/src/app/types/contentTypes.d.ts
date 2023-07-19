@@ -35,7 +35,7 @@ export interface SimplePage {
   id: number;
   attributes: {
     title: string;
-    section: PageSection[];
+    sections: PageSection[];
     slug: string;
     createdAt: Date;
     updatedAt: Date;

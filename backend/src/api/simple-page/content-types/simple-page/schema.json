@@ -16,7 +16,7 @@
       "type": "string",
       "required": true
     },
-    "section": {
+    "sections": {
       "displayName": "Page Section",
       "type": "component",
       "repeatable": true,

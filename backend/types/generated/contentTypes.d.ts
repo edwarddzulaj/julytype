@@ -628,7 +628,7 @@ export interface ApiSimplePageSimplePage extends Schema.CollectionType {
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    section: Attribute.Component<"simple-page.page-section", true> & Attribute.Required;
+    sections: Attribute.Component<"simple-page.page-section", true> & Attribute.Required;
     slug: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

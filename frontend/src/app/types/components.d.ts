@@ -23,6 +23,7 @@ export interface SocialMediaLink {
 }
 
 export interface PageSection {
+  id: number;
   title: Attribute.String;
   content: Attribute.RichText;
 }
