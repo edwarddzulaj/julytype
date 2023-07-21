@@ -2,7 +2,7 @@ import Link from "next/link";
 import Markdown from "react-markdown";
 import Section from "@/app/components/UI/Section";
 import { fetchAPI } from "@/app/utils/fetch-api";
-import { Typeface, Style } from "@/app/types/contentTypes";
+import { Typeface, Style } from "@/@types/contentTypes";
 import { getStrapiMedia } from "@/app/utils/api-helpers";
 
 async function getTypeface(slug: string) {

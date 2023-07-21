@@ -2,9 +2,9 @@ export function getStrapiURL(path = "") {
   return `${process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337"}${path}`;
 }
 
-export function getStrapiMedia(url: string | null): URL | string | null {
+export function getStrapiMedia(url: string): URL | string {
   if (url == null) {
-    return null;
+    return "";
   }
 
   // Return the full URL if the media is hosted on an external provider

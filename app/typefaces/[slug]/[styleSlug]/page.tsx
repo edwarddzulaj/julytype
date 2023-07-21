@@ -1,6 +1,6 @@
 import Section from "@/app/components/UI/Section";
-import { TypefaceWeight } from "@/app/types/components";
-import { Style } from "@/app/types/contentTypes";
+import { TypefaceWeight } from "@/@types/components";
+import { Style } from "@/@types/contentTypes";
 import { fetchAPI } from "@/app/utils/fetch-api";
 import Typetester from "@/app/components/Typeface/Typetester";
 
@@ -34,7 +34,8 @@ export default async function Style({ params }: { params: { styleSlug: string } 
           {weights.map((weight: TypefaceWeight) => {
             const randomNumber = getRandomIndex(0, weight.typetesterText.length);
             const randomText = weight.typetesterText[randomNumber]?.text || undefined;
-            return <Typetester key={weight.id} typetesterText={randomText} />;
+            return <div key={weight.id}>Type tester</div>;
+            // return <Typetester key={weight.id} typetesterText={randomText} />;
           })}
         </section>
       </Section>
@@ -44,7 +45,7 @@ export default async function Style({ params }: { params: { styleSlug: string } 
   );
 }
 
-function getRandomIndex(min, max) {
+function getRandomIndex(min: number, max: number) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min);

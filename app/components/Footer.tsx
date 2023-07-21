@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
-import { SocialMediaLink } from "../types/components";
-import { SimplePage } from "../types/contentTypes";
+import { SocialMediaLink } from "../../@types/components";
+import { SimplePage } from "../../@types/contentTypes";
 
 export default function Footer({
   footerContent,

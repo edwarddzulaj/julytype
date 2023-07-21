@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { fetchAPI } from "@/app/utils/fetch-api";
-import { Typeface } from "@/app/types/contentTypes";
+import { Typeface } from "@/@types/contentTypes";
 
 async function getTypefaces() {
   const path = `/typefaces`;

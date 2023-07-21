@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SimplePage } from "../types/contentTypes";
+import { SimplePage } from "../../@types/contentTypes";
 import ThemeSwitcher from "./UI/ThemeSwitcher";
 import Iconly, { icons } from "./UI/Iconly";
 
