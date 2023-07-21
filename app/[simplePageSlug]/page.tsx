@@ -1,5 +1,5 @@
-import { fetchAPI } from "@/src/app/utils/fetch-api";
-import { SimplePage } from "@/src/app/types/contentTypes";
+import { fetchAPI } from "@/app/utils/fetch-api";
+import { SimplePage } from "@/app/types/contentTypes";
 import { PageSection } from "../types/components";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Section from "../components/UI/Section";

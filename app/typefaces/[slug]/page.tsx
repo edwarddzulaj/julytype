@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Markdown from "react-markdown";
-import Section from "@/src/app/components/UI/Section";
-import { fetchAPI } from "@/src/app/utils/fetch-api";
-import { Typeface, Style } from "@/src/app/types/contentTypes";
-import { getStrapiMedia } from "@/src/app/utils/api-helpers";
+import Section from "@/app/components/UI/Section";
+import { fetchAPI } from "@/app/utils/fetch-api";
+import { Typeface, Style } from "@/app/types/contentTypes";
+import { getStrapiMedia } from "@/app/utils/api-helpers";
 
 async function getTypeface(slug: string) {
   const path = `/typefaces`;

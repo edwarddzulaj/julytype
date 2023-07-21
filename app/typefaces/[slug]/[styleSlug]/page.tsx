@@ -1,10 +1,8 @@
-import Link from "next/link";
-import Section from "@/src/app/components/UI/Section";
-import { TypefaceWeight } from "@/src/app/types/components";
-import { Style } from "@/src/app/types/contentTypes";
-import { getStrapiMedia } from "@/src/app/utils/api-helpers";
-import { fetchAPI } from "@/src/app/utils/fetch-api";
-import Typetester from "@/src/app/components/Typeface/Typetester";
+import Section from "@/app/components/UI/Section";
+import { TypefaceWeight } from "@/app/types/components";
+import { Style } from "@/app/types/contentTypes";
+import { fetchAPI } from "@/app/utils/fetch-api";
+import Typetester from "@/app/components/Typeface/Typetester";
 
 async function getStyle(slug: string) {
   const path = `/styles`;

@@ -1,4 +1,4 @@
-import { fetchAPI } from "@/src/app/utils/fetch-api";
+import { fetchAPI } from "@/app/utils/fetch-api";
 import Link from "next/link";
 
 async function getCartItems() {
