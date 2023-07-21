@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "concurrently \"next dev\" \"cd backend && yarn run develop\"",
     "dev-next": "next dev",
-    "build": "next build",
+    "build": "concurrently \"cd backend && yarn run start\" \"next build\"",
     "start": "next start",
     "lint": "next lint"
   },
