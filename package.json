@@ -6,7 +6,7 @@
     "dev": "concurrently \"next dev\" \"cd backend && yarn run develop\"",
     "dev-next": "next dev",
     "build": "concurrently \"cd backend && yarn install && yarn run start\" \"next build\"",
-    "start": "next start",
+    "start": "concurrently \"cd backend && yarn run start\" \"next start\"",
     "lint": "next lint"
   },
   "dependencies": {
