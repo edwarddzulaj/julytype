@@ -30,8 +30,5 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.0"
-  },
-  "engines": {
-    "node": ">=14.19.1 <=18.x.x"
   }
 }
