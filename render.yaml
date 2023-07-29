@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: julytype-strapi
+    name: julytype
     env: node
     region: frankfurt # optional (defaults to oregon)
     rootDir: backend
@@ -8,7 +8,7 @@ services:
     buildCommand: yarn install && yarn build
     startCommand: rsync -a public/ /data/public/ && yarn start
     healthCheckPath: /_health
-    autoDeploy: false
+    autoDeploy: true
     disk:
       name: strapi-data
       mountPath: /data
