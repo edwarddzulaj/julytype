@@ -15,7 +15,7 @@ services:
       sizeGB: 1
     envVars:
       - key: NODE_VERSION
-        value: ~16.13.0
+        value: ~18.16.1
       - key: NODE_ENV
         value: production
       - key: DATABASE_FILENAME
@@ -27,4 +27,6 @@ services:
       - key: APP_KEYS
         generateValue: true
       - key: API_TOKEN_SALT
+        generateValue: true
+      - key: TRANSFER_TOKEN_SALT
         generateValue: true
