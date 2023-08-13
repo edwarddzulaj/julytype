@@ -1,0 +1,76 @@
+@mixin base {
+	display: inline-flex;
+	padding: 16px;
+	border-radius: 12px;
+	align-items: center;
+	flex-shrink: 0;
+	border: none;
+	// font-family: JT Picolo;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 16px; /* 100% */
+	transition:
+		color 0.1s ease-in-out,
+		background-color 0.1s ease-in-out,
+		border 0.1s ease-in-out;
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+@mixin primary {
+	@include base;
+
+	color: var(--white);
+	background-color: var(--blue);
+
+	&:hover {
+		background-color: var(--black);
+	}
+
+	&:focus {
+		outline: 2px solid var(--black);
+	}
+
+	&:active {
+		background-color: var(--blue);
+	}
+
+	&:disabled {
+		background-color: var(--grey);
+	}
+}
+
+@mixin secondary {
+	@include base;
+
+	color: var(--foreground);
+	background-color: var(--background);
+
+	&:hover {
+		background-color: var(--foreground);
+		color: var(--background);
+	}
+
+	&:focus {
+		outline: 2px solid var(--foreground);
+	}
+
+	&:active {
+		background-color: var(--background);
+	}
+
+	&:disabled {
+		color: var(--grey);
+	}
+}
+
+@mixin tertiary {
+	@include secondary;
+
+	padding: 6px 12px;
+	border-radius: 8px;
+	border: 1px solid var(--foreground);
+}

@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @use "./reset.css";
+@use "./mixins/buttons.scss" as buttons;
 
 /* ••••••••••••••••••••••••••••••••
 © 2018-now Nedislav Kamburov
@@ -48,21 +49,26 @@ www.nedkamburov.com
 // }
 
 :root {
-  /* Your default theme */
-  --background: #fcfcfc;
-  --foreground: #191919;
+  /* Website colours */
+  --blue: #008bf8;
+  --red: #ff2e00;
+  --black: #191919;
+  --white: #fcfcfc;
+  --grey: #969696;
+
+  --background: var(--white);
+  --foreground: var(--black);
 }
 
 [data-theme="dark"] {
-  --background: #191919;
-  --foreground: #fcfcfc;
+  --background: var(--black);
+  --foreground: var(--white);
 }
 
 // Variables
 // --------------------------------
 $background-color: var(--background, #fcfcfc);
 $color: var(--foreground, #191919);
-$cta-blue: #008bf8;
 
 $font-size: 1.5rem;
 $line-height: 1.2;
@@ -178,6 +184,15 @@ textarea {
 }
 
 nav {
+  .primary {
+    @include buttons.primary();
+  }
+  .secondary {
+    @include buttons.secondary();
+  }
+  .tertiary {
+    @include buttons.tertiary();
+  }
 }
 
 img,

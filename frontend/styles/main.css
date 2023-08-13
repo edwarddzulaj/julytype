@@ -241,14 +241,19 @@ All rights reserved
 www.nedkamburov.com
 •••••••••••••••••••••••••••••••• */
 :root {
-  /* Your default theme */
-  --background: #fcfcfc;
-  --foreground: #191919;
+  /* Website colours */
+  --blue: #008bf8;
+  --red: #ff2e00;
+  --black: #191919;
+  --white: #fcfcfc;
+  --grey: #969696;
+  --background: var(--white);
+  --foreground: var(--black);
 }
 
 [data-theme=dark] {
-  --background: #191919;
-  --foreground: #fcfcfc;
+  --background: var(--black);
+  --foreground: var(--white);
 }
 
 * {
@@ -330,6 +335,102 @@ textarea {
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
+}
+
+nav .primary {
+  display: inline-flex;
+  padding: 16px;
+  border-radius: 12px;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 100% */
+  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out, border 0.1s ease-in-out;
+  color: var(--white);
+  background-color: var(--blue);
+}
+nav .primary:hover {
+  cursor: pointer;
+}
+nav .primary:hover {
+  background-color: var(--black);
+}
+nav .primary:focus {
+  outline: 2px solid var(--black);
+}
+nav .primary:active {
+  background-color: var(--blue);
+}
+nav .primary:disabled {
+  background-color: var(--grey);
+}
+nav .secondary {
+  display: inline-flex;
+  padding: 16px;
+  border-radius: 12px;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 100% */
+  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out, border 0.1s ease-in-out;
+  color: var(--foreground);
+  background-color: var(--background);
+}
+nav .secondary:hover {
+  cursor: pointer;
+}
+nav .secondary:hover {
+  background-color: var(--foreground);
+  color: var(--background);
+}
+nav .secondary:focus {
+  outline: 2px solid var(--foreground);
+}
+nav .secondary:active {
+  background-color: var(--background);
+}
+nav .secondary:disabled {
+  color: var(--grey);
+}
+nav .tertiary {
+  display: inline-flex;
+  padding: 16px;
+  border-radius: 12px;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 100% */
+  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out, border 0.1s ease-in-out;
+  color: var(--foreground);
+  background-color: var(--background);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--foreground);
+}
+nav .tertiary:hover {
+  cursor: pointer;
+}
+nav .tertiary:hover {
+  background-color: var(--foreground);
+  color: var(--background);
+}
+nav .tertiary:focus {
+  outline: 2px solid var(--foreground);
+}
+nav .tertiary:active {
+  background-color: var(--background);
+}
+nav .tertiary:disabled {
+  color: var(--grey);
 }
 
 img,
