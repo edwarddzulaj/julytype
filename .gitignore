@@ -9,8 +9,10 @@
 /coverage
 
 # next.js
-frontend/.next/*
+/frontend/.next/
 /out/
+
+render.yaml
 
 # production
 /build
