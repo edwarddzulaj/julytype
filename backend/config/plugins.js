@@ -19,4 +19,7 @@ module.exports = ({ env }) => ({
       shouldUpdateSlug: true,
     },
   },
+  "import-export-entries": {
+    enabled: true,
+  },
 });

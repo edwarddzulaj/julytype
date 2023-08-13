@@ -1,0 +1,599 @@
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[5].oneOf[3].use[1]!./node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js??ruleSet[1].rules[5].oneOf[3].use[2]!./node_modules/next/font/local/target.css?{"path":"app/components/UI/Iconly.tsx","import":"","arguments":[{"src":"../../assets/fonts/july-type-icons/iconly.woff2"}],"variableName":"iconlyFont"} ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+@font-face {
+font-family: '__iconlyFont_c3a750';
+src: url(/_next/static/media/98baa143aa97a3e3-s.p.woff2) format('woff2');
+font-display: swap;
+}@font-face {font-family: '__iconlyFont_Fallback_c3a750';src: local("Arial");ascent-override: 87.50%;descent-override: 12.50%;line-gap-override: 0.00%;size-adjust: 100.00%
+}.__className_c3a750 {font-family: '__iconlyFont_c3a750', '__iconlyFont_Fallback_c3a750'
+}
+
+/*!************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[5].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[5].oneOf[12].use[3]!./styles/reset.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+© 2008-now Harris Blondman
+All rights reserved
+www.harrisblondman.nl
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+
+/* ! Reset, after Eric Meyer, http://meyerweb.com/eric/tools/css/reset/
+================================ */
+
+/* Layout & design
+-------------------------------- */
+/* input, textarea, select, optgroup, option, button,  */
+html,
+body,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+object,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+table,
+thead,
+tbody,
+tfoot,
+tr,
+th,
+td,
+caption,
+pre,
+blockquote,
+address,
+iframe,
+applet,
+form,
+label,
+fieldset,
+legend,
+span,
+img,
+svg,
+a,
+big,
+small,
+strong,
+em,
+tt,
+sup,
+sub,
+b,
+u,
+i,
+center,
+abbr,
+acronym,
+dfn,
+del,
+ins,
+q,
+cite,
+s,
+strike,
+code,
+var,
+samp,
+kbd,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  /* //NOTE: Style outline for accessibility */
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  font-family: inherit;
+  font-feature-settings: normal;
+  font-variant: normal;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  font: inherit;
+  background-color: transparent;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+big,
+small,
+strong,
+em,
+tt,
+sup,
+sub,
+b,
+u,
+i,
+center {
+  /* //NOTE: For browsers that don't support inheritance */
+  font-weight: normal;
+}
+th,
+td,
+caption {
+  /* //NOTE: For browsers that don't support inheritance */
+  font-weight: normal;
+  text-align: left;
+}
+
+/* Layout
+-------------------------------- */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  /* //NOTE: HTML 5 for older browsers */
+  display: block;
+}
+object,
+img,
+video,
+svg,
+iframe,
+textarea {
+  /* //NOTE: Remove extra space that appears underneath when certain elements are nested in div */
+  display: block;
+}
+table {
+  /* //NOTE: Tables still need cellspacing="0" */
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* Design
+-------------------------------- */
+html {
+  /* //NOTE: 2018-04-25 Hard reset of font size. */
+  /*   font-size: 62.5%; */
+  font-size: 10px;
+  line-height: 1;
+}
+body {
+  background-color: #fff;
+  color: #000;
+}
+ul,
+ol {
+  list-style-type: none;
+  list-style-position: outside;
+}
+blockquote,
+q,
+cite {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after,
+cite:before,
+cite:after {
+  content: '';
+}
+del,
+ins,
+s,
+strike {
+  /* //NOTE: Needs styling */
+  text-decoration: none;
+}
+abbr,
+abbr[title],
+acronym,
+acronym[title] {
+  border: none;
+  text-decoration: none;
+}
+
+/* User interface
+-------------------------------- */
+:active,
+:focus {
+  /* //NOTE: Style focus for accessibility */
+  outline: 0;
+}
+abbr,
+abbr[title],
+acronym,
+acronym[title] {
+  cursor: inherit;
+}
+
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[5].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[5].oneOf[12].use[3]!./styles/main.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+© 2008-now Harris Blondman
+All rights reserved
+www.harrisblondman.nl
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+/* ! Reset, after Eric Meyer, http://meyerweb.com/eric/tools/css/reset/
+================================ */
+/* Layout & design
+-------------------------------- */
+/* input, textarea, select, optgroup, option, button,  */
+html,
+body,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+object,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+table,
+thead,
+tbody,
+tfoot,
+tr,
+th,
+td,
+caption,
+pre,
+blockquote,
+address,
+iframe,
+applet,
+form,
+label,
+fieldset,
+legend,
+span,
+img,
+svg,
+a,
+big,
+small,
+strong,
+em,
+tt,
+sup,
+sub,
+b,
+u,
+i,
+center,
+abbr,
+acronym,
+dfn,
+del,
+ins,
+q,
+cite,
+s,
+strike,
+code,
+var,
+samp,
+kbd,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  /* //NOTE: Style outline for accessibility */
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  font-family: inherit;
+  font-feature-settings: normal;
+  font-variant: normal;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  font: inherit;
+  background-color: transparent;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+big,
+small,
+strong,
+em,
+tt,
+sup,
+sub,
+b,
+u,
+i,
+center {
+  /* //NOTE: For browsers that don't support inheritance */
+  font-weight: normal;
+}
+
+th,
+td,
+caption {
+  /* //NOTE: For browsers that don't support inheritance */
+  font-weight: normal;
+  text-align: left;
+}
+
+/* Layout
+-------------------------------- */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  /* //NOTE: HTML 5 for older browsers */
+  display: block;
+}
+
+object,
+img,
+video,
+svg,
+iframe,
+textarea {
+  /* //NOTE: Remove extra space that appears underneath when certain elements are nested in div */
+  display: block;
+}
+
+table {
+  /* //NOTE: Tables still need cellspacing="0" */
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* Design
+-------------------------------- */
+html {
+  /* //NOTE: 2018-04-25 Hard reset of font size. */
+  /*   font-size: 62.5%; */
+  font-size: 10px;
+  line-height: 1;
+}
+
+body {
+  background-color: #fff;
+  color: #000;
+}
+
+ul,
+ol {
+  list-style-type: none;
+  list-style-position: outside;
+}
+
+blockquote,
+q,
+cite {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after,
+cite:before,
+cite:after {
+  content: "";
+}
+
+del,
+ins,
+s,
+strike {
+  /* //NOTE: Needs styling */
+  text-decoration: none;
+}
+
+abbr,
+abbr[title],
+acronym,
+acronym[title] {
+  border: none;
+  text-decoration: none;
+}
+
+/* User interface
+-------------------------------- */
+:active,
+:focus {
+  /* //NOTE: Style focus for accessibility */
+  outline: 0;
+}
+
+abbr,
+abbr[title],
+acronym,
+acronym[title] {
+  cursor: inherit;
+}
+
+/* ••••••••••••••••••••••••••••••••
+© 2018-now Nedislav Kamburov
+All rights reserved
+www.nedkamburov.com
+•••••••••••••••••••••••••••••••• */
+:root {
+  /* Your default theme */
+  --background: #fcfcfc;
+  --foreground: #191919;
+}
+
+[data-theme=dark] {
+  --background: #191919;
+  --foreground: #fcfcfc;
+}
+
+* {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  width: 100%;
+  scroll-behavior: smooth;
+}
+@media (max-width: 480px) {
+  html {
+    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+    font-size: 7px;
+  }
+}
+@media (max-width: 680px) {
+  html {
+    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+    font-size: 8px;
+  }
+}
+@media (max-width: 900px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+body {
+  width: 100%;
+  font-family: "Font Regular", Helvetica, Arial sans-serif;
+  font-weight: normal;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  font-feature-settings: "kern" 1, "kern";
+  font-kerning: normal;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: var(--foreground, #191919);
+  background-color: var(--background, #fcfcfc);
+  overflow-x: hidden;
+  scrollbar-width: thin;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:link,
+a:visited {
+  color: inherit;
+}
+
+a:hover,
+a:active {
+  text-decoration: underline;
+}
+
+a:focus {
+  text-decoration: none;
+}
+
+input,
+button,
+select,
+textarea {
+  -o-text-size-adjust: none;
+  text-size-adjust: none;
+  border-radius: 0;
+  -o-appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+img,
+video {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+em {
+  font-family: "Font Regular 2 Italic";
+  font-weight: inherit;
+  font-style: italic;
+}
+
+p {
+  width: 100%;
+  display: inline-block;
+}
