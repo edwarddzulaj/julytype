@@ -3,6 +3,7 @@ import { TypefaceWeight } from "@/@types/components";
 import { Style } from "@/@types/contentTypes";
 import { fetchAPI } from "@/app/utils/fetch-api";
 import Typetester from "@/app/components/Typeface/Typetester";
+import { getStrapiMedia } from "@/app/utils/api-helpers";
 
 async function getStyle(slug: string) {
   const path = `/styles`;
@@ -34,7 +35,14 @@ export default async function Style({ params }: { params: { styleSlug: string } 
           {weights.map((weight: TypefaceWeight) => {
             const randomNumber = getRandomIndex(0, weight.typetesterText.length);
             const randomText = weight.typetesterText[randomNumber]?.text || undefined;
-            return <Typetester key={weight.id} typetesterText={randomText} />;
+            return (
+              <Typetester
+                key={weight.id}
+                typetesterText={randomText}
+                fontName={weight.title}
+                fontPath={getStrapiMedia(weight.fontFile?.data?.attributes?.url)}
+              />
+            );
           })}
         </section>
       </Section>

@@ -5,6 +5,7 @@ export interface TypefaceWeight {
   typetesterText: TypetesterText[];
   price: number;
   discount: number;
+  fontFile: Attribute.File;
 }
 
 export interface TypetesterText {
