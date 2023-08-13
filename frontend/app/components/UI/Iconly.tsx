@@ -7,11 +7,11 @@ export const icons = {
   hamburger: "menu",
   info: "info",
   download: "download",
-  "chevron-up": "checron-up",
-  "chevron-down": "checron-down",
+  chevronUp: "checron-up",
+  chevronDown: "checron-down",
   check: "checkedtrue",
   checkbox: "checkedfalse",
-  "arrow-left": "arrow-left",
+  arrowLeft: "\uE008",
   close: "close",
 };
 

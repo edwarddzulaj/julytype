@@ -4,6 +4,7 @@ import Section from "@/app/components/UI/Section";
 import { fetchAPI } from "@/app/utils/fetch-api";
 import { Typeface, Style } from "@/@types/contentTypes";
 import { getStrapiMedia } from "@/app/utils/api-helpers";
+import BackButton from "@/app/components/UI/BackButton";
 
 async function getTypeface(slug: string) {
   const path = `/typefaces`;
@@ -27,6 +28,7 @@ export default async function Typeface({ params }: { params: { slug: string } })
 
   return (
     <section className="container">
+      <BackButton>Back to all typefaces</BackButton>
       <h1>{title}</h1>
       <Section title="Overview">
         {styles.data.map((style: Style) => (
