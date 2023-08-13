@@ -34,8 +34,7 @@ export default async function Style({ params }: { params: { styleSlug: string } 
           {weights.map((weight: TypefaceWeight) => {
             const randomNumber = getRandomIndex(0, weight.typetesterText.length);
             const randomText = weight.typetesterText[randomNumber]?.text || undefined;
-            return <div key={weight.id}>Type tester</div>;
-            // return <Typetester key={weight.id} typetesterText={randomText} />;
+            return <Typetester key={weight.id} typetesterText={randomText} />;
           })}
         </section>
       </Section>
