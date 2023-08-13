@@ -1,5 +1,10 @@
 export function getStrapiURL(path = "") {
-  return `${process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337"}${path}`;
+  const strapiURL =
+    process.env.NEXT_PUBLIC_STRAPI_ENV === "production"
+      ? process.env.NEXT_PUBLIC_STRAPI_API_URL
+      : process.env.NEXT_PUBLIC_STRAPI_API_URL_DEV;
+
+  return `${strapiURL || "http://localhost:1337"}${path}`;
 }
 
 export function getStrapiMedia(url: string): URL | string {

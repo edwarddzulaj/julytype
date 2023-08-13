@@ -48,7 +48,6 @@ export default async function RootLayout({
   if (!settings.data) return null;
 
   const { websiteDetails, footerContent } = settings.data.attributes;
-  console.log(websiteDetails.navPages.data[0]);
 
   return (
     <html lang={params.lang} suppressHydrationWarning>

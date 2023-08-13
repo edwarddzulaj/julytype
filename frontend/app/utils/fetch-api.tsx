@@ -1,6 +1,9 @@
 import qs from "qs";
 import { getStrapiURL } from "./api-helpers";
-const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
+const token =
+  process.env.NEXT_PUBLIC_STRAPI_ENV === "production"
+    ? process.env.NEXT_PUBLIC_STRAPI_API_TOKEN
+    : process.env.NEXT_PUBLIC_STRAPI_API_TOKEN_DEV;
 
 export async function fetchAPI(path: string, urlParamsObject = {}, options = {}) {
   try {
