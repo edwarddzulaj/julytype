@@ -58,7 +58,7 @@ export default function Typetester({
   }, [fonts, options]);
 
   return (
-    <div id="demo" ref={demoRef} className={fontSamplerStyles}>
+    <div id="demo" ref={demoRef} className={fontSamplerStyles.toString()}>
       {typetesterText}
     </div>
   );
