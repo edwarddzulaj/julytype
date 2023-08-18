@@ -11,12 +11,6 @@
       "required": true,
       "unique": false
     },
-    "typetesterText": {
-      "displayName": "Typetester Texts",
-      "type": "component",
-      "repeatable": true,
-      "component": "typeface.typetester-texts"
-    },
     "price": {
       "type": "float",
       "required": true
@@ -27,12 +21,18 @@
       "min": 0
     },
     "fontFile": {
-      "allowedTypes": [
-        "files"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "typetesterLanguageGroup": {
+      "displayName": "Typetester Language Group",
+      "type": "component",
+      "repeatable": true,
+      "component": "typeface.typetester-language-group"
     }
   }
 }

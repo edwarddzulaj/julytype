@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_typeface_typetester_language_groups",
+  "info": {
+    "displayName": "Typetester Language Group",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sample": {
+      "type": "component",
+      "repeatable": true,
+      "component": "typeface.sample-text",
+      "required": true
+    },
+    "language": {
+      "type": "enumeration",
+      "enum": [
+        "English",
+        "Dutch",
+        "German",
+        "French",
+        "Norwegian",
+        "Polish",
+        "Spanis",
+        "Italian",
+        "Ukrainian (Cyrillic)",
+        "Russian (Cyrillic)",
+        "Bulgarian (Cyrillic)"
+      ],
+      "default": "English",
+      "required": true
+    }
+  }
+}

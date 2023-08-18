@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_typeface_typetester_texts",
+  "collectionName": "components_typeface_sample_texts",
   "info": {
-    "displayName": "Typetester Texts",
+    "displayName": "Sample",
     "description": ""
   },
   "options": {},
@@ -9,9 +9,6 @@
     "text": {
       "type": "text",
       "required": true
-    },
-    "title": {
-      "type": "string"
     }
   }
 }
