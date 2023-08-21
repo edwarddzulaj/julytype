@@ -20,8 +20,13 @@ export default async function Page() {
   return (
     <section className="container typeface-preview">
       {typefaces.map((typeface: Typeface) => {
-        const numStyles = typeface.attributes.styles.data.length;
-        const numWeights = typeface.attributes.styles.data[0].attributes.weights.length;
+        const styles = typeface.attributes.styles.data;
+        const numStyles = styles.length;
+        const numWeights = styles.reduce(
+          (prev: any, curr: any) => prev + curr.attributes?.weights?.length,
+          0
+        );
+
         return (
           <Link href={`/typefaces/${typeface.attributes.slug}`} key={typeface.id}>
             <article>
