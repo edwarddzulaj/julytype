@@ -11,7 +11,7 @@ export default function BackButton({
   const content = children || "Back";
 
   return (
-    <Link href={backLink}>
+    <Link href={backLink} className="back-button">
       <Iconly icon={icons.arrowLeft} /> {content}
     </Link>
   );

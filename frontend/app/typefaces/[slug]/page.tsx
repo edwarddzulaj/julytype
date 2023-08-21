@@ -6,6 +6,7 @@ import { Typeface, Style } from "@/@types/contentTypes";
 import { getStrapiMedia } from "@/app/utils/api-helpers";
 import BackButton from "@/app/components/UI/BackButton";
 import BuyButton from "@/app/components/UI/BuyButton";
+import Iconly, { icons } from "@/app/components/UI/Iconly";
 
 async function getTypeface(slug: string) {
   const path = `/typefaces`;
@@ -29,19 +30,26 @@ export default async function Typeface({ params }: { params: { slug: string } })
 
   return (
     <section className="container typeface">
-      <BackButton>Back to Typefaces</BackButton>
-      <BuyButton />
-      <h1>{title}</h1>
+      <article className="quick-buttons">
+        <BackButton>Back to Typefaces</BackButton>
+        <BuyButton />
+      </article>
       <Section title="">
-        {styles.data.map((style: Style) => (
-          <Link href={`/typefaces/${slug}/${style.attributes.slug}`} key={style.id}>
-            <article>{style.attributes.title}</article>
-          </Link>
-        ))}
+        <article className="typeface-styles">
+          {styles.data.map((style: Style) => (
+            <Link href={`/typefaces/${slug}/${style.attributes.slug}`} key={style.id}>
+              <h1>{style.attributes.title}</h1>
+            </Link>
+          ))}
+        </article>
       </Section>
       <Section title="Specimen">
         include some specimen and typetesters here
-        <Link href={getStrapiMedia(specimen.data.attributes.url)}>Download PDF Specimen ⬇</Link>
+        <div className="download">
+          <Link href={getStrapiMedia(specimen.data.attributes.url)}>
+            Download PDF Specimen <Iconly icon={icons.download} />
+          </Link>
+        </div>
       </Section>
       <Section title="About">
         {/* eslint-disable-next-line react/no-children-prop */}

@@ -361,9 +361,6 @@ nav .inner-nav .settings {
 nav .inner-nav .settings {
   align-items: center;
 }
-nav .inner-nav .settings .theme-switcher {
-  font-size: 1.95rem;
-}
 nav .inner-nav .settings .theme-switcher:hover {
   cursor: pointer;
 }
@@ -398,6 +395,56 @@ nav .inner-nav .settings .theme-switcher:hover {
 .wrapper .container.typeface {
   padding-top: 1.62rem;
 }
+.wrapper .container.typeface .typeface-styles {
+  display: flex;
+  flex-direction: column;
+  gap: 1.62rem;
+  padding: 6.48rem 0;
+  text-align: center;
+}
+.wrapper .container.typeface .typeface-styles a:hover {
+  text-decoration: none;
+}
+.wrapper .container.typeface .download {
+  margin-top: 1.62rem;
+}
+.wrapper .container.typeface .download a {
+  display: inline-flex;
+  padding: 14px 16px;
+  border-radius: 12px;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 100% */
+  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out, border 0.1s ease-in-out;
+  color: var(--foreground);
+  background-color: var(--background);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--foreground);
+}
+.wrapper .container.typeface .download a:hover {
+  cursor: pointer;
+}
+.wrapper .container.typeface .download a:hover {
+  background-color: var(--foreground);
+  color: var(--background);
+}
+.wrapper .container.typeface .download a:focus {
+  outline: 2px solid var(--foreground);
+}
+.wrapper .container.typeface .download a:active {
+  background-color: var(--background);
+}
+.wrapper .container.typeface .download a:disabled {
+  color: var(--grey);
+}
+.wrapper .container.typeface .download a:hover {
+  text-decoration: none;
+}
 
 footer {
   padding: 1.62rem 7.56rem;
@@ -419,12 +466,25 @@ footer .pages {
   gap: 8.64rem;
 }
 .main-section section {
-  padding-top: 3.24rem;
+  padding-top: 4.86rem;
+}
+
+.quick-buttons {
+  width: calc(100% - 2.16rem * 4);
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+}
+
+.back-button {
+  padding-left: 0;
+  transition: padding 0.3s ease-out;
+}
+.back-button:hover {
+  padding-left: calc(1.296rem / 2);
 }
 
 .buy-button {
-  position: fixed;
-  right: 4.32rem;
   display: inline-flex;
   padding: 14px 16px;
   border-radius: 12px;
@@ -453,6 +513,13 @@ footer .pages {
 }
 .buy-button:disabled {
   background-color: var(--grey);
+}
+
+.iconly {
+  position: relative;
+  padding: 0 2px;
+  top: -1px;
+  transform: scale(1.5);
 }
 
 h1 {

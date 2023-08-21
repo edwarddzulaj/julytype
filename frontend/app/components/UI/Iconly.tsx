@@ -16,5 +16,5 @@ export const icons = {
 };
 
 export default function Iconly({ icon = "" }: { icon: string }) {
-  return <span className={iconlyFont.className}>{icon}</span>;
+  return <span className={`iconly ${iconlyFont.className}`}>{icon}</span>;
 }
