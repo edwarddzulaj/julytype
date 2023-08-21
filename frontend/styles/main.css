@@ -340,7 +340,7 @@ textarea {
 nav {
   min-height: 2.43rem;
   position: fixed;
-  width: 100vw;
+  width: calc(100vw - 2.16rem * 4);
   padding: 1.62rem 4.32rem 0.972rem 4.32rem;
   display: flex;
   gap: 4.32rem;
@@ -363,6 +363,9 @@ nav .inner-nav .settings {
 }
 nav .inner-nav .settings .theme-switcher {
   font-size: 1.95rem;
+}
+nav .inner-nav .settings .theme-switcher:hover {
+  cursor: pointer;
 }
 
 .wrapper {
@@ -392,6 +395,9 @@ nav .inner-nav .settings .theme-switcher {
   justify-content: center;
   gap: calc(1.296rem / 2);
 }
+.wrapper .container.typeface {
+  padding-top: 1.62rem;
+}
 
 footer {
   padding: 1.62rem 7.56rem;
@@ -404,6 +410,91 @@ footer .social-media,
 footer .pages {
   display: flex;
   gap: 1.296rem;
+}
+
+.main-section {
+  margin-bottom: 3.24rem;
+  display: grid;
+  grid-template-columns: minmax(100px, 1fr) 10fr;
+  gap: 8.64rem;
+}
+.main-section section {
+  padding-top: 3.24rem;
+}
+
+.buy-button {
+  position: fixed;
+  right: 4.32rem;
+  display: inline-flex;
+  padding: 14px 16px;
+  border-radius: 12px;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 100% */
+  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out, border 0.1s ease-in-out;
+  color: var(--white);
+  background-color: var(--blue);
+}
+.buy-button:hover {
+  cursor: pointer;
+}
+.buy-button:hover {
+  background-color: var(--black);
+}
+.buy-button:focus {
+  outline: 2px solid var(--black);
+}
+.buy-button:active {
+  background-color: var(--blue);
+}
+.buy-button:disabled {
+  background-color: var(--grey);
+}
+
+h1 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 100px;
+  line-height: 100%; /* 100px */
+}
+
+h2 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 80px;
+  line-height: 96px; /* 120% */
+}
+
+h3 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 42px;
+}
+
+h4 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 34px;
+}
+
+h5 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+h6 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 img,
@@ -422,7 +513,16 @@ em {
   font-style: italic;
 }
 
+strong {
+  display: block;
+  font-weight: 700;
+}
+
 p {
   width: 100%;
   display: inline-block;
+}
+
+p + p {
+  padding-top: 1.62rem;
 }

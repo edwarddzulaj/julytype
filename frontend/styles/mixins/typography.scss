@@ -1,0 +1,42 @@
+@mixin base {
+	font-style: normal;
+	font-weight: 400;
+}
+
+@mixin heading-1 {
+	@include base();
+	// font-family: JT Peleton;
+	font-size: 100px;
+	line-height: 100%; /* 100px */
+}
+
+@mixin heading-2 {
+	@include base();
+	// font-family: JT Peleton;
+	font-size: 80px;
+	line-height: 96px; /* 120% */
+}
+
+@mixin heading-3 {
+	@include base();
+	font-size: 36px;
+	line-height: 42px;
+}
+
+@mixin heading-4 {
+	@include base();
+	font-size: 28px;
+	line-height: 34px;
+}
+
+@mixin heading-5 {
+	@include base();
+	font-size: 20px;
+	line-height: 28px;
+}
+
+@mixin heading-6 {
+	@include base();
+	font-size: 16px;
+	line-height: 24px;
+}

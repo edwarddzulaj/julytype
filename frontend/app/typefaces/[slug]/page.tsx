@@ -5,6 +5,7 @@ import { fetchAPI } from "@/app/utils/fetch-api";
 import { Typeface, Style } from "@/@types/contentTypes";
 import { getStrapiMedia } from "@/app/utils/api-helpers";
 import BackButton from "@/app/components/UI/BackButton";
+import BuyButton from "@/app/components/UI/BuyButton";
 
 async function getTypeface(slug: string) {
   const path = `/typefaces`;
@@ -27,10 +28,11 @@ export default async function Typeface({ params }: { params: { slug: string } })
   const { title, slug, specimen, aboutText, styles } = typeface.attributes;
 
   return (
-    <section className="container">
-      <BackButton>Back to all typefaces</BackButton>
+    <section className="container typeface">
+      <BackButton>Back to Typefaces</BackButton>
+      <BuyButton />
       <h1>{title}</h1>
-      <Section title="Overview">
+      <Section title="">
         {styles.data.map((style: Style) => (
           <Link href={`/typefaces/${slug}/${style.attributes.slug}`} key={style.id}>
             <article>{style.attributes.title}</article>

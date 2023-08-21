@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @use "./reset.css";
 @use "./mixins/buttons.scss" as buttons;
+@use "./mixins/typography.scss" as typography;
 
 /* ••••••••••••••••••••••••••••••••
 © 2018-now Nedislav Kamburov
@@ -190,7 +191,7 @@ textarea {
 nav {
   min-height: $nav-offset;
   position: fixed;
-  width: 100vw;
+  width: calc(100vw - #{$gutter-v} * 4);
   padding: $gutter-h $gutter-v * 2 $gutter-thin-h $gutter-v * 2;
   display: flex;
   gap: $gutter-v * 2;
@@ -213,6 +214,10 @@ nav {
       align-items: center;
       .theme-switcher {
         font-size: $font-size * 1.3;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }
@@ -250,6 +255,10 @@ nav {
         }
       }
     }
+
+    &.typeface {
+      padding-top: $gutter-h;
+    }
   }
 }
 
@@ -269,6 +278,52 @@ footer {
   }
 }
 
+// =-=-=-=-=-=-=-=-=-=
+// Components Styling
+// =-=-=-=-=-=-=-=-=-=
+
+.main-section {
+  margin-bottom: $gutter-h * 2;
+
+  display: grid;
+  grid-template-columns: minmax(100px, 1fr) 10fr;
+  gap: $gutter-v * 4;
+
+  section {
+    padding-top: $gutter-h * 2;
+  }
+}
+
+.buy-button {
+  position: fixed;
+  right: $gutter-v * 2;
+  @include buttons.primary();
+}
+
+h1 {
+  @include typography.heading-1();
+}
+
+h2 {
+  @include typography.heading-2();
+}
+
+h3 {
+  @include typography.heading-3();
+}
+
+h4 {
+  @include typography.heading-4();
+}
+
+h5 {
+  @include typography.heading-5();
+}
+
+h6 {
+  @include typography.heading-6();
+}
+
 img,
 video {
   width: auto;
@@ -284,7 +339,16 @@ em {
   font-style: italic;
 }
 
+strong {
+  display: block;
+  font-weight: 700;
+}
+
 p {
   width: 100%;
   display: inline-block;
+}
+
+p + p {
+  padding-top: $gutter-h;
 }
