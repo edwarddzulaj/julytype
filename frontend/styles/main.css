@@ -368,11 +368,11 @@ nav .inner-nav .settings .theme-switcher:hover {
 .wrapper {
   position: relative;
   min-height: calc(100vh - 2.43rem * 6);
-  padding: 4.86rem 4.32rem;
+  padding: 7.29rem 4.32rem;
   overflow-x: hidden;
 }
 .wrapper .container.typeface-preview {
-  padding-top: 6.48rem;
+  padding-top: 3.24rem;
   display: flex;
   flex-direction: column;
   gap: 6.48rem;
@@ -391,9 +391,6 @@ nav .inner-nav .settings .theme-switcher:hover {
   display: flex;
   justify-content: center;
   gap: calc(1.296rem / 2);
-}
-.wrapper .container.typeface {
-  padding-top: 1.62rem;
 }
 .wrapper .container.typeface .typeface-styles {
   display: flex;
@@ -444,6 +441,18 @@ nav .inner-nav .settings .theme-switcher:hover {
 }
 .wrapper .container.typeface .download a:hover {
   text-decoration: none;
+}
+.wrapper .container.style .main-section:first-of-type {
+  padding-top: 3.24rem;
+}
+.wrapper .container.style .main-section .styles-weights {
+  display: flex;
+  flex-direction: column;
+  gap: 1.62rem;
+  text-align: center;
+}
+.wrapper .container.style .main-section .styles-weights h2 {
+  font-size: 58px;
 }
 
 footer {

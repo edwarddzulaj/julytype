@@ -224,12 +224,12 @@ nav {
 .wrapper {
   position: relative;
   min-height: calc(100vh - #{$nav-offset} * 6);
-  padding: $nav-offset * 2 $gutter-v * 2;
+  padding: $nav-offset * 3 $gutter-v * 2;
   overflow-x: hidden;
 
   .container {
     &.typeface-preview {
-      padding-top: $gutter-h * 4;
+      padding-top: $gutter-h * 2;
       display: flex;
       flex-direction: column;
       gap: $gutter-h * 4;
@@ -255,8 +255,6 @@ nav {
     }
 
     &.typeface {
-      padding-top: $gutter-h;
-
       .typeface-styles {
         display: flex;
         flex-direction: column;
@@ -277,6 +275,25 @@ nav {
 
           &:hover {
             text-decoration: none;
+          }
+        }
+      }
+    }
+
+    &.style {
+      .main-section {
+        &:first-of-type {
+          padding-top: $gutter-h * 2;
+        }
+
+        .styles-weights {
+          display: flex;
+          flex-direction: column;
+          gap: $gutter-h;
+          text-align: center;
+
+          h2 {
+            font-size: 58px;
           }
         }
       }

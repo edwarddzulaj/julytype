@@ -1,15 +1,21 @@
 import Section from "@/app/components/UI/Section";
-import { TypefaceWeight } from "@/@types/components";
+import { TypefaceWeight, TypetesterText, TypetesterTextGroup } from "@/@types/components";
 import { Style } from "@/@types/contentTypes";
 import { fetchAPI } from "@/app/utils/fetch-api";
 import Typetester from "@/app/components/Typeface/Typetester";
 import { getStrapiMedia } from "@/app/utils/api-helpers";
+import BackButton from "@/app/components/UI/BackButton";
+import BuyButton from "@/app/components/UI/BuyButton";
 
 async function getStyle(slug: string) {
   const path = `/styles`;
   const urlParamsObject = {
     populate: {
-      weights: { populate: "*" },
+      weights: {
+        populate: {
+          typetesterLanguageGroup: { populate: "*" },
+        },
+      },
     },
     filters: {
       slug: slug,
@@ -25,16 +31,25 @@ export default async function Style({ params }: { params: { styleSlug: string } 
   const { title, weights } = style.attributes;
 
   return (
-    <section className="container">
-      <h1>{title}</h1>
-      <Section title="Overview">
-        {weights.map((weight: TypefaceWeight) => (
-          <article key={weight.id}>{weight.title}</article>
-        ))}
+    <section className="container style">
+      <article className="quick-buttons">
+        <BackButton>Back to {title}</BackButton>
+        <BuyButton />
+      </article>
+      <Section title={title}>
+        <article className="styles-weights">
+          {weights.map((weight: TypefaceWeight) => (
+            <h2 key={weight.id}>{weight.title}</h2>
+          ))}
+        </article>
         <section className="typetesters">
           {weights.map((weight: TypefaceWeight) => {
-            const randomNumber = getRandomIndex(0, weight.typetesterText.length);
-            const randomText = weight.typetesterText[randomNumber]?.text || undefined;
+            const { allSamplesLatin, allSamplesCyrillic } = indexAllSamples(
+              weight.typetesterLanguageGroup
+            );
+            const randomNumber = getRandomIndex(0, allSamplesLatin?.length);
+            const randomText = allSamplesLatin[randomNumber]?.text;
+
             return (
               <Typetester
                 key={weight.id}
@@ -56,4 +71,20 @@ function getRandomIndex(min: number, max: number) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min);
+}
+
+function indexAllSamples(languages: any) {
+  const allSamplesLatin: any = [];
+  const allSamplesCyrillic: any = [];
+
+  languages.map((lang: TypetesterTextGroup) => {
+    const isCyrillic = lang.language.includes("Cyrillic");
+    if (isCyrillic) {
+      allSamplesCyrillic.push(...lang.sample);
+    } else {
+      allSamplesLatin.push(...lang.sample);
+    }
+  });
+
+  return { allSamplesLatin, allSamplesCyrillic };
 }

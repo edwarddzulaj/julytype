@@ -2,15 +2,20 @@ import type { Attribute } from "@strapi/strapi";
 export interface TypefaceWeight {
   id: number;
   title: string;
-  typetesterText: TypetesterText[];
+  typetesterLanguageGroup: TypetesterTextGroup[];
   price: number;
   discount: number;
   fontFile: Attribute.File;
 }
 
+export interface TypetesterTextGroup {
+  id: number;
+  language: string;
+  sample: [TypetesterText];
+}
+
 export interface TypetesterText {
   id: number;
-  title: string;
   text: string;
 }
 
