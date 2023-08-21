@@ -72,13 +72,13 @@ $color: var(--foreground, #191919);
 
 $font-size: 1.5rem;
 $line-height: 1.2;
+$font-preview: $font-size * 8;
 
 $gutter-v: $font-size * $line-height * 1.2;
 $gutter-h: $font-size * $line-height * 0.9;
 $gutter-thin-h: $gutter-h * 0.6;
 $gutter-thin-v: $gutter-v * 0.6;
-$nav-offset: $gutter-h * 4;
-$footer-offset: 240px;
+$nav-offset: $gutter-h * 1.5;
 
 $indent: $gutter-v;
 $duration: 0.8s;
@@ -168,6 +168,10 @@ a:visited {
 a:hover,
 a:active {
   text-decoration: underline;
+  // Simulate text-underline-offset but with better browser support
+  // padding-bottom: 2px;
+  // box-sizing: content-box;
+  // border-bottom: 1px solid red;
 }
 
 a:focus {
@@ -184,15 +188,76 @@ textarea {
 }
 
 nav {
-  .primary {
-    @include buttons.primary();
+  min-height: $nav-offset;
+  position: fixed;
+  width: 100vw;
+  padding: $gutter-h $gutter-v * 2 $gutter-thin-h $gutter-v * 2;
+  display: flex;
+  gap: $gutter-v * 2;
+  background-color: $color;
+  color: $background-color;
+  z-index: 10000;
+
+  .inner-nav {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+
+    .pages,
+    .settings {
+      display: flex;
+      gap: $gutter-h * 1.5;
+    }
+
+    .settings {
+      align-items: center;
+      .theme-switcher {
+        font-size: $font-size * 1.3;
+      }
+    }
   }
-  .secondary {
-    @include buttons.secondary();
+}
+
+.wrapper {
+  position: relative;
+  // min-height: calc(100vh - #{$nav-offset} * 4.9);
+  padding: $nav-offset * 2 $gutter-v * 2;
+  overflow-x: hidden;
+
+  .container {
+    &.typeface-preview {
+      padding-top: $gutter-h * 4;
+      display: flex;
+      flex-direction: column;
+      gap: $gutter-h * 4;
+
+      a {
+        display: flex;
+        justify-content: center;
+
+        &:hover {
+          text-decoration: none;
+        }
+
+        h2 {
+          font-size: $font-preview;
+        }
+
+        .typeface-details {
+          display: flex;
+          justify-content: center;
+          gap: $gutter-thin-v / 2;
+        }
+      }
+    }
   }
-  .tertiary {
-    @include buttons.tertiary();
-  }
+}
+
+footer {
+  // min-height: $nav-offset;
+  padding: $gutter-h $gutter-v * 3.5;
+  border: 1px solid rgba(255, 0, 0, 1);
+  bottom: 0;
 }
 
 img,

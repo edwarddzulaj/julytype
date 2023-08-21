@@ -337,100 +337,65 @@ textarea {
   appearance: none;
 }
 
-nav .primary {
-  display: inline-flex;
-  padding: 16px;
-  border-radius: 12px;
+nav {
+  min-height: 2.43rem;
+  position: fixed;
+  width: 100vw;
+  padding: 1.62rem 4.32rem 0.972rem 4.32rem;
+  display: flex;
+  gap: 4.32rem;
+  background-color: var(--foreground, #191919);
+  color: var(--background, #fcfcfc);
+  z-index: 10000;
+}
+nav .inner-nav {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+nav .inner-nav .pages,
+nav .inner-nav .settings {
+  display: flex;
+  gap: 2.43rem;
+}
+nav .inner-nav .settings {
   align-items: center;
-  flex-shrink: 0;
-  border: none;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
-  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out, border 0.1s ease-in-out;
-  color: var(--white);
-  background-color: var(--blue);
 }
-nav .primary:hover {
-  cursor: pointer;
+nav .inner-nav .settings .theme-switcher {
+  font-size: 1.95rem;
 }
-nav .primary:hover {
-  background-color: var(--black);
+
+.wrapper {
+  position: relative;
+  padding: 4.86rem 4.32rem;
+  overflow-x: hidden;
 }
-nav .primary:focus {
-  outline: 2px solid var(--black);
+.wrapper .container.typeface-preview {
+  padding-top: 6.48rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6.48rem;
 }
-nav .primary:active {
-  background-color: var(--blue);
+.wrapper .container.typeface-preview a {
+  display: flex;
+  justify-content: center;
 }
-nav .primary:disabled {
-  background-color: var(--grey);
+.wrapper .container.typeface-preview a:hover {
+  text-decoration: none;
 }
-nav .secondary {
-  display: inline-flex;
-  padding: 16px;
-  border-radius: 12px;
-  align-items: center;
-  flex-shrink: 0;
-  border: none;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
-  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out, border 0.1s ease-in-out;
-  color: var(--foreground);
-  background-color: var(--background);
+.wrapper .container.typeface-preview a h2 {
+  font-size: 12rem;
 }
-nav .secondary:hover {
-  cursor: pointer;
+.wrapper .container.typeface-preview a .typeface-details {
+  display: flex;
+  justify-content: center;
+  gap: 0.648rem;
 }
-nav .secondary:hover {
-  background-color: var(--foreground);
-  color: var(--background);
-}
-nav .secondary:focus {
-  outline: 2px solid var(--foreground);
-}
-nav .secondary:active {
-  background-color: var(--background);
-}
-nav .secondary:disabled {
-  color: var(--grey);
-}
-nav .tertiary {
-  display: inline-flex;
-  padding: 16px;
-  border-radius: 12px;
-  align-items: center;
-  flex-shrink: 0;
-  border: none;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
-  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out, border 0.1s ease-in-out;
-  color: var(--foreground);
-  background-color: var(--background);
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: 1px solid var(--foreground);
-}
-nav .tertiary:hover {
-  cursor: pointer;
-}
-nav .tertiary:hover {
-  background-color: var(--foreground);
-  color: var(--background);
-}
-nav .tertiary:focus {
-  outline: 2px solid var(--foreground);
-}
-nav .tertiary:active {
-  background-color: var(--background);
-}
-nav .tertiary:disabled {
-  color: var(--grey);
+
+footer {
+  padding: 1.62rem 7.56rem;
+  border: 1px solid rgb(255, 0, 0);
+  bottom: 0;
 }
 
 img,

@@ -14,32 +14,32 @@ export default function Navbar({
       <div className="website-name">
         <Link href={`/`}>{title}</Link>
       </div>
-      <div className="mobile-nav">
-        <span className="close">
-          Close <Iconly icon={icons.close} />
-        </span>
-        <div className="inner-nav">
-          <ul className="pages">
-            <li>
-              <Link href={`/`}>Typefaces</Link>
+      <div className="inner-nav">
+        <ul className="pages">
+          <li>
+            <Link href={`/`}>Typefaces</Link>
+          </li>
+          {navPages.data.map((page: SimplePage) => (
+            <li key={page.id}>
+              <Link href={`/${page.attributes.slug}`}>{page.attributes.title}</Link>
             </li>
-            {navPages.data.map((page: SimplePage) => (
-              <li key={page.id}>
-                <Link href={`/${page.attributes.slug}`}>{page.attributes.title}</Link>
-              </li>
-            ))}
-          </ul>
-          <div className="settings">
-            <div className="theme-switcher">
-              <ThemeSwitcher />
-            </div>
-            <div className="cart">
-              <Link href={`/cart`}>Cart</Link>
-            </div>
+          ))}
+        </ul>
+        <div className="settings">
+          <div className="theme-switcher">
+            <ThemeSwitcher />
+          </div>
+          <div className="cart">
+            <Link href={`/cart`}>Cart</Link>
           </div>
         </div>
       </div>
-      <Iconly icon={icons.hamburger} />
+      {/* <div className="mobile-nav">
+        <span className="close">
+          Close <Iconly icon={icons.close} />
+        </span>
+        <Iconly icon={icons.hamburger} />
+      </div> */}
     </nav>
   );
 }
