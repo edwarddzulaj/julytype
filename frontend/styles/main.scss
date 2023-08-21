@@ -220,7 +220,7 @@ nav {
 
 .wrapper {
   position: relative;
-  // min-height: calc(100vh - #{$nav-offset} * 4.9);
+  min-height: calc(100vh - #{$nav-offset} * 6);
   padding: $nav-offset * 2 $gutter-v * 2;
   overflow-x: hidden;
 
@@ -246,7 +246,7 @@ nav {
         .typeface-details {
           display: flex;
           justify-content: center;
-          gap: $gutter-thin-v / 2;
+          gap: calc(#{$gutter-thin-v} / 2);
         }
       }
     }
@@ -256,8 +256,17 @@ nav {
 footer {
   // min-height: $nav-offset;
   padding: $gutter-h $gutter-v * 3.5;
-  border: 1px solid rgba(255, 0, 0, 1);
-  bottom: 0;
+  background-color: $color;
+  color: $background-color;
+
+  display: flex;
+  justify-content: space-between;
+
+  .social-media,
+  .pages {
+    display: flex;
+    gap: $gutter-thin-v;
+  }
 }
 
 img,

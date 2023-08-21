@@ -367,6 +367,7 @@ nav .inner-nav .settings .theme-switcher {
 
 .wrapper {
   position: relative;
+  min-height: calc(100vh - 2.43rem * 6);
   padding: 4.86rem 4.32rem;
   overflow-x: hidden;
 }
@@ -389,13 +390,20 @@ nav .inner-nav .settings .theme-switcher {
 .wrapper .container.typeface-preview a .typeface-details {
   display: flex;
   justify-content: center;
-  gap: 0.648rem;
+  gap: calc(1.296rem / 2);
 }
 
 footer {
   padding: 1.62rem 7.56rem;
-  border: 1px solid rgb(255, 0, 0);
-  bottom: 0;
+  background-color: var(--foreground, #191919);
+  color: var(--background, #fcfcfc);
+  display: flex;
+  justify-content: space-between;
+}
+footer .social-media,
+footer .pages {
+  display: flex;
+  gap: 1.296rem;
 }
 
 img,

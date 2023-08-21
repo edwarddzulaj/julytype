@@ -23,12 +23,14 @@ export default function Footer({
           </Link>
         ))}
       </section>
-      {footerPages.data.map((page: SimplePage) => (
-        <Link href={`/${page.attributes.slug}`} key={page.id}>
-          {page.attributes.title}
-        </Link>
-      ))}
-      {copyright}
+      <section className="pages">
+        {footerPages.data.map((page: SimplePage) => (
+          <Link href={`/${page.attributes.slug}`} key={page.id}>
+            {page.attributes.title}
+          </Link>
+        ))}
+        {copyright}
+      </section>
     </footer>
   );
 }
