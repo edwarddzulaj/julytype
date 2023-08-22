@@ -459,7 +459,8 @@ nav .inner-nav .settings .theme-switcher:hover {
 .wrapper .container.style .main-section .styles-weights h2 {
   font-size: 58px;
 }
-.wrapper .container.page h2 {
+.wrapper .container.page h2,
+.wrapper .container.page h3 {
   font-weight: 600;
   padding: 3.24rem 0 8.1rem 0;
 }
@@ -471,6 +472,43 @@ nav .inner-nav .settings .theme-switcher:hover {
 }
 .wrapper .container.page .main-section + h4 {
   margin-top: 6.48rem;
+}
+.wrapper .container.cart.page h3 {
+  padding: 3.24rem 0 1.62rem 0;
+}
+.wrapper .container.cart.page .no-cart-items {
+  margin: 4.86rem 0;
+}
+.wrapper .container.cart.page .no-cart-items .browse-more {
+  margin-top: 1.62rem;
+  display: inline-flex;
+  padding: 14px 16px;
+  border-radius: 12px;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 100% */
+  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out, border 0.1s ease-in-out;
+  color: var(--white);
+  background-color: var(--blue);
+}
+.wrapper .container.cart.page .no-cart-items .browse-more:hover {
+  cursor: pointer;
+}
+.wrapper .container.cart.page .no-cart-items .browse-more:hover {
+  background-color: var(--black);
+}
+.wrapper .container.cart.page .no-cart-items .browse-more:focus {
+  outline: 2px solid var(--black);
+}
+.wrapper .container.cart.page .no-cart-items .browse-more:active {
+  background-color: var(--blue);
+}
+.wrapper .container.cart.page .no-cart-items .browse-more:disabled {
+  background-color: var(--grey);
 }
 
 footer {

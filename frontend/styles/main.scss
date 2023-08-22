@@ -297,7 +297,8 @@ nav {
     }
 
     &.page {
-      h2 {
+      h2,
+      h3 {
         font-weight: 600;
         padding: $gutter-h * 2 0 $gutter-h * 5 0;
       }
@@ -314,6 +315,21 @@ nav {
 
       .main-section + h4 {
         margin-top: $gutter-h * 4;
+      }
+    }
+
+    &.cart.page {
+      h3 {
+        padding: $gutter-h * 2 0 $gutter-h 0;
+      }
+
+      .no-cart-items {
+        margin: $gutter-h * 3 0;
+
+        .browse-more {
+          margin-top: $gutter-h;
+          @include buttons.primary();
+        }
       }
     }
   }

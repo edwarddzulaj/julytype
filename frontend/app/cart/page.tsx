@@ -17,16 +17,18 @@ export default async function CartPage() {
   const cartItems: any[] = [];
 
   return (
-    <section className="page">
-      <h1>Your cart</h1>
+    <section className="container page cart">
+      <h3>Your cart</h3>
       <hr />
       <section className="cart-items">
         {cartItems.length > 0 &&
           cartItems.map((cartItem: any) => <div key={cartItem.id}>{cartItem.title}</div>)}
-        {cartItems.length == 0 && (
+        {cartItems.length === 0 && (
           <div className="no-cart-items">
-            <h5>You have no items in your cart</h5>
-            <Link href="/">Browse more typefaces</Link>
+            <h5>You have no items in your cart yet</h5>
+            <Link href="/" className="browse-more">
+              Browse more typefaces
+            </Link>
           </div>
         )}
       </section>
