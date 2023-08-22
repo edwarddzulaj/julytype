@@ -11,14 +11,11 @@ www.nedkamburov.com
 // General
 // --------------------------------
 
-// @font-face {
-//   font-style: normal;
-//   font-family: "Font Regular";
-//   src:
-//     url(../assets/fonts/SuisseIntl/SuisseIntl-Book.woff2) format("woff2"),
-//     url(../assets/fonts/SuisseIntl/SuisseIntl-Book.woff) format("woff"),
-//     url(../assets/fonts/SuisseIntl/SuisseIntl-Book.otf) format("opentype");
-// }
+@font-face {
+  font-style: normal;
+  font-family: "Font Regular";
+  src: url(../app/assets/fonts/JT-Picolo/JTPicoloVF.ttf) format("truetype");
+}
 // @font-face {
 //   font-style: italic;
 //   font-family: "Font Regular 2";
@@ -223,7 +220,7 @@ nav {
 
 .wrapper {
   position: relative;
-  min-height: calc(100vh - #{$nav-offset} * 6);
+  min-height: calc(100vh - #{$nav-offset} * 8);
   padding: $nav-offset * 3 $gutter-v * 2;
   overflow-x: hidden;
 
@@ -394,7 +391,7 @@ video {
 }
 
 em {
-  font-family: "Font Regular 2 Italic";
+  // font-family: "Font Regular 2 Italic";
   font-weight: inherit;
   font-style: italic;
 }
