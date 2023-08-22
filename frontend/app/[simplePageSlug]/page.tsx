@@ -25,14 +25,17 @@ export default async function SimplePage({ params }: { params: { simplePageSlug:
   const { title, sections } = page.attributes;
 
   return (
-    <section className="page">
-      <h1>{title}</h1>
+    <section className="container page">
+      <h2>{title}</h2>
       <section className="sections">
         {sections.map((section: PageSection) => (
-          <Section title={section.title} key={section.id}>
-            {/* eslint-disable-next-line react/no-children-prop */}
-            <ReactMarkdown children={section.content} />
-          </Section>
+          <>
+            <h4>{section.title}</h4>
+            <Section title={""} key={section.id}>
+              {/* eslint-disable-next-line react/no-children-prop */}
+              <ReactMarkdown children={section.content} />
+            </Section>
+          </>
         ))}
       </section>
     </section>

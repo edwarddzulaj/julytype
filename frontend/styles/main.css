@@ -459,6 +459,19 @@ nav .inner-nav .settings .theme-switcher:hover {
 .wrapper .container.style .main-section .styles-weights h2 {
   font-size: 58px;
 }
+.wrapper .container.page h2 {
+  font-weight: 600;
+  padding: 3.24rem 0 8.1rem 0;
+}
+.wrapper .container.page h4 {
+  font-size: 48px;
+}
+.wrapper .container.page .main-section section {
+  padding-top: 3.24rem;
+}
+.wrapper .container.page .main-section + h4 {
+  margin-top: 6.48rem;
+}
 
 footer {
   padding: 1.62rem 7.56rem;

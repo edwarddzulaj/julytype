@@ -295,6 +295,27 @@ nav {
         }
       }
     }
+
+    &.page {
+      h2 {
+        font-weight: 600;
+        padding: $gutter-h * 2 0 $gutter-h * 5 0;
+      }
+
+      h4 {
+        font-size: 48px;
+      }
+
+      .main-section {
+        section {
+          padding-top: $gutter-h * 2;
+        }
+      }
+
+      .main-section + h4 {
+        margin-top: $gutter-h * 4;
+      }
+    }
   }
 }
 
