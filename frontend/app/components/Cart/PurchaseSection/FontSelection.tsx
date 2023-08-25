@@ -7,12 +7,10 @@ import { allStylesAndWeights } from "@/app/utils/text-helpers";
 
 export default function FontSelection({ typeface }: { typeface: Typeface["attributes"] }) {
   const { price, wholePackageDiscount, styles } = typeface;
-
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  console.log(styles);
   const { numStyles, numWeights, allWeights } = allStylesAndWeights(styles.data);
 
-  console.log(numStyles, numWeights, allWeights);
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+
   const handleOptionChange = (value: string) => {
     setSelectedOption(value);
   };
