@@ -1,7 +1,10 @@
 export interface PurchaseOption {
   title: string;
   subtitle: string;
-  options: string[];
+  options: {
+    value: string;
+    label: string;
+  }[];
   info?: {
     text: string;
     url: string | URL;

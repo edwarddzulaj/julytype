@@ -387,6 +387,36 @@ footer {
   @include buttons.primary();
 }
 
+.license-options {
+  display: flex;
+  flex-direction: column;
+  gap: $gutter-h * 2;
+  
+  .purchase-option {
+    display: grid;
+    grid-template-columns: minmax(100px, 1fr) 5fr;
+    gap: 10px;
+
+    .options {
+      margin: 16px 0;
+      form {
+        display: flex;
+        gap: 8px;
+
+        input[type="radio"] {
+          display: none;
+        }
+
+        label {
+          @include buttons.tertiary();
+
+          padding: 13px 24px;
+        }
+      }
+    }
+  }
+}
+
 .iconly {
   position: relative;
   padding: 0 2px;

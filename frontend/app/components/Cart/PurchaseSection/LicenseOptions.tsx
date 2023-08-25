@@ -3,7 +3,7 @@ import { companySizeOptions, discountOptions, licenseOptions } from "./purchase-
 
 export default function LicenseOptions() {
   return (
-    <section>
+    <section className="license-options">
       <PurchaseOption config={licenseOptions} />
       <PurchaseOption config={companySizeOptions} />
       <PurchaseOption config={discountOptions} />

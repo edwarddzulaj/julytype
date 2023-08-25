@@ -431,7 +431,7 @@ nav .inner-nav .settings .theme-switcher:hover {
 .wrapper .container.typeface .download a:hover {
   cursor: pointer;
 }
-.wrapper .container.typeface .download a:hover {
+.wrapper .container.typeface .download a:hover, .wrapper .container.typeface .download a.selected {
   background-color: var(--foreground);
   color: var(--background);
 }
@@ -578,6 +578,62 @@ footer .pages {
 }
 .buy-button:disabled {
   background-color: var(--grey);
+}
+
+.license-options {
+  display: flex;
+  flex-direction: column;
+  gap: 3.24rem;
+}
+.license-options .purchase-option {
+  display: grid;
+  grid-template-columns: minmax(100px, 1fr) 5fr;
+  gap: 10px;
+}
+.license-options .purchase-option .options {
+  margin: 16px 0;
+}
+.license-options .purchase-option .options form {
+  display: flex;
+  gap: 8px;
+}
+.license-options .purchase-option .options form input[type=radio] {
+  display: none;
+}
+.license-options .purchase-option .options form label {
+  display: inline-flex;
+  padding: 14px 16px;
+  border-radius: 12px;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 100% */
+  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out, border 0.1s ease-in-out;
+  color: var(--foreground);
+  background-color: var(--background);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--foreground);
+  padding: 13px 24px;
+}
+.license-options .purchase-option .options form label:hover {
+  cursor: pointer;
+}
+.license-options .purchase-option .options form label:hover, .license-options .purchase-option .options form label.selected {
+  background-color: var(--foreground);
+  color: var(--background);
+}
+.license-options .purchase-option .options form label:focus {
+  outline: 2px solid var(--foreground);
+}
+.license-options .purchase-option .options form label:active {
+  background-color: var(--background);
+}
+.license-options .purchase-option .options form label:disabled {
+  color: var(--grey);
 }
 
 .iconly {
