@@ -1,11 +1,12 @@
 import Link from "next/link";
 import Markdown from "react-markdown";
-import Section from "@/app/components/UI/Section";
 import { fetchAPI } from "@/app/utils/fetch-api";
 import { Typeface, Style } from "@/@types/contentTypes";
 import { getStrapiMedia } from "@/app/utils/api-helpers";
 import BackButton from "@/app/components/UI/BackButton";
 import BuyButton from "@/app/components/UI/BuyButton";
+import PurchaseSection from "@/app/components/Cart/PurchaseSection/PurchaseSection";
+import Section from "@/app/components/UI/Section";
 import Iconly, { icons } from "@/app/components/UI/Iconly";
 
 async function getTypeface(slug: string) {
@@ -55,7 +56,9 @@ export default async function Typeface({ params }: { params: { slug: string } })
         {/* eslint-disable-next-line react/no-children-prop */}
         <Markdown children={aboutText} />
       </Section>
-      <Section title={`Buy ${title}`}>PurchaseSection</Section>
+      <Section title={`Buy ${title}`}>
+        <PurchaseSection />
+      </Section>
     </section>
   );
 }
