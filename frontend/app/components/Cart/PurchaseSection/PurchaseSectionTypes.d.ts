@@ -10,3 +10,8 @@ export interface PurchaseOption {
     url: string | URL;
   };
 }
+
+export interface BuyingPrice {
+  price: number;
+  discount?: number;
+}
