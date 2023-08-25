@@ -580,6 +580,33 @@ footer .pages {
   background-color: var(--grey);
 }
 
+.buying-price {
+  display: flex;
+  align-items: top;
+  gap: 8px;
+}
+.buying-price .discount-label {
+  background-color: var(--red);
+  color: var(--white);
+  padding: 4px 8px;
+  border-radius: 4px;
+  flex-grow: 0;
+}
+.buying-price .discount-old-price {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  text-decoration: line-through;
+  color: var(--grey);
+}
+.buying-price .price {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+}
+
 .license-options {
   display: flex;
   flex-direction: column;
@@ -634,6 +661,16 @@ footer .pages {
 }
 .license-options .purchase-option .options form label:disabled {
   color: var(--grey);
+}
+
+.font-selection .typeface-package {
+  display: flex;
+}
+.font-selection .typeface-package .typeface-details {
+  flex-grow: 1;
+}
+.font-selection .typeface-package .typeface-price {
+  flex-grow: 0;
 }
 
 .iconly {

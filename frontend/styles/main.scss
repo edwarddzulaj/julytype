@@ -387,11 +387,35 @@ footer {
   @include buttons.primary();
 }
 
+.buying-price {
+  display: flex;
+  align-items: top;
+  gap: 8px;
+
+  .discount-label {
+    background-color: var(--red);
+    color: var(--white);
+    padding: 4px 8px;
+    border-radius: 4px;
+    flex-grow: 0;
+  }
+
+  .discount-old-price {
+    @include typography.heading-5();
+    text-decoration: line-through;
+    color: var(--grey);
+  }
+
+  .price {
+    @include typography.heading-5();
+  }
+}
+
 .license-options {
   display: flex;
   flex-direction: column;
   gap: $gutter-h * 2;
-  
+
   .purchase-option {
     display: grid;
     grid-template-columns: minmax(100px, 1fr) 5fr;
@@ -413,6 +437,20 @@ footer {
           padding: 13px 24px;
         }
       }
+    }
+  }
+}
+
+.font-selection {
+  .typeface-package {
+    display: flex;
+
+    .typeface-details {
+      flex-grow: 1;
+    }
+
+    .typeface-price {
+      flex-grow: 0;
     }
   }
 }

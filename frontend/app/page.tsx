@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { fetchAPI } from "@/app/utils/fetch-api";
 import { Typeface } from "@/@types/contentTypes";
+import { allStylesAndWeights } from "./utils/text-helpers";
 
 async function getTypefaces() {
   const path = `/typefaces`;
@@ -20,12 +21,7 @@ export default async function Page() {
   return (
     <section className="container typeface-preview">
       {typefaces.map((typeface: Typeface) => {
-        const styles = typeface.attributes.styles.data;
-        const numStyles = styles.length;
-        const numWeights = styles.reduce(
-          (prev: any, curr: any) => prev + curr.attributes?.weights?.length,
-          0
-        );
+        const { numStyles, numWeights } = allStylesAndWeights(typeface.attributes.styles.data);
 
         return (
           <Link href={`/typefaces/${typeface.attributes.slug}`} key={typeface.id}>
@@ -35,7 +31,6 @@ export default async function Page() {
                 <span>
                   {numStyles} {numStyles > 1 ? "styles" : "style"}
                 </span>
-                <br />
                 <span>
                   {numWeights} {numWeights > 1 ? "weights" : "weight"}
                 </span>

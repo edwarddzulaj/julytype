@@ -1,4 +1,4 @@
-import PurchaseOption from "./PurchaseOption/PurchaseOption";
+import PurchaseOption from "./PurchaseOption";
 import { companySizeOptions, discountOptions, licenseOptions } from "./purchase-option-configs";
 
 export default function LicenseOptions() {

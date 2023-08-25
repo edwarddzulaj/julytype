@@ -1,11 +1,12 @@
 import FontSelection from "./FontSelection";
-import LicenseOptions from "./LicenseOptions";
+import LicenseOptions from "./LicenseOptions/LicenseOptions";
+import { Typeface } from "@/@types/contentTypes";
 
-export default function PurchaseSection() {
+export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
   return (
     <div>
       <LicenseOptions />
-      <FontSelection />
+      <FontSelection typeface={typeface.attributes} />
     </div>
   );
 }

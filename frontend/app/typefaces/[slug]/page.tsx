@@ -57,7 +57,7 @@ export default async function Typeface({ params }: { params: { slug: string } })
         <Markdown children={aboutText} />
       </Section>
       <Section title={`Buy ${title}`}>
-        <PurchaseSection />
+        <PurchaseSection typeface={typeface} />
       </Section>
     </section>
   );
