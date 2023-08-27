@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @use "./reset.css";
 @use "./mixins/buttons.scss" as buttons;
+@use "./mixins/checkboxesAndRadios.scss" as checkboxesAndRadios;
 @use "./mixins/typography.scss" as typography;
 
 /* ••••••••••••••••••••••••••••••••
@@ -136,6 +137,8 @@ html {
 }
 
 body {
+  @include checkboxesAndRadios.custom();
+
   width: 100%;
   font-family:
     "Font Regular",

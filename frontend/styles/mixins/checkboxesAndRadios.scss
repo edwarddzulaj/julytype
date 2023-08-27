@@ -1,0 +1,71 @@
+@mixin custom {
+  input[type="radio"],
+  input[type="checkbox"] {
+    -webkit-appearance: none;
+    position: relative;
+    appearance: none;
+    background: var(--background); /* this is needed for iOS. Otherwise the background just becomes black. */
+    border: 1.5px solid var(--foreground);
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    border-radius: 100%;
+    vertical-align: text-bottom;
+    transition: background 0.1s ease-in-out;
+
+    &[disabled],
+    &[aria-disabled="true"] {
+      opacity: 0.4;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      margin: auto;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      top: 0;
+    }
+
+    // &:focus {
+    //   outline: 1px solid;
+    // }
+  }
+
+  input[type="checkbox"] {
+    border-radius: 0;
+  }
+
+  input[type="checkbox"]:checked {
+    background-color: var(--foreground);
+  }
+
+  input[type="radio"]::before {
+    height: 0;
+    width: 0;
+  }
+
+  input[type="radio"]:checked::before {
+    border: 5px solid transparent;
+    border-radius: 100%;
+    outline-offset: -6px;
+    background: var(--black);
+  }
+
+  input[type="checkbox"]:indeterminate::before,
+  input[type="checkbox"][aria-checked="mixed"]::before {
+    border: 2px solid var(--black);
+    height: 0;
+    width: 40%;
+  }
+
+  input[type="checkbox"]:checked::before {
+    border-right: 2px solid var(--background);
+    border-bottom: 2px solid var(--background);
+    height: 50%;
+    width: 30%;
+    transform: rotate(45deg) translateY(-5%) translateX(-5%);
+  }
+}
