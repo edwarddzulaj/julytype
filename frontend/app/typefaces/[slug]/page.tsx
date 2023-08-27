@@ -56,7 +56,7 @@ export default async function Typeface({ params }: { params: { slug: string } })
         {/* eslint-disable-next-line react/no-children-prop */}
         <Markdown children={aboutText} />
       </Section>
-      <Section title={`Buy ${title}`}>
+      <Section title={`Buy ${title}`} noIndent={true}>
         <PurchaseSection typeface={typeface} />
       </Section>
     </section>

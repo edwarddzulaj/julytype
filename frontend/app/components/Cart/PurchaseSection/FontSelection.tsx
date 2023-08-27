@@ -1,5 +1,5 @@
 "use client";
-import { Typeface } from "@/@types/contentTypes";
+import { Style, Typeface } from "@/@types/contentTypes";
 import { useState } from "react";
 
 import BuyingPrice from "./BuyingPrice";
@@ -26,7 +26,7 @@ export default function FontSelection({ typeface }: { typeface: Typeface["attrib
                 <input type="checkbox" value="whole" onClick={() => handleOptionChange("whole")} />
                 {typeface.title} Family Complete Pack
               </label>
-              <div>
+              <div className="styles-and-weights">
                 Includes {numStyles} Styles • {numWeights} Weights: {allWeights.join(", ")}
               </div>
             </div>
@@ -37,6 +37,27 @@ export default function FontSelection({ typeface }: { typeface: Typeface["attrib
         </div>
         <div>
           <h6>Choose individual styles</h6>
+          <div className="weights-packages">
+            {styles.data.map((style: Style) =>
+              style.attributes.weights.map((weight) => (
+                <div className="weight-details" key={weight.id}>
+                  <div>
+                    <label className="weight-title">
+                      <input
+                        type="checkbox"
+                        value={weight.id}
+                        onClick={() => handleOptionChange(weight.title)}
+                      />
+                      {style.attributes.title} {weight.title}
+                    </label>
+                  </div>
+                  <div>
+                    <BuyingPrice price={weight.price} discount={weight.discount} />
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
         </div>
       </form>
     </article>

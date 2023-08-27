@@ -360,13 +360,98 @@ footer {
 
 .main-section {
   margin-bottom: $gutter-h * 2;
+  &:not(.no-indent) {
+    display: grid;
+    grid-template-columns: minmax(100px, 1fr) 10fr;
+    gap: $gutter-v * 4;
 
-  display: grid;
-  grid-template-columns: minmax(100px, 1fr) 10fr;
-  gap: $gutter-v * 4;
+    section {
+      padding-top: $gutter-h * 3;
+    }
+  }
 
   section {
-    padding-top: $gutter-h * 3;
+    padding-top: $gutter-h;
+  }
+}
+
+.purchase-section {
+  .license-options {
+    .purchase-option {
+      .options {
+        margin: 16px 0;
+        form {
+          display: flex;
+          gap: 8px;
+
+          input[type="radio"] {
+            display: none;
+          }
+
+          label {
+            @include buttons.tertiary();
+
+            padding: 13px 24px;
+          }
+        }
+      }
+    }
+  }
+
+  .font-selection {
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: $gutter-h * 2;
+
+      .typeface-package {
+        display: flex;
+
+        .typeface-details {
+          flex-grow: 1;
+
+          label {
+            font-size: 20px;
+          }
+
+          .styles-and-weights {
+            margin-top: $gutter-thin-h;
+            text-indent: 25px;
+          }
+        }
+
+        .typeface-price {
+          flex-grow: 0;
+        }
+      }
+
+      .weights-packages {
+        .weight-details {
+          display: flex;
+          justify-content: space-between;
+
+          label.weight-title {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .license-options > div,
+  .font-selection-options {
+    display: grid;
+    grid-template-columns: minmax(100px, 1fr) 10fr;
+    gap: $gutter-v * 4;
+
+    &:not(:first-of-type) {
+      margin-top: $gutter-h * 2;
+    }
+
+    h4 {
+      font-size: 20px;
+      line-height: 28px;
+    }
   }
 }
 
@@ -392,7 +477,7 @@ footer {
 
 .buying-price {
   display: flex;
-  align-items: top;
+  align-items: center;
   gap: 8px;
 
   .discount-label {
@@ -411,50 +496,6 @@ footer {
 
   .price {
     @include typography.heading-5();
-  }
-}
-
-.license-options {
-  display: flex;
-  flex-direction: column;
-  gap: $gutter-h * 2;
-
-  .purchase-option {
-    display: grid;
-    grid-template-columns: minmax(100px, 1fr) 5fr;
-    gap: 10px;
-
-    .options {
-      margin: 16px 0;
-      form {
-        display: flex;
-        gap: 8px;
-
-        input[type="radio"] {
-          display: none;
-        }
-
-        label {
-          @include buttons.tertiary();
-
-          padding: 13px 24px;
-        }
-      }
-    }
-  }
-}
-
-.font-selection {
-  .typeface-package {
-    display: flex;
-
-    .typeface-details {
-      flex-grow: 1;
-    }
-
-    .typeface-price {
-      flex-grow: 0;
-    }
   }
 }
 

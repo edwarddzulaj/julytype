@@ -315,9 +315,12 @@ body input[type=checkbox] {
   -moz-appearance: none;
        appearance: none;
   background: var(--background); /* this is needed for iOS. Otherwise the background just becomes black. */
-  border: 1.5px solid var(--foreground);
+  border: 2px solid var(--foreground);
   height: 20px;
   width: 20px;
+  margin: 0 !important;
+  margin-bottom: 4px !important;
+  margin-right: 5px !important;
   display: inline-block;
   border-radius: 100%;
   vertical-align: text-bottom;
@@ -340,7 +343,7 @@ body input[type=checkbox]::before {
   top: 0;
 }
 body input[type=checkbox] {
-  border-radius: 0;
+  border-radius: 5%;
 }
 body input[type=checkbox]:checked {
   background-color: var(--foreground);
@@ -366,7 +369,7 @@ body input[type=checkbox]:checked::before {
   border-bottom: 2px solid var(--background);
   height: 50%;
   width: 30%;
-  transform: rotate(45deg) translateY(-5%) translateX(-5%);
+  transform: rotate(45deg) translateY(-15%) translateX(-15%);
 }
 
 a {
@@ -586,12 +589,106 @@ footer .pages {
 
 .main-section {
   margin-bottom: 3.24rem;
+}
+.main-section:not(.no-indent) {
   display: grid;
   grid-template-columns: minmax(100px, 1fr) 10fr;
   gap: 8.64rem;
 }
-.main-section section {
+.main-section:not(.no-indent) section {
   padding-top: 4.86rem;
+}
+.main-section section {
+  padding-top: 1.62rem;
+}
+
+.purchase-section .license-options .purchase-option .options {
+  margin: 16px 0;
+}
+.purchase-section .license-options .purchase-option .options form {
+  display: flex;
+  gap: 8px;
+}
+.purchase-section .license-options .purchase-option .options form input[type=radio] {
+  display: none;
+}
+.purchase-section .license-options .purchase-option .options form label {
+  display: inline-flex;
+  padding: 14px 16px;
+  border-radius: 12px;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 100% */
+  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out, border 0.1s ease-in-out;
+  color: var(--foreground);
+  background-color: var(--background);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--foreground);
+  padding: 13px 24px;
+}
+.purchase-section .license-options .purchase-option .options form label:hover {
+  cursor: pointer;
+}
+.purchase-section .license-options .purchase-option .options form label:hover, .purchase-section .license-options .purchase-option .options form label.selected {
+  background-color: var(--foreground);
+  color: var(--background);
+}
+.purchase-section .license-options .purchase-option .options form label:focus {
+  outline: 2px solid var(--foreground);
+}
+.purchase-section .license-options .purchase-option .options form label:active {
+  background-color: var(--background);
+}
+.purchase-section .license-options .purchase-option .options form label:disabled {
+  color: var(--grey);
+}
+.purchase-section .font-selection form {
+  display: flex;
+  flex-direction: column;
+  gap: 3.24rem;
+}
+.purchase-section .font-selection form .typeface-package {
+  display: flex;
+}
+.purchase-section .font-selection form .typeface-package .typeface-details {
+  flex-grow: 1;
+}
+.purchase-section .font-selection form .typeface-package .typeface-details label {
+  font-size: 20px;
+}
+.purchase-section .font-selection form .typeface-package .typeface-details .styles-and-weights {
+  margin-top: 0.972rem;
+  text-indent: 25px;
+}
+.purchase-section .font-selection form .typeface-package .typeface-price {
+  flex-grow: 0;
+}
+.purchase-section .font-selection form .weights-packages .weight-details {
+  display: flex;
+  justify-content: space-between;
+}
+.purchase-section .font-selection form .weights-packages .weight-details label.weight-title {
+  font-size: 20px;
+}
+.purchase-section .license-options > div,
+.purchase-section .font-selection-options {
+  display: grid;
+  grid-template-columns: minmax(100px, 1fr) 10fr;
+  gap: 8.64rem;
+}
+.purchase-section .license-options > div:not(:first-of-type),
+.purchase-section .font-selection-options:not(:first-of-type) {
+  margin-top: 3.24rem;
+}
+.purchase-section .license-options > div h4,
+.purchase-section .font-selection-options h4 {
+  font-size: 20px;
+  line-height: 28px;
 }
 
 .quick-buttons {
@@ -642,7 +739,7 @@ footer .pages {
 
 .buying-price {
   display: flex;
-  align-items: top;
+  align-items: center;
   gap: 8px;
 }
 .buying-price .discount-label {
@@ -665,72 +762,6 @@ footer .pages {
   font-weight: 400;
   font-size: 20px;
   line-height: 28px;
-}
-
-.license-options {
-  display: flex;
-  flex-direction: column;
-  gap: 3.24rem;
-}
-.license-options .purchase-option {
-  display: grid;
-  grid-template-columns: minmax(100px, 1fr) 5fr;
-  gap: 10px;
-}
-.license-options .purchase-option .options {
-  margin: 16px 0;
-}
-.license-options .purchase-option .options form {
-  display: flex;
-  gap: 8px;
-}
-.license-options .purchase-option .options form input[type=radio] {
-  display: none;
-}
-.license-options .purchase-option .options form label {
-  display: inline-flex;
-  padding: 14px 16px;
-  border-radius: 12px;
-  align-items: center;
-  flex-shrink: 0;
-  border: none;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
-  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out, border 0.1s ease-in-out;
-  color: var(--foreground);
-  background-color: var(--background);
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: 1px solid var(--foreground);
-  padding: 13px 24px;
-}
-.license-options .purchase-option .options form label:hover {
-  cursor: pointer;
-}
-.license-options .purchase-option .options form label:hover, .license-options .purchase-option .options form label.selected {
-  background-color: var(--foreground);
-  color: var(--background);
-}
-.license-options .purchase-option .options form label:focus {
-  outline: 2px solid var(--foreground);
-}
-.license-options .purchase-option .options form label:active {
-  background-color: var(--background);
-}
-.license-options .purchase-option .options form label:disabled {
-  color: var(--grey);
-}
-
-.font-selection .typeface-package {
-  display: flex;
-}
-.font-selection .typeface-package .typeface-details {
-  flex-grow: 1;
-}
-.font-selection .typeface-package .typeface-price {
-  flex-grow: 0;
 }
 
 .iconly {

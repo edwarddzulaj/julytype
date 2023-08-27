@@ -1,5 +1,4 @@
 export interface PurchaseOption {
-  title: string;
   subtitle: string;
   options: {
     value: string;
