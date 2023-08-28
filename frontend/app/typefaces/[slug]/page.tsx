@@ -33,7 +33,7 @@ export default async function Typeface({ params }: { params: { slug: string } })
     <section className="container typeface">
       <article className="quick-buttons">
         <BackButton>Back to Typefaces</BackButton>
-        <BuyButton />
+        <BuyButton>Buy {title}</BuyButton>
       </article>
       <Section title="">
         <article className="typeface-styles">

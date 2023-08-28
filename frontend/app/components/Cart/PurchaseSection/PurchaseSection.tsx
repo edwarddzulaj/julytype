@@ -4,6 +4,7 @@ import PurchaseOption from "./PurchaseOption";
 import { companySizeOptions, discountOptions, licenseOptions } from "./purchase-option-configs";
 
 export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
+
   return (
     <section className="purchase-section">
       <div className="license-options">

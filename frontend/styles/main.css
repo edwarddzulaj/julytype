@@ -660,6 +660,7 @@ footer .pages {
 }
 .purchase-section .font-selection form .typeface-package .typeface-details label {
   font-size: 20px;
+  font-weight: 700;
 }
 .purchase-section .font-selection form .typeface-package .typeface-details .styles-and-weights {
   margin-top: 0.972rem;
