@@ -6,8 +6,11 @@
     "dev": "concurrently \"cd backend && yarn run develop\" \"cd frontend && yarn run dev\"",
     "build": "concurrently \"cd backend && yarn run build\" \"cd frontend && yarn run build\""
   },
-  "dependencies": {},
+  "dependencies": {
+    "react-pdf": "^7.3.3"
+  },
   "devDependencies": {
-    "concurrently": "^8.2.0"
+    "concurrently": "^8.2.0",
+    "raw-loader": "^4.0.2"
   }
 }

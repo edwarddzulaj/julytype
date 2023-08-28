@@ -9,6 +9,7 @@ import PurchaseSection from "@/app/components/Cart/PurchaseSection/PurchaseSecti
 import Section from "@/app/components/UI/Section";
 import Iconly, { icons } from "@/app/components/UI/Iconly";
 import Typetester from "@/app/components/Typeface/Typetester";
+import PDFPreview from "@/app/components/Typeface/PDFPreview";
 
 async function getTypeface(slug: string) {
   const path = `/typefaces`;
@@ -62,11 +63,9 @@ export default async function Typeface({ params }: { params: { slug: string } })
             fontPath={getStrapiMedia(randomWeight.fontFile?.data?.attributes?.url)}
           />
         </section>
-        <div className="download">
-          <Link href={getStrapiMedia(specimen.data.attributes.url)}>
-            Download PDF Specimen <Iconly icon={icons.download} />
-          </Link>
-        </div>
+        <section className="download">
+          <PDFPreview url={getStrapiMedia(specimen.data.attributes.url)} />
+        </section>
       </Section>
       <Section title="About">
         {/* eslint-disable-next-line react/no-children-prop */}

@@ -268,14 +268,18 @@ nav {
       }
 
       .download {
-        margin-top: $gutter-h;
-
         a {
+          margin-top: $gutter-h;
           @include buttons.tertiary();
 
           &:hover {
             text-decoration: none;
           }
+        }
+
+        canvas {
+          width: 100% !important;
+          height: auto !important;
         }
       }
     }
@@ -461,6 +465,7 @@ footer {
   position: fixed;
   display: flex;
   justify-content: space-between;
+  z-index: 9999;
 }
 
 .back-button {

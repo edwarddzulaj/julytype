@@ -470,10 +470,8 @@ nav .inner-nav .settings .theme-switcher:hover {
 .wrapper .container.typeface .typeface-styles a:hover {
   text-decoration: none;
 }
-.wrapper .container.typeface .download {
-  margin-top: 1.62rem;
-}
 .wrapper .container.typeface .download a {
+  margin-top: 1.62rem;
   display: inline-flex;
   padding: 14px 16px;
   border-radius: 12px;
@@ -509,6 +507,10 @@ nav .inner-nav .settings .theme-switcher:hover {
 }
 .wrapper .container.typeface .download a:hover {
   text-decoration: none;
+}
+.wrapper .container.typeface .download canvas {
+  width: 100% !important;
+  height: auto !important;
 }
 .wrapper .container.style .main-section:first-of-type {
   padding-top: 3.24rem;
@@ -697,6 +699,7 @@ footer .pages {
   position: fixed;
   display: flex;
   justify-content: space-between;
+  z-index: 9999;
 }
 
 .back-button {
