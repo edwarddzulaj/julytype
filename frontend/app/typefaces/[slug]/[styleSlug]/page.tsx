@@ -1,19 +1,24 @@
 import Section from "@/app/components/UI/Section";
 import { TypefaceWeight, TypetesterText, TypetesterTextGroup } from "@/@types/components";
-import { Style } from "@/@types/contentTypes";
+import { Typeface, Style } from "@/@types/contentTypes";
 import { fetchAPI } from "@/app/utils/fetch-api";
 import Typetester from "@/app/components/Typeface/Typetester";
 import { getStrapiMedia } from "@/app/utils/api-helpers";
 import BackButton from "@/app/components/UI/BackButton";
 import BuyButton from "@/app/components/UI/BuyButton";
+import PurchaseSection from "@/app/components/Cart/PurchaseSection/PurchaseSection";
 
-async function getStyle(slug: string) {
-  const path = `/styles`;
+async function getTypeface(slug: string) {
+  const path = `/typefaces`;
   const urlParamsObject = {
     populate: {
-      weights: {
+      styles: {
         populate: {
-          typetesterLanguageGroup: { populate: "*" },
+          weights: {
+            populate: {
+              typetesterLanguageGroup: { populate: "*" },
+            },
+          },
         },
       },
     },
@@ -26,14 +31,16 @@ async function getStyle(slug: string) {
   return responseData.data[0];
 }
 
-export default async function Style({ params }: { params: { styleSlug: string } }) {
-  const style: Style = await getStyle(params.styleSlug);
+export default async function Style({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+  const typeface: Typeface = await getTypeface(slug);
+  const style: Style = typeface.attributes.styles.data[0];
   const { title, weights } = style.attributes;
 
   return (
     <section className="container style">
       <article className="quick-buttons">
-        <BackButton>Back to {title}</BackButton>
+        <BackButton>Back to {typeface.attributes.title}</BackButton>
         <BuyButton />
       </article>
       <Section title={title}>
@@ -61,8 +68,9 @@ export default async function Style({ params }: { params: { styleSlug: string } 
           })}
         </section>
       </Section>
-
-      <Section title={`Buy ${title}`}>PurchaseSection</Section>
+      <Section title={`Buy ${typeface.attributes.title}`} noIndent={true}>
+        <PurchaseSection typeface={typeface} />
+      </Section>
     </section>
   );
 }
