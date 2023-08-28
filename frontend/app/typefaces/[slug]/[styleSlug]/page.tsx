@@ -1,5 +1,5 @@
 import Section from "@/app/components/UI/Section";
-import { TypefaceWeight, TypetesterText, TypetesterTextGroup } from "@/@types/components";
+import { TypefaceWeight } from "@/@types/components";
 import { Typeface, Style } from "@/@types/contentTypes";
 import { fetchAPI } from "@/app/utils/fetch-api";
 import Typetester from "@/app/components/Typeface/Typetester";
@@ -7,6 +7,7 @@ import { getStrapiMedia } from "@/app/utils/api-helpers";
 import BackButton from "@/app/components/UI/BackButton";
 import BuyButton from "@/app/components/UI/BuyButton";
 import PurchaseSection from "@/app/components/Cart/PurchaseSection/PurchaseSection";
+import { indexAllSamples, getRandomIndex } from "../helpers";
 
 async function getTypeface(slug: string) {
   const path = `/typefaces`;
@@ -36,11 +37,14 @@ export default async function Style({ params }: { params: { slug: string } }) {
   const typeface: Typeface = await getTypeface(slug);
   const style: Style = typeface.attributes.styles.data[0];
   const { title, weights } = style.attributes;
+  const typefaceTitle = typeface.attributes.title;
 
   return (
     <section className="container style">
       <article className="quick-buttons">
-        <BackButton>Back to {typeface.attributes.title}</BackButton>
+        <BackButton backLink={`/typefaces/${typeface.attributes.slug}`}>
+          Back to {typefaceTitle}
+        </BackButton>
         <BuyButton />
       </article>
       <Section title={title}>
@@ -68,31 +72,9 @@ export default async function Style({ params }: { params: { slug: string } }) {
           })}
         </section>
       </Section>
-      <Section title={`Buy ${typeface.attributes.title}`} noIndent={true}>
+      <Section title={`Buy ${typefaceTitle}`} noIndent={true}>
         <PurchaseSection typeface={typeface} />
       </Section>
     </section>
   );
-}
-
-function getRandomIndex(min: number, max: number) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min);
-}
-
-function indexAllSamples(languages: any) {
-  const allSamplesLatin: any = [];
-  const allSamplesCyrillic: any = [];
-
-  languages.map((lang: TypetesterTextGroup) => {
-    const isCyrillic = lang.language.includes("Cyrillic");
-    if (isCyrillic) {
-      allSamplesCyrillic.push(...lang.sample);
-    } else {
-      allSamplesLatin.push(...lang.sample);
-    }
-  });
-
-  return { allSamplesLatin, allSamplesCyrillic };
 }

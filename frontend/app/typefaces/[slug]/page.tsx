@@ -8,12 +8,21 @@ import BuyButton from "@/app/components/UI/BuyButton";
 import PurchaseSection from "@/app/components/Cart/PurchaseSection/PurchaseSection";
 import Section from "@/app/components/UI/Section";
 import Iconly, { icons } from "@/app/components/UI/Iconly";
+import Typetester from "@/app/components/Typeface/Typetester";
 
 async function getTypeface(slug: string) {
   const path = `/typefaces`;
   const urlParamsObject = {
     populate: {
-      styles: { populate: "*" },
+      styles: {
+        populate: {
+          weights: {
+            populate: {
+              typetesterLanguageGroup: { populate: "*" },
+            },
+          },
+        },
+      },
       specimen: { populate: "*" },
     },
     filters: {
@@ -28,6 +37,7 @@ async function getTypeface(slug: string) {
 export default async function Typeface({ params }: { params: { slug: string } }) {
   const typeface: Typeface = await getTypeface(params.slug);
   const { title, slug, specimen, aboutText, styles } = typeface.attributes;
+  const randomWeight = styles.data[0].attributes.weights[0];
 
   return (
     <section className="container typeface">
@@ -45,7 +55,13 @@ export default async function Typeface({ params }: { params: { slug: string } })
         </article>
       </Section>
       <Section title="Specimen">
-        include some specimen and typetesters here
+        <section className="typetesters">
+          <Typetester
+            typetesterText={"July type is coming sooner than you think"}
+            fontName={randomWeight.title}
+            fontPath={getStrapiMedia(randomWeight.fontFile?.data?.attributes?.url)}
+          />
+        </section>
         <div className="download">
           <Link href={getStrapiMedia(specimen.data.attributes.url)}>
             Download PDF Specimen <Iconly icon={icons.download} />
