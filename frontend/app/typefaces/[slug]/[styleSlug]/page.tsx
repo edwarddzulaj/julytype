@@ -32,11 +32,14 @@ async function getTypeface(slug: string) {
   return responseData.data[0];
 }
 
-export default async function Style({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default async function Style({ params }: { params: { slug: string; styleSlug: string } }) {
+  const { slug, styleSlug } = params;
   const typeface: Typeface = await getTypeface(slug);
-  const style: Style = typeface.attributes.styles.data[0];
-  const { title, weights } = style.attributes;
+  const style: Style | undefined = typeface.attributes.styles.data.find(
+    (style) => style.attributes.slug === styleSlug
+  );
+
+  const { title, weights } = style?.attributes ?? { title: "", weights: [] };
   const typefaceTitle = typeface.attributes.title;
 
   return (
