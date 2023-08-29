@@ -384,8 +384,10 @@ footer {
     .purchase-option {
       .options {
         margin: 16px 0;
+
         form {
           display: flex;
+          flex-wrap: wrap;
           gap: 8px;
 
           input[type="radio"] {

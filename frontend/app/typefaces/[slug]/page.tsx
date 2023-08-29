@@ -19,6 +19,7 @@ async function getTypeface(slug: string) {
           weights: {
             populate: {
               typetesterLanguageGroup: { populate: "*" },
+              fontFile: { populate: "*" },
             },
           },
         },

@@ -609,6 +609,7 @@ footer .pages {
 }
 .purchase-section .license-options .purchase-option .options form {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 }
 .purchase-section .license-options .purchase-option .options form input[type=radio] {
