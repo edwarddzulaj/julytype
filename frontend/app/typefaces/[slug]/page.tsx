@@ -7,7 +7,6 @@ import BackButton from "@/app/components/UI/BackButton";
 import BuyButton from "@/app/components/UI/BuyButton";
 import PurchaseSection from "@/app/components/Cart/PurchaseSection/PurchaseSection";
 import Section from "@/app/components/UI/Section";
-import Iconly, { icons } from "@/app/components/UI/Iconly";
 import Typetester from "@/app/components/Typeface/Typetester";
 import PDFPreview from "@/app/components/Typeface/PDFPreview";
 
@@ -63,9 +62,11 @@ export default async function Typeface({ params }: { params: { slug: string } })
             fontPath={getStrapiMedia(randomWeight.fontFile?.data?.attributes?.url)}
           />
         </section>
-        <section className="download">
-          <PDFPreview url={getStrapiMedia(specimen.data.attributes.url)} />
-        </section>
+        {specimen && (
+          <section className="download">
+            <PDFPreview url={getStrapiMedia(specimen.data.attributes.url)} />
+          </section>
+        )}
       </Section>
       <Section title="About">
         {/* eslint-disable-next-line react/no-children-prop */}
