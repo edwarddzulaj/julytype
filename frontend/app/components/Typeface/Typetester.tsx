@@ -6,32 +6,37 @@ import { useEffect, useRef, useMemo } from "react";
 
 export default function Typetester({
   typetesterText = "Type something...",
-  fontName = "Font",
-  fontPath = "",
+  fontsData = [
+    {
+      name: "Font",
+      fontPath: "",
+    },
+  ],
 }: {
   typetesterText: string | undefined;
-  fontName: string | undefined;
-  fontPath: string | URL;
+  fontsData: {
+    name: string | undefined;
+    fontPath: string | URL;
+  }[];
 }) {
   const demoRef = useRef(null);
 
   const fonts = useMemo(
-    () => [
-      {
-        name: fontName,
-        files: [fontPath],
-      },
-    ],
-    [fontName, fontPath]
+    () =>
+      fontsData.map((font) => {
+        return {
+          name: font.name,
+          files: [font.fontPath],
+        };
+      }),
+    [fontsData]
   );
+
+  const typetesterId = fontsData[0]?.name?.toLowerCase().replace(/\s/g, "");
 
   const options = useMemo(
     () => ({
-      order: [
-        ["opentype", "language", "alignment"],
-        ["fontsize", "lineheight", "letterspacing"],
-        "tester",
-      ],
+      order: [["fontfamily", "language", "fontsize", "alignment", "opentype"], "tester"],
       ui: {
         language: {
           choices: ["enGB|English", "deDe|Deutsch", "nlNL|Dutch"],
@@ -45,6 +50,7 @@ export default function Typetester({
           label: "Opentype features",
         },
       },
+      lazyload: true,
     }),
     []
   );
@@ -58,7 +64,7 @@ export default function Typetester({
   }, [fonts, options]);
 
   return (
-    <div id="demo" ref={demoRef} className={fontSamplerStyles.toString()}>
+    <div id={typetesterId} ref={demoRef} className={fontSamplerStyles.toString()}>
       {typetesterText}
     </div>
   );

@@ -300,6 +300,12 @@ nav {
             font-size: 58px;
           }
         }
+
+        .typetesters {
+          display: flex;
+          flex-direction: column;
+          gap: $gutter-h * 4;
+        }
       }
     }
 

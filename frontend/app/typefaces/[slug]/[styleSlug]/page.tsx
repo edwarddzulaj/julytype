@@ -64,13 +64,16 @@ export default async function Style({ params }: { params: { slug: string; styleS
             );
             const randomNumber = getRandomIndex(0, allSamplesLatin?.length);
             const randomText = allSamplesLatin[randomNumber]?.text;
+            const typetesterData = {
+              name: weight.title,
+              fontPath: getStrapiMedia(weight.fontFile?.data?.attributes?.url),
+            };
 
             return (
               <Typetester
                 key={weight.id}
                 typetesterText={randomText}
-                fontName={weight.title}
-                fontPath={getStrapiMedia(weight.fontFile?.data?.attributes?.url)}
+                fontsData={[typetesterData]}
               />
             );
           })}
