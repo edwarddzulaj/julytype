@@ -24,7 +24,7 @@ const nextConfig = {
         source: "/admin/:path*",
         destination:
           process.env.NEXT_PUBLIC_STRAPI_ENV === "production"
-            ? "https://strapi-julytype.onrender.com/admin/"
+            ? "https://strapi-julytype-1zhv.onrender.com/admin/"
             : "http://localhost:1337/admin/",
         permanent: true,
       },
