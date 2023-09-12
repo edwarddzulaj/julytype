@@ -520,6 +520,24 @@ footer {
   transform: scale(1.5);
 }
 
+.supported-languages {
+  article {
+    &:not(:first-of-type) {
+      margin-top: $gutter-h * 2;
+    }
+
+    h6 {
+      font-weight: 600;
+    }
+
+    .languages {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 45px;
+    }
+  }
+}
+
 h1 {
   @include typography.heading-1();
 }

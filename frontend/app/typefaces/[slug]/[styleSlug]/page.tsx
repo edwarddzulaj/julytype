@@ -8,6 +8,7 @@ import BackButton from "@/app/components/UI/BackButton";
 import BuyButton from "@/app/components/UI/BuyButton";
 import PurchaseSection from "@/app/components/Cart/PurchaseSection/PurchaseSection";
 import { indexAllSamples, getRandomIndex } from "../helpers";
+import SupportedLanguages from "@/app/components/UI/SupportedLanguages";
 
 async function getTypeface(slug: string) {
   const path = `/typefaces`;
@@ -78,6 +79,9 @@ export default async function Style({ params }: { params: { slug: string; styleS
             );
           })}
         </section>
+      </Section>
+      <Section title={`Supported Languages`}>
+        <SupportedLanguages />
       </Section>
       <Section title={`Buy ${typefaceTitle}`} noIndent={true}>
         <PurchaseSection typeface={typeface} />

@@ -21,3 +21,7 @@ export function indexAllSamples(languages: any) {
 
   return { allSamplesLatin, allSamplesCyrillic };
 }
+
+export function capitalize(string: String) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
