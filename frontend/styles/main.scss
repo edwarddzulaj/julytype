@@ -195,8 +195,9 @@ nav {
   padding: $gutter-h $gutter-v * 2 $gutter-thin-h $gutter-v * 2;
   display: flex;
   gap: $gutter-v * 2;
-  background-color: $color;
-  color: $background-color;
+  background-color: var(--black);
+  color: var(--white);
+  border-bottom: 1px solid var(--white);
   z-index: 10000;
 
   .inner-nav {
@@ -351,8 +352,9 @@ nav {
 footer {
   // min-height: $nav-offset;
   padding: $gutter-h $gutter-v * 3.5;
-  background-color: $color;
-  color: $background-color;
+  background-color: var(--black);
+  color: var(--white);
+  border-top: 1px solid var(--white);
 
   display: flex;
   justify-content: space-between;

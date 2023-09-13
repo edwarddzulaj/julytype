@@ -412,8 +412,9 @@ nav {
   padding: 1.62rem 4.32rem 0.972rem 4.32rem;
   display: flex;
   gap: 4.32rem;
-  background-color: var(--foreground, #191919);
-  color: var(--background, #fcfcfc);
+  background-color: var(--black);
+  color: var(--white);
+  border-bottom: 1px solid var(--white);
   z-index: 10000;
 }
 nav .inner-nav {
@@ -583,8 +584,9 @@ nav .inner-nav .settings .theme-switcher:hover {
 
 footer {
   padding: 1.62rem 7.56rem;
-  background-color: var(--foreground, #191919);
-  color: var(--background, #fcfcfc);
+  background-color: var(--black);
+  color: var(--white);
+  border-top: 1px solid var(--white);
   display: flex;
   justify-content: space-between;
 }
