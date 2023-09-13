@@ -376,13 +376,22 @@ footer {
     grid-template-columns: minmax(100px, 1fr) 10fr;
     gap: $gutter-v * 4;
 
-    section {
-      padding-top: $gutter-h * 3;
+    .section-wrapper {
+      display: grid;
+      justify-items: center;
+
+      section {
+        width: 100%;
+        max-width: 1280px;
+        padding-top: $gutter-h * 3;
+      }
     }
   }
 
-  section {
-    padding-top: $gutter-h;
+  .section-wrapper {
+    section {
+      padding-top: $gutter-h;
+    }
   }
 }
 

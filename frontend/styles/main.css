@@ -602,10 +602,16 @@ footer .pages {
   grid-template-columns: minmax(100px, 1fr) 10fr;
   gap: 8.64rem;
 }
-.main-section:not(.no-indent) section {
+.main-section:not(.no-indent) .section-wrapper {
+  display: grid;
+  justify-items: center;
+}
+.main-section:not(.no-indent) .section-wrapper section {
+  width: 100%;
+  max-width: 1280px;
   padding-top: 4.86rem;
 }
-.main-section section {
+.main-section .section-wrapper section {
   padding-top: 1.62rem;
 }
 
