@@ -1,22 +1,22 @@
+import { Typeface } from "@/@types/contentTypes";
 import { capitalize } from "@/app/typefaces/[slug]/helpers";
 
-export default function SupportedLanguages() {
-  const languageMap = {
-    cyrillic: ["Russian", "Ukrainian", "Bulgarian"],
-    latin: ["English", "German", "Dutch"],
-  };
-
+export default function SupportedLanguages({
+  languageData,
+}: {
+  languageData: Typeface["attributes"]["supportedLanguages"];
+}) {
   return (
     <article className="supported-languages">
-      {Object.entries(languageMap).map((alphabet) => {
-        const name = alphabet[0];
-        const languages = alphabet[1];
+      {languageData.map((alphabet) => {
+        const { name, languages } = alphabet;
+        const mappedLanguages = languages.split(", ");
 
         return (
           <article key={name}>
             <h6>{capitalize(name)}</h6>
             <article className="languages">
-              {languages.map((language) => (
+              {mappedLanguages.map((language) => (
                 <div key={language}>{language}</div>
               ))}
             </article>

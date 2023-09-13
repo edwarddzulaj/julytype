@@ -2,13 +2,14 @@ import Section from "@/app/components/UI/Section";
 import { TypefaceWeight } from "@/@types/components";
 import { Typeface, Style } from "@/@types/contentTypes";
 import { fetchAPI } from "@/app/utils/fetch-api";
-import Typetester from "@/app/components/Typeface/Typetester";
 import { getStrapiMedia } from "@/app/utils/api-helpers";
+
+import Typetester from "@/app/components/Typeface/Typetester";
 import BackButton from "@/app/components/UI/BackButton";
 import BuyButton from "@/app/components/UI/BuyButton";
 import PurchaseSection from "@/app/components/Cart/PurchaseSection/PurchaseSection";
-import { indexAllSamples, getRandomIndex } from "../helpers";
 import SupportedLanguages from "@/app/components/UI/SupportedLanguages";
+import { indexAllSamples, getRandomIndex } from "../helpers";
 
 async function getTypeface(slug: string) {
   const path = `/typefaces`;
@@ -24,6 +25,7 @@ async function getTypeface(slug: string) {
           },
         },
       },
+      supportedLanguages: { populate: "*" },
     },
     filters: {
       slug: slug,
@@ -43,6 +45,7 @@ export default async function Style({ params }: { params: { slug: string; styleS
 
   const { title, weights } = style?.attributes ?? { title: "", weights: [] };
   const typefaceTitle = typeface.attributes.title;
+  const { supportedLanguages } = typeface.attributes;
 
   return (
     <section className="container style">
@@ -80,9 +83,11 @@ export default async function Style({ params }: { params: { slug: string; styleS
           })}
         </section>
       </Section>
-      <Section title={`Supported Languages`}>
-        <SupportedLanguages />
-      </Section>
+      {supportedLanguages && (
+        <Section title={`Supported Languages`}>
+          <SupportedLanguages languageData={supportedLanguages} />
+        </Section>
+      )}
       <Section title={`Buy ${typefaceTitle}`} noIndent={true}>
         <PurchaseSection typeface={typeface} />
       </Section>

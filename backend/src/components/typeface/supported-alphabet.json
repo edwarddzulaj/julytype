@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_typeface_supported_alphabets",
+  "info": {
+    "displayName": "supportedAlphabet",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "enumeration",
+      "enum": [
+        "Cyrillic",
+        "Latin",
+        "Arabic",
+        "Greek",
+        "Korean"
+      ],
+      "required": true,
+      "default": "Latin"
+    },
+    "languages": {
+      "type": "text",
+      "default": "English, German, Dutch, etc",
+      "required": true
+    }
+  }
+}

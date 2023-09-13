@@ -370,6 +370,7 @@ footer {
 
 .main-section {
   margin-bottom: $gutter-h * 2;
+
   &:not(.no-indent) {
     display: grid;
     grid-template-columns: minmax(100px, 1fr) 10fr;
@@ -531,9 +532,10 @@ footer {
     }
 
     .languages {
+      margin-top: $gutter-thin-h;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 45px;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: $gutter-h;
     }
   }
 }

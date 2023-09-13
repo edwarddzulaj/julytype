@@ -53,6 +53,11 @@
     },
     "slug": {
       "type": "string"
+    },
+    "supportedLanguages": {
+      "type": "component",
+      "repeatable": true,
+      "component": "typeface.supported-alphabet"
     }
   }
 }

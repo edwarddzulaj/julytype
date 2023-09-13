@@ -1,5 +1,11 @@
 import { PageSection, TypefaceWeight } from "./components";
 import type { Attribute } from "@strapi/strapi";
+
+export interface Alphabet {
+  name: string;
+  languages: string;
+}
+
 export interface Style {
   id: number;
   attributes: {
@@ -28,6 +34,7 @@ export interface Typeface {
     styles: {
       data: Style[];
     };
+    supportedLanguages: Alphabet[];
   };
 }
 

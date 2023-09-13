@@ -788,9 +788,10 @@ footer .pages {
   font-weight: 600;
 }
 .supported-languages article .languages {
+  margin-top: 0.972rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 45px;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1.62rem;
 }
 
 h1 {
