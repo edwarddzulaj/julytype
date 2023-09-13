@@ -5,6 +5,7 @@ export default function SupportedLanguages() {
     cyrillic: ["Russian", "Ukrainian", "Bulgarian"],
     latin: ["English", "German", "Dutch"],
   };
+
   return (
     <article className="supported-languages">
       {Object.entries(languageMap).map((alphabet) => {
