@@ -10,6 +10,7 @@ import BuyButton from "@/app/components/UI/BuyButton";
 import PurchaseSection from "@/app/components/Cart/PurchaseSection/PurchaseSection";
 import SupportedLanguages from "@/app/components/UI/SupportedLanguages";
 import { indexAllSamples, getRandomIndex } from "../helpers";
+import TypefaceSample from "@/app/components/Typeface/TypefaceSample";
 
 async function getTypeface(slug: string) {
   const path = `/typefaces`;
@@ -58,7 +59,11 @@ export default async function Style({ params }: { params: { slug: string; styleS
       <Section title={title}>
         <article className="styles-weights">
           {weights.map((weight: TypefaceWeight) => (
-            <h2 key={weight.id}>{weight.title}</h2>
+            <TypefaceSample
+              key={weight.id}
+              title={weight.title}
+              fontURL={getStrapiMedia(weight.fontFile.data?.attributes?.url)}
+            />
           ))}
         </article>
         <section className="typetesters">

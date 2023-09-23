@@ -2,12 +2,15 @@ import Link from "next/link";
 import { fetchAPI } from "@/app/utils/fetch-api";
 import { Typeface } from "@/@types/contentTypes";
 import { allStylesAndWeights } from "./utils/text-helpers";
+import { getStrapiMedia } from "./utils/api-helpers";
+import TypefaceSample from "./components/Typeface/TypefaceSample";
 
 async function getTypefaces() {
   const path = `/typefaces`;
   const urlParamsObject = {
     populate: {
       styles: { populate: "*" },
+      mainFont: { populate: "*" },
     },
   };
 
@@ -18,15 +21,18 @@ async function getTypefaces() {
 
 export default async function Page() {
   const typefaces = await getTypefaces();
+
   return (
     <section className="container typeface-preview">
       {typefaces.map((typeface: Typeface) => {
-        const { numStyles, numWeights } = allStylesAndWeights(typeface.attributes.styles.data);
+        const { title, slug, styles, mainFont } = typeface.attributes;
+        const mainFontURL = getStrapiMedia(mainFont.data.attributes.url);
+        const { numStyles, numWeights } = allStylesAndWeights(styles.data);
 
         return (
-          <Link href={`/typefaces/${typeface.attributes.slug}`} key={typeface.id}>
+          <Link href={`/typefaces/${slug}`} key={typeface.id}>
             <article>
-              <h2>{typeface.attributes.title}</h2>
+              <TypefaceSample title={title} fontURL={mainFontURL} />
               <div className="typeface-details">
                 <span>
                   {numStyles} {numStyles > 1 ? "styles" : "style"}

@@ -1,11 +1,5 @@
 @charset "UTF-8";
 
-/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-© 2008-now Harris Blondman
-All rights reserved
-www.harrisblondman.nl
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
-
 /* ! Reset, after Eric Meyer, http://meyerweb.com/eric/tools/css/reset/
 ================================ */
 
@@ -196,7 +190,7 @@ q:before,
 q:after,
 cite:before,
 cite:after {
-  content: '';
+  content: "";
 }
 del,
 ins,

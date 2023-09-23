@@ -27,6 +27,7 @@ export interface Typeface {
     price: number;
     wholePackageDiscount: number;
     trialFonts: {}[];
+    mainFont: Attribute.File;
     slug: string;
     createdAt: Date;
     updatedAt: Date;

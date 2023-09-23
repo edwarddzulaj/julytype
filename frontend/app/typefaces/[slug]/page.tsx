@@ -10,6 +10,7 @@ import Section from "@/app/components/UI/Section";
 import Typetester from "@/app/components/Typeface/Typetester";
 import PDFPreview from "@/app/components/Typeface/PDFPreview";
 import { TypefaceWeight } from "@/@types/components";
+import TypefaceSample from "@/app/components/Typeface/TypefaceSample";
 
 async function getTypeface(slug: string) {
   const path = `/typefaces`;
@@ -33,6 +34,7 @@ async function getTypeface(slug: string) {
   };
 
   const responseData = await fetchAPI(path, urlParamsObject);
+
   return responseData.data[0];
 }
 
@@ -52,7 +54,10 @@ export default async function Typeface({ params }: { params: { slug: string } })
         <article className="typeface-styles">
           {styles.data.map((style: Style) => (
             <Link href={`/typefaces/${slug}/${style.attributes.slug}`} key={style.id}>
-              <h1>{style.attributes.title}</h1>
+              <TypefaceSample
+                title={style.attributes.title}
+                fontURL={getStrapiMedia(style.attributes.weights[0].fontFile.data?.attributes?.url)}
+              />
             </Link>
           ))}
         </article>
