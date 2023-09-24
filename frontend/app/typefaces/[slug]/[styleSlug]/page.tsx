@@ -59,11 +59,7 @@ export default async function Style({ params }: { params: { slug: string; styleS
       <Section title={title}>
         <article className="styles-weights">
           {weights.map((weight: TypefaceWeight) => (
-            <TypefaceSample
-              key={weight.id}
-              title={weight.title}
-              fontURL={getStrapiMedia(weight.fontFile?.data?.attributes?.url)}
-            />
+            <TypefaceSample key={weight.id} title={weight.title} regularWeight={weight} />
           ))}
         </article>
         <section className="typetesters">

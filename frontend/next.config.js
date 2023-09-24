@@ -28,6 +28,11 @@ const nextConfig = {
             : "http://localhost:1337/admin/",
         permanent: true,
       },
+      {
+        source: "/typefaces",
+        destination: "/",
+        permanent: true,
+      },
     ];
   },
   webpack: (config) => {
