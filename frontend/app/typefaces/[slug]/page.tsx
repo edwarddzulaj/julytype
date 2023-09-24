@@ -56,7 +56,9 @@ export default async function Typeface({ params }: { params: { slug: string } })
             <Link href={`/typefaces/${slug}/${style.attributes.slug}`} key={style.id}>
               <TypefaceSample
                 title={style.attributes.title}
-                fontURL={getStrapiMedia(style.attributes.weights[0].fontFile.data?.attributes?.url)}
+                fontURL={getStrapiMedia(
+                  style.attributes.weights[0].fontFile?.data?.attributes?.url
+                )}
               />
             </Link>
           ))}

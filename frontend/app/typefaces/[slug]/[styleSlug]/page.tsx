@@ -62,7 +62,7 @@ export default async function Style({ params }: { params: { slug: string; styleS
             <TypefaceSample
               key={weight.id}
               title={weight.title}
-              fontURL={getStrapiMedia(weight.fontFile.data?.attributes?.url)}
+              fontURL={getStrapiMedia(weight.fontFile?.data?.attributes?.url)}
             />
           ))}
         </article>
