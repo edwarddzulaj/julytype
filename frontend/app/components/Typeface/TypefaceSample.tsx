@@ -1,24 +1,18 @@
 "use client";
-
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 export default function TypefaceSample({ title, fontURL }: any) {
-  const sampleRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    if (sampleRef) {
-      const newFont = new FontFace(title, `url(${fontURL})`);
-      newFont
-        .load()
-        .then(function (loaded_face) {
-          document.fonts.add(loaded_face);
-          sampleRef.current!.style.fontFamily = title;
-        })
-        .catch(function (error) {
-          // error occurred
-        });
-    }
-  }, [sampleRef, title, fontURL]);
+    const newFont = new FontFace(title, `url(${fontURL})`);
+    newFont
+      .load()
+      .then(function (loaded_face) {
+        document.fonts.add(loaded_face);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }, [title, fontURL]);
 
-  return <h2 ref={sampleRef}>{title}</h2>;
+  return <h2 style={{ fontFamily: `${title}, \"Adobe Blank\"` }}>{title}</h2>;
 }

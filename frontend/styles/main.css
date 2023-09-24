@@ -240,6 +240,11 @@ www.nedkamburov.com
   font-family: "Font Regular";
   src: url(../app/assets/fonts/JT-Picolo/JTPicoloVF.ttf) format("truetype");
 }
+@font-face {
+  font-style: normal;
+  font-family: "Adobe Blank";
+  src: url(../app/assets/fonts/AdobeBlank/AdobeBlank.woff) format("woff");
+}
 :root {
   /* Website colours */
   --blue: #008bf8;
@@ -452,6 +457,7 @@ nav .inner-nav .settings .theme-switcher:hover {
   font-size: 12rem;
 }
 .wrapper .container.typeface-preview a .typeface-details {
+  margin-top: 1.62rem;
   display: flex;
   justify-content: center;
   gap: calc(1.296rem / 2);

@@ -17,15 +17,12 @@ www.nedkamburov.com
   font-family: "Font Regular";
   src: url(../app/assets/fonts/JT-Picolo/JTPicoloVF.ttf) format("truetype");
 }
-// @font-face {
-//   font-style: italic;
-//   font-family: "Font Regular 2";
-//   src:
-//   // url(../assets/fonts/WilliamTextProReg.woff2) format("woff2"),
-//   // url(../assets/fonts/WilliamTextProReg.woff) format("woff"),
-//     url(../assets/fonts/WilliamTextProReg.otf) format("opentype");
-//   // url(../assets/fonts/WilliamTextProReg.ttf) format("truetype");
-// }
+
+@font-face {
+  font-style: normal;
+  font-family: "Adobe Blank";
+  src: url(../app/assets/fonts/AdobeBlank/AdobeBlank.woff) format("woff");
+}
 
 // @font-face {
 //   font-style: normal;
@@ -248,6 +245,7 @@ nav {
         }
 
         .typeface-details {
+          margin-top: $gutter-h;
           display: flex;
           justify-content: center;
           gap: calc(#{$gutter-thin-v} / 2);
