@@ -11,7 +11,7 @@ services:
     autoDeploy: true
     disk:
       name: strapi-uploads
-      mountPath: /opt/render/project/src/public/uploads
+      mountPath: /opt/render/project/src/backend/public/uploads
       sizeGB: 1
     envVars:
       - key: NODE_VERSION
