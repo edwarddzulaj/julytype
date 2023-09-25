@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 import "@/styles/reset.css";
 import "@/styles/main.css";
 import { Providers } from "./providers";
@@ -75,6 +76,7 @@ export default async function RootLayout({
           <main className="wrapper">{children}</main>
           <Footer footerContent={footerContent} />
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
