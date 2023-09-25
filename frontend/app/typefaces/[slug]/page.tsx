@@ -53,10 +53,10 @@ export default async function Typeface({ params }: { params: { slug: string } })
       <Section title="">
         <article className="typeface-styles">
           {styles.data.map((style: Style) => (
-            <Link href={`/typefaces/${slug}/${style.attributes.slug}`} key={style.id}>
+            <Link href={`/typefaces/${slug}/${style?.attributes?.slug}`} key={style.id}>
               <TypefaceSample
-                title={style.attributes.title}
-                regularWeight={style.attributes.weights[0]}
+                title={style?.attributes?.title}
+                regularWeight={style?.attributes?.weights[0]}
               />
             </Link>
           ))}

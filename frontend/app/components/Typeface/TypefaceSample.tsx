@@ -25,10 +25,7 @@ export default function TypefaceSample({
     const newFont = new FontFace(`${title} ${regularWeight!.title}`, `url(${regularURL})`);
     const hoveredFont = new FontFace(`Hovered`, `url(${hoveredURL})`);
 
-    newFont.load().then(function (loaded_face) {
-      document.fonts.add(loaded_face);
-    });
-    hoveredFont
+    newFont
       .load()
       .then(function (loaded_face) {
         document.fonts.add(loaded_face);
@@ -36,7 +33,18 @@ export default function TypefaceSample({
       .catch(function (error) {
         console.error(error);
       });
-  }, [title, regularURL, hoveredURL, regularWeight]);
+
+    if (hoverWeight) {
+      hoveredFont
+        .load()
+        .then(function (loaded_face) {
+          document.fonts.add(loaded_face);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    }
+  }, [title, regularURL, hoveredURL, regularWeight, hoverWeight]);
 
   return <h2 style={fontSettings}>{title}</h2>;
 }
