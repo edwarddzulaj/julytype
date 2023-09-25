@@ -2,7 +2,7 @@
 import Fontsampler from "fontsampler-js/dist/fontsampler";
 import FontsamplerSkin from "fontsampler-js/dist/fontsampler-skin";
 import fontSamplerStyles from "fontsampler-js/dist/fontsampler-skin.css";
-import { useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef, useMemo, useState } from "react";
 
 export default function Typetester({
   typetesterText = "Type something...",
@@ -13,12 +13,13 @@ export default function Typetester({
     },
   ],
 }: {
-  typetesterText: string | undefined;
+  typetesterText?: string | undefined;
   fontsData: {
     name: string | undefined;
     fontPath: string | URL;
   }[];
 }) {
+  const [isTextEditable, setIsTextEditable] = useState(false);
   const demoRef = useRef(null);
 
   const fonts = useMemo(
@@ -36,23 +37,56 @@ export default function Typetester({
 
   const options = useMemo(
     () => ({
-      order: [["fontfamily", "language", "fontsize", "alignment", "opentype"], "tester"],
-      ui: {
+      initialText: typetesterText,
+      order: [["fontfamily", "language", "fontsize", "opentype", "alignment"], "tester"],
+      config: {
+        fontfamily: {
+          label: false,
+        },
         language: {
           choices: ["enGB|English", "deDe|Deutsch", "nlNL|Dutch"],
           init: "enGb",
-          label: "Language",
+          label: false,
         },
-
+        fontsize: {
+          unit: "px",
+          init: 64,
+          min: 12,
+          max: 192,
+          step: 1,
+          label: "Size",
+        },
         opentype: {
-          choices: ["liga|Ligatures", "frac|Fractions"],
-          init: ["liga"],
-          label: "Opentype features",
+          choices: [
+            "liga|Ligatures",
+            "frac|Fractions",
+            "c2sc|Small capitals from capitals",
+            "smcp|Small caps",
+            "subs|Subscript",
+            "sups|Superscript",
+            "onum|Old style figures",
+            "lnum|Lining figures",
+            "tnum|Tabular figures",
+            "locl|Localized forms",
+            "ss01|Stylistic set 1",
+            "ss02|Stylistic set 2",
+          ],
+          init: ["liga", "frac"],
+          label: false,
+        },
+        alignment: {
+          choices: ["left|Left", "center|Centered", "right|Right"],
+          init: "left",
+          label: false,
+        },
+        tester: {
+          editable: true,
+          label: false,
         },
       },
       lazyload: true,
     }),
-    []
+    [typetesterText]
   );
 
   useEffect(() => {
@@ -61,11 +95,18 @@ export default function Typetester({
       FontsamplerSkin(demo);
       demo.init();
     }
-  }, [fonts, options]);
+  }, [fonts, isTextEditable, options]);
+
+  const handleEditableClick = () => {
+    setIsTextEditable(!isTextEditable);
+  };
 
   return (
-    <div id={typetesterId} ref={demoRef} className={fontSamplerStyles.toString()}>
-      {typetesterText}
-    </div>
+    <>
+      {/* <button onClick={() => handleEditableClick()}>Edit text</button> */}
+      <div id={typetesterId} ref={demoRef} className={fontSamplerStyles.toString()}>
+        {typetesterText}
+      </div>
+    </>
   );
 }
