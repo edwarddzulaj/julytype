@@ -249,7 +249,7 @@ www.nedkamburov.com
   /* Website colours */
   --blue: #008bf8;
   --red: #ff2e00;
-  --black: #191919;
+  --black: #010101;
   --white: #fcfcfc;
   --grey: #969696;
   --background: var(--white);
@@ -303,8 +303,8 @@ body {
   font-kerning: normal;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  color: var(--foreground, #191919);
-  background-color: var(--background, #fcfcfc);
+  color: var(--foreground);
+  background-color: var(--background);
   overflow-x: hidden;
   scrollbar-width: thin;
 }
@@ -460,10 +460,13 @@ nav .inner-nav .settings .theme-switcher:hover {
   font-family: "Hovered" !important;
 }
 .wrapper .container.typeface-preview a .typeface-details {
-  margin-top: 1.62rem;
+  margin-top: 3.24rem;
   display: flex;
   justify-content: center;
-  gap: calc(1.296rem / 2);
+}
+.wrapper .container.typeface-preview a .typeface-details :nth-child(2)::before {
+  content: "∙";
+  margin: 0 calc(1.296rem / 3);
 }
 .wrapper .container.typeface .typeface-styles {
   display: flex;

@@ -48,7 +48,7 @@ www.nedkamburov.com
   /* Website colours */
   --blue: #008bf8;
   --red: #ff2e00;
-  --black: #191919;
+  --black: #010101;
   --white: #fcfcfc;
   --grey: #969696;
 
@@ -63,8 +63,8 @@ www.nedkamburov.com
 
 // Variables
 // --------------------------------
-$background-color: var(--background, #fcfcfc);
-$color: var(--foreground, #191919);
+$background-color: var(--background);
+$color: var(--foreground);
 
 $font-size: 1.5rem;
 $line-height: 1.2;
@@ -249,10 +249,16 @@ nav {
         }
 
         .typeface-details {
-          margin-top: $gutter-h;
+          margin-top: $gutter-h * 2;
           display: flex;
           justify-content: center;
-          gap: calc(#{$gutter-thin-v} / 2);
+
+          :nth-child(2) {
+            &::before {
+              content: "∙";
+              margin: 0 calc(#{$gutter-thin-v} / 3);
+            }
+          }
         }
       }
     }
