@@ -70,7 +70,7 @@ export default async function Typeface({ params }: { params: { slug: string } })
             fontsData={typetesterFontsData}
           />
         </section>
-        {specimen && (
+        {specimen?.data?.attributes?.url && (
           <section className="download">
             <PDFPreview url={getStrapiMedia(specimen.data.attributes.url)} />
           </section>
