@@ -2,6 +2,7 @@
 @use "./reset.css";
 @use "./mixins/buttons.scss" as buttons;
 @use "./mixins/checkboxesAndRadios.scss" as checkboxesAndRadios;
+@use "./mixins/dropdown.scss" as dropdown;
 @use "./mixins/typography.scss" as typography;
 
 /* ••••••••••••••••••••••••••••••••
@@ -556,6 +557,70 @@ footer {
       grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
       gap: $gutter-h;
     }
+  }
+}
+
+.font-tester {
+  .fsjs-block-fontsize {
+    display: flex;
+    align-items: center;
+
+    .fsjs-label-text {
+      display: none;
+    }
+  }
+}
+
+input[type="range"] {
+  /* removing default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+  /* creating a custom design */
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+
+  height: 1px;
+  background: var(--black);
+  border-radius: 16px;
+
+  &::-webkit-slider-thumb {
+    /* removing default appearance */
+    -webkit-appearance: none;
+    appearance: none;
+    /* creating a custom design */
+    height: 16px;
+    width: 16px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 1px solid var(--black);
+  }
+
+  /* Thumb: Firefox */
+  &::-moz-range-thumb {
+    height: 16px;
+    width: 16px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 1px solid var(--black);
+  }
+}
+
+select {
+  // @include dropdown.base();
+  color: var(--foreground);
+  background-color: var(--background);
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0em;
+  border: none;
+  border-radius: 8px;
+
+  &:hover {
+    color: var(--background);
+    background-color: var(--foreground);
+    cursor: pointer;
   }
 }
 

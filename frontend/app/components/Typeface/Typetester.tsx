@@ -20,7 +20,7 @@ export default function Typetester({
   }[];
 }) {
   const [isTextEditable, setIsTextEditable] = useState(false);
-  const demoRef = useRef(null);
+  const typetesterRef = useRef(null);
 
   const fonts = useMemo(
     () =>
@@ -80,20 +80,21 @@ export default function Typetester({
           label: false,
         },
         tester: {
-          editable: true,
+          editable: isTextEditable,
           label: false,
         },
       },
       lazyload: true,
     }),
-    [typetesterText]
+    [typetesterText, isTextEditable]
   );
 
   useEffect(() => {
-    if (demoRef) {
-      const demo = new Fontsampler(demoRef.current, fonts, options);
-      FontsamplerSkin(demo);
-      demo.init();
+    let typetesterInstance: any = null;
+
+    if (typetesterRef && !typetesterInstance ) {
+      typetesterInstance = new Fontsampler(typetesterRef.current, fonts, options);
+      typetesterInstance.init();
     }
   }, [fonts, isTextEditable, options]);
 
@@ -103,8 +104,10 @@ export default function Typetester({
 
   return (
     <>
-      {/* <button onClick={() => handleEditableClick()}>Edit text</button> */}
-      <div id={typetesterId} ref={demoRef} className={fontSamplerStyles.toString()}>
+      <button className="edit-button" onClick={() => handleEditableClick()}>
+        {isTextEditable ? 'Editing' : 'Edit text'}
+      </button>
+      <div id={typetesterId} ref={typetesterRef} className="font-tester">
         {typetesterText}
       </div>
     </>

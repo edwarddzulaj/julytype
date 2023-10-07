@@ -809,6 +809,63 @@ footer .pages {
   gap: 1.62rem;
 }
 
+.font-tester .fsjs-block-fontsize {
+  display: flex;
+  align-items: center;
+}
+.font-tester .fsjs-block-fontsize .fsjs-label-text {
+  display: none;
+}
+
+input[type=range] {
+  /* removing default appearance */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  /* creating a custom design */
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  height: 1px;
+  background: var(--black);
+  border-radius: 16px;
+  /* Thumb: Firefox */
+}
+input[type=range]::-webkit-slider-thumb {
+  /* removing default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+  /* creating a custom design */
+  height: 16px;
+  width: 16px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 1px solid var(--black);
+}
+input[type=range]::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 1px solid var(--black);
+}
+
+select {
+  color: var(--foreground);
+  background-color: var(--background);
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0em;
+  border: none;
+  border-radius: 8px;
+}
+select:hover {
+  color: var(--background);
+  background-color: var(--foreground);
+  cursor: pointer;
+}
+
 h1 {
   font-style: normal;
   font-weight: 400;

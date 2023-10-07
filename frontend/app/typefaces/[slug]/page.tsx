@@ -8,6 +8,7 @@ import BuyButton from "@/app/components/UI/BuyButton";
 import PurchaseSection from "@/app/components/Cart/PurchaseSection/PurchaseSection";
 import Section from "@/app/components/UI/Section";
 import Typetester from "@/app/components/Typeface/Typetester";
+import Typetester2 from "@/app/components/Typeface/Typetester/Typetester2";
 import PDFPreview from "@/app/components/Typeface/PDFPreview";
 import { TypefaceWeight } from "@/@types/components";
 import TypefaceSample from "@/app/components/Typeface/TypefaceSample";
@@ -65,6 +66,10 @@ export default async function Typeface({ params }: { params: { slug: string } })
       <Section title="Specimen">
         <section className="typetesters">
           <Typetester
+            typetesterText={"July type is coming sooner than you think"}
+            fontsData={typetesterFontsData}
+          />
+          <Typetester2
             typetesterText={"July type is coming sooner than you think"}
             fontsData={typetesterFontsData}
           />
