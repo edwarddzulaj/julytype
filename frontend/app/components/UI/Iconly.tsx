@@ -2,7 +2,7 @@ import localFont from "next/font/local";
 
 const iconlyFont = localFont({ src: "../../assets/fonts/july-type-icons/iconly.woff2" });
 
-export const icons = {
+export const icons: Record<string, string> = {
   contrast: "theme",
   hamburger: "menu",
   info: "info",
@@ -17,6 +17,7 @@ export const icons = {
   columnOne: "columnone",
   columnTwo: "columntwo",
   alignLeft: "alignleft",
+  alignCenter: "aligncenter",
   alignRight: "alignright",
 };
 
