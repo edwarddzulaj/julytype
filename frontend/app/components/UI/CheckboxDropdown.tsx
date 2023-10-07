@@ -23,8 +23,8 @@ export default function CheckboxDropdown({
   };
   return (
     <>
-      <div className="checkbox-dropdown">
-        <label onClick={toggleMenu}>
+      <div className={`checkbox-dropdown ${open ? "open" : ""}`}>
+        <label className="title" onClick={toggleMenu}>
           Features
           <span>
             {!open && <Iconly icon={icons.chevronUp} />}

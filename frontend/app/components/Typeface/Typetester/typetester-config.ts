@@ -29,12 +29,12 @@ export const opentypeFeatures = [
 ];
 
 export const alignmentOptions = [
-  { value: "left", label: "Left", checked: true },
-  { value: "center", label: "Center" },
-  { value: "right", label: "Right" },
+  { value: "left", label: "alignLeft", checked: true },
+  { value: "center", label: "alignCenter" },
+  { value: "right", label: "alignRight" },
 ];
 
 export const columnOptions = [
-  { value: 1, label: "One column", checked: true },
-  { value: 2, label: "Two columns" },
+  { value: 1, label: "columnOne", checked: true },
+  { value: 2, label: "columnTwo" },
 ];

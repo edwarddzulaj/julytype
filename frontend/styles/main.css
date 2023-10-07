@@ -326,6 +326,10 @@ body input[type=checkbox] {
   vertical-align: text-bottom;
   transition: background 0.1s ease-in-out;
 }
+body input[type=radio]:hover,
+body input[type=checkbox]:hover {
+  cursor: pointer;
+}
 body input[type=radio][disabled], body input[type=radio][aria-disabled=true],
 body input[type=checkbox][disabled],
 body input[type=checkbox][aria-disabled=true] {
@@ -809,13 +813,61 @@ footer .pages {
   gap: 1.62rem;
 }
 
+.font-tester {
+  position: relative;
+}
+.font-tester:nth-of-type(odd) {
+  z-index: 99;
+}
 .font-tester .font-tester-header {
+  position: absolute;
   display: flex;
+  align-items: baseline;
   gap: 24px;
 }
-.font-tester .font-tester-header .fontfamily,
-.font-tester .font-tester-header .lang {
-  flex-shrink: 0;
+.font-tester .font-tester-header .fontsize {
+  min-width: 25ch;
+}
+.font-tester .font-tester-header .opentype-features {
+  font-size: 16px;
+}
+.font-tester .font-tester-header .alignment label,
+.font-tester .font-tester-header .columns label {
+  font-size: 20px;
+  vertical-align: middle;
+  opacity: 0.5;
+  transition: opacity 0.3s ease-in-out;
+}
+.font-tester .font-tester-header .alignment label.active,
+.font-tester .font-tester-header .columns label.active {
+  opacity: 1;
+}
+.font-tester .font-tester-header .alignment label:hover,
+.font-tester .font-tester-header .columns label:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.font-tester .font-tester-header .edit-text {
+  position: relative;
+  top: -2px;
+  font-size: 16px;
+}
+.font-tester .font-tester-header .edit-text button {
+  font-family: inherit;
+  font-size: inherit;
+  background: none;
+  border: none;
+  text-decoration: underline;
+}
+.font-tester .font-tester-header .edit-text button:hover {
+  cursor: pointer;
+}
+.font-tester .font-tester-header input[type=radio] {
+  display: none;
+}
+.font-tester .font-sample {
+  padding-top: 6.48rem;
+  transition: font-size 0.1s ease-out;
 }
 
 .slider {
@@ -823,6 +875,10 @@ footer .pages {
   height: max-content;
   display: flex;
   align-items: center;
+  gap: 1.296rem;
+}
+.slider label {
+  max-width: 6ch;
 }
 
 input[type=range] {
@@ -835,7 +891,7 @@ input[type=range] {
   cursor: pointer;
   outline: none;
   height: 1px;
-  background: var(--black);
+  background: var(--foreground);
   border-radius: 16px;
   /* Thumb: Firefox */
 }
@@ -846,16 +902,16 @@ input[type=range]::-webkit-slider-thumb {
   /* creating a custom design */
   height: 16px;
   width: 16px;
-  background-color: #fff;
+  background-color: var(--background);
   border-radius: 50%;
-  border: 1px solid var(--black);
+  border: 1px solid var(--foreground);
 }
 input[type=range]::-moz-range-thumb {
   height: 16px;
   width: 16px;
-  background-color: #fff;
+  background-color: var(--background);
   border-radius: 50%;
-  border: 1px solid var(--black);
+  border: 1px solid var(--foreground);
 }
 
 div.dropdown {
@@ -866,20 +922,27 @@ div.dropdown {
   border-radius: 8px;
   background-color: var(--background);
   overflow: hidden;
+  min-width: var(--min-width);
 }
 div.dropdown.is-open {
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 1px 3px 0px var(--foreground);
 }
 div.dropdown.is-open .Dropdown-control {
   border-radius: 8px 8px 0 0;
 }
 div.dropdown .Dropdown-control {
   display: flex;
-  padding: 10px 10px 6px;
+  justify-content: space-between;
+  padding: 10px 10px 2px;
   border-radius: 8px;
 }
+div.dropdown .Dropdown-control .Dropdown-arrow-wrapper {
+  position: relative;
+  top: -2px;
+  font-size: 20px;
+}
 div.dropdown .Dropdown-menu .Dropdown-option {
-  border-top: 1px solid var(--black);
+  border-top: 1px solid var(--foreground);
   padding: 11px 10px 9px 10px;
 }
 div.dropdown .Dropdown-control:hover,
@@ -887,6 +950,44 @@ div.dropdown .Dropdown-menu > .Dropdown-option:hover {
   color: var(--background);
   background-color: var(--foreground);
   cursor: pointer;
+}
+
+.checkbox-dropdown {
+  width: 15ch;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--background) 90%, transparent);
+  overflow: hidden;
+}
+.checkbox-dropdown.open {
+  box-shadow: 0px 1px 3px 0px var(--foreground);
+}
+.checkbox-dropdown label.title {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px 2px;
+}
+.checkbox-dropdown label.title span {
+  position: relative;
+  top: -2px;
+  font-size: 20px;
+}
+.checkbox-dropdown label.title:hover {
+  color: var(--background);
+  background: color-mix(in srgb, var(--foreground) 90%, transparent);
+  cursor: pointer;
+}
+.checkbox-dropdown ul {
+  padding: 10px 10px 6px;
+  padding-top: 1.62rem;
+}
+.checkbox-dropdown ul li {
+  display: flex;
+}
+.checkbox-dropdown ul li label:hover {
+  cursor: pointer;
+}
+.checkbox-dropdown ul li input {
+  flex-shrink: 0;
 }
 
 h1 {

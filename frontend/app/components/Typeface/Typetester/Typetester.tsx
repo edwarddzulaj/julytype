@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Dropdown from "react-dropdown";
 import CheckboxDropdown from "../../UI/CheckboxDropdown";
 import { FontsData } from "./typetester-types";
@@ -28,6 +28,7 @@ export default function Typetester({
   typetesterText?: string | undefined;
   fontsData: FontsData[];
 }) {
+  const fontTesterRef = useRef<HTMLInputElement>(null);
   const [fontFamily, setFontFamily] = useState(fontsData[0]);
   const [sampleLang, setSampleLang] = useState(languages[0].value);
   const [fontSize, setFontSize] = useState(48);
@@ -113,13 +114,24 @@ export default function Typetester({
       setIsTextEditable("false");
     } else {
       setIsTextEditable("plaintext-only");
+
+      if (fontTesterRef.current) {
+        setTimeout(() => {
+          fontTesterRef.current!.focus();
+          window.getSelection()?.selectAllChildren(fontTesterRef.current!);
+          window.getSelection()?.collapseToEnd();
+        }, 0);
+      }
     }
   };
 
   return (
     <article className="font-tester">
       <div className="font-tester-header">
-        <div className="fontfamily">
+        <div
+          className="fontfamily"
+          style={{ "--min-width": countMaxLabelLength(fontsData) } as React.CSSProperties}
+        >
           <Dropdown
             className="dropdown"
             options={fontsData}
@@ -129,7 +141,10 @@ export default function Typetester({
             arrowOpen={<Iconly icon={icons.chevronDown} />}
           />
         </div>
-        <div className="lang">
+        <div
+          className="lang"
+          style={{ "--min-width": countMaxLabelLength(languages) } as React.CSSProperties}
+        >
           <Dropdown
             className="dropdown"
             options={languages}
@@ -144,14 +159,7 @@ export default function Typetester({
             <span className="fontsize-value">{fontSize}</span>
             <span>px</span>
           </label>
-          <input
-            onInput={handleFontSize}
-            type="range"
-            min="12"
-            max="192"
-            step="1"
-            value={fontSize}
-          />
+          <input onInput={handleFontSize} type="range" min="12" max="192" value={fontSize} />
         </div>
         <div className="opentype-features">
           <CheckboxDropdown
@@ -162,8 +170,12 @@ export default function Typetester({
         <div className="alignment">
           {alignmentOptions.map((option) => (
             <>
-              <label htmlFor={option.value} title={option.label}>
-                {option.label}
+              <label
+                htmlFor={option.value}
+                className={alignment === option.value ? "active" : ""}
+                title={option.label}
+              >
+                <Iconly icon={icons[option.label]} />
               </label>
               <input
                 type="radio"
@@ -180,7 +192,7 @@ export default function Typetester({
           {columnOptions.map((option) => (
             <>
               <label htmlFor={option.label.split(" ")[0]} title={option.label}>
-                {option.label}
+                <Iconly icon={icons[option.label]} />
               </label>
               <input
                 type="radio"
@@ -199,7 +211,13 @@ export default function Typetester({
           </button>
         </div>
       </div>
-      <div className="font-tester" {...staticOptions} {...containerOptions} style={styleOptions}>
+      <div
+        ref={fontTesterRef}
+        className="font-sample"
+        {...staticOptions}
+        {...containerOptions}
+        style={styleOptions}
+      >
         {typetesterText}
       </div>
     </article>
@@ -219,4 +237,15 @@ const buildOpentypeFeatures = (features: any) => {
 
   // special formatting as the font features require every attribute to in quotes, e.g font-feature-settings: "liga"
   return `${validFeatures.join(`, `)}`;
+};
+
+const countMaxLabelLength = (options: any) => {
+  let maxLength = 7;
+
+  options.forEach((option: { label: string }) => {
+    const optionLength = option.label.length;
+    if (maxLength < optionLength) maxLength = optionLength;
+  });
+
+  return `${maxLength - 1}ch`;
 };

@@ -561,14 +561,71 @@ footer {
 }
 
 .font-tester {
+  position: relative;
+
+  &:nth-of-type(odd) {
+    z-index: 99;
+  }
+
   .font-tester-header {
+    position: absolute;
     display: flex;
+    align-items: baseline;
     gap: 24px;
 
-    .fontfamily,
-    .lang {
-      flex-shrink: 0;
+    .fontsize {
+      min-width: 25ch;
     }
+
+    .opentype-features {
+      font-size: 16px;
+    }
+
+    .alignment,
+    .columns {
+      label {
+        font-size: 20px;
+        vertical-align: middle;
+        opacity: 0.5;
+        transition: opacity $duration-s ease-in-out;
+
+        &.active {
+          opacity: 1;
+        }
+
+        &:hover {
+          opacity: 1;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .edit-text {
+      position: relative;
+      top: -2px;
+      font-size: 16px;
+
+      button {
+        font-family: inherit;
+        font-size: inherit;
+        background: none;
+        border: none;
+        text-decoration: underline;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+  }
+
+  .font-sample {
+    padding-top: $gutter-h * 4;
+    transition: font-size 0.1s ease-out;
   }
 }
 
@@ -576,6 +633,11 @@ footer {
   height: max-content;
   display: flex;
   align-items: center;
+  gap: $gutter-thin-v;
+
+  label {
+    max-width: 6ch;
+  }
 }
 
 input[type="range"] {
@@ -589,7 +651,7 @@ input[type="range"] {
   outline: none;
 
   height: 1px;
-  background: var(--black);
+  background: var(--foreground);
   border-radius: 16px;
 
   &::-webkit-slider-thumb {
@@ -599,23 +661,70 @@ input[type="range"] {
     /* creating a custom design */
     height: 16px;
     width: 16px;
-    background-color: #fff;
+    background-color: var(--background);
     border-radius: 50%;
-    border: 1px solid var(--black);
+    border: 1px solid var(--foreground);
   }
 
   /* Thumb: Firefox */
   &::-moz-range-thumb {
     height: 16px;
     width: 16px;
-    background-color: #fff;
+    background-color: var(--background);
     border-radius: 50%;
-    border: 1px solid var(--black);
+    border: 1px solid var(--foreground);
   }
 }
 
 div.dropdown {
   @include dropdown.base();
+  min-width: var(--min-width);
+}
+
+.checkbox-dropdown {
+  width: 15ch;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--background) 90%, transparent);
+  overflow: hidden;
+
+  &.open {
+    box-shadow: 0px 1px 3px 0px var(--foreground);
+  }
+
+  label.title {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px 2px;
+
+    span {
+      position: relative;
+      top: -2px;
+      font-size: 20px;
+    }
+
+    &:hover {
+      color: var(--background);
+      background: color-mix(in srgb, var(--foreground) 90%, transparent);
+      cursor: pointer;
+    }
+  }
+
+  ul {
+    padding: 10px 10px 6px;
+    padding-top: $gutter-h;
+
+    li {
+      display: flex;
+
+      label:hover {
+        cursor: pointer;
+      }
+
+      input {
+        flex-shrink: 0;
+      }
+    }
+  }
 }
 
 h1 {

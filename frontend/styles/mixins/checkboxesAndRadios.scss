@@ -16,6 +16,10 @@
     vertical-align: text-bottom;
     transition: background 0.1s ease-in-out;
 
+    &:hover {
+      cursor: pointer;
+    }
+
     &[disabled],
     &[aria-disabled="true"] {
       opacity: 0.4;
