@@ -11,6 +11,7 @@ import PurchaseSection from "@/app/components/Cart/PurchaseSection/PurchaseSecti
 import SupportedLanguages from "@/app/components/UI/SupportedLanguages";
 import { indexAllSamples, getRandomIndex } from "../helpers";
 import TypefaceSample from "@/app/components/Typeface/TypefaceSample";
+import { FontsData } from "@/app/components/Typeface/Typetester/typetester-types";
 
 async function getTypeface(slug: string) {
   const path = `/typefaces`;
@@ -69,8 +70,9 @@ export default async function Style({ params }: { params: { slug: string; styleS
             );
             const randomNumber = getRandomIndex(0, allSamplesLatin?.length);
             const randomText = allSamplesLatin[randomNumber]?.text;
-            const typetesterData = {
-              name: weight.title,
+            const typetesterData: FontsData = {
+              label: weight.title,
+              value: btoa(weight.title),
               fontPath: getStrapiMedia(weight.fontFile?.data?.attributes?.url),
             };
 

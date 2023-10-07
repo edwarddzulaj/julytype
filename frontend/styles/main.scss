@@ -561,12 +561,12 @@ footer {
 }
 
 .font-tester {
-  .fsjs-block-fontsize {
+  .font-tester-header {
     display: flex;
-    align-items: center;
+    gap: 24px;
 
-    .fsjs-label-text {
-      display: none;
+    .lang {
+      flex-shrink: 0;
     }
   }
 }
@@ -606,22 +606,8 @@ input[type="range"] {
   }
 }
 
-select {
-  // @include dropdown.base();
-  color: var(--foreground);
-  background-color: var(--background);
-  padding: 10px;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0em;
-  border: none;
-  border-radius: 8px;
-
-  &:hover {
-    color: var(--background);
-    background-color: var(--foreground);
-    cursor: pointer;
-  }
+div.dropdown {
+  @include dropdown.base();
 }
 
 h1 {

@@ -9,6 +9,7 @@ import PurchaseSection from "@/app/components/Cart/PurchaseSection/PurchaseSecti
 import Section from "@/app/components/UI/Section";
 import Typetester from "@/app/components/Typeface/Typetester/Typetester";
 import PDFPreview from "@/app/components/Typeface/PDFPreview";
+import { FontsData } from "@/app/components/Typeface/Typetester/typetester-types";
 import { TypefaceWeight } from "@/@types/components";
 import TypefaceSample from "@/app/components/Typeface/TypefaceSample";
 
@@ -87,18 +88,18 @@ export default async function Typeface({ params }: { params: { slug: string } })
 }
 
 const constructFontData = (typeface: Typeface) => {
-  let typetesterFontsData: {
-    name: string | undefined;
-    fontPath: string | URL;
-  }[] = [];
+  let typetesterFontsData: FontsData[] = [];
 
   const { title, styles } = typeface.attributes;
 
   styles.data.map((style: Style) => {
     style.attributes.weights.map((weight: TypefaceWeight) => {
       const testerStyleName = style.attributes.title.replace(title, "");
+      const fontLabel = `${testerStyleName.trim()} ${weight.title.trim()}`;
+      const fontValue = btoa(fontLabel);
       typetesterFontsData.push({
-        name: `${testerStyleName.trim()} ${weight.title.trim()}`,
+        label: fontLabel,
+        value: fontValue,
         fontPath: getStrapiMedia(weight.fontFile?.data?.attributes?.url),
       });
     });

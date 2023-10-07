@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Dropdown from "react-dropdown";
+import { FontsData } from "./typetester-types";
+
 import {
   staticOptions,
   languages,
@@ -9,20 +12,20 @@ import {
   columnOptions,
 } from "./typetester-config";
 
+import Iconly, { icons } from "../../UI/Iconly";
+
 export default function Typetester({
   typetesterText = "Type something...",
   fontsData = [
     {
-      name: "Font",
+      label: "Font",
+      value: "font",
       fontPath: "",
     },
   ],
 }: {
   typetesterText?: string | undefined;
-  fontsData: {
-    name: string | undefined;
-    fontPath: string | URL;
-  }[];
+  fontsData: FontsData[];
 }) {
   const [fontFamily, setFontFamily] = useState(fontsData[0]);
   const [sampleLang, setSampleLang] = useState(languages[0].value);
@@ -32,14 +35,15 @@ export default function Typetester({
   const [textColumns, setTextColumns] = useState(1);
   const [isTextEditable, setIsTextEditable] = useState("false");
 
+  console.log(fontsData, languages);
   useEffect(() => {
     document.fonts.ready.then((fontFaceSet) => {
       const loadedFaces = [...fontFaceSet];
 
       fontsData.forEach((font) => {
-        if (loadedFaces.find((f) => f.family === font.name)) return;
+        if (loadedFaces.find((f) => f.family === font.label)) return;
 
-        const newFont = new FontFace(`${font.name}`, `url(${font.fontPath})`);
+        const newFont = new FontFace(`${font.label}`, `url(${font.fontPath})`);
 
         newFont
           .load()
@@ -66,19 +70,19 @@ export default function Typetester({
       fontFeatureSettings: buildOpentypeFeatures(features),
       textAlign: alignment as any,
       columnCount: textColumns,
-      fontFamily: fontFamily.name,
+      fontFamily: fontFamily.label,
     };
-  }, [alignment, features, fontFamily.name, fontSize, textColumns]);
+  }, [alignment, features, fontFamily, fontSize, textColumns]);
 
-  const handleFontFamily = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const fontName = e.target?.value;
-    const newFont = fontsData.find((f) => f.name === fontName);
+  const handleFontFamily = (e: any) => {
+    const fontValue = e.value;
+    const newFont = fontsData.find((f) => f.value === fontValue);
 
     if (newFont) setFontFamily(newFont);
   };
 
-  const handleLanguage = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSampleLang(e.target.value);
+  const handleLanguage = (e: any) => {
+    setSampleLang(e.value);
   };
 
   const handleFontSize = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -113,25 +117,35 @@ export default function Typetester({
   };
 
   return (
-    <>
+    <article className="font-tester">
       <div className="font-tester-header">
         <div className="fontfamily">
-          <select onChange={handleFontFamily}>
+          <Dropdown
+            className="dropdown"
+            options={fontsData}
+            onChange={handleFontFamily}
+            value={fontFamily.value}
+            arrowClosed={<Iconly icon={icons.chevronUp} />}
+            arrowOpen={<Iconly icon={icons.chevronDown} />}
+          />
+
+          {/* <select onChange={handleFontFamily}>
             {fontsData.map((font) => (
-              <option key={font.name} value={font.name}>
-                {font.name}
+              <option key={font.label} value={font.label}>
+                {font.label}
               </option>
             ))}
-          </select>
+          </select> */}
         </div>
         <div className="lang">
-          <select onChange={handleLanguage}>
-            {languages.map((lang) => (
-              <option key={lang.value} value={lang.value}>
-                {lang.label}
-              </option>
-            ))}
-          </select>
+          <Dropdown
+            className="dropdown"
+            options={languages}
+            onChange={handleLanguage}
+            placeholder="Language"
+            arrowClosed={<Iconly icon={icons.chevronUp} />}
+            arrowOpen={<Iconly icon={icons.chevronDown} />}
+          />
         </div>
         <div className="fontsize">
           <label>
@@ -206,7 +220,7 @@ export default function Typetester({
       <div className="font-tester" {...staticOptions} {...containerOptions} style={styleOptions}>
         {typetesterText}
       </div>
-    </>
+    </article>
   );
 }
 
