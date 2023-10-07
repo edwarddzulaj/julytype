@@ -70,8 +70,10 @@ export default async function Style({ params }: { params: { slug: string; styleS
             );
             const randomNumber = getRandomIndex(0, allSamplesLatin?.length);
             const randomText = allSamplesLatin[randomNumber]?.text;
+            const testerStyleName = style!.attributes.title.replace(typeface.attributes.title, "");
+            const fontLabel = `${testerStyleName.trim()} ${weight.title.trim()}`;
             const typetesterData: FontsData = {
-              label: weight.title,
+              label: fontLabel,
               value: btoa(weight.title),
               fontPath: getStrapiMedia(weight.fontFile?.data?.attributes?.url),
             };
