@@ -174,8 +174,7 @@ export default function Typetester({
         </div>
         <div className="fontsize slider">
           <label>
-            <span className="fontsize-value">{fontSize}</span>
-            <span>px</span>
+            <span className="fontsize-value">{fontSize}px</span>
           </label>
           <input onInput={handleFontSize} type="range" min="12" max="192" value={fontSize} />
         </div>
@@ -189,7 +188,7 @@ export default function Typetester({
           {alignmentOptions.map((option) => (
             <>
               <label
-                htmlFor={option.value}
+                htmlFor={`${option.value}-${fontFamily.value}`}
                 className={alignment === option.value ? "active" : ""}
                 title={option.label}
               >
@@ -197,7 +196,7 @@ export default function Typetester({
               </label>
               <input
                 type="radio"
-                id={option.value}
+                id={`${option.value}-${fontFamily.value}`}
                 name="alignment"
                 value={option.value}
                 checked={alignment === option.value}
@@ -209,12 +208,12 @@ export default function Typetester({
         <div className="columns">
           {columnOptions.map((option) => (
             <>
-              <label htmlFor={option.label.split(" ")[0]} title={option.label}>
+              <label htmlFor={`${option.value}-${fontFamily.value}`} title={option.label}>
                 <Iconly icon={icons[option.label]} />
               </label>
               <input
                 type="radio"
-                id={option.label.split(" ")[0]}
+                id={`${option.value}-${fontFamily.value}`}
                 name="textcolumns"
                 value={option.value}
                 checked={textColumns == option.value}
