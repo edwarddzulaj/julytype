@@ -15,12 +15,12 @@ export const languages = [
 
 export const opentypeFeatures = [
   { value: "liga", label: "Ligatures", checked: true },
-  { value: "frac", label: "Fractions", checked: true },
+  { value: "frac", label: "Fractions" },
   { value: "c2sc", label: "Small capitals from capitals" },
   { value: "smcp", label: "Small caps" },
   { value: "subs", label: "Subscript" },
   { value: "sups", label: "Superscript" },
-  { value: "onum", label: "Old style figures" },
+  { value: "onum", label: "Old style figures", checked: true },
   { value: "lnum", label: "Lining figures" },
   { value: "tnum", label: "Tabular figures" },
   { value: "locl", label: "Localized forms" },

@@ -4,7 +4,7 @@ import { Typeface, Style } from "@/@types/contentTypes";
 import { fetchAPI } from "@/app/utils/fetch-api";
 import { getStrapiMedia } from "@/app/utils/api-helpers";
 
-import Typetester from "@/app/components/Typeface/Typetester";
+import Typetester from "@/app/components/Typeface/Typetester/Typetester";
 import BackButton from "@/app/components/UI/BackButton";
 import BuyButton from "@/app/components/UI/BuyButton";
 import PurchaseSection from "@/app/components/Cart/PurchaseSection/PurchaseSection";

@@ -7,8 +7,7 @@ import BackButton from "@/app/components/UI/BackButton";
 import BuyButton from "@/app/components/UI/BuyButton";
 import PurchaseSection from "@/app/components/Cart/PurchaseSection/PurchaseSection";
 import Section from "@/app/components/UI/Section";
-import Typetester from "@/app/components/Typeface/Typetester";
-import Typetester2 from "@/app/components/Typeface/Typetester/Typetester2";
+import Typetester from "@/app/components/Typeface/Typetester/Typetester";
 import PDFPreview from "@/app/components/Typeface/PDFPreview";
 import { TypefaceWeight } from "@/@types/components";
 import TypefaceSample from "@/app/components/Typeface/TypefaceSample";
@@ -69,10 +68,6 @@ export default async function Typeface({ params }: { params: { slug: string } })
             typetesterText={"July type is coming sooner than you think"}
             fontsData={typetesterFontsData}
           />
-          <Typetester2
-            typetesterText={"July type is coming sooner than you think"}
-            fontsData={typetesterFontsData}
-          />
         </section>
         {specimen && (
           <section className="download">
@@ -103,7 +98,7 @@ const constructFontData = (typeface: Typeface) => {
     style.attributes.weights.map((weight: TypefaceWeight) => {
       const testerStyleName = style.attributes.title.replace(title, "");
       typetesterFontsData.push({
-        name: `${testerStyleName} ${weight.title}`,
+        name: `${testerStyleName.trim()} ${weight.title.trim()}`,
         fontPath: getStrapiMedia(weight.fontFile?.data?.attributes?.url),
       });
     });
