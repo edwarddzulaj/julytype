@@ -11,8 +11,13 @@ export const icons = {
   chevronDown: "chevrondown",
   check: "checkedtrue",
   checkbox: "checkedfalse",
-  arrowLeft: "\uE008",
+  arrowLeft: "arrowleft",
+  arrowRight: "arrowright",
   close: "close",
+  columnOne: "columnone",
+  columnTwo: "columntwo",
+  alignLeft: "alignleft",
+  alignRight: "alignright",
 };
 
 export default function Iconly({ icon = "" }: { icon: string }) {

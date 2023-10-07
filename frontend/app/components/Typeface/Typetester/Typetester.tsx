@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Dropdown from "react-dropdown";
+import CheckboxDropdown from "../../UI/CheckboxDropdown";
 import { FontsData } from "./typetester-types";
 
 import {
@@ -35,7 +36,6 @@ export default function Typetester({
   const [textColumns, setTextColumns] = useState(1);
   const [isTextEditable, setIsTextEditable] = useState("false");
 
-  console.log(fontsData, languages);
   useEffect(() => {
     document.fonts.ready.then((fontFaceSet) => {
       const loadedFaces = [...fontFaceSet];
@@ -128,14 +128,6 @@ export default function Typetester({
             arrowClosed={<Iconly icon={icons.chevronUp} />}
             arrowOpen={<Iconly icon={icons.chevronDown} />}
           />
-
-          {/* <select onChange={handleFontFamily}>
-            {fontsData.map((font) => (
-              <option key={font.label} value={font.label}>
-                {font.label}
-              </option>
-            ))}
-          </select> */}
         </div>
         <div className="lang">
           <Dropdown
@@ -162,20 +154,10 @@ export default function Typetester({
           />
         </div>
         <div className="opentype-features">
-          <label htmlFor="">Features</label>
-          <ul className="features">
-            {opentypeFeatures.map((feature) => (
-              <li key={feature.value}>
-                <input
-                  type="checkbox"
-                  checked={feature.checked}
-                  id={feature.value}
-                  onChange={handleOpentypeFeatures}
-                />
-                <label htmlFor={feature.value}> {feature.label}</label>
-              </li>
-            ))}
-          </ul>
+          <CheckboxDropdown
+            dropdownItems={opentypeFeatures}
+            handleOnChange={handleOpentypeFeatures}
+          />
         </div>
         <div className="alignment">
           {alignmentOptions.map((option) => (
