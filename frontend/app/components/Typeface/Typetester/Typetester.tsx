@@ -147,7 +147,7 @@ export default function Typetester({
             arrowOpen={<Iconly icon={icons.chevronDown} />}
           />
         </div>
-        <div className="fontsize">
+        <div className="fontsize slider">
           <label>
             <span className="fontsize-value">{fontSize}</span>
             <span>px</span>

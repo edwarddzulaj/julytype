@@ -565,14 +565,22 @@ footer {
     display: flex;
     gap: 24px;
 
+    .fontfamily,
     .lang {
       flex-shrink: 0;
     }
   }
 }
 
+.slider {
+  height: max-content;
+  display: flex;
+  align-items: center;
+}
+
 input[type="range"] {
   /* removing default appearance */
+
   -webkit-appearance: none;
   appearance: none;
   /* creating a custom design */

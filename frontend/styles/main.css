@@ -813,8 +813,16 @@ footer .pages {
   display: flex;
   gap: 24px;
 }
+.font-tester .font-tester-header .fontfamily,
 .font-tester .font-tester-header .lang {
   flex-shrink: 0;
+}
+
+.slider {
+  height: -moz-max-content;
+  height: max-content;
+  display: flex;
+  align-items: center;
 }
 
 input[type=range] {
