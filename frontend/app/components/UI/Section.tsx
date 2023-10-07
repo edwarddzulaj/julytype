@@ -4,7 +4,7 @@ export default function Section({
   noIndent = false,
 }: {
   children: any;
-  title: string;
+  title?: string;
   noIndent?: boolean;
 }) {
   return (

@@ -4,7 +4,9 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import Dropdown from "react-dropdown";
 import CheckboxDropdown from "../../UI/CheckboxDropdown";
 import { FontsData } from "./typetester-types";
+import { TypetesterTextGroup } from "@/@types/components";
 
+import { indexAllSamples, getRandomIndex } from "@/app/typefaces/[slug]/helpers";
 import {
   staticOptions,
   languages,
@@ -16,7 +18,6 @@ import {
 import Iconly, { icons } from "../../UI/Iconly";
 
 export default function Typetester({
-  typetesterText = "Type something...",
   fontsData = [
     {
       label: "Font",
@@ -24,9 +25,12 @@ export default function Typetester({
       fontPath: "",
     },
   ],
+  typetesterLanguageGroup,
+  isLatin = true,
 }: {
-  typetesterText?: string | undefined;
   fontsData: FontsData[];
+  typetesterLanguageGroup?: TypetesterTextGroup[] | undefined;
+  isLatin?: boolean;
 }) {
   const fontTesterRef = useRef<HTMLInputElement>(null);
   const [fontFamily, setFontFamily] = useState(fontsData[0]);
@@ -36,6 +40,8 @@ export default function Typetester({
   const [alignment, setAlignment] = useState(alignmentOptions[0].value);
   const [textColumns, setTextColumns] = useState(1);
   const [isTextEditable, setIsTextEditable] = useState("false");
+
+  const [typetester, setTypetester] = useState({ text: "", index: null });
 
   useEffect(() => {
     document.fonts.ready.then((fontFaceSet) => {
@@ -57,6 +63,12 @@ export default function Typetester({
       });
     });
   }, [fontsData]);
+
+  useEffect(() => {
+    const [sampleText, index] = buildSampleText(typetesterLanguageGroup, typetester.index, isLatin);
+    setTypetester({ text: sampleText, index: index });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const containerOptions = useMemo(() => {
     return {
@@ -125,8 +137,14 @@ export default function Typetester({
     }
   };
 
+  const handleFontSampleClick = () => {
+    if (isTextEditable !== "false") return;
+    const [sampleText, index] = buildSampleText(typetesterLanguageGroup, typetester.index, isLatin);
+    setTypetester({ ...typetester, text: sampleText, index: index });
+  };
+
   return (
-    <article className="font-tester">
+    <article className="font-tester" id={fontFamily.value}>
       <div className="font-tester-header">
         <div
           className="fontfamily"
@@ -214,15 +232,39 @@ export default function Typetester({
       <div
         ref={fontTesterRef}
         className="font-sample"
+        onClick={handleFontSampleClick}
         {...staticOptions}
         {...containerOptions}
         style={styleOptions}
       >
-        {typetesterText}
+        {typetester.text}
       </div>
     </article>
   );
 }
+
+const buildSampleText = (
+  typetesterLanguageGroup: TypetesterTextGroup[] | undefined,
+  index: number | null = null,
+  isLatin = true
+) => {
+  if (!typetesterLanguageGroup) return ["Type something here", 0];
+
+  const { allSamplesLatin, allSamplesCyrillic } = indexAllSamples(typetesterLanguageGroup);
+  const samples = isLatin ? allSamplesLatin : allSamplesCyrillic;
+
+  if (!index) {
+    index = getRandomIndex(0, samples?.length);
+  } else {
+    index++;
+    if (index >= samples?.length) {
+      index = 0;
+    }
+  }
+
+  const randomText = samples[index!]?.text;
+  return [randomText, index];
+};
 
 const buildOpentypeFeatures = (features: any) => {
   let validFeatures = [];

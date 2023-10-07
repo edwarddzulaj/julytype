@@ -837,6 +837,9 @@ footer .pages {
   vertical-align: middle;
   opacity: 0.5;
   transition: opacity 0.3s ease-in-out;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .font-tester .font-tester-header .alignment label.active,
 .font-tester .font-tester-header .columns label.active {
@@ -868,6 +871,9 @@ footer .pages {
 .font-tester .font-sample {
   padding-top: 6.48rem;
   transition: font-size 0.1s ease-out;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .slider {

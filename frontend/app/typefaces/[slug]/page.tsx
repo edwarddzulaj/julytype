@@ -66,8 +66,14 @@ export default async function Typeface({ params }: { params: { slug: string } })
       <Section title="Specimen">
         <section className="typetesters">
           <Typetester
-            typetesterText={"July type is coming sooner than you think"}
             fontsData={typetesterFontsData}
+            typetesterLanguageGroup={[
+              {
+                id: 0,
+                language: "English",
+                sample: [{ id: 0, text: "July type is coming sooner than you think" }],
+              },
+            ]}
           />
         </section>
         {specimen?.data?.attributes?.url && (

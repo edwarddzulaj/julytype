@@ -9,9 +9,9 @@ import BackButton from "@/app/components/UI/BackButton";
 import BuyButton from "@/app/components/UI/BuyButton";
 import PurchaseSection from "@/app/components/Cart/PurchaseSection/PurchaseSection";
 import SupportedLanguages from "@/app/components/UI/SupportedLanguages";
-import { indexAllSamples, getRandomIndex } from "../helpers";
 import TypefaceSample from "@/app/components/Typeface/TypefaceSample";
 import { FontsData } from "@/app/components/Typeface/Typetester/typetester-types";
+import ChooseScript from "@/app/components/UI/ChooseScript";
 
 async function getTypeface(slug: string) {
   const path = `/typefaces`;
@@ -48,7 +48,6 @@ export default async function Style({ params }: { params: { slug: string; styleS
   const { title, weights } = style?.attributes ?? { title: "", weights: [] };
   const typefaceTitle = typeface.attributes.title;
   const { supportedLanguages } = typeface.attributes;
-
   return (
     <section className="container style">
       <article className="quick-buttons">
@@ -57,7 +56,10 @@ export default async function Style({ params }: { params: { slug: string; styleS
         </BackButton>
         <BuyButton />
       </article>
-      <Section title={title}>
+      {/* <article>
+        <ChooseScript script={script} />
+      </article> */}
+      <Section>
         <article className="styles-weights">
           {weights.map((weight: TypefaceWeight) => (
             <TypefaceSample key={weight.id} title={weight.title} regularWeight={weight} />
@@ -65,11 +67,6 @@ export default async function Style({ params }: { params: { slug: string; styleS
         </article>
         <section className="typetesters">
           {weights.map((weight: TypefaceWeight) => {
-            const { allSamplesLatin, allSamplesCyrillic } = indexAllSamples(
-              weight.typetesterLanguageGroup
-            );
-            const randomNumber = getRandomIndex(0, allSamplesLatin?.length);
-            const randomText = allSamplesLatin[randomNumber]?.text;
             const testerStyleName = style!.attributes.title.replace(typeface.attributes.title, "");
             const fontLabel = `${testerStyleName.trim()} ${weight.title.trim()}`;
             const typetesterData: FontsData = {
@@ -81,8 +78,8 @@ export default async function Style({ params }: { params: { slug: string; styleS
             return (
               <Typetester
                 key={weight.id}
-                typetesterText={randomText}
                 fontsData={[typetesterData]}
+                typetesterLanguageGroup={weight.typetesterLanguageGroup}
               />
             );
           })}
