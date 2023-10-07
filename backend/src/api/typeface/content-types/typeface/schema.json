@@ -25,9 +25,7 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "files"
-      ]
+      "allowedTypes": ["files"]
     },
     "price": {
       "type": "float",
@@ -42,14 +40,13 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": [
-        "files"
-      ]
+      "allowedTypes": ["files"]
     },
     "styles": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::style.style"
+      "target": "api::style.style",
+      "required": true
     },
     "slug": {
       "type": "string"
