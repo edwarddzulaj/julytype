@@ -299,7 +299,7 @@ nav {
         width: fit-content;
         position: relative;
         left: 0;
-        top: $gutter-h * 3;
+        top: $gutter-h * 4.5;
 
         .buttons {
           margin-top: $gutter-h;
@@ -320,10 +320,11 @@ nav {
 
       .main-section {
         &:first-of-type {
-          padding-top: $gutter-h * 2;
+          padding-top: $gutter-h;
         }
 
         .styles-weights {
+          margin-bottom: $gutter-h * 6;
           display: flex;
           flex-direction: column;
           gap: $gutter-h;
@@ -331,6 +332,7 @@ nav {
 
           h2 {
             font-size: 58px;
+            line-height: 58px;
           }
         }
 
@@ -403,7 +405,7 @@ footer {
 // =-=-=-=-=-=-=-=-=-=
 
 .main-section {
-  margin-bottom: $gutter-h * 2;
+  margin-bottom: $gutter-h * 6;
 
   &:not(.no-indent) {
     display: grid;
@@ -414,17 +416,24 @@ footer {
       display: grid;
       justify-items: center;
 
+      &:not(.no-title) {
+        section {
+          padding-top: $gutter-h * 4;
+        }
+      }
+
       section {
         width: 100%;
         max-width: 1280px;
-        padding-top: $gutter-h * 3;
       }
     }
   }
 
   .section-wrapper {
-    section {
-      padding-top: $gutter-h;
+    &:not(.no-title) {
+      section {
+        padding-top: $gutter-h;
+      }
     }
   }
 }

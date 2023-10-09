@@ -34,9 +34,9 @@ export default function Typetester({
   const fontTesterRef = useRef<HTMLInputElement>(null);
   const [fontFamily, setFontFamily] = useState(fontsData[0]);
   const [sampleLang, setSampleLang] = useState(languages[0].value);
-  const [fontSize, setFontSize] = useState(48);
+  const [fontSize, setFontSize] = useState(72);
   const [features, setFeatures] = useState(opentypeFeatures);
-  const [alignment, setAlignment] = useState(alignmentOptions[0].value);
+  const [alignment, setAlignment] = useState(alignmentOptions.find((f) => f.checked)?.value);
   const [textColumns, setTextColumns] = useState(1);
   const [isTextEditable, setIsTextEditable] = useState("false");
   const [typetester, setTypetester] = useState({ text: "", index: null });

@@ -532,7 +532,7 @@ nav .inner-nav .settings .theme-switcher:hover {
   width: fit-content;
   position: relative;
   left: 0;
-  top: 4.86rem;
+  top: 7.29rem;
 }
 .wrapper .container.style .choose-script .buttons {
   margin-top: 1.62rem;
@@ -621,9 +621,10 @@ nav .inner-nav .settings .theme-switcher:hover {
   background-color: var(--black);
 }
 .wrapper .container.style .main-section:first-of-type {
-  padding-top: 3.24rem;
+  padding-top: 1.62rem;
 }
 .wrapper .container.style .main-section .styles-weights {
+  margin-bottom: 9.72rem;
   display: flex;
   flex-direction: column;
   gap: 1.62rem;
@@ -631,6 +632,7 @@ nav .inner-nav .settings .theme-switcher:hover {
 }
 .wrapper .container.style .main-section .styles-weights h2 {
   font-size: 58px;
+  line-height: 58px;
 }
 .wrapper .container.style .main-section .typetesters {
   display: flex;
@@ -707,7 +709,7 @@ footer .pages {
 }
 
 .main-section {
-  margin-bottom: 3.24rem;
+  margin-bottom: 9.72rem;
 }
 .main-section:not(.no-indent) {
   display: grid;
@@ -718,12 +720,14 @@ footer .pages {
   display: grid;
   justify-items: center;
 }
+.main-section:not(.no-indent) .section-wrapper:not(.no-title) section {
+  padding-top: 6.48rem;
+}
 .main-section:not(.no-indent) .section-wrapper section {
   width: 100%;
   max-width: 1280px;
-  padding-top: 4.86rem;
 }
-.main-section .section-wrapper section {
+.main-section .section-wrapper:not(.no-title) section {
   padding-top: 1.62rem;
 }
 

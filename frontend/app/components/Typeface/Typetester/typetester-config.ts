@@ -29,8 +29,8 @@ export const opentypeFeatures = [
 ];
 
 export const alignmentOptions = [
-  { value: "left", label: "alignLeft", checked: true },
-  { value: "center", label: "alignCenter" },
+  { value: "left", label: "alignLeft" },
+  { value: "center", label: "alignCenter", checked: true },
   { value: "right", label: "alignRight" },
 ];
 

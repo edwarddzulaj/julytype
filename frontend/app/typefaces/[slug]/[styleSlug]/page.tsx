@@ -63,7 +63,11 @@ export default async function Style({ params }: { params: { slug: string; styleS
         <Section>
           <article className="styles-weights">
             {weights.map((weight: TypefaceWeight) => (
-              <TypefaceSample key={weight.id} title={weight.title} regularWeight={weight} />
+              <TypefaceSample
+                key={weight.id}
+                title={`${title} ${weight.title}`}
+                regularWeight={weight}
+              />
             ))}
           </article>
           <section className="typetesters">
