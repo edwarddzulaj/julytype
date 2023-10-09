@@ -1,102 +1,96 @@
 @mixin base {
-	display: inline-flex;
-	padding: 14px 16px;
-	border-radius: 12px;
-	align-items: center;
-	flex-shrink: 0;
-	border: none;
-	// font-family: JT Picolo;
-	font-size: 16px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 16px; /* 100% */
-	transition:
-		color 0.2s ease-in-out,
-		opacity 0.2s ease-in-out,
-		background-color 0.2s ease-in-out,
-		border 0.2s ease-in-out;
+  display: inline-flex;
+  padding: 14px 16px;
+  border-radius: 12px;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 100% */
+  transition:
+    color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out,
+    border 0.2s ease-in-out;
 
-	&:hover {
-		cursor: pointer;
-	}
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 @mixin primary {
-	@include base;
+  @include base;
 
-	color: var(--white);
-	background-color: var(--blue);
+  color: var(--white);
+  background-color: var(--blue);
 
-	&:hover {
-		background-color: var(--black);
-	}
+  &:hover {
+    background-color: var(--black);
+  }
 
-	&:focus {
-		outline: 2px solid var(--black);
-	}
+  &:focus-visible {
+    outline: 2px solid var(--black);
+  }
 
-	&:focus:not(:focus-visible) {
-		outline: none;
-	}
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
 
-	&:active {
-		background-color: var(--blue);
-	}
+  &:active {
+    color: var(--white);
+    background-color: var(--blue);
+  }
 
-	&:disabled {
-		background-color: var(--grey);
-	}
+  &:disabled {
+    background-color: var(--grey);
+  }
 }
 
 @mixin primary-black {
-	@include primary;
+  @include primary;
 
-	background-color: var(--black);
+  background-color: var(--black);
 
-	&:hover {
-		opacity: 0.9;
-		background-color: var(--black);
-	}
-
-	&:active {
-		opacity: 0.9;
-		background-color: var(--black);
-	}
+  &:active {
+    background-color: var(--black);
+  }
 }
 
 @mixin secondary {
-	@include base;
+  @include base;
 
-	color: var(--foreground);
-	background-color: var(--background);
+  color: var(--foreground);
+  background-color: var(--background);
 
-	&:hover,
-	&.selected {
-		background-color: var(--foreground);
-		color: var(--background);
-	}
+  &:hover,
+  &.selected {
+    background-color: var(--foreground);
+    color: var(--background);
+  }
 
-	&:focus {
-		outline: 2px solid var(--foreground);
-	}
+  &:focus-visible {
+    outline: 2px solid var(--foreground);
+  }
 
-	&:focus:not(:focus-visible) {
-		outline: none;
-	}
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
 
-	&:active {
-		background-color: var(--background);
-	}
+  &:active {
+    color: var(--foreground);
+    background-color: var(--background);
+  }
 
-	&:disabled {
-		color: var(--grey);
-	}
+  &:disabled {
+    color: var(--grey);
+  }
 }
 
 @mixin tertiary {
-	@include secondary;
+  @include secondary;
 
-	padding: 6px 12px;
-	border-radius: 8px;
-	border: 1px solid var(--foreground);
+  padding: 6px 12px;
+  border-radius: 8px;
+  outline: 1px solid var(--foreground);
 }

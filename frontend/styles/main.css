@@ -494,7 +494,6 @@ nav .inner-nav .settings .theme-switcher:hover {
   font-style: normal;
   font-weight: 400;
   line-height: 16px; /* 100% */
-  transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--foreground);
   background-color: var(--background);
   padding: 6px 12px;
@@ -508,13 +507,14 @@ nav .inner-nav .settings .theme-switcher:hover {
   background-color: var(--foreground);
   color: var(--background);
 }
-.wrapper .container.typeface .download a:focus {
+.wrapper .container.typeface .download a:focus-visible {
   outline: 2px solid var(--foreground);
 }
 .wrapper .container.typeface .download a:focus:not(:focus-visible) {
   outline: none;
 }
 .wrapper .container.typeface .download a:active {
+  color: var(--foreground);
   background-color: var(--background);
 }
 .wrapper .container.typeface .download a:disabled {
@@ -550,7 +550,6 @@ nav .inner-nav .settings .theme-switcher:hover {
   font-style: normal;
   font-weight: 400;
   line-height: 16px; /* 100% */
-  transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--foreground);
   background-color: var(--background);
   padding: 6px 12px;
@@ -564,13 +563,14 @@ nav .inner-nav .settings .theme-switcher:hover {
   background-color: var(--foreground);
   color: var(--background);
 }
-.wrapper .container.style .choose-script .buttons button:focus {
+.wrapper .container.style .choose-script .buttons button:focus-visible {
   outline: 2px solid var(--foreground);
 }
 .wrapper .container.style .choose-script .buttons button:focus:not(:focus-visible) {
   outline: none;
 }
 .wrapper .container.style .choose-script .buttons button:active {
+  color: var(--foreground);
   background-color: var(--background);
 }
 .wrapper .container.style .choose-script .buttons button:disabled {
@@ -587,7 +587,6 @@ nav .inner-nav .settings .theme-switcher:hover {
   font-style: normal;
   font-weight: 400;
   line-height: 16px; /* 100% */
-  transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--white);
   background-color: var(--blue);
   background-color: var(--black);
@@ -600,24 +599,20 @@ nav .inner-nav .settings .theme-switcher:hover {
 .wrapper .container.style .choose-script .buttons button.active:hover {
   background-color: var(--black);
 }
-.wrapper .container.style .choose-script .buttons button.active:focus {
+.wrapper .container.style .choose-script .buttons button.active:focus-visible {
   outline: 2px solid var(--black);
 }
 .wrapper .container.style .choose-script .buttons button.active:focus:not(:focus-visible) {
   outline: none;
 }
 .wrapper .container.style .choose-script .buttons button.active:active {
+  color: var(--white);
   background-color: var(--blue);
 }
 .wrapper .container.style .choose-script .buttons button.active:disabled {
   background-color: var(--grey);
 }
-.wrapper .container.style .choose-script .buttons button.active:hover {
-  opacity: 0.9;
-  background-color: var(--black);
-}
 .wrapper .container.style .choose-script .buttons button.active:active {
-  opacity: 0.9;
   background-color: var(--black);
 }
 .wrapper .container.style .main-section:first-of-type {
@@ -671,7 +666,6 @@ nav .inner-nav .settings .theme-switcher:hover {
   font-style: normal;
   font-weight: 400;
   line-height: 16px; /* 100% */
-  transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--white);
   background-color: var(--blue);
 }
@@ -681,13 +675,14 @@ nav .inner-nav .settings .theme-switcher:hover {
 .wrapper .container.cart.page .no-cart-items .browse-more:hover {
   background-color: var(--black);
 }
-.wrapper .container.cart.page .no-cart-items .browse-more:focus {
+.wrapper .container.cart.page .no-cart-items .browse-more:focus-visible {
   outline: 2px solid var(--black);
 }
 .wrapper .container.cart.page .no-cart-items .browse-more:focus:not(:focus-visible) {
   outline: none;
 }
 .wrapper .container.cart.page .no-cart-items .browse-more:active {
+  color: var(--white);
   background-color: var(--blue);
 }
 .wrapper .container.cart.page .no-cart-items .browse-more:disabled {
@@ -753,7 +748,6 @@ footer .pages {
   font-style: normal;
   font-weight: 400;
   line-height: 16px; /* 100% */
-  transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--foreground);
   background-color: var(--background);
   padding: 6px 12px;
@@ -768,13 +762,14 @@ footer .pages {
   background-color: var(--foreground);
   color: var(--background);
 }
-.purchase-section .license-options .purchase-option .options form label:focus {
+.purchase-section .license-options .purchase-option .options form label:focus-visible {
   outline: 2px solid var(--foreground);
 }
 .purchase-section .license-options .purchase-option .options form label:focus:not(:focus-visible) {
   outline: none;
 }
 .purchase-section .license-options .purchase-option .options form label:active {
+  color: var(--foreground);
   background-color: var(--background);
 }
 .purchase-section .license-options .purchase-option .options form label:disabled {
@@ -852,7 +847,6 @@ footer .pages {
   font-style: normal;
   font-weight: 400;
   line-height: 16px; /* 100% */
-  transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--white);
   background-color: var(--blue);
 }
@@ -862,13 +856,14 @@ footer .pages {
 .buy-button:hover {
   background-color: var(--black);
 }
-.buy-button:focus {
+.buy-button:focus-visible {
   outline: 2px solid var(--black);
 }
 .buy-button:focus:not(:focus-visible) {
   outline: none;
 }
 .buy-button:active {
+  color: var(--white);
   background-color: var(--blue);
 }
 .buy-button:disabled {
