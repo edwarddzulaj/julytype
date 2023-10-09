@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import Dropdown from "react-dropdown";
 import CheckboxDropdown from "../../UI/CheckboxDropdown";
 import { FontsData } from "./typetester-types";
@@ -16,6 +16,7 @@ import {
 } from "./typetester-config";
 
 import Iconly, { icons } from "../../UI/Iconly";
+import { ScriptChoiceContext } from "@/app/providers";
 
 export default function Typetester({
   fontsData = [
@@ -26,11 +27,9 @@ export default function Typetester({
     },
   ],
   typetesterLanguageGroup,
-  isLatin = true,
 }: {
   fontsData: FontsData[];
   typetesterLanguageGroup?: TypetesterTextGroup[] | undefined;
-  isLatin?: boolean;
 }) {
   const fontTesterRef = useRef<HTMLInputElement>(null);
   const [fontFamily, setFontFamily] = useState(fontsData[0]);
@@ -40,8 +39,10 @@ export default function Typetester({
   const [alignment, setAlignment] = useState(alignmentOptions[0].value);
   const [textColumns, setTextColumns] = useState(1);
   const [isTextEditable, setIsTextEditable] = useState("false");
-
   const [typetester, setTypetester] = useState({ text: "", index: null });
+  const [isLatin, setIsLatin] = useState(true);
+
+  const { script } = useContext(ScriptChoiceContext);
 
   useEffect(() => {
     document.fonts.ready.then((fontFaceSet) => {
@@ -68,7 +69,13 @@ export default function Typetester({
     const [sampleText, index] = buildSampleText(typetesterLanguageGroup, typetester.index, isLatin);
     setTypetester({ text: sampleText, index: index });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isLatin]);
+
+  useEffect(() => {
+    if (script) {
+      setIsLatin(script === "latin");
+    }
+  }, [script]);
 
   const containerOptions = useMemo(() => {
     return {

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import "@/styles/reset.css";
 import "@/styles/main.css";
-import { Providers } from "./providers";
+import { ThemeChangeProvider } from "./providers/index";
 import { fetchAPI } from "./utils/fetch-api";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
@@ -71,11 +71,11 @@ export default async function RootLayout({
       <head />
 
       <body>
-        <Providers>
+        <ThemeChangeProvider>
           <Navbar websiteDetails={websiteDetails} />
           <main className="wrapper">{children}</main>
           <Footer footerContent={footerContent} />
-        </Providers>
+        </ThemeChangeProvider>
         <Analytics />
       </body>
     </html>
