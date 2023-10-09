@@ -50,6 +50,8 @@ export default async function Style({ params }: { params: { slug: string; styleS
   const typefaceTitle = typeface.attributes.title;
   const { supportedLanguages } = typeface.attributes;
 
+  const isStyleText = title.toLowerCase().includes("text");
+
   return (
     <ScriptChoiceProvider>
       <section className="container style">
@@ -88,6 +90,7 @@ export default async function Style({ params }: { params: { slug: string; styleS
                   key={weight.id}
                   fontsData={[typetesterData]}
                   typetesterLanguageGroup={weight.typetesterLanguageGroup}
+                  defaultOptions={{ alignment: isStyleText ? "left" : "" }}
                 />
               );
             })}
