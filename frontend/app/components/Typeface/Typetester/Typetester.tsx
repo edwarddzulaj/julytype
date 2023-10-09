@@ -257,7 +257,7 @@ const buildSampleText = (
   if (!typetesterLanguageGroup) return ["Type something here", 0];
 
   const { allSamplesLatin, allSamplesCyrillic } = indexAllSamples(typetesterLanguageGroup);
-  const samples = isLatin ? allSamplesLatin : allSamplesCyrillic;
+  const samples = !isLatin && allSamplesCyrillic.length > 0 ? allSamplesCyrillic : allSamplesLatin;
 
   if (!index) {
     index = getRandomIndex(0, samples?.length);
