@@ -11,9 +11,10 @@
 	font-weight: 400;
 	line-height: 16px; /* 100% */
 	transition:
-		color 0.1s ease-in-out,
-		background-color 0.1s ease-in-out,
-		border 0.1s ease-in-out;
+		color 0.2s ease-in-out,
+		opacity 0.2s ease-in-out,
+		background-color 0.2s ease-in-out,
+		border 0.2s ease-in-out;
 
 	&:hover {
 		cursor: pointer;
@@ -34,12 +35,32 @@
 		outline: 2px solid var(--black);
 	}
 
+	&:focus:not(:focus-visible) {
+		outline: none;
+	}
+
 	&:active {
 		background-color: var(--blue);
 	}
 
 	&:disabled {
 		background-color: var(--grey);
+	}
+}
+
+@mixin primary-black {
+	@include primary;
+
+	background-color: var(--black);
+
+	&:hover {
+		opacity: 0.9;
+		background-color: var(--black);
+	}
+
+	&:active {
+		opacity: 0.9;
+		background-color: var(--black);
 	}
 }
 
@@ -57,6 +78,10 @@
 
 	&:focus {
 		outline: 2px solid var(--foreground);
+	}
+
+	&:focus:not(:focus-visible) {
+		outline: none;
 	}
 
 	&:active {

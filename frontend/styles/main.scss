@@ -295,6 +295,29 @@ nav {
     }
 
     &.style {
+      .choose-script {
+        width: fit-content;
+        position: relative;
+        left: 0;
+        top: $gutter-h * 3;
+
+        .buttons {
+          margin-top: $gutter-h;
+          display: flex;
+          gap: 8px;
+
+          button {
+            @include buttons.tertiary;
+
+            &.active {
+              @include buttons.primary-black;
+              padding: 6px 12px;
+              border-radius: 8px;
+            }
+          }
+        }
+      }
+
       .main-section {
         &:first-of-type {
           padding-top: $gutter-h * 2;

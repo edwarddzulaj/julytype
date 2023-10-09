@@ -59,8 +59,8 @@ export default async function Style({ params }: { params: { slug: string; styleS
           </BackButton>
           <BuyButton />
         </article>
+        <ChooseScript />
         <Section>
-          <ChooseScript />
           <article className="styles-weights">
             {weights.map((weight: TypefaceWeight) => (
               <TypefaceSample key={weight.id} title={weight.title} regularWeight={weight} />

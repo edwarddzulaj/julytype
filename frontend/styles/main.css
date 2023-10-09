@@ -494,7 +494,7 @@ nav .inner-nav .settings .theme-switcher:hover {
   font-style: normal;
   font-weight: 400;
   line-height: 16px; /* 100% */
-  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out, border 0.1s ease-in-out;
+  transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--foreground);
   background-color: var(--background);
   padding: 6px 12px;
@@ -511,6 +511,9 @@ nav .inner-nav .settings .theme-switcher:hover {
 .wrapper .container.typeface .download a:focus {
   outline: 2px solid var(--foreground);
 }
+.wrapper .container.typeface .download a:focus:not(:focus-visible) {
+  outline: none;
+}
 .wrapper .container.typeface .download a:active {
   background-color: var(--background);
 }
@@ -523,6 +526,99 @@ nav .inner-nav .settings .theme-switcher:hover {
 .wrapper .container.typeface .download canvas {
   width: 100% !important;
   height: auto !important;
+}
+.wrapper .container.style .choose-script {
+  width: -moz-fit-content;
+  width: fit-content;
+  position: relative;
+  left: 0;
+  top: 4.86rem;
+}
+.wrapper .container.style .choose-script .buttons {
+  margin-top: 1.62rem;
+  display: flex;
+  gap: 8px;
+}
+.wrapper .container.style .choose-script .buttons button {
+  display: inline-flex;
+  padding: 14px 16px;
+  border-radius: 12px;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 100% */
+  transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+  color: var(--foreground);
+  background-color: var(--background);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--foreground);
+}
+.wrapper .container.style .choose-script .buttons button:hover {
+  cursor: pointer;
+}
+.wrapper .container.style .choose-script .buttons button:hover, .wrapper .container.style .choose-script .buttons button.selected {
+  background-color: var(--foreground);
+  color: var(--background);
+}
+.wrapper .container.style .choose-script .buttons button:focus {
+  outline: 2px solid var(--foreground);
+}
+.wrapper .container.style .choose-script .buttons button:focus:not(:focus-visible) {
+  outline: none;
+}
+.wrapper .container.style .choose-script .buttons button:active {
+  background-color: var(--background);
+}
+.wrapper .container.style .choose-script .buttons button:disabled {
+  color: var(--grey);
+}
+.wrapper .container.style .choose-script .buttons button.active {
+  display: inline-flex;
+  padding: 14px 16px;
+  border-radius: 12px;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 100% */
+  transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+  color: var(--white);
+  background-color: var(--blue);
+  background-color: var(--black);
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+.wrapper .container.style .choose-script .buttons button.active:hover {
+  cursor: pointer;
+}
+.wrapper .container.style .choose-script .buttons button.active:hover {
+  background-color: var(--black);
+}
+.wrapper .container.style .choose-script .buttons button.active:focus {
+  outline: 2px solid var(--black);
+}
+.wrapper .container.style .choose-script .buttons button.active:focus:not(:focus-visible) {
+  outline: none;
+}
+.wrapper .container.style .choose-script .buttons button.active:active {
+  background-color: var(--blue);
+}
+.wrapper .container.style .choose-script .buttons button.active:disabled {
+  background-color: var(--grey);
+}
+.wrapper .container.style .choose-script .buttons button.active:hover {
+  opacity: 0.9;
+  background-color: var(--black);
+}
+.wrapper .container.style .choose-script .buttons button.active:active {
+  opacity: 0.9;
+  background-color: var(--black);
 }
 .wrapper .container.style .main-section:first-of-type {
   padding-top: 3.24rem;
@@ -573,7 +669,7 @@ nav .inner-nav .settings .theme-switcher:hover {
   font-style: normal;
   font-weight: 400;
   line-height: 16px; /* 100% */
-  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out, border 0.1s ease-in-out;
+  transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--white);
   background-color: var(--blue);
 }
@@ -585,6 +681,9 @@ nav .inner-nav .settings .theme-switcher:hover {
 }
 .wrapper .container.cart.page .no-cart-items .browse-more:focus {
   outline: 2px solid var(--black);
+}
+.wrapper .container.cart.page .no-cart-items .browse-more:focus:not(:focus-visible) {
+  outline: none;
 }
 .wrapper .container.cart.page .no-cart-items .browse-more:active {
   background-color: var(--blue);
@@ -650,7 +749,7 @@ footer .pages {
   font-style: normal;
   font-weight: 400;
   line-height: 16px; /* 100% */
-  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out, border 0.1s ease-in-out;
+  transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--foreground);
   background-color: var(--background);
   padding: 6px 12px;
@@ -667,6 +766,9 @@ footer .pages {
 }
 .purchase-section .license-options .purchase-option .options form label:focus {
   outline: 2px solid var(--foreground);
+}
+.purchase-section .license-options .purchase-option .options form label:focus:not(:focus-visible) {
+  outline: none;
 }
 .purchase-section .license-options .purchase-option .options form label:active {
   background-color: var(--background);
@@ -746,7 +848,7 @@ footer .pages {
   font-style: normal;
   font-weight: 400;
   line-height: 16px; /* 100% */
-  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out, border 0.1s ease-in-out;
+  transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--white);
   background-color: var(--blue);
 }
@@ -758,6 +860,9 @@ footer .pages {
 }
 .buy-button:focus {
   outline: 2px solid var(--black);
+}
+.buy-button:focus:not(:focus-visible) {
+  outline: none;
 }
 .buy-button:active {
   background-color: var(--blue);
