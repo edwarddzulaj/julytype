@@ -421,17 +421,21 @@ nav {
   border-bottom: 1px solid var(--white);
   z-index: 10000;
 }
+nav .website-name {
+  font-weight: 600;
+}
 nav .inner-nav {
   display: flex;
   flex-grow: 1;
   justify-content: space-between;
 }
-nav .inner-nav .pages,
+nav .inner-nav .pages {
+  display: flex;
+  gap: 4.86rem;
+}
 nav .inner-nav .settings {
   display: flex;
   gap: 2.43rem;
-}
-nav .inner-nav .settings {
   align-items: center;
 }
 nav .inner-nav .settings .theme-switcher:hover {
@@ -906,8 +910,8 @@ footer .pages {
 .iconly {
   position: relative;
   padding: 0 2px;
-  top: -1px;
-  transform: scale(1.5);
+  font-size: 20px;
+  line-height: 16px;
 }
 
 .supported-languages article:not(:first-of-type) {
@@ -944,7 +948,6 @@ footer .pages {
 .font-tester .font-tester-header .alignment label,
 .font-tester .font-tester-header .columns label {
   font-size: 20px;
-  vertical-align: middle;
   opacity: 0.5;
   transition: opacity 0.3s ease-in-out;
   -webkit-user-select: none;
@@ -1051,11 +1054,6 @@ div.dropdown .Dropdown-control {
   justify-content: space-between;
   padding: 10px 10px 2px;
   border-radius: 8px;
-}
-div.dropdown .Dropdown-control .Dropdown-arrow-wrapper {
-  position: relative;
-  top: -2px;
-  font-size: 20px;
 }
 div.dropdown .Dropdown-menu .Dropdown-option {
   border-top: 1px solid var(--foreground);

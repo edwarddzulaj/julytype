@@ -167,10 +167,6 @@ a:visited {
 a:hover,
 a:active {
   text-decoration: underline;
-  // Simulate text-underline-offset but with better browser support
-  // padding-bottom: 2px;
-  // box-sizing: content-box;
-  // border-bottom: 1px solid red;
 }
 
 a:focus {
@@ -198,19 +194,25 @@ nav {
   border-bottom: 1px solid var(--white);
   z-index: 10000;
 
+  .website-name {
+    font-weight: 600;
+  }
+
   .inner-nav {
     display: flex;
     flex-grow: 1;
     justify-content: space-between;
 
-    .pages,
-    .settings {
+    .pages {
       display: flex;
-      gap: $gutter-h * 1.5;
+      gap: $gutter-h * 3;
     }
 
     .settings {
+      display: flex;
+      gap: $gutter-h * 1.5;
       align-items: center;
+
       .theme-switcher {
         &:hover {
           cursor: pointer;
@@ -569,8 +571,8 @@ footer {
 .iconly {
   position: relative;
   padding: 0 2px;
-  top: -1px;
-  transform: scale(1.5);
+  font-size: 20px;
+  line-height: 16px;
 }
 
 .supported-languages {
@@ -617,7 +619,6 @@ footer {
     .columns {
       label {
         font-size: 20px;
-        vertical-align: middle;
         opacity: 0.5;
         transition: opacity $duration-s ease-in-out;
         user-select: none;

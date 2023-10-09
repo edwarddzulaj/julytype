@@ -223,7 +223,11 @@ export default function Typetester({
         <div className="columns">
           {columnOptions.map((option) => (
             <>
-              <label htmlFor={`${option.value}-${fontFamily.value}`} title={option.label}>
+              <label
+                htmlFor={`${option.value}-${fontFamily.value}`}
+                title={option.label}
+                className={textColumns === option.value ? "active" : ""}
+              >
                 <Iconly icon={icons[option.label]} />
               </label>
               <input
