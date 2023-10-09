@@ -494,11 +494,12 @@ nav .inner-nav .settings .theme-switcher:hover {
   font-style: normal;
   font-weight: 400;
   line-height: 16px; /* 100% */
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--foreground);
   background-color: var(--background);
   padding: 6px 12px;
   border-radius: 8px;
-  border: 1px solid var(--foreground);
+  outline: 1px solid var(--foreground);
 }
 .wrapper .container.typeface .download a:hover {
   cursor: pointer;
@@ -550,11 +551,12 @@ nav .inner-nav .settings .theme-switcher:hover {
   font-style: normal;
   font-weight: 400;
   line-height: 16px; /* 100% */
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--foreground);
   background-color: var(--background);
   padding: 6px 12px;
   border-radius: 8px;
-  border: 1px solid var(--foreground);
+  outline: 1px solid var(--foreground);
 }
 .wrapper .container.style .choose-script .buttons button:hover {
   cursor: pointer;
@@ -587,6 +589,7 @@ nav .inner-nav .settings .theme-switcher:hover {
   font-style: normal;
   font-weight: 400;
   line-height: 16px; /* 100% */
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--white);
   background-color: var(--blue);
   background-color: var(--black);
@@ -666,6 +669,7 @@ nav .inner-nav .settings .theme-switcher:hover {
   font-style: normal;
   font-weight: 400;
   line-height: 16px; /* 100% */
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--white);
   background-color: var(--blue);
 }
@@ -748,11 +752,12 @@ footer .pages {
   font-style: normal;
   font-weight: 400;
   line-height: 16px; /* 100% */
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--foreground);
   background-color: var(--background);
   padding: 6px 12px;
   border-radius: 8px;
-  border: 1px solid var(--foreground);
+  outline: 1px solid var(--foreground);
   padding: 13px 24px;
 }
 .purchase-section .license-options .purchase-option .options form label:hover {
@@ -807,8 +812,8 @@ footer .pages {
 .purchase-section .license-options > div,
 .purchase-section .font-selection-options {
   display: grid;
-  grid-template-columns: minmax(100px, 1fr) 10fr;
-  gap: 8.64rem;
+  grid-template-columns: minmax(270px, 1fr) 10fr;
+  gap: 2.16rem;
 }
 .purchase-section .license-options > div:not(:first-of-type),
 .purchase-section .font-selection-options:not(:first-of-type) {
@@ -847,6 +852,7 @@ footer .pages {
   font-style: normal;
   font-weight: 400;
   line-height: 16px; /* 100% */
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--white);
   background-color: var(--blue);
 }

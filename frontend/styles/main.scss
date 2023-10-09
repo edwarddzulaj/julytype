@@ -507,8 +507,8 @@ footer {
   .license-options > div,
   .font-selection-options {
     display: grid;
-    grid-template-columns: minmax(100px, 1fr) 10fr;
-    gap: $gutter-v * 4;
+    grid-template-columns: minmax(270px, 1fr) 10fr;
+    gap: $gutter-v;
 
     &:not(:first-of-type) {
       margin-top: $gutter-h * 2;
