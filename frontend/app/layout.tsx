@@ -67,7 +67,7 @@ export default async function RootLayout({
   const { websiteDetails, footerContent } = settings.data.attributes;
 
   return (
-    <html lang={params.lang} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head />
 
       <body>
