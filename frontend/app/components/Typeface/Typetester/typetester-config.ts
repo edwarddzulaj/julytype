@@ -9,8 +9,9 @@ export const languages = [
   { value: "en-GB", label: "English" },
   { value: "de", label: "German" },
   { value: "nl", label: "Dutch" },
-  { value: "ru", label: "Russian" },
   { value: "bg", label: "Bulgarian" },
+  { value: "uk", label: "Ukrainian" },
+  { value: "ru", label: "Russian" },
 ];
 
 export const opentypeFeatures = [
