@@ -32,7 +32,6 @@ export default function DownloadTrialFonts() {
             const { name, url } = trialFont.attributes;
 
             const response = await fetch(BASE_URL + url);
-            console.log(BASE_URL + url);
             const data = await response.blob();
             zip.file(`${font.name}/${name}`, data);
           }
