@@ -5,6 +5,9 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 import Custom404 from "../404";
 import Section from "../components/UI/Section";
+import DownloadTrialFonts from "../components/SimplePage/DownloadTrialFonts";
+
+const downloadString = "```\ndownload-typefaces-component\n```";
 
 async function getPage(slug: string) {
   const path = `/simple-pages`;
@@ -22,7 +25,6 @@ async function getPage(slug: string) {
 
 export default async function SimplePage({ params }: { params: { simplePageSlug: string } }) {
   const page: SimplePage = await getPage(params.simplePageSlug);
-  console.log("page", page);
   if (!page) return Custom404();
 
   const { title, sections } = page.attributes;
@@ -31,15 +33,25 @@ export default async function SimplePage({ params }: { params: { simplePageSlug:
     <section className="container page">
       <h2>{title}</h2>
       <section className="sections">
-        {sections.map((section: PageSection) => (
-          <>
-            <h4>{section.title}</h4>
-            <Section title={""} key={section.id}>
-              {/* eslint-disable-next-line react/no-children-prop */}
-              <ReactMarkdown children={section.content} />
-            </Section>
-          </>
-        ))}
+        {sections.map((section: PageSection) => {
+          let hasDownloadComponent = false;
+
+          if (section.content.includes(downloadString)) {
+            hasDownloadComponent = true;
+            section.content = section.content.replace(downloadString, "");
+          }
+
+          return (
+            <>
+              <h4>{section.title}</h4>
+              <Section title={""} key={section.id}>
+                {/* eslint-disable-next-line react/no-children-prop */}
+                <ReactMarkdown children={section.content} />
+                {hasDownloadComponent && <DownloadTrialFonts />}
+              </Section>
+            </>
+          );
+        })}
       </section>
     </section>
   );

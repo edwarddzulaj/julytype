@@ -17,6 +17,8 @@
     "@vercel/analytics": "^1.0.2",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.10",
+    "file-saver": "^2.0.5",
+    "jszip": "^3.10.1",
     "negotiator": "^0.6.3",
     "next": "13.4.10",
     "next-themes": "^0.2.1",
@@ -31,6 +33,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "@types/file-saver": "^2.0.5",
     "raw-loader": "^4.0.2"
   }
 }
