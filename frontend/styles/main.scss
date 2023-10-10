@@ -358,6 +358,25 @@ nav {
       }
 
       .main-section {
+        .download-trial-fonts {
+          margin: $gutter-h 0;
+          display: flex;
+          gap: 10px;
+
+          .download-all {
+            @include buttons.primary;
+
+            .iconly {
+              width: 15px;
+              font-size: 24px;
+            }
+          }
+
+          .download-some {
+            @include buttons.secondary;
+          }
+        }
+
         section {
           padding-top: $gutter-h * 2;
         }

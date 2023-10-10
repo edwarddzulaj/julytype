@@ -7,7 +7,7 @@ import Custom404 from "../404";
 import Section from "../components/UI/Section";
 import DownloadTrialFonts from "../components/SimplePage/DownloadTrialFonts";
 
-const downloadString = "```\ndownload-typefaces-component\n```";
+const downloadString = "```download-typefaces-component```";
 
 async function getPage(slug: string) {
   const path = `/simple-pages`;

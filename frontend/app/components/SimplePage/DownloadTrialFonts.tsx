@@ -49,11 +49,15 @@ export default function DownloadTrialFonts() {
 
   return (
     <div className="download-trial-fonts">
-      {isLoading && <span>Aggregating typefaces...</span>}
-      <button onClick={downloadTrialFonts}>
-        Download all typefaces <Iconly icon={icons.download} />
+      <button className="download-all" onClick={downloadTrialFonts}>
+        {isLoading && <span>Aggregating typefaces...</span>}
+        {!isLoading && (
+          <>
+            Download all typefaces <Iconly icon={icons.download} />
+          </>
+        )}
       </button>
-      <button>choose a typeface</button>
+      <button className="download-some">Choose a typeface</button>
     </div>
   );
 }

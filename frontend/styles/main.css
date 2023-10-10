@@ -649,6 +649,84 @@ nav .inner-nav .settings .theme-switcher:hover {
 .wrapper .container.page h4 {
   font-size: 48px;
 }
+.wrapper .container.page .main-section .download-trial-fonts {
+  margin: 1.62rem 0;
+  display: flex;
+  gap: 10px;
+}
+.wrapper .container.page .main-section .download-trial-fonts .download-all {
+  display: inline-flex;
+  padding: 14px 16px;
+  border-radius: 12px;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 100% */
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+  color: var(--white);
+  background-color: var(--blue);
+}
+.wrapper .container.page .main-section .download-trial-fonts .download-all:hover {
+  cursor: pointer;
+}
+.wrapper .container.page .main-section .download-trial-fonts .download-all:hover {
+  background-color: var(--black);
+}
+.wrapper .container.page .main-section .download-trial-fonts .download-all:focus-visible {
+  outline: 2px solid var(--black);
+}
+.wrapper .container.page .main-section .download-trial-fonts .download-all:focus:not(:focus-visible) {
+  outline: none;
+}
+.wrapper .container.page .main-section .download-trial-fonts .download-all:active {
+  color: var(--white);
+  background-color: var(--blue);
+}
+.wrapper .container.page .main-section .download-trial-fonts .download-all:disabled {
+  background-color: var(--grey);
+}
+.wrapper .container.page .main-section .download-trial-fonts .download-all .iconly {
+  width: 15px;
+  font-size: 24px;
+}
+.wrapper .container.page .main-section .download-trial-fonts .download-some {
+  display: inline-flex;
+  padding: 14px 16px;
+  border-radius: 12px;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 100% */
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+  color: var(--foreground);
+  background-color: var(--background);
+}
+.wrapper .container.page .main-section .download-trial-fonts .download-some:hover {
+  cursor: pointer;
+}
+.wrapper .container.page .main-section .download-trial-fonts .download-some:hover, .wrapper .container.page .main-section .download-trial-fonts .download-some.selected {
+  background-color: var(--foreground);
+  color: var(--background);
+}
+.wrapper .container.page .main-section .download-trial-fonts .download-some:focus-visible {
+  outline: 2px solid var(--foreground);
+}
+.wrapper .container.page .main-section .download-trial-fonts .download-some:focus:not(:focus-visible) {
+  outline: none;
+}
+.wrapper .container.page .main-section .download-trial-fonts .download-some:active {
+  color: var(--foreground);
+  background-color: var(--background);
+}
+.wrapper .container.page .main-section .download-trial-fonts .download-some:disabled {
+  color: var(--grey);
+}
 .wrapper .container.page .main-section section {
   padding-top: 3.24rem;
 }
