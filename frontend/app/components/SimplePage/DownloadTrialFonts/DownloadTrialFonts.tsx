@@ -1,20 +1,28 @@
 "use client";
-import Iconly, { icons } from "../UI/Iconly";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
+
 import { useState } from "react";
+
+import Iconly, { icons } from "../../UI/Iconly";
+import { ChooseTypefacesPopup } from "./ChooseTypefacesPopup";
 
 const BASE_URL = "http://localhost:1337";
 
 export default function DownloadTrialFonts() {
   const [isLoading, setIsLoading] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
-  const downloadTrialFonts = () => {
-    setIsLoading(true);
+  const downloadTrialFonts = (specificTypefaces: string[] = []) => {
+    if (specificTypefaces.length === 0) setIsLoading(true);
 
     fetch("/free-trials/api?endpoint=trialFonts")
       .then((res) => res.json())
       .then((data) => {
+        if (specificTypefaces) {
+          data = data.filter((tf: { id: number }) => specificTypefaces.includes(tf.id.toString()));
+        }
+
         const zip = new JSZip();
         const remoteZips = data.map(async (font: any) => {
           for (const [_, trialFont] of font.trialFonts.entries()) {
@@ -47,9 +55,20 @@ export default function DownloadTrialFonts() {
       });
   };
 
+  const handleChoosingFonts = () => {
+    setShowPopup(true);
+  };
+
   return (
     <div className="download-trial-fonts">
-      <button className="download-all" onClick={downloadTrialFonts}>
+      {showPopup && (
+        <ChooseTypefacesPopup
+          isOpen={showPopup}
+          closeModal={() => setShowPopup(false)}
+          downloadTrialFonts={downloadTrialFonts}
+        />
+      )}
+      <button className="download-all" onClick={() => downloadTrialFonts()}>
         {isLoading && <span>Aggregating typefaces...</span>}
         {!isLoading && (
           <>
@@ -57,7 +76,9 @@ export default function DownloadTrialFonts() {
           </>
         )}
       </button>
-      <button className="download-some">Choose a typeface</button>
+      <button className="download-some" onClick={handleChoosingFonts}>
+        Choose a typeface
+      </button>
     </div>
   );
 }

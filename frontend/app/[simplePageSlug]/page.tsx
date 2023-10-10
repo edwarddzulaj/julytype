@@ -5,7 +5,7 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 import Custom404 from "../404";
 import Section from "../components/UI/Section";
-import DownloadTrialFonts from "../components/SimplePage/DownloadTrialFonts";
+import DownloadTrialFonts from "../components/SimplePage/DownloadTrialFonts/DownloadTrialFonts";
 
 const downloadString = "```download-typefaces-component```";
 
