@@ -992,6 +992,112 @@ footer .pages {
   line-height: 16px;
 }
 
+.choose-fonts-popup {
+  position: relative;
+  max-width: 720px;
+  min-width: 40vw;
+  padding: 4.05rem 4.32rem;
+  background-color: var(--white);
+  border-radius: 10px;
+}
+.choose-fonts-popup .close-popup {
+  position: absolute;
+  top: 1.62rem;
+  right: 0.432rem;
+}
+.choose-fonts-popup .close-popup .iconly {
+  font-size: 34px;
+}
+.choose-fonts-popup .close-popup:hover {
+  cursor: pointer;
+}
+.choose-fonts-popup h5 {
+  font-size: 30px;
+  font-weight: 600;
+}
+.choose-fonts-popup .available-fonts {
+  margin-top: 3.24rem;
+}
+.choose-fonts-popup .available-fonts li {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+.choose-fonts-popup .actions {
+  margin-top: 3.24rem;
+  display: flex;
+  gap: 10px;
+}
+.choose-fonts-popup .actions .download-all {
+  display: inline-flex;
+  padding: 14px 16px;
+  border-radius: 12px;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 100% */
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+  color: var(--white);
+  background-color: var(--blue);
+}
+.choose-fonts-popup .actions .download-all:hover {
+  cursor: pointer;
+}
+.choose-fonts-popup .actions .download-all:hover {
+  background-color: var(--black);
+}
+.choose-fonts-popup .actions .download-all:focus-visible {
+  outline: 2px solid var(--black);
+}
+.choose-fonts-popup .actions .download-all:focus:not(:focus-visible) {
+  outline: none;
+}
+.choose-fonts-popup .actions .download-all:active {
+  color: var(--white);
+  background-color: var(--blue);
+}
+.choose-fonts-popup .actions .download-all:disabled {
+  background-color: var(--grey);
+}
+.choose-fonts-popup .actions .download-later {
+  display: inline-flex;
+  padding: 14px 16px;
+  border-radius: 12px;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 100% */
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+  color: var(--foreground);
+  background-color: var(--background);
+}
+.choose-fonts-popup .actions .download-later:hover {
+  cursor: pointer;
+}
+.choose-fonts-popup .actions .download-later:hover, .choose-fonts-popup .actions .download-later.selected {
+  background-color: var(--foreground);
+  color: var(--background);
+}
+.choose-fonts-popup .actions .download-later:focus-visible {
+  outline: 2px solid var(--foreground);
+}
+.choose-fonts-popup .actions .download-later:focus:not(:focus-visible) {
+  outline: none;
+}
+.choose-fonts-popup .actions .download-later:active {
+  color: var(--foreground);
+  background-color: var(--background);
+}
+.choose-fonts-popup .actions .download-later:disabled {
+  color: var(--grey);
+}
+
 .supported-languages article:not(:first-of-type) {
   margin-top: 3.24rem;
 }

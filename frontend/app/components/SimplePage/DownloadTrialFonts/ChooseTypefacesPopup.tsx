@@ -5,13 +5,15 @@ import { retrieveTrialFonts } from "./helpers";
 
 const customStyles = {
   overlay: {
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backgroundColor: "rgba(0, 0, 0, 0.4)",
   },
   content: {
     margin: "auto",
     width: "90%",
     height: "fit-content",
     maxHeight: "80%",
+    display: "flex",
+    justifyContent: "center",
     inset: "0",
     padding: "0",
     border: "none",
@@ -65,12 +67,10 @@ export function ChooseTypefacesPopup({
   return (
     <Modal isOpen={isOpen} contentLabel="Choose typefaces to download Modal" style={customStyles}>
       <article className="choose-fonts-popup">
-        <div className="header">
-          <h6>Choose typefaces to download</h6>
-          <div className="close-popup" onClick={closeModal}>
-            <Iconly icon={icons.close}></Iconly>
-          </div>
+        <div className="close-popup" onClick={closeModal}>
+          <Iconly icon={icons.close}></Iconly>
         </div>
+        <h5>Choose typefaces to download</h5>
         <ul className="available-fonts">
           {availableTrialFonts.map((font: { name: string; id: number }) => (
             <li key={font.id}>
