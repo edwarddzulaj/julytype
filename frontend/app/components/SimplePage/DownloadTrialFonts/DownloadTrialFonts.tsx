@@ -7,7 +7,10 @@ import { useState } from "react";
 import Iconly, { icons } from "../../UI/Iconly";
 import { ChooseTypefacesPopup } from "./ChooseTypefacesPopup";
 
-const BASE_URL = "http://localhost:1337";
+const BASE_URL =
+  process.env.NEXT_PUBLIC_STRAPI_ENV === "production"
+    ? process.env.NEXT_PUBLIC_STRAPI_API_URL
+    : process.env.NEXT_PUBLIC_STRAPI_API_URL_DEV;
 
 export default function DownloadTrialFonts() {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +22,7 @@ export default function DownloadTrialFonts() {
     fetch("/free-trials/api?endpoint=trialFonts")
       .then((res) => res.json())
       .then((data) => {
-        if (specificTypefaces) {
+        if (specificTypefaces.length > 0) {
           data = data.filter((tf: { id: number }) => specificTypefaces.includes(tf.id.toString()));
         }
 
@@ -29,6 +32,7 @@ export default function DownloadTrialFonts() {
             const { name, url } = trialFont.attributes;
 
             const response = await fetch(BASE_URL + url);
+            console.log(BASE_URL + url);
             const data = await response.blob();
             zip.file(`${font.name}/${name}`, data);
           }
