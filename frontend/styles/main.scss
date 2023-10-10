@@ -623,6 +623,9 @@ footer {
 
   .available-fonts {
     margin-top: $gutter-h * 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 
     li {
       display: flex;

@@ -1017,6 +1017,9 @@ footer .pages {
 }
 .choose-fonts-popup .available-fonts {
   margin-top: 3.24rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .choose-fonts-popup .available-fonts li {
   display: flex;
