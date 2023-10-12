@@ -28,18 +28,15 @@ export default function TypefaceSample({
 
   const fontSettings = useMemo(() => {
     return {
-      fontFamily: isHover
-        ? `${title} ${regularWeight!.title} Hovered`
-        : `${title} ${regularWeight!.title}, "Adobe Blank"`,
+      fontFamily:
+        isHover && hoverWeight
+          ? `${title} ${hoverWeight!.title} Hovered`
+          : `${title} ${regularWeight!.title}, "Adobe Blank"`,
     };
-  }, [isHover, regularWeight, title]);
+  }, [hoverWeight, isHover, regularWeight, title]);
 
   useEffect(() => {
     const newFont = new FontFace(`${title} ${regularWeight!.title}`, `url(${regularURL})`);
-    const hoveredFont = new FontFace(
-      `${title} ${regularWeight!.title} Hovered`,
-      `url(${hoveredURL})`
-    );
 
     newFont
       .load()
@@ -51,6 +48,11 @@ export default function TypefaceSample({
       });
 
     if (hoverWeight) {
+      const hoveredFont = new FontFace(
+        `${title} ${hoverWeight!.title} Hovered`,
+        `url(${hoveredURL})`
+      );
+
       hoveredFont
         .load()
         .then(function (loaded_face) {

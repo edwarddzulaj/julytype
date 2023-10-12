@@ -40,7 +40,7 @@ export default function Typetester({
   const fontTesterRef = useRef<HTMLInputElement>(null);
   const [fontFamily, setFontFamily] = useState(fontsData[0]);
   const [sampleLang, setSampleLang] = useState(languages[0].value);
-  const [fontSize, setFontSize] = useState(72);
+  const [fontSize, setFontSize] = useState(108);
   const [features, setFeatures] = useState(opentypeFeatures);
   const [alignment, setAlignment] = useState(
     defaultOptions?.alignment || alignmentOptions.find((f) => f.checked)?.value
@@ -87,7 +87,7 @@ export default function Typetester({
 
   const containerOptions = useMemo(() => {
     return {
-      contenteditable: `${isTextEditable}`,
+      contentEditable: `${isTextEditable}`,
       lang: `${sampleLang}`,
     };
   }, [isTextEditable, sampleLang]);
@@ -201,7 +201,7 @@ export default function Typetester({
         </div>
         <div className="alignment">
           {alignmentOptions.map((option) => (
-            <>
+            <span key={option.value}>
               <label
                 htmlFor={`${option.value}-${fontFamily.value}`}
                 className={alignment === option.value ? "active" : ""}
@@ -217,12 +217,12 @@ export default function Typetester({
                 checked={alignment === option.value}
                 onChange={handleAlignment}
               />
-            </>
+            </span>
           ))}
         </div>
         <div className="columns">
           {columnOptions.map((option) => (
-            <>
+            <span key={option.value}>
               <label
                 htmlFor={`${option.value}-${fontFamily.value}`}
                 title={option.label}
@@ -238,7 +238,7 @@ export default function Typetester({
                 checked={textColumns == option.value}
                 onChange={handleColumns}
               />
-            </>
+            </span>
           ))}
         </div>
         <div className="edit-text">
@@ -251,6 +251,7 @@ export default function Typetester({
         ref={fontTesterRef}
         className="font-sample"
         onClick={handleFontSampleClick}
+        suppressContentEditableWarning={true}
         {...staticOptions}
         {...containerOptions}
         style={styleOptions}

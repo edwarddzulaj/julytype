@@ -1,8 +1,8 @@
 export const staticOptions = {
-  autocomplete: "off",
-  autocorrect: "off",
-  autocapitalize: "off",
-  spellcheck: "false",
+  autoComplete: "off",
+  autoCorrect: "off",
+  autoCapitalize: "off",
+  spellCheck: "false",
 };
 
 export const languages = [
