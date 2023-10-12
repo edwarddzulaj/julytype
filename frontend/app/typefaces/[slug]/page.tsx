@@ -100,8 +100,9 @@ const constructFontData = (typeface: Typeface) => {
 
   styles.data.map((style: Style) => {
     style.attributes.weights.map((weight: TypefaceWeight) => {
-      const testerStyleName = style.attributes.title.replace(title, "");
-      const fontLabel = `${testerStyleName.trim()} ${weight.title.trim()}`;
+      let testerStyleName = style.attributes.title.replace(title, "");
+      testerStyleName = testerStyleName.length > 0 ? testerStyleName.trim() + " " : "";
+      const fontLabel = `${testerStyleName}${weight.title.trim()}`;
       const fontValue = btoa(fontLabel);
       typetesterFontsData.push({
         label: fontLabel,

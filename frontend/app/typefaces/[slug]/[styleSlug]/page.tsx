@@ -96,7 +96,7 @@ export default async function Style({ params }: { params: { slug: string; styleS
             })}
           </section>
         </Section>
-        {supportedLanguages && (
+        {supportedLanguages && supportedLanguages.length > 0 && (
           <Section title={`Supported Languages`}>
             <SupportedLanguages languageData={supportedLanguages} />
           </Section>

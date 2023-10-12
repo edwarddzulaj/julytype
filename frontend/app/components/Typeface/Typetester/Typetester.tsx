@@ -267,8 +267,8 @@ const buildSampleText = (
   index: number | null = null,
   isLatin = true
 ) => {
-  if (!typetesterLanguageGroup) return ["Type something here", 0];
-
+  if (!typetesterLanguageGroup || typetesterLanguageGroup.length === 0)
+    return ["Type something here", 0];
   const { allSamplesLatin, allSamplesCyrillic } = indexAllSamples(typetesterLanguageGroup);
   const samples = !isLatin && allSamplesCyrillic.length > 0 ? allSamplesCyrillic : allSamplesLatin;
 
