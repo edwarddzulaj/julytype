@@ -464,9 +464,6 @@ nav .inner-nav .settings .theme-switcher:hover {
 .wrapper .container.typeface-preview a h2 {
   font-size: 12rem;
 }
-.wrapper .container.typeface-preview a h2:hover {
-  font-family: "Hovered" !important;
-}
 .wrapper .container.typeface-preview a .typeface-details {
   margin-top: 3.24rem;
   display: flex;
