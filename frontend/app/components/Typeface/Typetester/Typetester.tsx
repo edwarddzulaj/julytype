@@ -247,6 +247,7 @@ export default function Typetester({
           </button>
         </div>
       </div>
+      {/* @ts-ignore because contentEditable value is 'plaintext-only' and it demands a Boolean type*/}
       <div
         ref={fontTesterRef}
         className="font-sample"
