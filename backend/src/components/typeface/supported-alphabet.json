@@ -20,7 +20,7 @@
     },
     "languages": {
       "type": "text",
-      "default": "English, German, Dutch, etc",
+      "default": "English, German, Dutch",
       "required": true
     }
   }

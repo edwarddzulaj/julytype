@@ -3,7 +3,7 @@ import { Style, Typeface } from "@/@types/contentTypes";
 import { useState } from "react";
 
 import BuyingPrice from "./BuyingPrice";
-import { allStylesAndWeights } from "@/app/utils/text-helpers";
+import { allStylesAndWeights, pluralize } from "@/app/utils/text-helpers";
 
 export default function FontSelection({ typeface }: { typeface: Typeface["attributes"] }) {
   const { price, wholePackageDiscount, styles } = typeface;
@@ -27,7 +27,7 @@ export default function FontSelection({ typeface }: { typeface: Typeface["attrib
                 {typeface.title} Family Complete Pack
               </label>
               <div className="styles-and-weights">
-                Includes {numStyles} Styles • {numWeights} Weights: {allWeights.join(", ")}
+                Includes {pluralize(numStyles, 'Style')} • {pluralize(numWeights, 'Weight')}: {allWeights.join(", ")}
               </div>
             </div>
             <div className="typeface-price">

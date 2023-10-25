@@ -12,3 +12,7 @@ export const allStylesAndWeights = (styles: Style[]) => {
 
   return { numStyles, numWeights: allWeights.length, allWeights };
 };
+
+export const pluralize = (count: number, noun: string, withDigit = true, suffix = 's') => {
+  return `${withDigit ? count : ''} ${noun}${count !== 1 ? suffix : ''}`;
+};

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { fetchAPI } from "@/app/utils/fetch-api";
 import { Typeface } from "@/@types/contentTypes";
 import { TypefaceWeight } from "@/@types/components";
-import { allStylesAndWeights } from "./utils/text-helpers";
+import { allStylesAndWeights, pluralize } from "./utils/text-helpers";
 import TypefaceSample from "./components/Typeface/TypefaceSample";
 
 async function getTypefaces() {
@@ -50,12 +50,8 @@ export default async function Page() {
             <article>
               <TypefaceSample title={title} regularWeight={regular} hoverWeight={hovered} />
               <div className="typeface-details">
-                <span>
-                  {numStyles} {numStyles > 1 ? "styles" : "style"}
-                </span>
-                <span>
-                  {numWeights} {numWeights > 1 ? "weights" : "weight"}
-                </span>
+                <span>{pluralize(numStyles, "style")}</span>
+                <span>{pluralize(numWeights, "weight")}</span>
               </div>
             </article>
           </Link>
