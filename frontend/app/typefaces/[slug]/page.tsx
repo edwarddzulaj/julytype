@@ -51,7 +51,7 @@ export default async function Typeface({ params }: { params: { slug: string } })
         <BackButton>Back to Typefaces</BackButton>
         <BuyButton>Buy {title}</BuyButton>
       </article>
-      <Section title="">
+      <Section title="Overview">
         <article className="typeface-styles">
           {styles.data.map((style: Style) => (
             <Link href={`/typefaces/${slug}/${style?.attributes?.slug}`} key={style.id}>

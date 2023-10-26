@@ -450,7 +450,7 @@ nav .mobile-nav {
 
 .wrapper {
   position: relative;
-  max-width: 100vw;
+  max-width: calc(100vw - 8.64rem);
   min-height: calc(100vh - 2.43rem * 8);
   padding: 7.29rem 4.32rem;
   overflow-x: hidden;
@@ -480,6 +480,9 @@ nav .mobile-nav {
 .wrapper .container.typeface-preview a .typeface-details :nth-child(2)::before {
   content: "∙";
   margin: 0 calc(1.296rem / 3);
+}
+.wrapper .container.typeface .main-section:first-of-type h3 {
+  opacity: 0;
 }
 .wrapper .container.typeface .typeface-styles {
   display: flex;
@@ -545,7 +548,7 @@ nav .mobile-nav {
   top: 7.29rem;
 }
 .wrapper .container.style .choose-script .buttons {
-  margin-top: 1.62rem;
+  margin-top: 0.972rem;
   display: flex;
   gap: 8px;
 }
@@ -870,10 +873,18 @@ footer .pages {
     color: var(--white);
   }
   .wrapper {
+    max-width: calc(100vw - 5.184rem);
     min-height: calc(100vh - 2.43rem * 9);
+    padding: 7.29rem 2.592rem;
   }
   .wrapper .container.typeface-preview h2 {
     font-size: 9rem !important;
+  }
+  .wrapper .container.typeface .main-section:first-of-type {
+    padding-top: 4.86rem;
+  }
+  .wrapper .container.style .choose-script {
+    top: 2.43rem;
   }
   footer {
     width: calc(100vw - 1.296rem * 4);
@@ -891,6 +902,12 @@ footer .pages {
 }
 .main-section {
   margin-bottom: 9.72rem;
+}
+.main-section:last-of-type {
+  margin-bottom: initial;
+}
+.main-section h3 {
+  margin-bottom: 1.62rem;
 }
 .main-section:not(.no-indent) {
   display: grid;
@@ -910,6 +927,15 @@ footer .pages {
 }
 .main-section .section-wrapper:not(.no-title) section {
   padding-top: 1.62rem;
+}
+@media (max-width: 680px) {
+  .main-section {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+  .main-section section {
+    padding-top: 0 !important;
+  }
 }
 
 .purchase-section .license-options .purchase-option .options {
@@ -967,22 +993,34 @@ footer .pages {
   flex-direction: column;
   gap: 3.24rem;
 }
-.purchase-section .font-selection form .typeface-package {
+.purchase-section .font-selection form div h6 {
+  margin-bottom: 0.972rem;
+}
+.purchase-section .font-selection form div .typeface-package {
   display: flex;
 }
-.purchase-section .font-selection form .typeface-package .typeface-details {
+.purchase-section .font-selection form div .typeface-package .typeface-details {
   flex-grow: 1;
 }
-.purchase-section .font-selection form .typeface-package .typeface-details label {
+.purchase-section .font-selection form div .typeface-package .typeface-details label {
   font-size: 20px;
   font-weight: 700;
 }
-.purchase-section .font-selection form .typeface-package .typeface-details .styles-and-weights {
+.purchase-section .font-selection form div .typeface-package .typeface-details .styles-and-weights {
   margin-top: 0.972rem;
-  text-indent: 25px;
+  padding-left: 25px;
 }
-.purchase-section .font-selection form .typeface-package .typeface-price {
+.purchase-section .font-selection form div .typeface-package .typeface-price {
   flex-grow: 0;
+}
+@media (max-width: 680px) {
+  .purchase-section .font-selection form div .typeface-package {
+    flex-direction: column;
+  }
+  .purchase-section .font-selection form div .typeface-package .typeface-price {
+    margin-top: 0.972rem;
+    align-self: flex-end;
+  }
 }
 .purchase-section .font-selection form .weights-packages .weight-details {
   display: flex;
@@ -1001,10 +1039,12 @@ footer .pages {
 .purchase-section .font-selection-options:not(:first-of-type) {
   margin-top: 3.24rem;
 }
-.purchase-section .license-options > div h4,
-.purchase-section .font-selection-options h4 {
-  font-size: 20px;
-  line-height: 28px;
+@media (max-width: 680px) {
+  .purchase-section .license-options > div,
+  .purchase-section .font-selection-options {
+    grid-template-columns: 1fr;
+    gap: 0.972rem;
+  }
 }
 
 .quick-buttons {
@@ -1224,7 +1264,14 @@ footer .pages {
   position: absolute;
   display: flex;
   align-items: baseline;
+  justify-content: initial;
   gap: 24px;
+}
+@media (max-width: 680px) {
+  .font-tester .font-tester-header {
+    justify-content: space-between;
+    width: 100%;
+  }
 }
 .font-tester .font-tester-header .fontsize {
   min-width: 25ch;
@@ -1258,12 +1305,42 @@ footer .pages {
 .font-tester .font-tester-header .edit-text button {
   font-family: inherit;
   font-size: inherit;
-  background: none;
+  display: inline-flex;
+  padding: 14px 16px;
+  border-radius: 12px;
+  align-items: center;
+  flex-shrink: 0;
   border: none;
-  text-decoration: underline;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 100% */
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+  color: var(--foreground);
+  background-color: var(--background);
+  padding: 6px 12px;
+  border-radius: 8px;
+  outline: 1px solid var(--foreground);
 }
 .font-tester .font-tester-header .edit-text button:hover {
   cursor: pointer;
+}
+.font-tester .font-tester-header .edit-text button:hover, .font-tester .font-tester-header .edit-text button.selected {
+  background-color: var(--foreground);
+  color: var(--background);
+}
+.font-tester .font-tester-header .edit-text button:focus-visible {
+  outline: 2px solid var(--foreground);
+}
+.font-tester .font-tester-header .edit-text button:focus:not(:focus-visible) {
+  outline: none;
+}
+.font-tester .font-tester-header .edit-text button:active {
+  color: var(--foreground);
+  background-color: var(--background);
+}
+.font-tester .font-tester-header .edit-text button:disabled {
+  color: var(--grey);
 }
 .font-tester .font-tester-header input[type=radio] {
   display: none;
@@ -1406,12 +1483,25 @@ h2 {
   font-size: 80px;
   line-height: 96px; /* 120% */
 }
+@media (max-width: 680px) {
+  h2 {
+    font-size: 64px;
+    line-height: 74px; /* 115.625% */
+  }
+}
 
 h3 {
   font-style: normal;
   font-weight: 400;
   font-size: 36px;
   line-height: 42px;
+  font-weight: 600;
+}
+@media (max-width: 680px) {
+  h3 {
+    font-size: 32px;
+    line-height: 38px; /* 118.75% */
+  }
 }
 
 h4 {
@@ -1420,6 +1510,12 @@ h4 {
   font-size: 28px;
   line-height: 34px;
   font-weight: 600;
+}
+@media (max-width: 680px) {
+  h4 {
+    font-size: 18px;
+    line-height: 26px; /* 144.444% */
+  }
 }
 
 h5 {

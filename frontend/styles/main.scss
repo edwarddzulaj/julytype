@@ -234,7 +234,7 @@ nav {
 
 .wrapper {
   position: relative;
-  max-width: 100vw;
+  max-width: calc(100vw - ($gutter-v * 2) * 2);
   min-height: calc(100vh - #{$nav-offset} * 8);
   padding: $nav-offset * 3 $gutter-v * 2;
   overflow-x: hidden;
@@ -275,6 +275,12 @@ nav {
     }
 
     &.typeface {
+      .main-section:first-of-type {
+        h3 {
+          opacity: 0;
+        }
+      }
+
       .typeface-styles {
         display: flex;
         flex-direction: column;
@@ -312,7 +318,7 @@ nav {
         top: $gutter-h * 4.5;
 
         .buttons {
-          margin-top: $gutter-h;
+          margin-top: $gutter-thin-h;
           display: flex;
           gap: 8px;
 
@@ -521,11 +527,26 @@ footer {
   }
 
   .wrapper {
+    max-width: calc(100vw - ($gutter-thin-v * 2) * 2);
     min-height: calc(100vh - #{$nav-offset} * 9);
+    padding: $nav-offset * 3 $gutter-thin-v * 2;
+
     .container {
       &.typeface-preview {
         h2 {
           font-size: $font-preview * 0.75 !important;
+        }
+      }
+
+      &.typeface {
+        .main-section:first-of-type {
+          padding-top: $gutter-h * 3;
+        }
+      }
+
+      &.style {
+        .choose-script {
+          top: $gutter-h * 1.5;
         }
       }
     }
@@ -554,6 +575,14 @@ footer {
 .main-section {
   margin-bottom: $gutter-h * 6;
 
+  &:last-of-type {
+    margin-bottom: initial;
+  }
+
+  h3 {
+    margin-bottom: $gutter-h;
+  }
+
   &:not(.no-indent) {
     display: grid;
     grid-template-columns: minmax(100px, 1fr) 10fr;
@@ -581,6 +610,15 @@ footer {
       section {
         padding-top: $gutter-h;
       }
+    }
+  }
+
+  @media (max-width: 680px) {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+
+    section {
+      padding-top: 0 !important;
     }
   }
 }
@@ -616,25 +654,39 @@ footer {
       flex-direction: column;
       gap: $gutter-h * 2;
 
-      .typeface-package {
-        display: flex;
-
-        .typeface-details {
-          flex-grow: 1;
-
-          label {
-            font-size: 20px;
-            font-weight: 700;
-          }
-
-          .styles-and-weights {
-            margin-top: $gutter-thin-h;
-            text-indent: 25px;
-          }
+      div {
+        h6 {
+          margin-bottom: $gutter-thin-h;
         }
 
-        .typeface-price {
-          flex-grow: 0;
+        .typeface-package {
+          display: flex;
+
+          .typeface-details {
+            flex-grow: 1;
+
+            label {
+              font-size: 20px;
+              font-weight: 700;
+            }
+
+            .styles-and-weights {
+              margin-top: $gutter-thin-h;
+              padding-left: 25px;
+            }
+          }
+
+          .typeface-price {
+            flex-grow: 0;
+          }
+
+          @media (max-width: 680px) {
+            flex-direction: column;
+            .typeface-price {
+              margin-top: $gutter-thin-h;
+              align-self: flex-end;
+            }
+          }
         }
       }
 
@@ -661,9 +713,9 @@ footer {
       margin-top: $gutter-h * 2;
     }
 
-    h4 {
-      font-size: 20px;
-      line-height: 28px;
+    @media (max-width: 680px) {
+      grid-template-columns: 1fr;
+      gap: $gutter-thin-h;
     }
   }
 }
@@ -805,7 +857,13 @@ footer {
     position: absolute;
     display: flex;
     align-items: baseline;
+    justify-content: initial;
     gap: 24px;
+
+    @media (max-width: 680px) {
+      justify-content: space-between;
+      width: 100%;
+    }
 
     .fontsize {
       min-width: 25ch;
@@ -842,13 +900,8 @@ footer {
       button {
         font-family: inherit;
         font-size: inherit;
-        background: none;
-        border: none;
-        text-decoration: underline;
 
-        &:hover {
-          cursor: pointer;
-        }
+        @include buttons.tertiary;
       }
     }
 

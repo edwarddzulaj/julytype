@@ -27,7 +27,8 @@ export default function FontSelection({ typeface }: { typeface: Typeface["attrib
                 {typeface.title} Family Complete Pack
               </label>
               <div className="styles-and-weights">
-                Includes {pluralize(numStyles, 'Style')} • {pluralize(numWeights, 'Weight')}: {allWeights.join(", ")}
+                Includes {pluralize(numStyles, "Style")} • {pluralize(numWeights, "Weight")}:{" "}
+                {allWeights.join(", ")}
               </div>
             </div>
             <div className="typeface-price">
