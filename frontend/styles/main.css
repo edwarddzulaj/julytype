@@ -657,6 +657,12 @@ nav .mobile-nav {
 .wrapper .container.page h4 {
   font-size: 48px;
 }
+@media (max-width: 680px) {
+  .wrapper .container.page h2,
+  .wrapper .container.page h3 {
+    padding: 0.972rem 0 1.944rem 0;
+  }
+}
 .wrapper .container.page .main-section .download-trial-fonts {
   margin: 1.62rem 0;
   display: flex;
@@ -1554,6 +1560,17 @@ video {
   max-height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
+}
+
+ol {
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+* + ol {
+  margin-top: 1.62rem;
+}
+ol li:first-child {
+  margin-bottom: 0.972rem;
 }
 
 em {

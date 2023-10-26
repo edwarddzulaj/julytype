@@ -371,6 +371,13 @@ nav {
         font-size: 48px;
       }
 
+      @media (max-width: 680px) {
+        h2,
+        h3 {
+          padding: $gutter-thin-h 0 $gutter-thin-h * 2 0;
+        }
+      }
+
       .main-section {
         .download-trial-fonts {
           margin: $gutter-h 0;
@@ -1064,6 +1071,19 @@ video {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+}
+
+ol {
+  list-style-type: decimal;
+  list-style-position: inside;
+
+  * + & {
+    margin-top: $gutter-h;
+  }
+
+  li:first-child {
+    margin-bottom: $gutter-thin-h;
+  }
 }
 
 em {
