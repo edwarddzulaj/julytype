@@ -17,6 +17,10 @@ export default function Navbar({
   const toggleMenu = () => {
     setIsMenuActive(!isMenuActive);
   };
+
+  const closeMenu = () => {
+    setIsMenuActive(false);
+  };
   return (
     <nav>
       <div className="website-name">
@@ -24,11 +28,11 @@ export default function Navbar({
       </div>
       <div className={`inner-nav ${isMenuActive ? "active" : ""}`}>
         <ul className="pages">
-          <li>
+          <li onClick={closeMenu}>
             <Link href={`/`}>Typefaces</Link>
           </li>
           {navPages.data.map((page: SimplePage) => (
-            <li key={page.id}>
+            <li key={page.id} onClick={closeMenu}>
               <Link href={`/${page.attributes.slug}`}>{page.attributes.title}</Link>
             </li>
           ))}
@@ -42,7 +46,7 @@ export default function Navbar({
               <Link href={`/cart`}>Cart</Link>
             </div>
           </div>
-          <button className="close" onClick={toggleMenu}>
+          <button className="close" onClick={closeMenu}>
             Close <Iconly icon={icons.close} />
           </button>
         </div>
