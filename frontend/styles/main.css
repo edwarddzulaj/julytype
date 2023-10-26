@@ -859,6 +859,10 @@ footer .pages {
     font-size: 28px;
     line-height: 16px;
   }
+  nav .inner-nav .settings .close:hover {
+    font-weight: 600;
+    cursor: pointer;
+  }
   nav .inner-nav.active {
     opacity: 1;
     pointer-events: all;
@@ -871,6 +875,9 @@ footer .pages {
   }
   nav .mobile-nav .iconly {
     color: var(--white);
+  }
+  nav .mobile-nav .iconly:hover {
+    cursor: pointer;
   }
   .wrapper {
     max-width: calc(100vw - 5.184rem);
