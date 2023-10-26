@@ -21,6 +21,7 @@ import { ScriptChoiceContext } from "@/app/providers";
 export default function Typetester({
   fontsData = [
     {
+      title: "Typeface Font",
       label: "Font",
       value: "font",
       fontPath: "",
@@ -39,6 +40,7 @@ export default function Typetester({
 }) {
   const fontTesterRef = useRef<HTMLInputElement>(null);
   const [fontFamily, setFontFamily] = useState(fontsData[0]);
+  const [fontLoaded, setFontLoaded] = useState(false);
   const [sampleLang, setSampleLang] = useState(languages[0].value);
   const [fontSize, setFontSize] = useState(108);
   const [features, setFeatures] = useState(opentypeFeatures);
@@ -53,18 +55,24 @@ export default function Typetester({
   const { script } = useContext(ScriptChoiceContext);
 
   useEffect(() => {
+    const [sampleText, index] = buildSampleText(typetesterLanguageGroup, typetester.index, isLatin);
+    setTypetester({ text: sampleText, index: index });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLatin]);
+
+  useEffect(() => {
     document.fonts.ready.then((fontFaceSet) => {
       const loadedFaces = [...fontFaceSet];
 
       fontsData.forEach((font) => {
         if (loadedFaces.find((f) => f.family === font.label)) return;
-
-        const newFont = new FontFace(`${font.label}`, `url(${font.fontPath})`);
+        const newFont = new FontFace(`${font.title}`, `url(${font.fontPath})`);
 
         newFont
           .load()
           .then(function (loaded_face) {
             document.fonts.add(loaded_face);
+            setFontLoaded(true);
           })
           .catch(function (error) {
             console.error(error);
@@ -72,12 +80,6 @@ export default function Typetester({
       });
     });
   }, [fontsData]);
-
-  useEffect(() => {
-    const [sampleText, index] = buildSampleText(typetesterLanguageGroup, typetester.index, isLatin);
-    setTypetester({ text: sampleText, index: index });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLatin]);
 
   useEffect(() => {
     if (script) {
@@ -98,9 +100,9 @@ export default function Typetester({
       fontFeatureSettings: buildOpentypeFeatures(features),
       textAlign: alignment as any,
       columnCount: textColumns,
-      fontFamily: fontFamily.label,
+      fontFamily: fontLoaded ? fontFamily.title : "",
     };
-  }, [alignment, features, fontFamily, fontSize, textColumns]);
+  }, [alignment, features, fontFamily.title, fontLoaded, fontSize, textColumns]);
 
   const handleFontFamily = (e: any) => {
     const fontValue = e.value;
@@ -270,6 +272,7 @@ const buildSampleText = (
 ) => {
   if (!typetesterLanguageGroup || typetesterLanguageGroup.length === 0)
     return ["Type something here", 0];
+
   const { allSamplesLatin, allSamplesCyrillic } = indexAllSamples(typetesterLanguageGroup);
   const samples = !isLatin && allSamplesCyrillic.length > 0 ? allSamplesCyrillic : allSamplesLatin;
 

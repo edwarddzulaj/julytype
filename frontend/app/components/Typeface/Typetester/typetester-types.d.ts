@@ -1,5 +1,6 @@
 export interface FontsData {
-  value: string;
   label: string;
+  title: string;
+  value: string;
   fontPath: string | URL;
 }

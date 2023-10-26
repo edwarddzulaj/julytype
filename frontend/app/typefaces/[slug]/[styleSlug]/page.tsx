@@ -81,6 +81,7 @@ export default async function Style({ params }: { params: { slug: string; styleS
               const fontLabel = `${testerStyleName.trim()} ${weight.title.trim()}`;
               const typetesterData: FontsData = {
                 label: fontLabel,
+                title: title + fontLabel,
                 value: btoa(weight.title),
                 fontPath: getStrapiMedia(weight.fontFile?.data?.attributes?.url),
               };
