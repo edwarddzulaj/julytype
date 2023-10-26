@@ -413,7 +413,7 @@ nav {
   min-height: 2.43rem;
   position: fixed;
   width: calc(100vw - 2.16rem * 4);
-  padding: 1.62rem 4.32rem 0.972rem 4.32rem;
+  padding: 1.62rem 4.32rem 0.972rem;
   display: flex;
   gap: 4.32rem;
   background-color: var(--black);
@@ -440,6 +440,9 @@ nav .inner-nav .settings {
 }
 nav .inner-nav .settings .theme-switcher:hover {
   cursor: pointer;
+}
+nav .mobile-nav {
+  display: none;
 }
 
 .wrapper {
@@ -786,6 +789,80 @@ footer .pages {
   gap: 1.296rem;
 }
 
+@media (max-width: 680px) {
+  nav {
+    width: calc(100vw - 1.296rem * 4);
+    padding: 1.62rem 2.592rem 0.972rem;
+    justify-content: space-between;
+  }
+  nav .inner-nav {
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 16px 24px;
+    width: calc(100vw - 48px);
+    height: calc(100vh - 32px);
+    z-index: 1;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    background-color: var(--background);
+    color: var(--foreground);
+    transition: opacity 0.3s ease-in-out;
+  }
+  nav .inner-nav .pages {
+    margin-top: 56px;
+    flex-direction: column;
+    gap: 40px;
+    font-size: 22px;
+    font-weight: 600;
+  }
+  nav .inner-nav .settings {
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  nav .inner-nav .settings .inner-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  nav .inner-nav .settings .inner-settings .theme-switcher .iconly {
+    padding: 0;
+    left: -2px;
+    top: 2px;
+    font-size: 24px;
+  }
+  nav .inner-nav .settings .inner-settings .cart {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  nav .inner-nav .settings .close {
+    color: var(--foreground);
+    font-size: 16px;
+    font-weight: 400;
+  }
+  nav .inner-nav .settings .close .iconly {
+    padding: 0;
+    margin-left: -4px;
+    bottom: -5px;
+    font-size: 28px;
+    line-height: 16px;
+  }
+  nav .inner-nav.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  nav .mobile-nav {
+    display: block;
+    position: relative;
+    top: -1px;
+    font-size: 20px;
+  }
+  nav .mobile-nav .iconly {
+    color: var(--white);
+  }
+}
 .main-section {
   margin-bottom: 9.72rem;
 }
@@ -986,7 +1063,7 @@ footer .pages {
   position: relative;
   padding: 0 2px;
   font-size: 20px;
-  line-height: 16px;
+  line-height: normal;
 }
 
 .choose-fonts-popup {
@@ -1331,6 +1408,13 @@ h6 {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+}
+
+button {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: transparent;
 }
 
 img,

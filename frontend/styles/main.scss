@@ -186,7 +186,7 @@ nav {
   min-height: $nav-offset;
   position: fixed;
   width: calc(100vw - #{$gutter-v} * 4);
-  padding: $gutter-h $gutter-v * 2 $gutter-thin-h $gutter-v * 2;
+  padding: $gutter-h $gutter-v * 2 $gutter-thin-h;
   display: flex;
   gap: $gutter-v * 2;
   background-color: var(--black);
@@ -219,6 +219,10 @@ nav {
         }
       }
     }
+  }
+
+  .mobile-nav {
+    display: none;
   }
 }
 
@@ -417,6 +421,98 @@ footer {
   }
 }
 
+@media (max-width: 680px) {
+  nav {
+    width: calc(100vw - #{$gutter-thin-v} * 4);
+    padding: $gutter-h $gutter-thin-v * 2 $gutter-thin-h;
+    justify-content: space-between;
+
+    .inner-nav {
+      opacity: 0;
+      pointer-events: none;
+
+      position: fixed;
+      left: 0;
+      top: 0;
+      padding: 16px 24px;
+      width: calc(100vw - 24px * 2);
+      height: calc(100vh - 16px * 2);
+      z-index: 1;
+
+      flex-direction: column-reverse;
+      justify-content: flex-end;
+      background-color: $background-color;
+      color: $color;
+      transition: opacity $duration-s ease-in-out;
+
+      .pages {
+        margin-top: 56px;
+        flex-direction: column;
+        gap: 40px;
+
+        font-size: 22px;
+        font-weight: 600;
+      }
+
+      .settings {
+        align-items: flex-start;
+        justify-content: space-between;
+
+        .inner-settings {
+          display: flex;
+          flex-direction: column;
+
+          gap: 24px;
+
+          .theme-switcher {
+            .iconly {
+              padding: 0;
+              left: -2px;
+              top: 2px;
+              font-size: 24px;
+            }
+          }
+
+          .cart {
+            font-size: 16px;
+            font-weight: 600;
+          }
+        }
+
+        .close {
+          color: $color;
+          font-size: 16px;
+          font-weight: 400;
+
+          .iconly {
+            padding: 0;
+            margin-left: -4px;
+            bottom: -5px;
+            font-size: 28px;
+            line-height: 16px;
+          }
+        }
+      }
+
+      &.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
+
+    .mobile-nav {
+      display: block;
+      position: relative;
+      top: -1px;
+      font-size: 20px;
+
+      .iconly {
+        color: var(--white);
+      }
+    }
+  }
+}
+
 // =-=-=-=-=-=-=-=-=-=
 // Components Styling
 // =-=-=-=-=-=-=-=-=-=
@@ -587,7 +683,7 @@ footer {
   position: relative;
   padding: 0 2px;
   font-size: 20px;
-  line-height: 16px;
+  line-height: normal;
 }
 
 .choose-fonts-popup {
@@ -856,6 +952,13 @@ h5 {
 
 h6 {
   @include typography.heading-6();
+}
+
+button {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: transparent;
 }
 
 img,
