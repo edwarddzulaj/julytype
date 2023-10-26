@@ -29,7 +29,7 @@ export default function Footer({
             {page.attributes.title}
           </Link>
         ))}
-        {copyright}
+        <div className="copyright">{copyright}</div>
       </section>
     </footer>
   );
