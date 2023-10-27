@@ -559,6 +559,9 @@ footer {
           padding-top: $gutter-h * 3;
         }
 
+        .typetesters {
+          max-width: calc(100vw - ($gutter-thin-v * 2) * 2);
+        }
         .weights-packages {
           .buying-price {
             grid-template-columns: 1fr;

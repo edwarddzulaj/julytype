@@ -38,11 +38,13 @@ export default function Typetester({
     textColumns?: string;
   };
 }) {
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 840);
+
   const fontTesterRef = useRef<HTMLInputElement>(null);
   const [fontFamily, setFontFamily] = useState(fontsData[0]);
   const [fontLoaded, setFontLoaded] = useState(false);
   const [sampleLang, setSampleLang] = useState(languages[0].value);
-  const [fontSize, setFontSize] = useState(108);
+  const [fontSize, setFontSize] = useState(isMobileView ? 38 : 108);
   const [features, setFeatures] = useState(opentypeFeatures);
   const [alignment, setAlignment] = useState(
     defaultOptions?.alignment || alignmentOptions.find((f) => f.checked)?.value
@@ -51,7 +53,6 @@ export default function Typetester({
   const [isTextEditable, setIsTextEditable] = useState("false");
   const [typetester, setTypetester] = useState({ text: "", index: null });
 
-  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 840);
   const [isLatin, setIsLatin] = useState(true);
   const { script } = useContext(ScriptChoiceContext);
 
