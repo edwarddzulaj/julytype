@@ -371,7 +371,7 @@ nav {
         font-size: 48px;
       }
 
-      @media (max-width: 680px) {
+      @media (max-width: $mobile-breakpoint) {
         h2,
         h3 {
           padding: $gutter-thin-h 0 $gutter-thin-h * 2 0;
@@ -441,7 +441,7 @@ footer {
   }
 }
 
-@media (max-width: 680px) {
+@media (max-width: $mobile-breakpoint) {
   nav {
     width: calc(100vw - #{$gutter-thin-v} * 4);
     padding: $gutter-h $gutter-thin-v * 2 $gutter-thin-h;
@@ -558,6 +558,18 @@ footer {
         .main-section:first-of-type {
           padding-top: $gutter-h * 3;
         }
+
+        .weights-packages {
+          .buying-price {
+            grid-template-columns: 1fr;
+            flex-shrink: 0;
+
+            .discount-label,
+            .discount-old-price {
+              display: none;
+            }
+          }
+        }
       }
 
       &.style {
@@ -629,12 +641,16 @@ footer {
     }
   }
 
-  @media (max-width: 680px) {
+  @media (max-width: $mobile-breakpoint) {
     grid-template-columns: 1fr !important;
     gap: 0 !important;
 
-    section {
-      padding-top: 0 !important;
+    .section-wrapper {
+      max-width: calc(100vw - $gutter-thin-v * 2 * 2);
+
+      section {
+        padding-top: 0 !important;
+      }
     }
   }
 }
@@ -696,7 +712,7 @@ footer {
             flex-grow: 0;
           }
 
-          @media (max-width: 680px) {
+          @media (max-width: $mobile-breakpoint) {
             flex-direction: column;
             .typeface-price {
               margin-top: $gutter-thin-h;
@@ -707,9 +723,14 @@ footer {
       }
 
       .weights-packages {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
         .weight-details {
           display: flex;
           justify-content: space-between;
+          gap: 5px;
 
           label.weight-title {
             font-size: 20px;
@@ -729,7 +750,7 @@ footer {
       margin-top: $gutter-h * 2;
     }
 
-    @media (max-width: 680px) {
+    @media (max-width: $mobile-breakpoint) {
       grid-template-columns: 1fr;
       gap: $gutter-thin-h;
     }
@@ -758,11 +779,13 @@ footer {
 }
 
 .buying-price {
-  display: flex;
+  display: grid;
   align-items: center;
+  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
 
   .discount-label {
+    text-align: center;
     background-color: var(--red);
     color: var(--white);
     padding: 4px 8px;
@@ -778,6 +801,12 @@ footer {
 
   .price {
     @include typography.heading-5();
+  }
+
+  .price,
+  .discount-old-price {
+    text-align: right;
+    line-height: 24px;
   }
 }
 
@@ -876,7 +905,7 @@ footer {
     justify-content: initial;
     gap: 24px;
 
-    @media (max-width: 680px) {
+    @media (max-width: $mobile-breakpoint) {
       justify-content: space-between;
       width: 100%;
     }
@@ -932,6 +961,14 @@ footer {
     transition: font-size 0.1s ease-out;
     font-family: "Adobe Blank";
     user-select: none;
+  }
+}
+
+.checkbox-option {
+  display: flex;
+
+  input {
+    flex-shrink: 0;
   }
 }
 

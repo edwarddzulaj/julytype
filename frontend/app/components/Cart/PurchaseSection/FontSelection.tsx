@@ -22,10 +22,10 @@ export default function FontSelection({ typeface }: { typeface: Typeface["attrib
           <h6>Buy the whole package</h6>
           <div className="typeface-package">
             <div className="typeface-details">
-              <label>
+              <div className="checkbox-option">
                 <input type="checkbox" value="whole" onClick={() => handleOptionChange("whole")} />
-                {typeface.title} Family Complete Pack
-              </label>
+                <label>{typeface.title} Family Complete Pack</label>
+              </div>
               <div className="styles-and-weights">
                 Includes {pluralize(numStyles, "Style")} • {pluralize(numWeights, "Weight")}:{" "}
                 {allWeights.join(", ")}
@@ -42,19 +42,17 @@ export default function FontSelection({ typeface }: { typeface: Typeface["attrib
             {styles.data.map((style: Style) =>
               style.attributes.weights.map((weight) => (
                 <div className="weight-details" key={weight.id}>
-                  <div>
+                  <div className="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value={weight.id}
+                      onClick={() => handleOptionChange(weight.title)}
+                    />
                     <label className="weight-title">
-                      <input
-                        type="checkbox"
-                        value={weight.id}
-                        onClick={() => handleOptionChange(weight.title)}
-                      />
                       {style.attributes.title} {weight.title}
                     </label>
                   </div>
-                  <div>
-                    <BuyingPrice price={weight.price} discount={weight.discount} />
-                  </div>
+                  <BuyingPrice price={weight.price} discount={weight.discount} />
                 </div>
               ))
             )}

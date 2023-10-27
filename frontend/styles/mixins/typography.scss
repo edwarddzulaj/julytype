@@ -1,3 +1,6 @@
+$tablet-breakpoint: 980px;
+$mobile-breakpoint: 840px;
+
 @mixin base {
 	font-style: normal;
 	font-weight: 400;
@@ -16,7 +19,7 @@
 	font-size: 80px;
 	line-height: 96px; /* 120% */
 
-	@media (max-width: 680px) {
+	@media (max-width: $mobile-breakpoint) {
 		font-size: 64px;
 		line-height: 74px; /* 115.625% */
 	}
@@ -28,7 +31,7 @@
 	line-height: 42px;
 	font-weight: 600;
 
-	@media (max-width: 680px) {
+	@media (max-width: $mobile-breakpoint) {
 		font-size: 32px;
 		line-height: 38px; /* 118.75% */
 	}
@@ -40,7 +43,7 @@
 	line-height: 34px;
 	font-weight: 600;
 
-	@media (max-width: 680px) {
+	@media (max-width: $mobile-breakpoint) {
 		font-size: 18px;
 		line-height: 26px; /* 144.444% */
 	}

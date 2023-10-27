@@ -51,7 +51,7 @@ export default function Typetester({
   const [isTextEditable, setIsTextEditable] = useState("false");
   const [typetester, setTypetester] = useState({ text: "", index: null });
 
-  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 680);
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 840);
   const [isLatin, setIsLatin] = useState(true);
   const { script } = useContext(ScriptChoiceContext);
 
@@ -90,7 +90,7 @@ export default function Typetester({
 
   useEffect(() => {
     window.addEventListener("resize", () => {
-      setIsMobileView(window.innerWidth <= 680);
+      setIsMobileView(window.innerWidth <= 840);
     });
   }, []);
 

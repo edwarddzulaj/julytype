@@ -657,7 +657,7 @@ nav .mobile-nav {
 .wrapper .container.page h4 {
   font-size: 48px;
 }
-@media (max-width: 680px) {
+@media (max-width: 840px) {
   .wrapper .container.page h2,
   .wrapper .container.page h3 {
     padding: 0.972rem 0 1.944rem 0;
@@ -803,7 +803,7 @@ footer .pages {
   gap: 1.296rem;
 }
 
-@media (max-width: 680px) {
+@media (max-width: 840px) {
   nav {
     width: calc(100vw - 1.296rem * 4);
     padding: 1.62rem 2.592rem 0.972rem;
@@ -896,6 +896,14 @@ footer .pages {
   .wrapper .container.typeface .main-section:first-of-type {
     padding-top: 4.86rem;
   }
+  .wrapper .container.typeface .weights-packages .buying-price {
+    grid-template-columns: 1fr;
+    flex-shrink: 0;
+  }
+  .wrapper .container.typeface .weights-packages .buying-price .discount-label,
+  .wrapper .container.typeface .weights-packages .buying-price .discount-old-price {
+    display: none;
+  }
   .wrapper .container.style .choose-script {
     top: 2.43rem;
   }
@@ -941,12 +949,15 @@ footer .pages {
 .main-section .section-wrapper:not(.no-title) section {
   padding-top: 1.62rem;
 }
-@media (max-width: 680px) {
+@media (max-width: 840px) {
   .main-section {
     grid-template-columns: 1fr !important;
     gap: 0 !important;
   }
-  .main-section section {
+  .main-section .section-wrapper {
+    max-width: calc(100vw - 5.184rem);
+  }
+  .main-section .section-wrapper section {
     padding-top: 0 !important;
   }
 }
@@ -1026,7 +1037,7 @@ footer .pages {
 .purchase-section .font-selection form div .typeface-package .typeface-price {
   flex-grow: 0;
 }
-@media (max-width: 680px) {
+@media (max-width: 840px) {
   .purchase-section .font-selection form div .typeface-package {
     flex-direction: column;
   }
@@ -1035,9 +1046,15 @@ footer .pages {
     align-self: flex-end;
   }
 }
+.purchase-section .font-selection form .weights-packages {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 .purchase-section .font-selection form .weights-packages .weight-details {
   display: flex;
   justify-content: space-between;
+  gap: 5px;
 }
 .purchase-section .font-selection form .weights-packages .weight-details label.weight-title {
   font-size: 20px;
@@ -1052,7 +1069,7 @@ footer .pages {
 .purchase-section .font-selection-options:not(:first-of-type) {
   margin-top: 3.24rem;
 }
-@media (max-width: 680px) {
+@media (max-width: 840px) {
   .purchase-section .license-options > div,
   .purchase-section .font-selection-options {
     grid-template-columns: 1fr;
@@ -1112,11 +1129,13 @@ footer .pages {
 }
 
 .buying-price {
-  display: flex;
+  display: grid;
   align-items: center;
+  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
 }
 .buying-price .discount-label {
+  text-align: center;
   background-color: var(--red);
   color: var(--white);
   padding: 4px 8px;
@@ -1136,6 +1155,11 @@ footer .pages {
   font-weight: 400;
   font-size: 20px;
   line-height: 28px;
+}
+.buying-price .price,
+.buying-price .discount-old-price {
+  text-align: right;
+  line-height: 24px;
 }
 
 .iconly {
@@ -1280,7 +1304,7 @@ footer .pages {
   justify-content: initial;
   gap: 24px;
 }
-@media (max-width: 680px) {
+@media (max-width: 840px) {
   .font-tester .font-tester-header {
     justify-content: space-between;
     width: 100%;
@@ -1366,6 +1390,13 @@ footer .pages {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+}
+
+.checkbox-option {
+  display: flex;
+}
+.checkbox-option input {
+  flex-shrink: 0;
 }
 
 .slider {
@@ -1496,7 +1527,7 @@ h2 {
   font-size: 80px;
   line-height: 96px; /* 120% */
 }
-@media (max-width: 680px) {
+@media (max-width: 840px) {
   h2 {
     font-size: 64px;
     line-height: 74px; /* 115.625% */
@@ -1510,7 +1541,7 @@ h3 {
   line-height: 42px;
   font-weight: 600;
 }
-@media (max-width: 680px) {
+@media (max-width: 840px) {
   h3 {
     font-size: 32px;
     line-height: 38px; /* 118.75% */
@@ -1524,7 +1555,7 @@ h4 {
   line-height: 34px;
   font-weight: 600;
 }
-@media (max-width: 680px) {
+@media (max-width: 840px) {
   h4 {
     font-size: 18px;
     line-height: 26px; /* 144.444% */
