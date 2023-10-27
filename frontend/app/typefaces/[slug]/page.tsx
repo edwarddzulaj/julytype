@@ -103,7 +103,7 @@ const constructFontData = (typeface: Typeface) => {
       let testerStyleName = style.attributes.title.replace(title, "");
       testerStyleName = testerStyleName.length > 0 ? testerStyleName.trim() + " " : "";
       const fontLabel = `${testerStyleName}${weight.title.trim()}`;
-      const fullFontTitle = title + fontLabel;
+      const fullFontTitle = `${title} ${fontLabel}`;
       const fontValue = btoa(fontLabel);
       typetesterFontsData.push({
         label: fontLabel,

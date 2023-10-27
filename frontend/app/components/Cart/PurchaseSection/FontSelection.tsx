@@ -48,7 +48,10 @@ export default function FontSelection({ typeface }: { typeface: Typeface["attrib
                       value={weight.id}
                       onClick={() => handleOptionChange(weight.title)}
                     />
-                    <label className="weight-title">
+                    <label
+                      className="weight-title"
+                      style={{ fontFamily: `${style.attributes.title} ${weight.title}` }}
+                    >
                       {style.attributes.title} {weight.title}
                     </label>
                   </div>
