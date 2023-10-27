@@ -893,6 +893,13 @@ footer .pages {
   .wrapper .container.typeface-preview h2 {
     font-size: 9rem !important;
   }
+  .wrapper .container.typeface .quick-buttons {
+    height: calc(100vh - 2.43rem - 8.1rem);
+    flex-direction: column;
+  }
+  .wrapper .container.typeface .quick-buttons .action-buttons {
+    align-self: flex-end;
+  }
   .wrapper .container.typeface .main-section:first-of-type {
     padding-top: 4.86rem;
   }
@@ -1086,6 +1093,11 @@ footer .pages {
   display: flex;
   justify-content: space-between;
   z-index: 9999;
+}
+@media (max-width: 840px) {
+  .quick-buttons {
+    width: calc(100% - 1.296rem * 4);
+  }
 }
 
 .back-button {

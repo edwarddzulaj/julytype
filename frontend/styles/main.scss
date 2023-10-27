@@ -555,6 +555,15 @@ footer {
       }
 
       &.typeface {
+        .quick-buttons {
+          height: calc(100vh - $nav-offset - $gutter-h * 5);
+          flex-direction: column;
+
+          .action-buttons {
+            align-self: flex-end;
+          }
+        }
+
         .main-section:first-of-type {
           padding-top: $gutter-h * 3;
         }
@@ -562,6 +571,7 @@ footer {
         .typetesters {
           max-width: calc(100vw - ($gutter-thin-v * 2) * 2);
         }
+
         .weights-packages {
           .buying-price {
             grid-template-columns: 1fr;
@@ -766,6 +776,10 @@ footer {
   display: flex;
   justify-content: space-between;
   z-index: 9999;
+
+  @media (max-width: $mobile-breakpoint) {
+    width: calc(100% - #{$gutter-thin-v} * 4);
+  }
 }
 
 .back-button {

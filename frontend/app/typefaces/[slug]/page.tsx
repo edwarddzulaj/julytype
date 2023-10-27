@@ -49,7 +49,9 @@ export default async function Typeface({ params }: { params: { slug: string } })
     <section className="container typeface">
       <article className="quick-buttons">
         <BackButton>Back to Typefaces</BackButton>
-        <BuyButton>Buy {title}</BuyButton>
+        <div className="action-buttons">
+          <BuyButton>Buy {title}</BuyButton>
+        </div>
       </article>
       <Section title="Overview">
         <article className="typeface-styles">
