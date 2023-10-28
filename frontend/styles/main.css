@@ -1045,7 +1045,7 @@ footer .pages {
   padding-left: 25px;
 }
 .purchase-section .font-selection form div .typeface-package .typeface-price {
-  flex-grow: 0;
+  flex-shrink: 0;
 }
 @media (max-width: 840px) {
   .purchase-section .font-selection form div .typeface-package {
@@ -1054,6 +1054,7 @@ footer .pages {
   .purchase-section .font-selection form div .typeface-package .typeface-price {
     margin-top: 0.972rem;
     align-self: flex-end;
+    flex-shrink: 1;
   }
 }
 .purchase-section .font-selection form .weights-packages {
@@ -1313,11 +1314,14 @@ footer .pages {
   z-index: 99;
 }
 .font-tester .font-tester-header {
+  width: 100%;
   position: absolute;
   display: flex;
   align-items: baseline;
-  justify-content: initial;
+  justify-content: center;
   gap: 24px;
+  row-gap: 12px;
+  flex-wrap: wrap;
 }
 @media (max-width: 840px) {
   .font-tester .font-tester-header {

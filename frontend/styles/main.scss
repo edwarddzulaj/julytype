@@ -722,7 +722,7 @@ footer {
           }
 
           .typeface-price {
-            flex-grow: 0;
+            flex-shrink: 0;
           }
 
           @media (max-width: $mobile-breakpoint) {
@@ -730,6 +730,7 @@ footer {
             .typeface-price {
               margin-top: $gutter-thin-h;
               align-self: flex-end;
+              flex-shrink: 1;
             }
           }
         }
@@ -916,11 +917,14 @@ footer {
   }
 
   .font-tester-header {
+    width: 100%;
     position: absolute;
     display: flex;
     align-items: baseline;
-    justify-content: initial;
+    justify-content: center;
     gap: 24px;
+    row-gap: 12px;
+    flex-wrap: wrap;
 
     @media (max-width: $mobile-breakpoint) {
       justify-content: space-between;
