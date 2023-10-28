@@ -4,7 +4,7 @@ export default function BuyingPrice({ discount, price }: BuyingPrice) {
   const finalPrice = discount ? Math.ceil(price - price * (discount / 100)) : price;
 
   return (
-    <span className="buying-price">
+    <span className={`buying-price${discount ? " with-discount" : ""}`}>
       {discount && (
         <>
           <label className="discount-label">Save {discount}%</label>

@@ -59,10 +59,12 @@ export default async function Style({ params }: { params: { slug: string; styleS
           <BackButton backLink={`/typefaces/${typeface.attributes.slug}`}>
             Back to {typefaceTitle}
           </BackButton>
-          <BuyButton />
+          <div className="action-buttons">
+            <BuyButton>{`Buy ${title}`}</BuyButton>
+          </div>
         </article>
         <ChooseScript />
-        <Section>
+        <Section title="Overview">
           <article className="styles-weights">
             {weights.map((weight: TypefaceWeight) => (
               <TypefaceSample
