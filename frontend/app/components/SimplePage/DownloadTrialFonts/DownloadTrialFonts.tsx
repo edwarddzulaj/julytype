@@ -4,13 +4,9 @@ import { saveAs } from "file-saver";
 
 import { useState } from "react";
 
-import Iconly, { icons } from "../../UI/Iconly";
 import { ChooseTypefacesPopup } from "./ChooseTypefacesPopup";
-
-const BASE_URL =
-  process.env.NEXT_PUBLIC_STRAPI_ENV === "production"
-    ? process.env.NEXT_PUBLIC_STRAPI_API_URL
-    : process.env.NEXT_PUBLIC_STRAPI_API_URL_DEV;
+import { getStrapiURL } from "@/app/utils/api-helpers";
+import Iconly, { icons } from "../../UI/Iconly";
 
 export default function DownloadTrialFonts() {
   const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +27,7 @@ export default function DownloadTrialFonts() {
           for (const [_, trialFont] of font.trialFonts.entries()) {
             const { name, url } = trialFont.attributes;
 
-            const response = await fetch(BASE_URL + url);
+            const response = await fetch(getStrapiURL(url));
             const data = await response.blob();
             zip.file(`${font.name}/${name}`, data);
           }
