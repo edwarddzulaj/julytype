@@ -471,6 +471,7 @@ nav .mobile-nav {
 .wrapper .container.typeface-preview a h2 {
   font-size: 12rem;
   text-align: center;
+  font-weight: initial;
 }
 .wrapper .container.typeface-preview a .typeface-details {
   margin-top: 3.24rem;
@@ -490,6 +491,9 @@ nav .mobile-nav {
   gap: 1.62rem;
   padding: 6.48rem 0;
   text-align: center;
+}
+.wrapper .container.typeface .typeface-styles h2 {
+  font-weight: initial;
 }
 .wrapper .container.typeface .typeface-styles a:hover {
   text-decoration: none;
@@ -646,30 +650,28 @@ nav .mobile-nav {
 .wrapper .container.style .main-section .styles-weights h2 {
   font-size: 58px;
   line-height: 58px;
+  font-weight: initial;
 }
 .wrapper .container.style .main-section .typetesters {
   display: flex;
   flex-direction: column;
   gap: 6.48rem;
 }
-.wrapper .container.page h2,
-.wrapper .container.page h3 {
-  font-weight: 600;
-  padding: 3.24rem 0 8.1rem 0;
-}
-.wrapper .container.page h4 {
-  font-size: 48px;
+.wrapper .container.page h2 {
+  padding-top: 3.24rem;
+  padding-bottom: 4.86rem;
 }
 @media (max-width: 840px) {
-  .wrapper .container.page h2,
-  .wrapper .container.page h3 {
-    padding: 0.972rem 0 1.944rem 0;
+  .wrapper .container.page h2 {
+    padding-top: 1.944rem;
+    padding-bottom: 2.916rem;
   }
 }
 .wrapper .container.page .main-section .download-trial-fonts {
   margin: 1.62rem 0;
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 .wrapper .container.page .main-section .download-trial-fonts .download-all {
   display: inline-flex;
@@ -942,11 +944,8 @@ footer .pages {
     flex-direction: column;
     gap: 16px;
   }
-  footer .copyright {
-    width: 12ch;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: clip;
+  footer .pages {
+    flex-wrap: wrap;
   }
 }
 .main-section {
@@ -1565,6 +1564,7 @@ h2 {
   font-weight: 400;
   font-size: 80px;
   line-height: 96px; /* 120% */
+  font-weight: 600;
 }
 @media (max-width: 840px) {
   h2 {

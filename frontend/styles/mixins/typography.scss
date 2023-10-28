@@ -8,16 +8,15 @@ $mobile-breakpoint: 840px;
 
 @mixin heading-1 {
 	@include base();
-	// font-family: JT Peleton;
 	font-size: 100px;
 	line-height: 100%; /* 100px */
 }
 
 @mixin heading-2 {
 	@include base();
-	// font-family: JT Peleton;
 	font-size: 80px;
 	line-height: 96px; /* 120% */
+	font-weight: 600;
 
 	@media (max-width: $mobile-breakpoint) {
 		font-size: 64px;

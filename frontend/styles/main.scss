@@ -257,6 +257,7 @@ nav {
         h2 {
           font-size: $font-preview;
           text-align: center;
+          font-weight: initial;
         }
 
         .typeface-details {
@@ -287,6 +288,10 @@ nav {
         gap: $gutter-h;
         padding: $gutter-h * 4 0;
         text-align: center;
+
+        h2 {
+          font-weight: initial;
+        }
 
         a:hover {
           text-decoration: none;
@@ -353,6 +358,7 @@ nav {
           h2 {
             font-size: 58px;
             line-height: 58px;
+            font-weight: initial;
           }
         }
 
@@ -365,20 +371,15 @@ nav {
     }
 
     &.page {
-      h2,
-      h3 {
-        font-weight: 600;
-        padding: $gutter-h * 2 0 $gutter-h * 5 0;
-      }
-
-      h4 {
-        font-size: 48px;
+      h2 {
+        padding-top: $gutter-h * 2;
+        padding-bottom: $gutter-h * 3;
       }
 
       @media (max-width: $mobile-breakpoint) {
-        h2,
-        h3 {
-          padding: $gutter-thin-h 0 $gutter-thin-h * 2 0;
+        h2 {
+          padding-top: $gutter-thin-h * 2;
+          padding-bottom: $gutter-thin-h * 3;
         }
       }
 
@@ -387,6 +388,7 @@ nav {
           margin: $gutter-h 0;
           display: flex;
           gap: 10px;
+          flex-wrap: wrap;
 
           .download-all {
             @include buttons.primary;
@@ -628,11 +630,8 @@ footer {
     flex-direction: column;
     gap: 16px;
 
-    .copyright {
-      width: 12ch;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: clip;
+    .pages {
+      flex-wrap: wrap;
     }
   }
 }

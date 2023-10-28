@@ -43,7 +43,7 @@ export default async function SimplePage({ params }: { params: { simplePageSlug:
 
           return (
             <>
-              <h4>{section.title}</h4>
+              <h3>{section.title}</h3>
               <Section title={""} key={section.id}>
                 {/* eslint-disable-next-line react/no-children-prop */}
                 <ReactMarkdown children={section.content} />
