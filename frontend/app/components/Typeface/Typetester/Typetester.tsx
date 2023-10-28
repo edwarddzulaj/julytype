@@ -38,7 +38,7 @@ export default function Typetester({
     textColumns?: string;
   };
 }) {
-  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 840);
+  const [isMobileView, setIsMobileView] = useState(window && window.innerWidth <= 840);
 
   const fontTesterRef = useRef<HTMLInputElement>(null);
   const [fontFamily, setFontFamily] = useState(fontsData[0]);
@@ -170,7 +170,11 @@ export default function Typetester({
 
   return (
     <article className="font-tester" id={fontFamily.value}>
-      <div className="font-tester-header">
+      <div
+        className={`font-tester-header${
+          !(isMobileView && isTextEditable === "false") ? " mobile-view" : ""
+        }`}
+      >
         <div
           className="fontfamily"
           style={{ "--min-width": countMaxLabelLength(fontsData) } as React.CSSProperties}
@@ -184,10 +188,10 @@ export default function Typetester({
             arrowOpen={<Iconly icon={icons.chevronDown} />}
           />
         </div>
-        {!isMobileView && (
+        {!(isMobileView && isTextEditable === "false") && (
           <>
             <div
-              className="lang"
+              className="lang extra-option"
               style={{ "--min-width": countMaxLabelLength(languages) } as React.CSSProperties}
             >
               <Dropdown
@@ -199,19 +203,19 @@ export default function Typetester({
                 arrowOpen={<Iconly icon={icons.chevronDown} />}
               />
             </div>
-            <div className="fontsize slider">
+            <div className="fontsize slider extra-option">
               <label>
                 <span className="fontsize-value">{fontSize}px</span>
               </label>
               <input onInput={handleFontSize} type="range" min="12" max="192" value={fontSize} />
             </div>
-            <div className="opentype-features">
+            <div className="opentype-features extra-option">
               <CheckboxDropdown
                 dropdownItems={opentypeFeatures}
                 handleOnChange={handleOpentypeFeatures}
               />
             </div>
-            <div className="alignment">
+            <div className="alignment extra-option">
               {alignmentOptions.map((option) => (
                 <span key={option.value}>
                   <label
@@ -232,7 +236,7 @@ export default function Typetester({
                 </span>
               ))}
             </div>
-            <div className="columns">
+            <div className="columns extra-option">
               {columnOptions.map((option) => (
                 <span key={option.value}>
                   <label
@@ -255,7 +259,6 @@ export default function Typetester({
             </div>
           </>
         )}
-
         <div className="edit-text">
           <button className="edit-button" onClick={() => handleEditableClick()}>
             {isTextEditable === "false" ? "Edit text" : "Editing"}

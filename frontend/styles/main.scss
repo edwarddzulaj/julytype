@@ -317,10 +317,11 @@ nav {
 
     &.style {
       .choose-script {
-        width: fit-content;
         position: relative;
-        left: 0;
         top: $gutter-h * 4.5;
+        left: 0;
+        width: fit-content;
+        z-index: 1111;
 
         .buttons {
           margin-top: $gutter-thin-h;
@@ -558,9 +559,6 @@ footer {
         h2 {
           font-size: $font-preview * 0.75 !important;
         }
-      }
-
-      &.typeface {
       }
 
       &.style {
@@ -957,8 +955,29 @@ footer {
     flex-wrap: wrap;
 
     @media (max-width: $mobile-breakpoint) {
-      justify-content: space-between;
-      width: 100%;
+      position: relative !important;
+      justify-content: initial !important;
+
+      .font-family {
+        left: 0;
+      }
+
+      .extra-option {
+        display: none;
+      }
+
+      &.mobile-view {
+        .extra-option {
+          display: block;
+          width: 100%;
+        }
+      }
+
+      .edit-text {
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+      }
     }
 
     .fontsize {

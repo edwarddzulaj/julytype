@@ -545,11 +545,12 @@ nav .mobile-nav {
   height: auto !important;
 }
 .wrapper .container.style .choose-script {
+  position: relative;
+  top: 7.29rem;
+  left: 0;
   width: -moz-fit-content;
   width: fit-content;
-  position: relative;
-  left: 0;
-  top: 7.29rem;
+  z-index: 1111;
 }
 .wrapper .container.style .choose-script .buttons {
   margin-top: 0.972rem;
@@ -1344,8 +1345,23 @@ footer .pages {
 }
 @media (max-width: 840px) {
   .font-tester .font-tester-header {
-    justify-content: space-between;
+    position: relative !important;
+    justify-content: initial !important;
+  }
+  .font-tester .font-tester-header .font-family {
+    left: 0;
+  }
+  .font-tester .font-tester-header .extra-option {
+    display: none;
+  }
+  .font-tester .font-tester-header.mobile-view .extra-option {
+    display: block;
     width: 100%;
+  }
+  .font-tester .font-tester-header .edit-text {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
   }
 }
 .font-tester .font-tester-header .fontsize {

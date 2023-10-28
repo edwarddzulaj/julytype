@@ -28,6 +28,7 @@ async function getTypeface(slug: string) {
         },
       },
       specimen: { populate: "*" },
+      trialFonts: { populate: "*" },
     },
     filters: {
       slug: slug,
@@ -41,8 +42,9 @@ async function getTypeface(slug: string) {
 
 export default async function Typeface({ params }: { params: { slug: string } }) {
   const typeface: Typeface = await getTypeface(params.slug);
-  const { title, slug, specimen, aboutText, styles } = typeface.attributes;
+  const { title, slug, specimen, aboutText, styles, trialFonts } = typeface.attributes;
 
+  const hasTrialFonts = trialFonts?.data?.length > 0;
   const typetesterFontsData = constructFontData(typeface);
 
   return (
@@ -50,6 +52,7 @@ export default async function Typeface({ params }: { params: { slug: string } })
       <article className="quick-buttons">
         <BackButton>Back to Typefaces</BackButton>
         <div className="action-buttons">
+          {/* {hasTrialFonts && <TrialFontsButton/>} */}
           <BuyButton>Buy {title}</BuyButton>
         </div>
       </article>
