@@ -8,20 +8,20 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
     <section className="purchase-section">
       <div className="license-options">
         <div>
-          <h4>License Type</h4>
+          <h5>License Type</h5>
           <PurchaseOption config={licenseOptions} />
         </div>
         <div>
-          <h4>Company Size</h4>
+          <h5>Company Size</h5>
           <PurchaseOption config={companySizeOptions} />
         </div>
         <div>
-          <h4>Discount</h4>
+          <h5>Discount</h5>
           <PurchaseOption config={discountOptions} />
         </div>
       </div>
       <div className="font-selection-options">
-        <h4>Choose weights and styles</h4>
+        <h5>Choose weights and styles</h5>
         <FontSelection typeface={typeface.attributes} />
       </div>
     </section>

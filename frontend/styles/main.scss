@@ -286,7 +286,7 @@ nav {
         display: flex;
         flex-direction: column;
         gap: $gutter-h;
-        padding: $gutter-h * 4 0;
+        padding: $gutter-h * 2 0;
         text-align: center;
 
         h2 {
@@ -651,8 +651,15 @@ footer {
 
   &:not(.no-indent) {
     display: grid;
-    grid-template-columns: minmax(100px, 1fr) 10fr;
-    gap: $gutter-v * 4;
+
+    // @media (max-width: 1280px) {
+    //   grid-template-columns: minmax(100px, 1fr) 10fr;
+    //   gap: $gutter-v * 4;
+
+    //   h3 {
+    //     position: relative;
+    //   }
+    // }
 
     .section-wrapper {
       display: grid;
@@ -660,7 +667,7 @@ footer {
 
       &:not(.no-title) {
         section {
-          padding-top: $gutter-h * 4;
+          padding-top: $gutter-h * 2;
         }
       }
 
@@ -827,7 +834,7 @@ footer {
   gap: 10px;
 
   &.with-discount {
-    grid-template-columns: minmax(min-content, 9ch) repeat(2, minmax(min-content, 7ch));
+    grid-template-columns: minmax(min-content, 9ch) repeat(2, minmax(min-content, 8.2ch));
   }
 
   .discount-label {
@@ -841,12 +848,14 @@ footer {
 
   .discount-old-price {
     @include typography.heading-5();
+    font-weight: normal;
     text-decoration: line-through;
     color: var(--grey);
   }
 
   .price {
     @include typography.heading-5();
+    font-weight: normal;
   }
 
   .price,

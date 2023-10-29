@@ -52,6 +52,7 @@ $mobile-breakpoint: 840px;
 	@include base();
 	font-size: 20px;
 	line-height: 28px;
+	font-weight: 600;
 }
 
 @mixin heading-6 {
