@@ -59,7 +59,12 @@ export default function Typetester({
   const { script } = useContext(ScriptChoiceContext);
 
   useEffect(() => {
-    const [sampleText, index] = buildSampleText(typetesterLanguageGroup, typetester.index, isLatin);
+    const [sampleText, index, defaultFontSize] = buildSampleText(
+      typetesterLanguageGroup,
+      typetester.index,
+      isLatin
+    );
+    setFontSize(defaultFontSize);
     setTypetester({ text: sampleText, index: index });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLatin]);
@@ -108,7 +113,7 @@ export default function Typetester({
     return {
       fontSize: `${fontSize}px`,
       fontFeatureSettings: buildOpentypeFeatures(features),
-      textTransform: cases.find((c) => c.checked)?.value,
+      textTransform: cases.find((c) => c.checked)?.value! as any,
       textAlign: alignment as any,
       columnCount: textColumns,
       fontFamily: fontLoaded ? fontFamily.title : "",
@@ -181,7 +186,12 @@ export default function Typetester({
 
   const handleFontSampleClick = () => {
     if (isTextEditable !== "false") return;
-    const [sampleText, index] = buildSampleText(typetesterLanguageGroup, typetester.index, isLatin);
+    const [sampleText, index, defaultFontSize] = buildSampleText(
+      typetesterLanguageGroup,
+      typetester.index,
+      isLatin
+    );
+    setFontSize(defaultFontSize);
     setTypetester({ ...typetester, text: sampleText, index: index });
   };
 
@@ -326,7 +336,8 @@ const buildSampleText = (
   }
 
   const randomText = samples[index!]?.text;
-  return [randomText, index];
+  const defaultSize = samples[index!]?.defaultFontSize || 108;
+  return [randomText, index, defaultSize];
 };
 
 const buildOpentypeFeatures = (features: any) => {

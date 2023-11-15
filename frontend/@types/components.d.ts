@@ -17,6 +17,7 @@ export interface TypetesterTextGroup {
 export interface TypetesterText {
   id: number;
   text: string;
+  defaultFontSize?: number;
 }
 
 export interface SocialMediaLink {
