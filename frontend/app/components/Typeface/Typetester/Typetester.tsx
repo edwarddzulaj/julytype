@@ -11,6 +11,7 @@ import {
   staticOptions,
   languages,
   opentypeFeatures,
+  caseOptions,
   alignmentOptions,
   columnOptions,
 } from "./typetester-config";
@@ -46,6 +47,7 @@ export default function Typetester({
   const [sampleLang, setSampleLang] = useState(languages[0].value);
   const [fontSize, setFontSize] = useState(isMobileView ? 38 : 108);
   const [features, setFeatures] = useState(opentypeFeatures);
+  const [cases, setCases] = useState(caseOptions);
   const [alignment, setAlignment] = useState(
     defaultOptions?.alignment || alignmentOptions.find((f) => f.checked)?.value
   );
@@ -106,11 +108,12 @@ export default function Typetester({
     return {
       fontSize: `${fontSize}px`,
       fontFeatureSettings: buildOpentypeFeatures(features),
+      textTransform: cases.find((c) => c.checked)?.value,
       textAlign: alignment as any,
       columnCount: textColumns,
       fontFamily: fontLoaded ? fontFamily.title : "",
     };
-  }, [alignment, features, fontFamily.title, fontLoaded, fontSize, textColumns]);
+  }, [alignment, cases, features, fontFamily.title, fontLoaded, fontSize, textColumns]);
 
   const handleFontFamily = (e: any) => {
     const fontValue = e.value;
@@ -135,6 +138,20 @@ export default function Typetester({
     if (feature) {
       feature.checked = !feature.checked;
       setFeatures(updatedFeatures);
+    }
+  };
+
+  const handleCaseOptions = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updatedCases = [...cases];
+    const caseId = e.target.id;
+
+    const caseType = caseOptions.find((c) => c.value === caseId);
+    if (caseType) {
+      updatedCases.map((c) => {
+        if (c.value !== caseId) c.checked = false;
+      });
+      caseType.checked = !caseType.checked;
+      setCases(updatedCases);
     }
   };
 
@@ -213,6 +230,13 @@ export default function Typetester({
               <CheckboxDropdown
                 dropdownItems={opentypeFeatures}
                 handleOnChange={handleOpentypeFeatures}
+              />
+            </div>
+            <div className="case-options extra-option">
+              <CheckboxDropdown
+                title="Change case"
+                dropdownItems={caseOptions}
+                handleOnChange={handleCaseOptions}
               />
             </div>
             <div className="alignment extra-option">

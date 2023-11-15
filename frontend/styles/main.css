@@ -1443,6 +1443,7 @@ footer .pages {
   padding-top: 6.48rem;
   transition: font-size 0.1s ease-out;
   font-family: "Adobe Blank";
+  word-wrap: break-word;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;

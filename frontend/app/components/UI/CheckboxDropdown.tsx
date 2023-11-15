@@ -10,9 +10,11 @@ interface dropdownMenuItems {
 }
 
 export default function CheckboxDropdown({
+  title = "Features",
   dropdownItems = [],
   handleOnChange,
 }: {
+  title?: string;
   dropdownItems: dropdownMenuItems[];
   handleOnChange: any;
 }) {
@@ -25,7 +27,7 @@ export default function CheckboxDropdown({
     <>
       <div className={`checkbox-dropdown ${open ? "open" : ""}`}>
         <label className="title" onClick={toggleMenu}>
-          Features
+          {title}
           <span>
             {!open && <Iconly icon={icons.chevronUp} />}
             {open && <Iconly icon={icons.chevronDown} />}

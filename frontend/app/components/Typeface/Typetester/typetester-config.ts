@@ -29,6 +29,12 @@ export const opentypeFeatures = [
   { value: "ss02", label: "Stylistic set 2" },
 ];
 
+export const caseOptions = [
+  { value: "uppercase", label: "UPPERCASE", checked: false },
+  { value: "lowercase", label: "lowercase" },
+  { value: "capitalize", label: "Title Case" },
+];
+
 export const alignmentOptions = [
   { value: "left", label: "alignLeft" },
   { value: "center", label: "alignCenter", checked: true },
