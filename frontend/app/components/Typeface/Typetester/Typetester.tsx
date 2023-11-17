@@ -34,8 +34,8 @@ export default function Typetester({
   fontsData: FontsData[];
   typetesterLanguageGroup?: TypetesterTextGroup[] | undefined;
   defaultOptions?: {
+    lineHeight?: number;
     fontFamily?: string;
-    alignment?: string;
     textColumns?: string;
   };
 }) {
@@ -48,9 +48,8 @@ export default function Typetester({
   const [fontSize, setFontSize] = useState(isMobileView ? 38 : 108);
   const [features, setFeatures] = useState(opentypeFeatures);
   const [cases, setCases] = useState(caseOptions);
-  const [alignment, setAlignment] = useState(
-    defaultOptions?.alignment || alignmentOptions.find((f) => f.checked)?.value
-  );
+  const [alignment, setAlignment] = useState(alignmentOptions.find((f) => f.checked)?.value);
+  const [lineHeight, setLineHeight] = useState(defaultOptions?.lineHeight || 1.4);
   const [textColumns, setTextColumns] = useState(1);
   const [isTextEditable, setIsTextEditable] = useState("false");
   const [typetester, setTypetester] = useState({ text: "", index: null });
@@ -59,21 +58,7 @@ export default function Typetester({
   const { script } = useContext(ScriptChoiceContext);
 
   useEffect(() => {
-    const [sampleText, index, defaultFontSize, sampleLanguage] = buildSampleText(
-      typetesterLanguageGroup,
-      typetester.index,
-      isLatin
-    );
-    setFontSize(defaultFontSize);
-    setTypetester({ text: sampleText, index: index });
-
-    const langs = isLatin ? languages.latin : languages.cyrillic;
-    const chosenLang = langs.find((l) => l.label === sampleLanguage);
-
-    if (chosenLang) {
-      setSampleLang(chosenLang!.value);
-    }
-
+    updateTextSample();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLatin]);
 
@@ -123,10 +108,11 @@ export default function Typetester({
       fontFeatureSettings: buildOpentypeFeatures(features),
       textTransform: cases.find((c) => c.checked)?.value! as any,
       textAlign: alignment as any,
+      lineHeight: `${fontSize * lineHeight}px`,
       columnCount: textColumns,
       fontFamily: fontLoaded ? fontFamily.title : "",
     };
-  }, [alignment, cases, features, fontFamily.title, fontLoaded, fontSize, textColumns]);
+  }, [alignment, cases, features, fontFamily.title, fontLoaded, fontSize, lineHeight, textColumns]);
 
   const handleFontFamily = (e: any) => {
     const fontValue = e.value;
@@ -197,13 +183,24 @@ export default function Typetester({
 
   const handleFontSampleClick = () => {
     if (isTextEditable !== "false") return;
-    const [sampleText, index, defaultFontSize] = buildSampleText(
-      typetesterLanguageGroup,
-      typetester.index,
-      isLatin
-    );
+    updateTextSample();
+  };
+
+  const updateTextSample = () => {
+    const [sampleText, index, sampleLanguage, defaultFontSize, defaultAlignment, defaultColumns] =
+      buildSampleText(typetesterLanguageGroup, typetester.index, isLatin);
     setFontSize(defaultFontSize);
-    setTypetester({ ...typetester, text: sampleText, index: index });
+    setAlignment(defaultAlignment);
+    setTextColumns(defaultColumns);
+
+    setTypetester({ text: sampleText, index: index });
+
+    const langs = isLatin ? languages.latin : languages.cyrillic;
+    const chosenLang = langs.find((l) => l.label === sampleLanguage);
+
+    if (chosenLang) {
+      setSampleLang(chosenLang!.value);
+    }
   };
 
   const positionInTheMiddle = (divYPos: number, divHeight: number) => {
@@ -363,11 +360,12 @@ const buildSampleText = (
     }
   }
 
-  // setSampleLang(e.value);
   const randomText = samples[index!]?.text.trim();
   const defaultSize = samples[index!]?.defaultFontSize || 108;
+  const defaultAlignment = samples[index!]?.textAlignment || "left";
+  const defaultColumns = samples[index!]?.twoColumns ? 2 : 1;
 
-  return [randomText, index, defaultSize, sampleLanguage];
+  return [randomText, index, sampleLanguage, defaultSize, defaultAlignment, defaultColumns];
 };
 
 const buildOpentypeFeatures = (features: any) => {

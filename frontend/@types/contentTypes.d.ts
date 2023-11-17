@@ -11,6 +11,7 @@ export interface Style {
   attributes: {
     title: string;
     slug: string;
+    lineHeight: number;
     createdAt: Date;
     updatedAt: Date;
     publishedAt: Date;

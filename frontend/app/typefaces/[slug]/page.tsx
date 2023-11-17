@@ -46,6 +46,7 @@ export default async function Typeface({ params }: { params: { slug: string } })
 
   const hasTrialFonts = trialFonts?.data?.length > 0;
   const typetesterFontsData = constructFontData(typeface);
+  const sampleStyle = styles.data[0].attributes;
 
   return (
     <section className="container typeface">
@@ -72,13 +73,8 @@ export default async function Typeface({ params }: { params: { slug: string } })
         <section className="typetesters">
           <Typetester
             fontsData={typetesterFontsData}
-            typetesterLanguageGroup={[
-              {
-                id: 0,
-                language: "English",
-                sample: [{ id: 0, text: "July type is coming sooner than you think" }],
-              },
-            ]}
+            typetesterLanguageGroup={sampleStyle.weights[0].typetesterLanguageGroup}
+            defaultOptions={{ lineHeight: sampleStyle.lineHeight }}
           />
         </section>
         {specimen?.data?.attributes?.url && (

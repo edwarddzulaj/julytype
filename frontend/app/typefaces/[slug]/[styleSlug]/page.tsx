@@ -46,11 +46,9 @@ export default async function Style({ params }: { params: { slug: string; styleS
     (style) => style.attributes.slug === styleSlug
   );
 
-  const { title, weights } = style?.attributes ?? { title: "", weights: [] };
+  const { title, weights, lineHeight } = style?.attributes ?? { title: "", weights: [] };
   const typefaceTitle = typeface.attributes.title;
   const { supportedLanguages } = typeface.attributes;
-
-  const isStyleText = title.toLowerCase().includes("text");
 
   return (
     <ScriptChoiceProvider>
@@ -93,7 +91,7 @@ export default async function Style({ params }: { params: { slug: string; styleS
                   key={weight.id}
                   fontsData={[typetesterData]}
                   typetesterLanguageGroup={weight.typetesterLanguageGroup}
-                  defaultOptions={{ alignment: isStyleText ? "left" : "" }}
+                  defaultOptions={{ lineHeight: lineHeight }}
                 />
               );
             })}

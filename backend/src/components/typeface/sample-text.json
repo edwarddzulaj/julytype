@@ -13,6 +13,19 @@
     "defaultFontSize": {
       "type": "integer",
       "default": 108
+    },
+    "twoColumns": {
+      "type": "boolean",
+      "default": false
+    },
+    "textAlignment": {
+      "type": "enumeration",
+      "enum": [
+        "left",
+        "center",
+        "right"
+      ],
+      "default": "left"
     }
   }
 }
