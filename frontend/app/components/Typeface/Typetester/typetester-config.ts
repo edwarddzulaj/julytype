@@ -5,14 +5,18 @@ export const staticOptions = {
   spellCheck: "false",
 };
 
-export const languages = [
-  { value: "en-GB", label: "English" },
-  { value: "de", label: "German" },
-  { value: "nl", label: "Dutch" },
-  { value: "bg", label: "Bulgarian" },
-  { value: "uk", label: "Ukrainian" },
-  { value: "ru", label: "Russian" },
-];
+export const languages = {
+  latin: [
+    { value: "en-GB", label: "English" },
+    { value: "de", label: "German" },
+    { value: "nl", label: "Dutch" },
+  ],
+  cyrillic: [
+    { value: "bg", label: "Bulgarian" },
+    { value: "uk", label: "Ukrainian" },
+    { value: "ru", label: "Russian" },
+  ],
+};
 
 export const opentypeFeatures = [
   { value: "liga", label: "Ligatures", checked: true },

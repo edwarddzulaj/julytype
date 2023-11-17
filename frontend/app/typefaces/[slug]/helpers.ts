@@ -13,9 +13,9 @@ export function indexAllSamples(languages: any) {
   languages.map((lang: TypetesterTextGroup) => {
     const isCyrillic = lang.language.includes("Cyrillic");
     if (isCyrillic) {
-      allSamplesCyrillic.push(...lang.sample);
+      allSamplesCyrillic.push(lang.language, ...lang.sample);
     } else {
-      allSamplesLatin.push(...lang.sample);
+      allSamplesLatin.push(lang.language, ...lang.sample);
     }
   });
 

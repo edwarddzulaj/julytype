@@ -44,7 +44,7 @@ export default function Typetester({
   const fontTesterRef = useRef<HTMLInputElement>(null);
   const [fontFamily, setFontFamily] = useState(fontsData[0]);
   const [fontLoaded, setFontLoaded] = useState(false);
-  const [sampleLang, setSampleLang] = useState(languages[0].value);
+  const [sampleLang, setSampleLang] = useState(languages.latin[0].value);
   const [fontSize, setFontSize] = useState(isMobileView ? 38 : 108);
   const [features, setFeatures] = useState(opentypeFeatures);
   const [cases, setCases] = useState(caseOptions);
@@ -59,13 +59,21 @@ export default function Typetester({
   const { script } = useContext(ScriptChoiceContext);
 
   useEffect(() => {
-    const [sampleText, index, defaultFontSize] = buildSampleText(
+    const [sampleText, index, defaultFontSize, sampleLanguage] = buildSampleText(
       typetesterLanguageGroup,
       typetester.index,
       isLatin
     );
     setFontSize(defaultFontSize);
     setTypetester({ text: sampleText, index: index });
+
+    const langs = isLatin ? languages.latin : languages.cyrillic;
+    const chosenLang = langs.find((l) => l.label === sampleLanguage);
+
+    if (chosenLang) {
+      setSampleLang(chosenLang!.value);
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLatin]);
 
@@ -232,11 +240,17 @@ export default function Typetester({
           <>
             <div
               className="lang extra-option"
-              style={{ "--min-width": countMaxLabelLength(languages) } as React.CSSProperties}
+              style={
+                {
+                  "--min-width": countMaxLabelLength(
+                    isLatin ? languages.latin : languages.cyrillic
+                  ),
+                } as React.CSSProperties
+              }
             >
               <Dropdown
                 className="dropdown"
-                options={languages}
+                options={isLatin ? languages.latin : languages.cyrillic}
                 onChange={handleLanguage}
                 placeholder="Language"
                 arrowClosed={<Iconly icon={icons.chevronDown} />}
@@ -338,19 +352,22 @@ const buildSampleText = (
 
   const { allSamplesLatin, allSamplesCyrillic } = indexAllSamples(typetesterLanguageGroup);
   const samples = !isLatin && allSamplesCyrillic.length > 0 ? allSamplesCyrillic : allSamplesLatin;
+  const sampleLanguage = samples[0].split(" ")[0];
 
   if (!index) {
-    index = getRandomIndex(0, samples?.length);
+    index = getRandomIndex(1, samples?.length);
   } else {
     index++;
     if (index >= samples?.length) {
-      index = 0;
+      index = 1;
     }
   }
 
+  // setSampleLang(e.value);
   const randomText = samples[index!]?.text.trim();
   const defaultSize = samples[index!]?.defaultFontSize || 108;
-  return [randomText, index, defaultSize];
+
+  return [randomText, index, defaultSize, sampleLanguage];
 };
 
 const buildOpentypeFeatures = (features: any) => {
