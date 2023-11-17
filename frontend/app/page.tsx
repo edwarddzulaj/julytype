@@ -38,9 +38,9 @@ export default async function Page() {
         let hovered: TypefaceWeight | null = null;
 
         styles.data[0].attributes.weights.forEach((weight: TypefaceWeight) => {
-          if (weight.title.toLowerCase().includes("regular")) regular = weight;
-          if (weight.title.toLowerCase().includes("italic")) hovered = weight;
-          if (weight.title.toLowerCase().includes("bold")) hovered = weight;
+          if (weight.title.toLowerCase() === "regular") regular = weight;
+          if (weight.title.toLowerCase() === "black") hovered = weight;
+          if (weight.title.toLowerCase() === "bold") hovered = weight;
         });
 
         const { numStyles, numWeights } = allStylesAndWeights(styles.data);
