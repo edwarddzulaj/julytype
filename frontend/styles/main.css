@@ -1395,9 +1395,7 @@ footer .pages {
   top: -2px;
   font-size: 16px;
 }
-.font-tester .font-tester-header .edit-text button {
-  font-family: inherit;
-  font-size: inherit;
+.font-tester .font-tester-header .edit-text .edit-button {
   display: inline-flex;
   padding: 14px 16px;
   border-radius: 12px;
@@ -1414,25 +1412,30 @@ footer .pages {
   padding: 6px 12px;
   border-radius: 8px;
   outline: 1px solid var(--foreground);
+  width: 8.5ch;
+  display: flex;
+  justify-content: center;
+  font-family: inherit;
+  font-size: inherit;
 }
-.font-tester .font-tester-header .edit-text button:hover {
+.font-tester .font-tester-header .edit-text .edit-button:hover {
   cursor: pointer;
 }
-.font-tester .font-tester-header .edit-text button:hover, .font-tester .font-tester-header .edit-text button.selected {
+.font-tester .font-tester-header .edit-text .edit-button:hover, .font-tester .font-tester-header .edit-text .edit-button.selected {
   background-color: var(--foreground);
   color: var(--background);
 }
-.font-tester .font-tester-header .edit-text button:focus-visible {
+.font-tester .font-tester-header .edit-text .edit-button:focus-visible {
   outline: 2px solid var(--foreground);
 }
-.font-tester .font-tester-header .edit-text button:focus:not(:focus-visible) {
+.font-tester .font-tester-header .edit-text .edit-button:focus:not(:focus-visible) {
   outline: none;
 }
-.font-tester .font-tester-header .edit-text button:active {
+.font-tester .font-tester-header .edit-text .edit-button:active {
   color: var(--foreground);
   background-color: var(--background);
 }
-.font-tester .font-tester-header .edit-text button:disabled {
+.font-tester .font-tester-header .edit-text .edit-button:disabled {
   color: var(--grey);
 }
 .font-tester .font-tester-header input[type=radio] {
@@ -1443,10 +1446,14 @@ footer .pages {
   padding-top: 6.48rem;
   transition: font-size 0.1s ease-out;
   font-family: "Adobe Blank";
+  white-space-collapse: preserve-breaks;
   word-wrap: break-word;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+}
+.font-tester .font-sample:not(.edit-mode) {
+  cursor: pointer;
 }
 
 .checkbox-option {
@@ -1551,6 +1558,10 @@ div.dropdown .Dropdown-menu > .Dropdown-option:hover {
   position: relative;
   top: -2px;
   font-size: 20px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  pointer-events: none;
 }
 .checkbox-dropdown label.title:hover {
   color: var(--background);

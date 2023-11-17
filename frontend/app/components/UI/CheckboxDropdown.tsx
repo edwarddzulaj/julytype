@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Iconly, { icons } from "./Iconly";
 
 interface dropdownMenuItems {
@@ -19,18 +19,33 @@ export default function CheckboxDropdown({
   handleOnChange: any;
 }) {
   const [open, isOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        isOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   const toggleMenu = () => {
     isOpen(!open);
   };
   return (
     <>
-      <div className={`checkbox-dropdown ${open ? "open" : ""}`}>
+      <div className={`checkbox-dropdown ${open && "open"}`} ref={dropdownRef}>
         <label className="title" onClick={toggleMenu}>
           {title}
           <span>
-            {!open && <Iconly icon={icons.chevronUp} />}
-            {open && <Iconly icon={icons.chevronDown} />}
+            {!open && <Iconly icon={icons.chevronDown} />}
+            {open && <Iconly icon={icons.chevronUp} />}
           </span>
         </label>
 

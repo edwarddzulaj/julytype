@@ -1021,11 +1021,14 @@ footer {
       top: -2px;
       font-size: 16px;
 
-      button {
+      .edit-button {
+        @include buttons.tertiary;
+        width: 8.5ch;
+        display: flex;
+        justify-content: center;
+
         font-family: inherit;
         font-size: inherit;
-
-        @include buttons.tertiary;
       }
     }
 
@@ -1039,8 +1042,15 @@ footer {
     padding-top: $gutter-h * 4;
     transition: font-size 0.1s ease-out;
     font-family: "Adobe Blank";
+
+    // Some settings to create the same layout when the div is editable
+    white-space-collapse: preserve-breaks;
     word-wrap: break-word;
     user-select: none;
+
+    &:not(.edit-mode) {
+      cursor: pointer;
+    }
   }
 }
 
@@ -1123,6 +1133,8 @@ div.dropdown {
       position: relative;
       top: -2px;
       font-size: 20px;
+      user-select: none;
+      pointer-events: none;
     }
 
     &:hover {

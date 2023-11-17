@@ -168,7 +168,7 @@ export default function Typetester({
     setTextColumns(+e.target.value);
   };
 
-  const handleEditableClick = () => {
+  const handleEditableClick = (e: any, fontTesterRef: any) => {
     if (isTextEditable === "plaintext-only") {
       setIsTextEditable("false");
     } else {
@@ -181,6 +181,9 @@ export default function Typetester({
           window.getSelection()?.collapseToEnd();
         }, 0);
       }
+
+      const fontTesterContainer = fontTesterRef.current.parentNode;
+      positionInTheMiddle(e.pageY, fontTesterContainer.clientHeight);
     }
   };
 
@@ -193,6 +196,16 @@ export default function Typetester({
     );
     setFontSize(defaultFontSize);
     setTypetester({ ...typetester, text: sampleText, index: index });
+  };
+
+  const positionInTheMiddle = (divYPos: number, divHeight: number) => {
+    const windowHeight = window.innerHeight;
+    const middleY = divYPos + divHeight / 2 - windowHeight / 2;
+
+    window.scrollTo({
+      top: middleY,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -211,8 +224,8 @@ export default function Typetester({
             options={fontsData}
             onChange={handleFontFamily}
             value={fontFamily.value}
-            arrowClosed={<Iconly icon={icons.chevronUp} />}
-            arrowOpen={<Iconly icon={icons.chevronDown} />}
+            arrowClosed={<Iconly icon={icons.chevronDown} />}
+            arrowOpen={<Iconly icon={icons.chevronUp} />}
           />
         </div>
         {!(isMobileView && isTextEditable === "false") && (
@@ -226,15 +239,15 @@ export default function Typetester({
                 options={languages}
                 onChange={handleLanguage}
                 placeholder="Language"
-                arrowClosed={<Iconly icon={icons.chevronUp} />}
-                arrowOpen={<Iconly icon={icons.chevronDown} />}
+                arrowClosed={<Iconly icon={icons.chevronDown} />}
+                arrowOpen={<Iconly icon={icons.chevronUp} />}
               />
             </div>
             <div className="fontsize slider extra-option">
               <label>
                 <span className="fontsize-value">{fontSize}px</span>
               </label>
-              <input onInput={handleFontSize} type="range" min="12" max="192" value={fontSize} />
+              <input onInput={handleFontSize} type="range" min="12" max="250" value={fontSize} />
             </div>
             <div className="opentype-features extra-option">
               <CheckboxDropdown
@@ -294,7 +307,7 @@ export default function Typetester({
           </>
         )}
         <div className="edit-text">
-          <button className="edit-button" onClick={() => handleEditableClick()}>
+          <button className="edit-button" onClick={(e) => handleEditableClick(e, fontTesterRef)}>
             {isTextEditable === "false" ? "Edit text" : "Editing"}
           </button>
         </div>
@@ -302,7 +315,7 @@ export default function Typetester({
       {/* @ts-ignore because contentEditable value is 'plaintext-only' and it demands a Boolean type*/}
       <div
         ref={fontTesterRef}
-        className="font-sample"
+        className={`font-sample${isTextEditable === "false" ? "" : " edit-mode"}`}
         onClick={handleFontSampleClick}
         suppressContentEditableWarning={true}
         {...staticOptions}
@@ -335,7 +348,7 @@ const buildSampleText = (
     }
   }
 
-  const randomText = samples[index!]?.text;
+  const randomText = samples[index!]?.text.trim();
   const defaultSize = samples[index!]?.defaultFontSize || 108;
   return [randomText, index, defaultSize];
 };
