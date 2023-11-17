@@ -26,6 +26,10 @@
         "right"
       ],
       "default": "left"
+    },
+    "title": {
+      "type": "string",
+      "private": true
     }
   }
 }
