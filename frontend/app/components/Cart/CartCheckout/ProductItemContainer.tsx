@@ -27,30 +27,37 @@ export default function ProductItemContainer({ item }: { item: ProductItem }) {
     <section className="cart-item-container">
       <article className="details">
         <div>
-          <h5>Weights and styles</h5>
+          <h6 className="title">Weights and styles</h6>
           {allWeights}
         </div>
         <div>
-          <h5>License Type</h5>
+          <h6 className="title">License Type</h6>
           {item.licenseType}
         </div>
         <div>
-          <h5>Company Size</h5>
+          <h6 className="title">Company Size</h6>
           Less than {item.companySize}
         </div>
         <div>
-          <h5>Price</h5>
+          <h6 className="title">Price</h6>
           <div>
-            {prices.price !== prices.finalPrice && <span>{prices.price}</span>}
-            <span className="discount-price">{prices.finalPrice}</span>
+            {prices.price !== prices.finalPrice && (
+              <>
+                <span className="price">{prices.price} EUR</span>&nbsp;
+              </>
+            )}
+            <span className="discount-price">{prices.finalPrice} EUR</span>
           </div>
         </div>
       </article>
       <article className="actions">
-        <div onClick={removeProductItem}>
+        <div className="remove-action" onClick={removeProductItem}>
           Remove from cart <Iconly icon={icons.close}></Iconly>
         </div>
-        <Link href={`/typefaces/${item.name.toLowerCase()}#font-selection-options`}>
+        <Link
+          className="edit-action"
+          href={`/typefaces/${item.name.toLowerCase()}#font-selection-options`}
+        >
           Edit buying options
         </Link>
       </article>

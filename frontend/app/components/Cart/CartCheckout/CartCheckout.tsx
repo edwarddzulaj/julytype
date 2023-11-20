@@ -13,10 +13,14 @@ export default function CartCheckout() {
   const dispatch = useAppDispatch();
 
   const [cartItems, setCartItems] = useState<Array<ProductItem>>([]);
+  const [prices, setPrices] = useState({ price: 0, finalPrice: 0 });
 
   useEffect(() => {
     const items = formatData(cart.products);
     setCartItems(items), [cart.products];
+
+    const { totalPrice, discountPrice } = calculateTotalPrices(items);
+    setPrices({ price: totalPrice, finalPrice: discountPrice });
   }, [cart.products]);
 
   const redirectToCheckout = async () => {
@@ -57,12 +61,30 @@ export default function CartCheckout() {
           </div>
         )}
       </div>
-      <div className="actions">
-        <Link href="/" className="browse-more">
-          Browse more typefaces
-        </Link>
-        <div className="payment" onClick={() => cart.products.length > 0 && redirectToCheckout()}>
-          Proceed to payment
+      <div className="cart-footer">
+        {cartItems.length > 0 && (
+          <div className="total-price">
+            Price total: &nbsp;
+            {prices.price !== prices.finalPrice && (
+              <>
+                <span className="price">{prices.price} EUR</span>&nbsp;
+              </>
+            )}
+            <span className="discount-price">{prices.finalPrice} EUR</span>
+          </div>
+        )}
+        <div className="actions">
+          <Link href="/" className="browse-more">
+            Browse more typefaces
+          </Link>
+          {cartItems.length > 0 && (
+            <div
+              className="payment"
+              onClick={() => cart.products.length > 0 && redirectToCheckout()}
+            >
+              Proceed to payment
+            </div>
+          )}
         </div>
       </div>
     </>
@@ -102,4 +124,17 @@ export const calculateFinalPrice = (weight: TypefaceWeight) => {
   return weight.discount
     ? Math.ceil(weight.price - weight.price * (weight.discount / 100))
     : weight.price;
+};
+
+const calculateTotalPrices = (products: Array<ProductItem>) => {
+  let totalPrice = 0;
+  let discountPrice = 0;
+  products.forEach((product) => {
+    product.weights.forEach((weight) => {
+      totalPrice += weight.price;
+      discountPrice += calculateFinalPrice(weight);
+    });
+  });
+
+  return { totalPrice, discountPrice };
 };

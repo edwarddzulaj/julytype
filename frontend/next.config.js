@@ -37,7 +37,7 @@ const nextConfig = {
   },
   webpack: (config) => {
     config.module.rules.push({
-      test: /\btest\.node\b/,
+      test: /\bcanvas\.node\b/,
       use: "raw-loader",
     });
 
