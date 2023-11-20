@@ -14,6 +14,7 @@ export interface CartItem {
 export interface ProductItem {
   id: number;
   name: string;
+  totalPrice: number;
   weights: TypefaceWeight[];
   licenseType: string;
   companySize: number;

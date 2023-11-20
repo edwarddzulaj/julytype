@@ -37,7 +37,7 @@ const nextConfig = {
   },
   webpack: (config) => {
     config.module.rules.push({
-      test: /\.node/,
+      test: /\btest\.node\b/,
       use: "raw-loader",
     });
 

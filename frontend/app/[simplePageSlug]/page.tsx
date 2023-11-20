@@ -1,7 +1,7 @@
 import { fetchAPI } from "@/app/utils/fetch-api";
 import { SimplePage } from "@/@types/contentTypes";
 import { PageSection } from "../../@types/components";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import Markdown from "react-markdown";
 
 import Custom404 from "../404";
 import Section from "../components/UI/Section";
@@ -46,7 +46,7 @@ export default async function SimplePage({ params }: { params: { simplePageSlug:
               <h3>{section.title}</h3>
               <Section title={""} key={section.id}>
                 {/* eslint-disable-next-line react/no-children-prop */}
-                <ReactMarkdown children={section.content} />
+                <Markdown>{section.content}</Markdown>
                 {hasDownloadComponent && <DownloadTrialFonts />}
               </Section>
             </>

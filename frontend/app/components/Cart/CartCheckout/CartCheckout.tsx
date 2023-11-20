@@ -1,4 +1,5 @@
 "use client";
+import { loadStripe } from "@stripe/stripe-js";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 
 import Link from "next/link";
@@ -14,49 +15,91 @@ export default function CartCheckout() {
   const [cartItems, setCartItems] = useState<Array<ProductItem>>([]);
 
   useEffect(() => {
-    const items = splitIntoTypefaces(cart.products);
+    const items = formatData(cart.products);
     setCartItems(items), [cart.products];
   }, [cart.products]);
 
+  const redirectToCheckout = async () => {
+    try {
+      const stripe = await loadStripe(
+        process.env.NEXT_PUBLIC_TEST_STRIPE_PUBLISHABLE_KEY as string
+      );
+
+      if (!stripe) throw new Error("Stripe failed to initialize.");
+
+      const checkoutResponse = await fetch("/cart/api/checkout_sessions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ cartItems }),
+      });
+
+      const { sessionId } = await checkoutResponse.json();
+      const stripeError = await stripe.redirectToCheckout({ sessionId });
+
+      if (stripeError) {
+        console.error(stripeError);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <div className="cart-items">
-      {cartItems.length > 0 &&
-        cartItems.map((item) => <ProductItemContainer key={item.id} item={item} />)}
-      {cartItems.length === 0 && (
-        <div className="no-cart-items">
-          <h5>You have no items in your cart yet</h5>
-          <Link href="/" className="browse-more">
-            Browse more typefaces
-          </Link>
+    <>
+      <div className="cart-items">
+        {cartItems.length > 0 &&
+          cartItems.map((item) => <ProductItemContainer key={item.id} item={item} />)}
+        {cartItems.length === 0 && (
+          <div className="no-cart-items">
+            <h5>You have no items in your cart yet</h5>
+          </div>
+        )}
+      </div>
+      <div className="actions">
+        <Link href="/" className="browse-more">
+          Browse more typefaces
+        </Link>
+        <div className="payment" onClick={() => cart.products.length > 0 && redirectToCheckout()}>
+          Proceed to payment
         </div>
-      )}
-    </div>
+      </div>
+    </>
   );
 }
 
-function splitIntoTypefaces(products: Array<CartItem>) {
+function formatData(items: Array<CartItem>) {
   let typefaceProducts: Array<ProductItem> = [];
 
-  products.forEach((product) => {
-    const existingProduct = typefaceProducts.find((p) => p.id === product.id);
+  items.forEach((item) => {
+    const existingProduct = typefaceProducts.find((p) => p.id === item.id);
 
     if (existingProduct) {
-      existingProduct.weights.push(product.weight);
+      existingProduct.weights.push(item.weight);
+      existingProduct.totalPrice += calculateFinalPrice(item.weight);
     } else {
       const newProduct = {
-        id: product.id,
-        name: product.name,
+        id: item.id,
+        name: item.name,
+        totalPrice: calculateFinalPrice(item.weight),
         weights: [] as TypefaceWeight[],
-        licenseType: product.licenseType,
-        companySize: product.companySize,
-        discount: product.discount,
-        wholePackage: product.wholePackage,
+        licenseType: item.licenseType,
+        companySize: item.companySize,
+        discount: item.discount,
+        wholePackage: item.wholePackage,
       };
 
-      newProduct.weights.push(product.weight);
+      newProduct.weights.push(item.weight);
       typefaceProducts.push(newProduct);
     }
   });
 
   return typefaceProducts;
 }
+
+export const calculateFinalPrice = (weight: TypefaceWeight) => {
+  return weight.discount
+    ? Math.ceil(weight.price - weight.price * (weight.discount / 100))
+    : weight.price;
+};
