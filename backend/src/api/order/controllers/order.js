@@ -74,4 +74,27 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       return { error };
     }
   },
+  async finishOrder(ctx) {
+    const { sessionId, email } = ctx.request.body;
+
+    try {
+      const orders = await strapi.entityService.findMany("api::order.order", {
+        filters: {
+          stripeId: sessionId,
+        },
+      });
+      const order = orders[0];
+
+      if (!order.email && email) {
+        await strapi.entityService.update("api::order.order", order.id, {
+          data: {
+            email: email,
+          },
+        });
+      }
+    } catch (error) {
+      ctx.response.status = 500;
+      return { error };
+    }
+  },
 }));

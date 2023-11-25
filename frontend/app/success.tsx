@@ -1,4 +1,5 @@
 import Section from "./components/UI/Section";
+import { fetchAPI } from "./utils/fetch-api";
 
 const stripe = require("stripe")(process.env.STRIPE_TEST_SECRET_KEY as string);
 
@@ -17,6 +18,8 @@ export default async function SuccessPage({ sessionId }: { sessionId: string | u
 
         customerName = customer_details.name;
         customerEmail = customer_details.email;
+
+        finishOrder(customerEmail);
       } else {
         if (!stripe) throw new Error("Stripe failed to initialize.");
       }
@@ -25,6 +28,14 @@ export default async function SuccessPage({ sessionId }: { sessionId: string | u
     } finally {
       return [customerName, customerEmail];
     }
+  }
+
+  async function finishOrder(customerEmail: string) {
+    await fetchAPI(
+      "/order/finish_order",
+      {},
+      { method: "POST", body: JSON.stringify({ sessionId: sessionId, email: customerEmail }) }
+    );
   }
 
   return (
