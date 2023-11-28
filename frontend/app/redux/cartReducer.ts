@@ -3,6 +3,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface CartItem {
   id: number;
+  styleId: number;
   name: string;
   weight: TypefaceWeight;
   licenseType: string;
@@ -15,7 +16,7 @@ export interface ProductItem {
   id: number;
   name: string;
   totalPrice: number;
-  weights: TypefaceWeight[];
+  weights: Array<TypefaceWeight & { styleId: number }>;
   licenseType: string;
   companySize: number;
   discount?: boolean;

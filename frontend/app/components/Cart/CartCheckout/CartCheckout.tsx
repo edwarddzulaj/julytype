@@ -98,21 +98,21 @@ function formatData(items: Array<CartItem>) {
     const existingProduct = typefaceProducts.find((p) => p.id === item.id);
 
     if (existingProduct) {
-      existingProduct.weights.push(item.weight);
+      existingProduct.weights.push({ ...item.weight, styleId: item.styleId });
       existingProduct.totalPrice += calculateFinalPrice(item.weight);
     } else {
-      const newProduct = {
+      const newProduct: ProductItem = {
         id: item.id,
         name: item.name,
         totalPrice: calculateFinalPrice(item.weight),
-        weights: [] as TypefaceWeight[],
+        weights: [],
         licenseType: item.licenseType,
         companySize: item.companySize,
         discount: item.discount,
         wholePackage: item.wholePackage,
       };
 
-      newProduct.weights.push(item.weight);
+      newProduct.weights.push({ ...item.weight, styleId: item.styleId });
       typefaceProducts.push(newProduct);
     }
   });

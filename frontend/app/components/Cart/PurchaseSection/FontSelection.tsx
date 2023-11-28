@@ -39,7 +39,7 @@ export default function FontSelection({ typeface }: { typeface: Typeface }) {
     }
   }, [wholePackageSelected]);
 
-  const handleOptionChange = (weight: TypefaceWeight | null) => {
+  const handleOptionChange = (weight: TypefaceWeight | undefined, styleId: number) => {
     if (!weight) {
       // setSelectedOption("whole"); //TODO: implement adding the whole typeface
     } else {
@@ -47,6 +47,7 @@ export default function FontSelection({ typeface }: { typeface: Typeface }) {
 
       const item: CartItem = {
         id: typeface.id,
+        styleId: styleId,
         name: typeface.attributes.title,
         weight: weight,
         licenseType: "desktop",
@@ -105,10 +106,13 @@ export default function FontSelection({ typeface }: { typeface: Typeface }) {
                           !!cart.products.find((product) => product.weight.id === weight.id)
                         }
                         onClick={() =>
-                          handleOptionChange({
-                            ...weight,
-                            title: fullTitle,
-                          })
+                          handleOptionChange(
+                            {
+                              ...weight,
+                              title: fullTitle,
+                            },
+                            style.id
+                          )
                         }
                       />
                       <label

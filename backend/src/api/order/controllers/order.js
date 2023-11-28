@@ -31,6 +31,13 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           const weightsNames = product.weights
             .map((weight) => weight.title)
             .join(", ");
+
+          const weightsData = product.weights.map((weight) => ({
+            styleId: weight.styleId,
+            id: weight.id,
+            title: weight.title,
+          }));
+
           return {
             price_data: {
               currency: "eur",
@@ -38,7 +45,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
                 name: `JT ${product.name}`,
                 description: `Your selected weights from JT ${product.name}: ${weightsNames}`,
                 metadata: {
-                  weights: weightsNames,
+                  weights: JSON.stringify(weightsData),
                 },
               },
               unit_amount: product.totalPrice * 100,
@@ -85,12 +92,17 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       });
       const order = orders[0];
 
-      if (!order.email && email) {
-        await strapi.entityService.update("api::order.order", order.id, {
-          data: {
-            email: email,
-          },
-        });
+      // if (!order.email && email) {
+      if (email) {
+        // await strapi.entityService.update("api::order.order", order.id, {
+        //   data: {
+        //     email: email,
+        //   },
+        // });
+
+        await strapi
+          .service("api::order.order")
+          .sendTypefacesToEmail(email, order.products);
       }
     } catch (error) {
       ctx.response.status = 500;
