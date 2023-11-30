@@ -1,4 +1,5 @@
 const AdmZip = require("adm-zip");
+const nodemailer = require("nodemailer");
 
 const STRAPI_ORIGIN =
   process.env.STRAPI_ENV === "production"
@@ -72,12 +73,49 @@ module.exports = class OrderEmail {
       }
 
       await Promise.all(promises);
-
       return zip;
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error: ", error);
       throw error;
     }
+  }
+
+  async send(zip, clientName, clientEmail) {
+    const TEXT_MESSAGE = `Hello ${
+      clientName.split(" ")[0]
+    } and thank you for purchasing our fonts, we have packaged a zip for you with your order. \r Enjoy!`;
+
+    const message = {
+      from: process.env.ORDERS_EMAIL_ADDRESS,
+      to: clientEmail,
+      subject: "JulyType Purchase",
+      text: TEXT_MESSAGE,
+      html: `<p>${TEXT_MESSAGE}</p>`,
+      attachments: [
+        {
+          filename: "JT_Typefaces.zip",
+          content: zip.toBuffer(),
+        },
+      ],
+    };
+
+    let transporter = nodemailer.createTransport({
+      host: process.env.ORDERS_EMAIL_HOST,
+      port: 465,
+      secure: true,
+      auth: {
+        user: process.env.ORDERS_EMAIL_ADDRESS,
+        pass: process.env.ORDERS_EMAIL_PASSWORD,
+      },
+    });
+
+    transporter.sendMail(message, (err, info) => {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log(`Message delivered to ${info.accepted}`);
+      }
+    });
   }
 
   // @ts-ignore

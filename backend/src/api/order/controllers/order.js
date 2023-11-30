@@ -82,7 +82,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
     }
   },
   async finishOrder(ctx) {
-    const { sessionId, email } = ctx.request.body;
+    const { sessionId, name, email } = ctx.request.body;
 
     try {
       const orders = await strapi.entityService.findMany("api::order.order", {
@@ -92,17 +92,16 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       });
       const order = orders[0];
 
-      // if (!order.email && email) {
-      if (email) {
-        // await strapi.entityService.update("api::order.order", order.id, {
-        //   data: {
-        //     email: email,
-        //   },
-        // });
+      if (!order.email && email) {
+        await strapi.entityService.update("api::order.order", order.id, {
+          data: {
+            email: email,
+          },
+        });
 
         await strapi
           .service("api::order.order")
-          .sendTypefacesToEmail(email, order.products);
+          .sendTypefacesToEmail(name, email, order.products);
       }
     } catch (error) {
       ctx.response.status = 500;

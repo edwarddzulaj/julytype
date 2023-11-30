@@ -19,7 +19,7 @@ export default async function SuccessPage({ sessionId }: { sessionId: string | u
         customerName = customer_details.name;
         customerEmail = customer_details.email;
 
-        finishOrder(customerEmail);
+        finishOrder(customerName, customerEmail);
       } else {
         if (!stripe) throw new Error("Stripe failed to initialize.");
       }
@@ -30,11 +30,14 @@ export default async function SuccessPage({ sessionId }: { sessionId: string | u
     }
   }
 
-  async function finishOrder(customerEmail: string) {
+  async function finishOrder(customerName: string, customerEmail: string) {
     await fetchAPI(
       "/order/finish_order",
       {},
-      { method: "POST", body: JSON.stringify({ sessionId: sessionId, email: customerEmail }) }
+      {
+        method: "POST",
+        body: JSON.stringify({ sessionId: sessionId, name: customerName, email: customerEmail }),
+      }
     );
   }
 
