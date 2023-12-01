@@ -52,7 +52,7 @@ export default async function Style({ params }: { params: { slug: string; styleS
   const { supportedLanguages } = typeface.attributes;
 
   const regularWeight = weights.find((w) => w.title.toLowerCase().includes("regular"));
-  const opentypeFeaturesFontTitle = `${title.trim()} ${regularWeight?.title.trim()}`;
+  const opentypeFeaturesFontTitle = `${title}${title.trim()} ${regularWeight?.title.trim()}`;
 
   return (
     <ScriptChoiceProvider>
