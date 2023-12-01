@@ -1,8 +1,9 @@
 export interface PurchaseOption {
-  subtitle: string;
+  subtitle?: string;
   options: {
     value: string;
     label: string;
+    checked?: boolean;
   }[];
   info?: {
     text: string;

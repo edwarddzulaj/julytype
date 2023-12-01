@@ -1083,56 +1083,6 @@ footer .pages {
   }
 }
 
-.purchase-section .license-options .purchase-option .options {
-  margin: 16px 0;
-}
-.purchase-section .license-options .purchase-option .options form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.purchase-section .license-options .purchase-option .options form input[type=radio] {
-  display: none;
-}
-.purchase-section .license-options .purchase-option .options form label {
-  display: inline-flex;
-  padding: 14px 16px;
-  border-radius: 12px;
-  align-items: center;
-  flex-shrink: 0;
-  border: none;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
-  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
-  color: var(--foreground);
-  background-color: var(--background);
-  padding: 6px 12px;
-  border-radius: 8px;
-  outline: 1px solid var(--foreground);
-  padding: 13px 24px;
-}
-.purchase-section .license-options .purchase-option .options form label:hover {
-  cursor: pointer;
-}
-.purchase-section .license-options .purchase-option .options form label:hover, .purchase-section .license-options .purchase-option .options form label.selected {
-  background-color: var(--foreground);
-  color: var(--background);
-}
-.purchase-section .license-options .purchase-option .options form label:focus-visible {
-  outline: 2px solid var(--foreground);
-}
-.purchase-section .license-options .purchase-option .options form label:focus:not(:focus-visible) {
-  outline: none;
-}
-.purchase-section .license-options .purchase-option .options form label:active {
-  color: var(--foreground);
-  background-color: var(--background);
-}
-.purchase-section .license-options .purchase-option .options form label:disabled {
-  color: var(--grey);
-}
 .purchase-section .font-selection form {
   display: flex;
   flex-direction: column;
@@ -1197,6 +1147,57 @@ footer .pages {
     grid-template-columns: 1fr;
     gap: 0.972rem;
   }
+}
+
+.purchase-option .options {
+  margin: 16px 0;
+}
+.purchase-option .options form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.purchase-option .options form input[type=radio] {
+  display: none;
+}
+.purchase-option .options form label {
+  display: inline-flex;
+  padding: 14px 16px;
+  border-radius: 12px;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 100% */
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+  color: var(--foreground);
+  background-color: var(--background);
+  padding: 6px 12px;
+  border-radius: 8px;
+  outline: 1px solid var(--foreground);
+  padding: 13px 24px;
+}
+.purchase-option .options form label:hover {
+  cursor: pointer;
+}
+.purchase-option .options form label:hover, .purchase-option .options form label.selected {
+  background-color: var(--foreground);
+  color: var(--background);
+}
+.purchase-option .options form label:focus-visible {
+  outline: 2px solid var(--foreground);
+}
+.purchase-option .options form label:focus:not(:focus-visible) {
+  outline: none;
+}
+.purchase-option .options form label:active {
+  color: var(--foreground);
+  background-color: var(--background);
+}
+.purchase-option .options form label:disabled {
+  color: var(--grey);
 }
 
 .quick-buttons {
@@ -1538,7 +1539,7 @@ footer .pages {
 }
 .font-tester .font-sample {
   min-height: 20vh;
-  padding-top: 6.48rem;
+  padding-top: 8.1rem;
   transition: font-size 0.1s ease-out;
   font-family: "Adobe Blank";
   white-space-collapse: preserve-breaks;
@@ -1549,6 +1550,25 @@ footer .pages {
 }
 .font-tester .font-sample:not(.edit-mode) {
   cursor: pointer;
+}
+
+.opentype-features-preview .text-container {
+  color: var(--grey);
+}
+.opentype-features-preview .text-container span.active {
+  color: var(--foreground);
+}
+.opentype-features-preview .text-container .allcaps-on {
+  text-transform: uppercase;
+}
+.opentype-features-preview .text-container .frac-on {
+  font-feature-settings: "frac" 1;
+}
+.opentype-features-preview .text-container .subs.subs-on {
+  font-feature-settings: "subs";
+}
+.opentype-features-preview .text-container .sups.sups-on {
+  font-feature-settings: "sups";
 }
 
 .checkbox-option {
