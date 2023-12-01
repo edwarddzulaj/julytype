@@ -1,23 +1,54 @@
+"use client";
+
 import FontSelection from "./FontSelection";
 import { Typeface } from "@/@types/contentTypes";
 import PurchaseOption from "./PurchaseOption";
 import { companySizeOptions, discountOptions, licenseOptions } from "./purchase-option-configs";
+import { useState } from "react";
 
 export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
+  const [purchaseDetails, setPurchaseDetails] = useState<{
+    licenseType: string | null;
+    companySize: number | null;
+    discount: boolean | null;
+  }>({
+    licenseType: null,
+    companySize: null,
+    discount: null,
+  });
+
   return (
     <section className="purchase-section">
       <div className="license-options">
         <div>
           <h5>License Type</h5>
-          <PurchaseOption config={licenseOptions} />
+          <PurchaseOption
+            config={licenseOptions}
+            setCallback={(optionValue: string) => {
+              setPurchaseDetails({ ...purchaseDetails, licenseType: optionValue });
+            }}
+          />
         </div>
         <div>
           <h5>Company Size</h5>
-          <PurchaseOption config={companySizeOptions} />
+          <PurchaseOption
+            config={companySizeOptions}
+            setCallback={(optionValue: string) => {
+              setPurchaseDetails({ ...purchaseDetails, companySize: +optionValue });
+            }}
+          />
         </div>
         <div>
           <h5>Discount</h5>
-          <PurchaseOption config={discountOptions} />
+          <PurchaseOption
+            config={discountOptions}
+            setCallback={(optionValue: string) => {
+              setPurchaseDetails({
+                ...purchaseDetails,
+                discount: optionValue === "yes" ? true : false,
+              });
+            }}
+          />
         </div>
       </div>
       <div className="font-selection-options">

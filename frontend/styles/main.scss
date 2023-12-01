@@ -701,30 +701,6 @@ footer {
 }
 
 .purchase-section {
-  .license-options {
-    .purchase-option {
-      .options {
-        margin: 16px 0;
-
-        form {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
-
-          input[type="radio"] {
-            display: none;
-          }
-
-          label {
-            @include buttons.tertiary();
-
-            padding: 13px 24px;
-          }
-        }
-      }
-    }
-  }
-
   .font-selection {
     form {
       display: flex;
@@ -799,6 +775,28 @@ footer {
     @media (max-width: $mobile-breakpoint) {
       grid-template-columns: 1fr;
       gap: $gutter-thin-h;
+    }
+  }
+}
+
+.purchase-option {
+  .options {
+    margin: 16px 0;
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+
+      input[type="radio"] {
+        display: none;
+      }
+
+      label {
+        @include buttons.tertiary();
+
+        padding: 13px 24px;
+      }
     }
   }
 }
@@ -1039,7 +1037,7 @@ footer {
 
   .font-sample {
     min-height: 20vh;
-    padding-top: $gutter-h * 4;
+    padding-top: $gutter-h * 5;
     transition: font-size 0.1s ease-out;
     font-family: "Adobe Blank";
 
@@ -1050,6 +1048,32 @@ footer {
 
     &:not(.edit-mode) {
       cursor: pointer;
+    }
+  }
+}
+
+.opentype-features-preview {
+  .text-container {
+    color: var(--grey);
+
+    span.active {
+      color: var(--foreground);
+    }
+
+    .allcaps-on {
+      text-transform: uppercase;
+    }
+
+    .frac-on {
+      font-feature-settings: "frac" 1;
+    }
+
+    .subs.subs-on {
+      font-feature-settings: "subs";
+    }
+
+    .sups.sups-on {
+      font-feature-settings: "sups";
     }
   }
 }

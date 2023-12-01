@@ -69,7 +69,7 @@ export default function Typetester({
       fontsData.forEach((font) => {
         if (loadedFaces.find((f) => f.family === font.label)) return;
         const newFont = new FontFace(`${font.title}`, `url(${font.fontPath})`);
-
+        
         newFont
           .load()
           .then(function (loaded_face) {
