@@ -45,7 +45,7 @@ export function ChooseTypefacesPopup({
     setAvailableTrialFonts(Object.values(fonts));
   };
 
-  const choseFont = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const chooseFont = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updatedFonts = [...chosenFontIDs];
     const fontId = e.target.value;
 
@@ -74,7 +74,12 @@ export function ChooseTypefacesPopup({
         <ul className="available-fonts">
           {availableTrialFonts.map((font: { name: string; id: number }) => (
             <li key={font.id}>
-              <input type="checkbox" id={font.id.toString()} value={font.id} onChange={choseFont} />
+              <input
+                type="checkbox"
+                id={font.id.toString()}
+                value={font.id}
+                onChange={chooseFont}
+              />
               <label htmlFor={font.id.toString()}> {font.name}</label>
             </li>
           ))}
