@@ -56,7 +56,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
         </div>
         <div className="font-selection-options">
           <h5>Choose weights and styles</h5>
-          <FontSelection typeface={typeface.attributes} />
+          <FontSelection typeface={typeface} />
         </div>
       </section>
     </Provider>
