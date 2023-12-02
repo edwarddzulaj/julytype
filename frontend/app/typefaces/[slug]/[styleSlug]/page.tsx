@@ -52,7 +52,7 @@ export default async function Style({ params }: { params: { slug: string; styleS
   const { supportedLanguages } = typeface.attributes;
 
   const regularWeight = weights.find((w) => w.title.toLowerCase().includes("regular"));
-  const opentypeFeaturesFontTitle = `${title}${title.trim()} ${regularWeight?.title.trim()}`;
+  const opentypeFeaturesFontTitle = `${title.trim()} ${regularWeight?.title.trim()}`;
 
   return (
     <ScriptChoiceProvider>
@@ -79,10 +79,8 @@ export default async function Style({ params }: { params: { slug: string; styleS
           <section className="typetesters">
             {weights.map((weight: TypefaceWeight) => {
               const fontLabel = `${title.trim()} ${weight.title.trim()}`;
-
               const typetesterData: FontsData = {
                 label: fontLabel,
-                title: title + fontLabel,
                 value: btoa(weight.title),
                 fontPath: getStrapiMedia(weight.fontFile?.data?.attributes?.url),
               };
