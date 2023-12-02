@@ -97,18 +97,15 @@ export default async function Typeface({ params }: { params: { slug: string } })
 const constructFontData = (typeface: Typeface) => {
   let typetesterFontsData: FontsData[] = [];
 
-  const { title, styles } = typeface.attributes;
+  const { styles } = typeface.attributes;
 
   styles.data.map((style: Style) => {
     style.attributes.weights.map((weight: TypefaceWeight) => {
-      let testerStyleName = style.attributes.title.replace(title, "");
-      testerStyleName = testerStyleName.length > 0 ? testerStyleName.trim() + " " : "";
-      const fontLabel = `${testerStyleName}${weight.title.trim()}`;
-      const fullFontTitle = `${title} ${fontLabel}`;
+      const fontLabel = `${style.attributes.title.trim()} ${weight.title.trim()}`;
       const fontValue = btoa(fontLabel);
+
       typetesterFontsData.push({
         label: fontLabel,
-        title: fullFontTitle,
         value: fontValue,
         fontPath: getStrapiMedia(weight.fontFile?.data?.attributes?.url),
       });

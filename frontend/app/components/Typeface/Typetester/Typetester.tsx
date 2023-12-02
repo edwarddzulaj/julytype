@@ -22,8 +22,7 @@ import { ScriptChoiceContext } from "@/app/providers";
 export default function Typetester({
   fontsData = [
     {
-      title: "Typeface Font",
-      label: "Font",
+      label: "Typeface Font",
       value: "font",
       fontPath: "",
     },
@@ -39,13 +38,12 @@ export default function Typetester({
     textColumns?: string;
   };
 }) {
-  const [isMobileView, setIsMobileView] = useState(window && window.innerWidth <= 840);
-
+  const [isMobileView, setIsMobileView] = useState(false);
   const fontTesterRef = useRef<HTMLInputElement>(null);
   const [fontFamily, setFontFamily] = useState(fontsData[0]);
   const [fontLoaded, setFontLoaded] = useState(false);
   const [sampleLang, setSampleLang] = useState(languages.latin[0].value);
-  const [fontSize, setFontSize] = useState(isMobileView ? 38 : 108);
+  const [fontSize, setFontSize] = useState(isMobileView ? 38 : 148);
   const [features, setFeatures] = useState(opentypeFeatures);
   const [cases, setCases] = useState(caseOptions);
   const [alignment, setAlignment] = useState(alignmentOptions.find((f) => f.checked)?.value);
@@ -67,13 +65,16 @@ export default function Typetester({
       const loadedFaces = [...fontFaceSet];
 
       fontsData.forEach((font) => {
-        if (loadedFaces.find((f) => f.family === font.label)) return;
-        const newFont = new FontFace(`${font.title}`, `url(${font.fontPath})`);
-        
+        if (loadedFaces.find((f) => f.family === font.label)) {
+          setFontLoaded(true);
+          return;
+        }
+
+        const newFont = new FontFace(`${font.label}`, `url(${font.fontPath})`);
         newFont
           .load()
-          .then(function (loaded_face) {
-            document.fonts.add(loaded_face);
+          .then((loadedFace) => {
+            document.fonts.add(loadedFace);
             setFontLoaded(true);
           })
           .catch(function (error) {
@@ -90,6 +91,8 @@ export default function Typetester({
   }, [script]);
 
   useEffect(() => {
+    setIsMobileView(window && window.innerWidth <= 840);
+
     window.addEventListener("resize", () => {
       setIsMobileView(window.innerWidth <= 840);
     });
@@ -110,9 +113,9 @@ export default function Typetester({
       textAlign: alignment as any,
       lineHeight: `${fontSize * lineHeight}px`,
       columnCount: textColumns,
-      fontFamily: fontLoaded ? fontFamily.title : "",
+      fontFamily: fontLoaded ? fontFamily.label : "",
     };
-  }, [alignment, cases, features, fontFamily.title, fontLoaded, fontSize, lineHeight, textColumns]);
+  }, [alignment, cases, features, fontFamily.label, fontLoaded, fontSize, lineHeight, textColumns]);
 
   const handleFontFamily = (e: any) => {
     const fontValue = e.value;
@@ -255,10 +258,17 @@ export default function Typetester({
               />
             </div>
             <div className="fontsize slider extra-option">
-              <label>
+              <label htmlFor="fontsize">
                 <span className="fontsize-value">{fontSize}px</span>
               </label>
-              <input onInput={handleFontSize} type="range" min="12" max="250" value={fontSize} />
+              <input
+                id="fontsize"
+                onInput={handleFontSize}
+                type="range"
+                min="12"
+                max="250"
+                value={fontSize}
+              />
             </div>
             <div className="opentype-features extra-option">
               <CheckboxDropdown
@@ -361,7 +371,7 @@ const buildSampleText = (
   }
 
   const randomText = samples[index!]?.text.trim();
-  const defaultSize = samples[index!]?.defaultFontSize || 108;
+  const defaultSize = samples[index!]?.defaultFontSize || 148;
   const defaultAlignment = samples[index!]?.textAlignment || "center";
   const defaultColumns = samples[index!]?.twoColumns ? 2 : 1;
 

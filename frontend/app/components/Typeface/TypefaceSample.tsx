@@ -8,7 +8,7 @@ export default function TypefaceSample({
   regularWeight,
   hoverWeight,
 }: {
-  title: String;
+  title: string;
   regularWeight: TypefaceWeight | null;
   hoverWeight?: TypefaceWeight | null;
 }) {
@@ -30,38 +30,46 @@ export default function TypefaceSample({
     return {
       fontFamily:
         isHover && hoverWeight
-          ? `${title} ${hoverWeight!.title} Hovered`
+          ? `${title} ${hoverWeight!.title}`
           : `${title} ${regularWeight!.title}, "Adobe Blank"`,
     };
   }, [hoverWeight, isHover, regularWeight, title]);
 
   useEffect(() => {
-    const newFont = new FontFace(`${title} ${regularWeight!.title}`, `url(${regularURL})`);
+    const regularWeightFont = `${title} ${regularWeight!.title}`;
+    const hoverWeightFont = `${title} ${hoverWeight?.title}`;
 
-    newFont
-      .load()
-      .then(function (loaded_face) {
-        document.fonts.add(loaded_face);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+    document.fonts.ready.then((fontFaceSet) => {
+      const loadedFaces = [...fontFaceSet];
 
-    if (hoverWeight) {
-      const hoveredFont = new FontFace(
-        `${title} ${hoverWeight!.title} Hovered`,
-        `url(${hoveredURL})`
-      );
+      const isRegularFontLoaded = loadedFaces.find((f) => f.family === regularWeightFont);
+      const isHoverFontLoaded = loadedFaces.find((f) => f.family === hoverWeightFont);
 
-      hoveredFont
-        .load()
-        .then(function (loaded_face) {
-          document.fonts.add(loaded_face);
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
-    }
+      if (!isRegularFontLoaded) {
+        const newFont = new FontFace(regularWeightFont, `url(${regularURL})`);
+        newFont
+          .load()
+          .then(function (loadedFace) {
+            document.fonts.add(loadedFace);
+          })
+          .catch(function (error) {
+            console.error(error);
+          });
+      }
+
+      if (hoverWeight && !isHoverFontLoaded) {
+        const hoveredFont = new FontFace(hoverWeightFont, `url(${hoveredURL})`);
+
+        hoveredFont
+          .load()
+          .then(function (loadedFace) {
+            document.fonts.add(loadedFace);
+          })
+          .catch(function (error) {
+            console.error(error);
+          });
+      }
+    });
   }, [title, regularURL, hoveredURL, regularWeight, hoverWeight]);
 
   return (
