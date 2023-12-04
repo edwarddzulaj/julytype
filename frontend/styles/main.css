@@ -1160,7 +1160,28 @@ footer .pages {
 .purchase-option .options form input[type=radio] {
   display: none;
 }
-.purchase-option .options form label {
+.purchase-option .options form label .note {
+  display: inline;
+  font-size: 20px;
+  padding: 0 5px;
+}
+.purchase-option .options form label .note p.text {
+  display: none;
+}
+.purchase-option .options form label .note:hover {
+  cursor: pointer;
+}
+.purchase-option .options form label .note:hover p.text {
+  padding-bottom: 0;
+  display: block;
+}
+.purchase-option .options.checkbox form {
+  flex-direction: column;
+}
+.purchase-option .options.checkbox form label {
+  font-size: 20px;
+}
+.purchase-option .options.radio label {
   display: inline-flex;
   padding: 14px 16px;
   border-radius: 12px;
@@ -1179,25 +1200,29 @@ footer .pages {
   outline: 1px solid var(--foreground);
   padding: 13px 24px;
 }
-.purchase-option .options form label:hover {
+.purchase-option .options.radio label:hover {
   cursor: pointer;
 }
-.purchase-option .options form label:hover, .purchase-option .options form label.selected {
+.purchase-option .options.radio label:hover, .purchase-option .options.radio label.selected {
   background-color: var(--foreground);
   color: var(--background);
 }
-.purchase-option .options form label:focus-visible {
+.purchase-option .options.radio label:focus-visible {
   outline: 2px solid var(--foreground);
 }
-.purchase-option .options form label:focus:not(:focus-visible) {
+.purchase-option .options.radio label:focus:not(:focus-visible) {
   outline: none;
 }
-.purchase-option .options form label:active {
+.purchase-option .options.radio label:active {
   color: var(--foreground);
   background-color: var(--background);
 }
-.purchase-option .options form label:disabled {
+.purchase-option .options.radio label:disabled {
   color: var(--grey);
+}
+.purchase-option .iconly {
+  margin-left: -2px;
+  padding-left: 0;
 }
 
 .quick-buttons {
@@ -1296,11 +1321,18 @@ footer .pages {
   line-height: 24px;
 }
 
+div:hover > .iconly {
+  display: inline;
+  text-decoration: none;
+}
+
 .iconly {
   position: relative;
   padding: 0 2px;
   font-size: 20px;
   line-height: normal;
+  display: inline-block;
+  text-decoration: none;
 }
 
 .choose-fonts-popup {

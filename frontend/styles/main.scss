@@ -866,11 +866,48 @@ footer {
       }
 
       label {
+        .note {
+          display: inline;
+          font-size: 20px;
+          padding: 0 5px;
+
+          p.text {
+            display: none;
+          }
+          &:hover {
+            cursor: pointer;
+
+            p.text {
+              padding-bottom: 0;
+              display: block;
+            }
+          }
+        }
+      }
+    }
+
+    &.checkbox {
+      form {
+        flex-direction: column;
+
+        label {
+          font-size: 20px;
+        }
+      }
+    }
+
+    &.radio {
+      label {
         @include buttons.tertiary();
 
         padding: 13px 24px;
       }
     }
+  }
+
+  .iconly {
+    margin-left: -2px;
+    padding-left: 0;
   }
 }
 
@@ -936,11 +973,19 @@ footer {
   }
 }
 
+div:hover > .iconly {
+  display: inline;
+  text-decoration: none;
+}
+
 .iconly {
   position: relative;
   padding: 0 2px;
   font-size: 20px;
   line-height: normal;
+
+  display: inline-block;
+  text-decoration: none;
 }
 
 .choose-fonts-popup {

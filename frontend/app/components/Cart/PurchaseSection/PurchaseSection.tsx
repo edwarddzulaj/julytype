@@ -6,18 +6,22 @@ import FontSelection from "./FontSelection";
 import { Typeface } from "@/@types/contentTypes";
 import PurchaseOption from "./PurchaseOption";
 import { companySizeOptions, discountOptions, licenseOptions } from "./purchase-option-configs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
   const [purchaseDetails, setPurchaseDetails] = useState<{
-    licenseType: string | null;
-    companySize: number | null;
-    discount: boolean | null;
+    licenseType: string[] | null;
+    companySize: string[] | null;
+    discount: string[] | null;
   }>({
     licenseType: null,
     companySize: null,
     discount: null,
   });
+
+  useEffect(() => {
+    console.log(purchaseDetails);
+  }, [purchaseDetails]);
 
   return (
     <Provider store={store}>
@@ -27,8 +31,9 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
             <h5>License Type</h5>
             <PurchaseOption
               config={licenseOptions}
-              setCallback={(optionValue: string) => {
-                setPurchaseDetails({ ...purchaseDetails, licenseType: optionValue });
+              optionType="checkbox"
+              setCallback={(optionValues: string[]) => {
+                setPurchaseDetails({ ...purchaseDetails, licenseType: optionValues });
               }}
             />
           </div>
@@ -36,8 +41,8 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
             <h5>Company Size</h5>
             <PurchaseOption
               config={companySizeOptions}
-              setCallback={(optionValue: string) => {
-                setPurchaseDetails({ ...purchaseDetails, companySize: +optionValue });
+              setCallback={(optionValues: string[]) => {
+                setPurchaseDetails({ ...purchaseDetails, companySize: optionValues });
               }}
             />
           </div>
@@ -45,10 +50,10 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
             <h5>Discount</h5>
             <PurchaseOption
               config={discountOptions}
-              setCallback={(optionValue: string) => {
+              setCallback={(optionValues: string[]) => {
                 setPurchaseDetails({
                   ...purchaseDetails,
-                  discount: optionValue === "yes" ? true : false,
+                  discount: optionValues,
                 });
               }}
             />

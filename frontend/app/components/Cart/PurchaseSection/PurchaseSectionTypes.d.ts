@@ -3,6 +3,7 @@ export interface PurchaseOption {
   options: {
     value: string;
     label: string;
+    note?: string;
     checked?: boolean;
   }[];
   info?: {

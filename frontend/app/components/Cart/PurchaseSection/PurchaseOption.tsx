@@ -8,41 +8,57 @@ import Iconly, { icons } from "@/app/components/UI/Iconly";
 export default function PurchaseOption({
   config,
   setCallback,
+  optionType = "radio",
 }: {
   config: PurchaseOption;
   setCallback: Function;
+  optionType?: "radio" | "checkbox";
 }) {
   const { subtitle, options, info } = config;
   const defaultOption = options.find((o) => o.checked);
-  const [selectedOption, setSelectedOption] = useState<string | null>(defaultOption?.value || null);
+  const [selectedOptions, setSelectedOptions] = useState([defaultOption?.value] || null);
 
   const handleOptionChange = (value: string) => {
-    setSelectedOption(value);
+    if (optionType === "checkbox") {
+      if (selectedOptions.includes(value)) {
+        setSelectedOptions([...selectedOptions.filter((o) => o !== value)]);
+      } else {
+        setSelectedOptions([...selectedOptions, value]);
+      }
+    } else {
+      setSelectedOptions([value]);
+    }
   };
 
   useEffect(() => {
-    setCallback(selectedOption);
-  }, [selectedOption]); // eslint-disable-line react-hooks/exhaustive-deps
+    setCallback(selectedOptions);
+  }, [selectedOptions]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <article className="purchase-option">
       <div>
         {subtitle && <h6>{subtitle}</h6>}
-        <div className="options">
+        <div className={`options ${optionType}`}>
           <form>
             {options.map((option) => (
               <label
                 key={option.value}
-                className={selectedOption === option.value ? "selected" : ""}
+                className={selectedOptions.includes(option.value) ? "selected" : ""}
               >
                 <input
-                  type="radio"
+                  type={optionType}
                   name="option"
                   value={option.value}
                   defaultChecked={option.checked}
                   onClick={() => handleOptionChange(option.value)}
                 />
                 {option.label}
+                {option.note && (
+                  <div className="note">
+                    <Iconly icon={icons.info} />
+                    <p className="text">{option.note}</p>
+                  </div>
+                )}
               </label>
             ))}
           </form>
