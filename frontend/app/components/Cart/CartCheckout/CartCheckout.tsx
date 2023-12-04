@@ -10,10 +10,9 @@ import { useEffect, useState } from "react";
 
 export default function CartCheckout() {
   const cart = useAppSelector((state) => state.cart);
-  const dispatch = useAppDispatch();
-
   const [cartItems, setCartItems] = useState<Array<ProductItem>>([]);
   const [prices, setPrices] = useState({ price: 0, finalPrice: 0 });
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
   useEffect(() => {
     const items = formatData(cart.products);
@@ -29,6 +28,7 @@ export default function CartCheckout() {
         process.env.NEXT_PUBLIC_TEST_STRIPE_PUBLISHABLE_KEY as string
       );
       if (!stripe) throw new Error("Stripe failed to initialize.");
+      setIsRedirecting(true);
 
       const checkoutResponse = await fetch("/cart/api/checkout_sessions", {
         method: "POST",
@@ -42,9 +42,11 @@ export default function CartCheckout() {
       const stripeError = await stripe.redirectToCheckout({ sessionId });
 
       if (stripeError) {
+        setIsRedirecting(false);
         console.error(stripeError);
       }
     } catch (error) {
+      setIsRedirecting(false);
       console.error(error);
     }
   };
@@ -81,7 +83,7 @@ export default function CartCheckout() {
               className="payment"
               onClick={() => cart.products.length > 0 && redirectToCheckout()}
             >
-              Proceed to payment
+              {isRedirecting ? "Redirecting..." : "Proceed to payment"}
             </div>
           )}
         </div>
