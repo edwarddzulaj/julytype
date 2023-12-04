@@ -1,16 +1,17 @@
 ("use strict");
-const STRIPE_KEY =
-  process.env.STRAPI_ENV === "production"
-    ? process.env.STRIPE_SECRET_KEY
-    : process.env.STRIPE_TEST_SECRET_KEY;
+
+const isProduction = process.env.STRAPI_ENV === "production";
+const CLIENT_URL = isProduction
+  ? process.env.CLIENT_URL
+  : process.env.CLIENT_TEST_URL;
+
+const STRIPE_KEY = isProduction
+  ? process.env.STRIPE_SECRET_KEY
+  : process.env.STRIPE_TEST_SECRET_KEY;
 
 // @ts-ignore
 const stripe = require("stripe")(STRIPE_KEY);
 
-const CLIENT_URL =
-  process.env.STRAPI_ENV === "production"
-    ? process.env.CLIENT_URL
-    : process.env.CLIENT_TEST_URL;
 /**
  * order controller
  */
@@ -47,6 +48,9 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
                 metadata: {
                   weights: JSON.stringify(weightsData),
                 },
+                images: [
+                  `${process.env.STRAPI_URL}/assets/images/order-globus.jpeg`,
+                ],
               },
               unit_amount: product.totalPrice * 100,
             },

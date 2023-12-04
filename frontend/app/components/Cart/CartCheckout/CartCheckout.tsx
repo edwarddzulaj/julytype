@@ -28,7 +28,6 @@ export default function CartCheckout() {
       const stripe = await loadStripe(
         process.env.NEXT_PUBLIC_TEST_STRIPE_PUBLISHABLE_KEY as string
       );
-
       if (!stripe) throw new Error("Stripe failed to initialize.");
 
       const checkoutResponse = await fetch("/cart/api/checkout_sessions", {
