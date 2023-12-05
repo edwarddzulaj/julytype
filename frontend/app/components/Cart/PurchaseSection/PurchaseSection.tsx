@@ -8,18 +8,19 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
 import { CartItem, addToCart } from "@/app/redux/cartReducer";
 import { TypefaceWeight } from "@/@types/components";
+import { calculateTotalPrices, formatData } from "@/app/utils/cart-helpers";
 
 export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
   const cart = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
-
+  const [prices, setPrices] = useState({ price: 0, finalPrice: 0 });
   const [selectedItems, setSelectedItems] = useState<TypefaceWeight[]>([]);
   const [purchaseDetails, setPurchaseDetails] = useState<{
-    licenseType: string[] | undefined;
+    licenseTypes: string[] | undefined;
     companySize: string[] | undefined;
     discount: string[] | undefined;
   }>({
-    licenseType: undefined,
+    licenseTypes: undefined,
     companySize: undefined,
     discount: ["no"],
   });
@@ -30,7 +31,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
 
     setPurchaseDetails({
       ...purchaseDetails,
-      ...(defaultLicenseType ? { licenseType: [defaultLicenseType] } : {}),
+      ...(defaultLicenseType ? { licenseTypes: [defaultLicenseType] } : {}),
       ...(defaultCompanySize ? { companySize: [defaultCompanySize] } : {}),
     });
 
@@ -46,17 +47,24 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cart.products]);
+  }, []);
+
+  useEffect(() => {
+    const { totalPrice, discountPrice } = calculateTotalPrices(selectedItems);
+    setPrices({ price: totalPrice, finalPrice: discountPrice });
+  }, [selectedItems]);
 
   const addItemsToCart = () => {
-    if (purchaseDetails.licenseType && purchaseDetails.companySize) {
+    if (purchaseDetails.licenseTypes && purchaseDetails.companySize) {
       selectedItems.forEach((selectedItem) => {
+        if (cart.products.find((p) => p.weight.id === selectedItem.id)) return;
+
         const item: CartItem = {
           id: typeface.id,
           styleId: 1,
           name: typeface.attributes.title,
           weight: selectedItem,
-          licenseType: purchaseDetails.licenseType!,
+          licenseTypes: purchaseDetails.licenseTypes!,
           companySize: +purchaseDetails.companySize![0],
           discount: purchaseDetails.discount![0] === "yes",
           wholePackage: false,
@@ -64,6 +72,8 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
 
         dispatch(addToCart(item));
       });
+
+      window.location.href = "/cart";
     }
   };
 
@@ -76,7 +86,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
             config={licenseOptions}
             optionType="checkbox"
             setCallback={(optionValues: string[]) => {
-              setPurchaseDetails({ ...purchaseDetails, licenseType: optionValues });
+              setPurchaseDetails({ ...purchaseDetails, licenseTypes: optionValues });
             }}
           />
         </div>
@@ -112,7 +122,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
       </div>
       <div className="checkout-action">
         <div className="total-price">
-          Total: <span className="price">80 EUR</span> 64 EUR
+          Total: <span className="price">{prices.price} EUR</span> {prices.finalPrice} EUR
         </div>
         <button className="cart-link" disabled={selectedItems.length < 1} onClick={addItemsToCart}>
           Add to cart

@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import Iconly, { icons } from "../../UI/Iconly";
 import Link from "next/link";
+import { licenseOptions } from "../PurchaseSection/purchase-option-configs";
+import { pluralize } from "@/app/utils/text-helpers";
 
 export default function ProductItemContainer({ item }: { item: ProductItem }) {
   const [allWeights, setAllWeights] = useState("");
@@ -23,6 +25,20 @@ export default function ProductItemContainer({ item }: { item: ProductItem }) {
     });
   };
 
+  const licensesString = buildLicenseString(item.licenseTypes);
+
+  function buildLicenseString(licenseTypes: string[]) {
+    let licenses: string[] = [];
+    licenseTypes.forEach((licenseTypeValue) => {
+      const licenseOption = licenseOptions.options.find((o) => o.value === licenseTypeValue);
+      if (licenseOption) {
+        licenses.push(licenseOption.label);
+      }
+    });
+
+    return licenses.join(", ");
+  }
+
   return (
     <section className="cart-item-container">
       <article className="details">
@@ -31,8 +47,8 @@ export default function ProductItemContainer({ item }: { item: ProductItem }) {
           {allWeights}
         </div>
         <div>
-          <h6 className="title">License Type</h6>
-          {item.licenseType}
+          <h6 className="title">License {pluralize(item.licenseTypes.length, "Type", false)}</h6>
+          {licensesString}
         </div>
         <div>
           <h6 className="title">Company Size</h6>

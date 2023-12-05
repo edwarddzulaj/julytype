@@ -6,7 +6,7 @@ export interface CartItem {
   styleId: number;
   name: string;
   weight: TypefaceWeight;
-  licenseType: string[];
+  licenseTypes: string[];
   companySize: number;
   discount?: boolean;
   wholePackage?: boolean;
@@ -17,7 +17,7 @@ export interface ProductItem {
   name: string;
   totalPrice: number;
   weights: Array<TypefaceWeight & { styleId: number }>;
-  licenseType: string;
+  licenseTypes: string[];
   companySize: number;
   discount?: boolean;
   wholePackage?: boolean;

@@ -1,12 +1,12 @@
 "use client";
 import { loadStripe } from "@stripe/stripe-js";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { useAppSelector } from "../../../redux/hooks";
 
 import Link from "next/link";
-import { CartItem, ProductItem } from "@/app/redux/cartReducer";
+import { ProductItem } from "@/app/redux/cartReducer";
 import ProductItemContainer from "./ProductItemContainer";
-import { TypefaceWeight } from "@/@types/components";
 import { useEffect, useState } from "react";
+import { calculateTotalPricesForCart, formatData } from "@/app/utils/cart-helpers";
 
 export default function CartCheckout() {
   const cart = useAppSelector((state) => state.cart);
@@ -18,8 +18,8 @@ export default function CartCheckout() {
     const items = formatData(cart.products);
     setCartItems(items), [cart.products];
 
-    const { totalPrice, discountPrice } = calculateTotalPrices(items);
-    setPrices({ price: totalPrice, finalPrice: discountPrice });
+    const { totalPriceCart, discountPriceCart } = calculateTotalPricesForCart(items);
+    setPrices({ price: totalPriceCart, finalPrice: discountPriceCart });
   }, [cart.products]);
 
   const redirectToCheckout = async () => {
@@ -91,51 +91,3 @@ export default function CartCheckout() {
     </>
   );
 }
-
-function formatData(items: Array<CartItem>) {
-  let typefaceProducts: Array<ProductItem> = [];
-
-  items.forEach((item) => {
-    const existingProduct = typefaceProducts.find((p) => p.id === item.id);
-
-    if (existingProduct) {
-      existingProduct.weights.push({ ...item.weight, styleId: item.styleId });
-      existingProduct.totalPrice += calculateFinalPrice(item.weight);
-    } else {
-      const newProduct: ProductItem = {
-        id: item.id,
-        name: item.name,
-        totalPrice: calculateFinalPrice(item.weight),
-        weights: [],
-        licenseType: item.licenseType,
-        companySize: item.companySize,
-        discount: item.discount,
-        wholePackage: item.wholePackage,
-      };
-
-      newProduct.weights.push({ ...item.weight, styleId: item.styleId });
-      typefaceProducts.push(newProduct);
-    }
-  });
-
-  return typefaceProducts;
-}
-
-export const calculateFinalPrice = (weight: TypefaceWeight) => {
-  return weight.discount
-    ? Math.ceil(weight.price - weight.price * (weight.discount / 100))
-    : weight.price;
-};
-
-const calculateTotalPrices = (products: Array<ProductItem>) => {
-  let totalPrice = 0;
-  let discountPrice = 0;
-  products.forEach((product) => {
-    product.weights.forEach((weight) => {
-      totalPrice += weight.price;
-      discountPrice += calculateFinalPrice(weight);
-    });
-  });
-
-  return { totalPrice, discountPrice };
-};
