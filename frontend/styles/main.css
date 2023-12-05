@@ -1148,6 +1148,55 @@ footer .pages {
     gap: 0.972rem;
   }
 }
+.purchase-section .checkout-action {
+  margin-top: 3.24rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 24px;
+}
+.purchase-section .checkout-action .total-price {
+  font-size: 20px;
+  font-weight: 600;
+}
+.purchase-section .checkout-action .total-price .price {
+  text-decoration: line-through;
+  color: var(--red);
+}
+.purchase-section .checkout-action .cart-link {
+  display: inline-flex;
+  padding: 14px 16px;
+  border-radius: 12px;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 100% */
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+  color: var(--white);
+  background-color: var(--blue);
+}
+.purchase-section .checkout-action .cart-link:hover {
+  cursor: pointer;
+}
+.purchase-section .checkout-action .cart-link:hover {
+  background-color: var(--black);
+}
+.purchase-section .checkout-action .cart-link:focus-visible {
+  outline: 2px solid var(--black);
+}
+.purchase-section .checkout-action .cart-link:focus:not(:focus-visible) {
+  outline: none;
+}
+.purchase-section .checkout-action .cart-link:active {
+  color: var(--white);
+  background-color: var(--blue);
+}
+.purchase-section .checkout-action .cart-link:disabled {
+  background-color: var(--grey);
+}
 
 .purchase-option .options {
   margin: 16px 0;
@@ -1290,12 +1339,13 @@ footer .pages {
   grid-template-columns: minmax(min-content, 9ch) repeat(2, minmax(min-content, 8.2ch));
 }
 .buying-price .discount-label {
+  padding: 4px 8px;
+  flex-grow: 0;
   text-align: center;
   background-color: var(--red);
   color: var(--white);
-  padding: 4px 8px;
   border-radius: 4px;
-  flex-grow: 0;
+  font-weight: 600;
 }
 .buying-price .discount-old-price {
   font-style: normal;

@@ -3,13 +3,18 @@ import { Style, Typeface } from "@/@types/contentTypes";
 import { TypefaceWeight } from "@/@types/components";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { useAppSelector, useAppDispatch } from "@/app/redux/hooks";
-import { addToCart, removeFromCart, CartItem } from "@/app/redux/cartReducer";
-
 import BuyingPrice from "./BuyingPrice";
 import { allStylesAndWeights, pluralize } from "@/app/utils/text-helpers";
 
-export default function FontSelection({ typeface }: { typeface: Typeface }) {
+export default function FontSelection({
+  typeface,
+  selectedItems,
+  setSelectedItems,
+}: {
+  typeface: Typeface;
+  selectedItems: TypefaceWeight[];
+  setSelectedItems: Function;
+}) {
   const { price, wholePackageDiscount, styles } = typeface.attributes;
   const { numStyles, numWeights, allWeights } = useMemo(() => {
     return allStylesAndWeights(styles.data);
@@ -17,9 +22,6 @@ export default function FontSelection({ typeface }: { typeface: Typeface }) {
 
   const [wholePackageSelected, setWholePackageSelected] = useState(false);
   const weightRefs = useRef<Array<HTMLInputElement | null>>([]);
-
-  const cart = useAppSelector((state) => state.cart);
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     weightRefs.current = weightRefs.current.slice(0, allWeights.length);
@@ -44,23 +46,12 @@ export default function FontSelection({ typeface }: { typeface: Typeface }) {
       // setSelectedOption("whole"); //TODO: implement adding the whole typeface
     } else {
       // setSelectedOption(weight.title);
+    }
 
-      const item: CartItem = {
-        id: typeface.id,
-        styleId: styleId,
-        name: typeface.attributes.title,
-        weight: weight,
-        licenseType: "desktop",
-        companySize: 10,
-        discount: false,
-        wholePackage: false,
-      };
-
-      if (cart.products.find((addedItem) => addedItem.weight?.id === weight.id)) {
-        dispatch(removeFromCart(item));
-      } else {
-        dispatch(addToCart(item));
-      }
+    if (selectedItems.find((addedItem) => addedItem.id === weight!.id)) {
+      setSelectedItems(selectedItems.filter((i) => i.id !== weight!.id));
+    } else {
+      setSelectedItems([...selectedItems, weight]);
     }
   };
 
@@ -102,9 +93,7 @@ export default function FontSelection({ typeface }: { typeface: Typeface }) {
                         ref={(el) => (weightRefs.current[allWeights.indexOf(fullTitle)] = el)}
                         type="checkbox"
                         value={weight.id}
-                        defaultChecked={
-                          !!cart.products.find((product) => product.weight.id === weight.id)
-                        }
+                        defaultChecked={!!selectedItems.find((item) => item.id === weight.id)}
                         onClick={() =>
                           handleOptionChange(
                             {

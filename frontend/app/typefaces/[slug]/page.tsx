@@ -5,7 +5,7 @@ import { Style, Typeface } from "@/@types/contentTypes";
 import { getStrapiMedia } from "@/app/utils/api-helpers";
 import BackButton from "@/app/components/UI/BackButton";
 import BuyButton from "@/app/components/UI/BuyButton";
-import PurchaseSection from "@/app/components/Cart/PurchaseSection/PurchaseSection";
+import PurchaseSectionWrapper from "@/app/components/Cart/PurchaseSection/PurchaseSectionWrapper";
 import Section from "@/app/components/UI/Section";
 import Typetester from "@/app/components/Typeface/Typetester/Typetester";
 import PDFPreview from "@/app/components/Typeface/PDFPreview";
@@ -88,7 +88,7 @@ export default async function Typeface({ params }: { params: { slug: string } })
         <Markdown children={aboutText} />
       </Section>
       <Section title={`Buy ${title}`} noIndent={true}>
-        <PurchaseSection typeface={typeface} />
+        <PurchaseSectionWrapper typeface={typeface} />
       </Section>
     </section>
   );

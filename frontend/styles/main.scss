@@ -850,6 +850,28 @@ footer {
       gap: $gutter-thin-h;
     }
   }
+
+  .checkout-action {
+    margin-top: $gutter-h * 2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 24px;
+
+    .total-price {
+      font-size: 20px;
+      font-weight: 600;
+
+      .price {
+        text-decoration: line-through;
+        color: var(--red);
+      }
+    }
+
+    .cart-link {
+      @include buttons.primary();
+    }
+  }
 }
 
 .purchase-option {
@@ -946,12 +968,13 @@ footer {
   }
 
   .discount-label {
+    padding: 4px 8px;
+    flex-grow: 0;
     text-align: center;
     background-color: var(--red);
     color: var(--white);
-    padding: 4px 8px;
     border-radius: 4px;
-    flex-grow: 0;
+    font-weight: 600;
   }
 
   .discount-old-price {
