@@ -8,18 +8,15 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
 import { CartItem, addToCart } from "@/app/redux/cartReducer";
 import { TypefaceWeight } from "@/@types/components";
-import { calculateTotalPrices, formatData } from "@/app/utils/cart-helpers";
+import { calculateTotalPrices } from "@/app/utils/cart-helpers";
+import { PurchaseDetails } from "./PurchaseSectionTypes";
 
 export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
   const cart = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
   const [prices, setPrices] = useState({ price: 0, finalPrice: 0 });
   const [selectedItems, setSelectedItems] = useState<TypefaceWeight[]>([]);
-  const [purchaseDetails, setPurchaseDetails] = useState<{
-    licenseTypes: string[] | undefined;
-    companySize: string[] | undefined;
-    discount: string[] | undefined;
-  }>({
+  const [purchaseDetails, setPurchaseDetails] = useState<PurchaseDetails>({
     licenseTypes: undefined,
     companySize: undefined,
     discount: ["no"],
@@ -50,9 +47,13 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
   }, []);
 
   useEffect(() => {
-    const { totalPrice, discountPrice } = calculateTotalPrices(selectedItems);
+    const { totalPrice, discountPrice } = calculateTotalPrices(
+      selectedItems,
+      purchaseDetails.licenseTypes,
+      purchaseDetails.companySize
+    );
     setPrices({ price: totalPrice, finalPrice: discountPrice });
-  }, [selectedItems]);
+  }, [selectedItems, purchaseDetails.licenseTypes, purchaseDetails.companySize]);
 
   const addItemsToCart = () => {
     if (purchaseDetails.licenseTypes && purchaseDetails.companySize) {
@@ -85,6 +86,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
           <PurchaseOption
             config={licenseOptions}
             optionType="checkbox"
+            requireOneCheckbox={true}
             setCallback={(optionValues: string[]) => {
               setPurchaseDetails({ ...purchaseDetails, licenseTypes: optionValues });
             }}
@@ -118,11 +120,15 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
           typeface={typeface}
           selectedItems={selectedItems}
           setSelectedItems={setSelectedItems}
+          purchaseDetails={purchaseDetails}
         />
       </div>
       <div className="checkout-action">
         <div className="total-price">
-          Total: <span className="price">{prices.price} EUR</span> {prices.finalPrice} EUR
+          Total:{" "}
+          {prices.price !== prices.finalPrice && <span className="price">{prices.price} EUR</span>}
+          &nbsp;
+          {prices.finalPrice} EUR
         </div>
         <button className="cart-link" disabled={selectedItems.length < 1} onClick={addItemsToCart}>
           Add to cart

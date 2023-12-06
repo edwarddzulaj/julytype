@@ -9,10 +9,12 @@ export default function PurchaseOption({
   config,
   setCallback,
   optionType = "radio",
+  requireOneCheckbox = false,
 }: {
   config: PurchaseOption;
   setCallback: Function;
   optionType?: "radio" | "checkbox";
+  requireOneCheckbox?: boolean;
 }) {
   const { subtitle, options, info } = config;
   const defaultOption = options.find((o) => o.checked);
@@ -49,6 +51,11 @@ export default function PurchaseOption({
                   type={optionType}
                   name="option"
                   value={option.value}
+                  disabled={
+                    requireOneCheckbox &&
+                    selectedOptions.length <= 1 &&
+                    selectedOptions.includes(option.value)
+                  }
                   defaultChecked={option.checked}
                   onClick={() => handleOptionChange(option.value)}
                 />

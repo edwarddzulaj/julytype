@@ -12,7 +12,14 @@ export interface PurchaseOption {
   };
 }
 
+export interface PurchaseDetails {
+  licenseTypes: string[] | undefined;
+  companySize: string[] | undefined;
+  discount: string[] | undefined;
+}
+
 export interface BuyingPrice {
   price: number;
   discount?: number;
+  purchaseDetails?: PurchaseDetails;
 }

@@ -1280,6 +1280,10 @@ footer .pages {
   display: flex;
   justify-content: space-between;
   z-index: 9999;
+  pointer-events: none;
+}
+.quick-buttons * {
+  pointer-events: all;
 }
 @media (max-width: 840px) {
   .quick-buttons {

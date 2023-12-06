@@ -939,6 +939,11 @@ footer {
   display: flex;
   justify-content: space-between;
   z-index: 9999;
+  pointer-events: none;
+
+  * {
+    pointer-events: all;
+  }
 
   @media (max-width: $mobile-breakpoint) {
     width: calc(100% - #{$gutter-thin-v} * 4);

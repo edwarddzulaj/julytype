@@ -4,7 +4,8 @@
   "info": {
     "singularName": "order",
     "pluralName": "orders",
-    "displayName": "Order"
+    "displayName": "Order",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,11 +15,13 @@
     "email": {
       "type": "email"
     },
-    "stripeId": {
-      "type": "uid"
-    },
     "products": {
       "type": "json"
+    },
+    "stripeId": {
+      "type": "string",
+      "required": true,
+      "unique": true
     }
   }
 }

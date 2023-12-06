@@ -5,15 +5,18 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 import BuyingPrice from "./BuyingPrice";
 import { allStylesAndWeights, pluralize } from "@/app/utils/text-helpers";
+import { PurchaseDetails } from "./PurchaseSectionTypes";
 
 export default function FontSelection({
   typeface,
   selectedItems,
   setSelectedItems,
+  purchaseDetails,
 }: {
   typeface: Typeface;
   selectedItems: TypefaceWeight[];
   setSelectedItems: Function;
+  purchaseDetails: PurchaseDetails;
 }) {
   const { price, wholePackageDiscount, styles } = typeface.attributes;
   const { numStyles, numWeights, allWeights } = useMemo(() => {
@@ -76,7 +79,11 @@ export default function FontSelection({
               </div>
             </div>
             <div className="typeface-price">
-              <BuyingPrice price={price} discount={wholePackageDiscount} />
+              {/* <BuyingPrice
+                price={price}
+                discount={wholePackageDiscount}
+                purchaseDetails={purchaseDetails}
+              /> */}
             </div>
           </div>
         </div>
@@ -111,7 +118,11 @@ export default function FontSelection({
                         {style.attributes.title} {weight.title}
                       </label>
                     </div>
-                    <BuyingPrice price={weight.price} discount={weight.discount} />
+                    <BuyingPrice
+                      price={weight.price}
+                      discount={weight.discount}
+                      purchaseDetails={purchaseDetails}
+                    />
                   </div>
                 );
               })
