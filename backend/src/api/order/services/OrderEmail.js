@@ -34,6 +34,7 @@ module.exports = class OrderEmail {
             },
           }
         );
+
         let fontURLs = { [style.title]: [] };
 
         style.weights.forEach((weight) => {

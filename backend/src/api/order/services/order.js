@@ -16,7 +16,6 @@ module.exports = createCoreService("api::order.order", ({}) => ({
    */
   async sendTypefacesToEmail(name, email, products) {
     const orderEmail = new OrderEmail(products);
-
     const fontURLs = await orderEmail.retrieveFontURLS();
     const zip = await orderEmail.zipFonts(fontURLs[0]);
     orderEmail.send(zip, name, email);

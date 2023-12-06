@@ -7,6 +7,7 @@ import Iconly, { icons } from "../../UI/Iconly";
 import Link from "next/link";
 import { licenseOptions } from "../PurchaseSection/purchase-option-configs";
 import { pluralize } from "@/app/utils/text-helpers";
+import { calculateTotalPrices } from "@/app/utils/cart-helpers";
 
 export default function ProductItemContainer({ item }: { item: ProductItem }) {
   const [allWeights, setAllWeights] = useState("");
@@ -16,8 +17,12 @@ export default function ProductItemContainer({ item }: { item: ProductItem }) {
 
   useEffect(() => {
     setAllWeights(combineAllTitles(item.weights));
-    setPrices(calculateTotalPrice(item.weights));
-  }, [item.weights]);
+
+    const { totalPrice, discountPrice } = calculateTotalPrices(item.weights, item.licenseTypes, [
+      item.companySize.toString(),
+    ]);
+    setPrices({ price: totalPrice, finalPrice: discountPrice });
+  }, [item.companySize, item.licenseTypes, item.weights]);
 
   const removeProductItem = () => {
     item.weights.forEach((weight) => {
@@ -88,18 +93,4 @@ function combineAllTitles(weights: Array<TypefaceWeight>) {
   });
 
   return allWeights.join(", ");
-}
-
-function calculateTotalPrice(weights: Array<TypefaceWeight>) {
-  let totalPrice = 0;
-  let finalPrice = 0;
-
-  weights.forEach((weight: TypefaceWeight) => {
-    totalPrice += weight.price;
-    finalPrice += weight.discount
-      ? Math.ceil(weight.price - weight.price * (weight.discount / 100))
-      : weight.price;
-  });
-
-  return { price: totalPrice, finalPrice: finalPrice };
 }

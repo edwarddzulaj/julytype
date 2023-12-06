@@ -16,6 +16,7 @@ export interface ProductItem {
   id: number;
   name: string;
   totalPrice: number;
+  totalDiscountPrice: number;
   weights: Array<TypefaceWeight & { styleId: number }>;
   licenseTypes: string[];
   companySize: number;

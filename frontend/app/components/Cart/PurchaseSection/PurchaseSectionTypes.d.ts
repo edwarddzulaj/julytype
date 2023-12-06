@@ -1,3 +1,4 @@
+import { TypefaceWeight } from "@/@types/components";
 export interface PurchaseOption {
   subtitle?: string;
   options: {
@@ -22,4 +23,8 @@ export interface BuyingPrice {
   price: number;
   discount?: number;
   purchaseDetails?: PurchaseDetails;
+}
+
+export interface SelectedItem extends TypefaceWeight {
+  styleId?: number;
 }

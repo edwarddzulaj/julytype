@@ -7,15 +7,14 @@ import { companySizeOptions, discountOptions, licenseOptions } from "./purchase-
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
 import { CartItem, addToCart } from "@/app/redux/cartReducer";
-import { TypefaceWeight } from "@/@types/components";
 import { calculateTotalPrices } from "@/app/utils/cart-helpers";
-import { PurchaseDetails } from "./PurchaseSectionTypes";
+import { PurchaseDetails, SelectedItem } from "./PurchaseSectionTypes";
 
 export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
   const cart = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
   const [prices, setPrices] = useState({ price: 0, finalPrice: 0 });
-  const [selectedItems, setSelectedItems] = useState<TypefaceWeight[]>([]);
+  const [selectedItems, setSelectedItems] = useState<SelectedItem[]>([]);
   const [purchaseDetails, setPurchaseDetails] = useState<PurchaseDetails>({
     licenseTypes: undefined,
     companySize: undefined,
@@ -57,12 +56,12 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
 
   const addItemsToCart = () => {
     if (purchaseDetails.licenseTypes && purchaseDetails.companySize) {
-      selectedItems.forEach((selectedItem) => {
+      selectedItems.forEach((selectedItem: SelectedItem) => {
         if (cart.products.find((p) => p.weight.id === selectedItem.id)) return;
 
         const item: CartItem = {
           id: typeface.id,
-          styleId: 1,
+          styleId: selectedItem.styleId!,
           name: typeface.attributes.title,
           weight: selectedItem,
           licenseTypes: purchaseDetails.licenseTypes!,

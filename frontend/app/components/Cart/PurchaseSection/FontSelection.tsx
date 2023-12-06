@@ -54,7 +54,7 @@ export default function FontSelection({
     if (selectedItems.find((addedItem) => addedItem.id === weight!.id)) {
       setSelectedItems(selectedItems.filter((i) => i.id !== weight!.id));
     } else {
-      setSelectedItems([...selectedItems, weight]);
+      setSelectedItems([...selectedItems, { ...weight, styleId: styleId }]);
     }
   };
 
@@ -79,11 +79,11 @@ export default function FontSelection({
               </div>
             </div>
             <div className="typeface-price">
-              {/* <BuyingPrice
+              <BuyingPrice
                 price={price}
                 discount={wholePackageDiscount}
                 purchaseDetails={purchaseDetails}
-              /> */}
+              />
             </div>
           </div>
         </div>

@@ -103,9 +103,13 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           },
         });
 
-        await strapi
-          .service("api::order.order")
-          .sendTypefacesToEmail(name, email, order.products);
+        try {
+          await strapi
+            .service("api::order.order")
+            .sendTypefacesToEmail(name, email, order.products);
+        } catch {
+          console.error("Could not send an email to this user: " + email);
+        }
       }
     } catch (error) {
       ctx.response.status = 500;

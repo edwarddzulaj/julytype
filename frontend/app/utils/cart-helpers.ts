@@ -7,17 +7,24 @@ export function formatData(items: Array<CartItem>) {
 
   items.forEach((item) => {
     const existingProduct = typefaceProducts.find((p) => p.id === item.id);
+    const licenseType = item.licenseTypes[0];
+    const numCompanyUsers = item.companySize;
+    const [regularPrice, priceWithDiscount] = calculatePrices(
+      { price: item.weight.price, discount: item.weight.discount },
+      licenseType,
+      numCompanyUsers
+    );
 
     if (existingProduct) {
       existingProduct.weights.push({ ...item.weight, styleId: item.styleId });
-      // existingProduct.totalPrice += calculatePrices(item.weight);
-      existingProduct.totalPrice += 1;
+      existingProduct.totalPrice += regularPrice;
+      existingProduct.totalDiscountPrice += priceWithDiscount;
     } else {
       const newProduct: ProductItem = {
         id: item.id,
         name: item.name,
-        totalPrice: 1,
-        // totalPrice: calculatePrices(item.weight),
+        totalPrice: regularPrice,
+        totalDiscountPrice: priceWithDiscount,
         weights: [],
         licenseTypes: item.licenseTypes,
         companySize: item.companySize,
@@ -54,10 +61,10 @@ export const calculatePrices = (
 export const calculateTotalPricesForCart = (products: Array<ProductItem>) => {
   let totalPriceCart = 0;
   let discountPriceCart = 0;
+
   products.forEach((product) => {
-    const { totalPrice, discountPrice } = calculateTotalPrices(product.weights);
-    totalPriceCart += totalPrice;
-    discountPriceCart += discountPrice;
+    totalPriceCart += product.totalPrice;
+    discountPriceCart += product.totalDiscountPrice;
   });
 
   return { totalPriceCart, discountPriceCart };
