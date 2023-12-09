@@ -1340,7 +1340,7 @@ footer .pages {
   gap: 10px;
 }
 .buying-price.with-discount {
-  grid-template-columns: minmax(min-content, 9ch) repeat(2, minmax(min-content, 8.2ch));
+  grid-template-columns: minmax(min-content, 9ch) repeat(2, minmax(min-content, 11ch));
 }
 .buying-price .discount-label {
   padding: 4px 8px;

@@ -969,7 +969,7 @@ footer {
   gap: 10px;
 
   &.with-discount {
-    grid-template-columns: minmax(min-content, 9ch) repeat(2, minmax(min-content, 8.2ch));
+    grid-template-columns: minmax(min-content, 9ch) repeat(2, minmax(min-content, 11ch));
   }
 
   .discount-label {
