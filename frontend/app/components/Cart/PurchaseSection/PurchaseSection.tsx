@@ -49,10 +49,17 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
     const { totalPrice, discountPrice } = calculateTotalPrices(
       selectedItems,
       purchaseDetails.licenseTypes,
-      purchaseDetails.companySize
+      purchaseDetails.companySize,
+      purchaseDetails.discount
     );
+
     setPrices({ price: totalPrice, finalPrice: discountPrice });
-  }, [selectedItems, purchaseDetails.licenseTypes, purchaseDetails.companySize]);
+  }, [
+    selectedItems,
+    purchaseDetails.licenseTypes,
+    purchaseDetails.companySize,
+    purchaseDetails.discount,
+  ]);
 
   const addItemsToCart = () => {
     if (purchaseDetails.licenseTypes && purchaseDetails.companySize) {

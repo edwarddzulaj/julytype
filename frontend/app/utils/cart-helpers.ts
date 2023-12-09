@@ -46,16 +46,23 @@ export const calculatePrices = (
     discount: number | undefined;
   } = { price: 0, discount: undefined },
   licenseType: string = "desktop-print",
-  numCompanyUsers: number = 1
+  numCompanyUsers: number = 1,
+  studentDiscount: boolean = false
 ) => {
   const multiplyRate = licenseRates[licenseType as keyof licenseRates][numCompanyUsers];
+  let price = prices.price;
 
-  const price = multiplyRate ? prices.price * multiplyRate : prices.price;
-  const discountPrice = prices.discount
-    ? Math.ceil(price - price * (prices.discount / 100))
-    : price;
+  if (multiplyRate) {
+    price = prices.price * multiplyRate;
+  }
 
-  return [price, discountPrice];
+  if (studentDiscount) {
+    price = price * 0.5;
+  }
+
+  let discountPrice = prices.discount ? Math.ceil(price - price * (prices.discount / 100)) : price;
+
+  return [roundToTwoDecimalPlaces(price), roundToTwoDecimalPlaces(discountPrice)];
 };
 
 export const calculateTotalPricesForCart = (products: Array<ProductItem>) => {
@@ -73,10 +80,12 @@ export const calculateTotalPricesForCart = (products: Array<ProductItem>) => {
 export const calculateTotalPrices = (
   weights: TypefaceWeight[],
   licenseTypes: string[] = [],
-  companySize: string[] = []
+  companySize: string[] = [],
+  discount: string[] = []
 ) => {
   const licenseType = licenseTypes[0] || "";
   const numCompanyUsers = +companySize[0] || 1;
+  const studentDiscount = discount[0] === "yes";
 
   let totalPrice = 0;
   let discountPrice = 0;
@@ -85,7 +94,8 @@ export const calculateTotalPrices = (
     const [price, priceWithDiscount] = calculatePrices(
       { price: weight.price, discount: weight.discount },
       licenseType,
-      numCompanyUsers
+      numCompanyUsers,
+      studentDiscount
     );
     totalPrice += price;
     discountPrice += priceWithDiscount;
@@ -93,3 +103,11 @@ export const calculateTotalPrices = (
 
   return { totalPrice, discountPrice };
 };
+
+function roundToTwoDecimalPlaces(number: number) {
+  if (Number.isInteger(number)) {
+    return number;
+  } else {
+    return Math.round(number * 100) / 100;
+  }
+}

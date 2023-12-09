@@ -6,11 +6,13 @@ export default function BuyingPrice({ price, discount, purchaseDetails }: Buying
     ? purchaseDetails.licenseTypes[0]
     : "desktop-print";
   const companySize = purchaseDetails?.companySize ? +purchaseDetails.companySize[0] : 1;
+  const studentDiscount = purchaseDetails?.discount ? purchaseDetails.discount[0] === "yes" : false;
 
   const [regularPrice, priceWithDiscount] = calculatePrices(
     { price: price, discount: discount },
     licenseType,
-    companySize
+    companySize,
+    studentDiscount
   );
 
   return (
