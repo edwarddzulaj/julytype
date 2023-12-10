@@ -9,10 +9,13 @@ export function formatData(items: Array<CartItem>) {
     const existingProduct = typefaceProducts.find((p) => p.id === item.id);
     const licenseType = item.licenseTypes[0];
     const numCompanyUsers = item.companySize;
+    const studentDiscount = item.discount;
+
     const [regularPrice, priceWithDiscount] = calculatePrices(
       { price: item.weight.price, discount: item.weight.discount },
       licenseType,
-      numCompanyUsers
+      numCompanyUsers,
+      studentDiscount
     );
 
     if (existingProduct) {
@@ -81,11 +84,10 @@ export const calculateTotalPrices = (
   weights: TypefaceWeight[],
   licenseTypes: string[] = [],
   companySize: string[] = [],
-  discount: string[] = []
+  studentDiscount: boolean = false
 ) => {
   const licenseType = licenseTypes[0] || "";
   const numCompanyUsers = +companySize[0] || 1;
-  const studentDiscount = discount[0] === "yes";
 
   let totalPrice = 0;
   let discountPrice = 0;

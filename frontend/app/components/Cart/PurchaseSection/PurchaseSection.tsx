@@ -22,13 +22,28 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
   });
 
   useEffect(() => {
-    const defaultLicenseType = licenseOptions.options.find((o) => o.checked)?.value;
-    const defaultCompanySize = companySizeOptions.options.find((o) => o.checked)?.value;
+    let licenseTypes = [];
+    let companySize = [];
+    let discount = ["no"];
+
+    const existingProduct = cart.products.find((p) => p.id === typeface.id);
+    if (existingProduct) {
+      licenseTypes = existingProduct.licenseTypes;
+      companySize = [existingProduct.companySize.toString()];
+      discount = existingProduct.discount ? ["yes"] : ["no"];
+    } else {
+      const defaultLicenseType = licenseOptions.options.find((o) => o.checked);
+      const defaultCompanySize = companySizeOptions.options.find((o) => o.checked);
+
+      licenseTypes = defaultLicenseType ? [defaultLicenseType.value] : [];
+      companySize = defaultCompanySize ? [defaultCompanySize.value] : [];
+    }
 
     setPurchaseDetails({
       ...purchaseDetails,
-      ...(defaultLicenseType ? { licenseTypes: [defaultLicenseType] } : {}),
-      ...(defaultCompanySize ? { companySize: [defaultCompanySize] } : {}),
+      ...(licenseTypes ? { licenseTypes: licenseTypes } : {}),
+      ...(companySize ? { companySize: companySize } : {}),
+      ...(discount ? { discount: discount } : {}),
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -50,7 +65,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
       selectedItems,
       purchaseDetails.licenseTypes,
       purchaseDetails.companySize,
-      purchaseDetails.discount
+      purchaseDetails.discount![0] === "yes"
     );
 
     setPrices({ price: totalPrice, finalPrice: discountPrice });
@@ -120,7 +135,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
           />
         </div>
       </div>
-      <div className="font-selection-options">
+      <div id="font-selection-options" className="font-selection-options">
         <h5>Choose weights and styles</h5>
         <FontSelection
           typeface={typeface}

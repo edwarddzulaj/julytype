@@ -18,11 +18,14 @@ export default function ProductItemContainer({ item }: { item: ProductItem }) {
   useEffect(() => {
     setAllWeights(combineAllTitles(item.weights));
 
-    const { totalPrice, discountPrice } = calculateTotalPrices(item.weights, item.licenseTypes, [
-      item.companySize.toString(),
-    ]);
+    const { totalPrice, discountPrice } = calculateTotalPrices(
+      item.weights,
+      item.licenseTypes,
+      [item.companySize.toString()],
+      item.discount
+    );
     setPrices({ price: totalPrice, finalPrice: discountPrice });
-  }, [item.companySize, item.licenseTypes, item.weights]);
+  }, [item.companySize, item.discount, item.licenseTypes, item.weights]);
 
   const removeProductItem = () => {
     item.weights.forEach((weight) => {
