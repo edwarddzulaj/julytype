@@ -22,6 +22,14 @@
       "type": "string",
       "required": true,
       "unique": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "paid",
+        "completed"
+      ]
     }
   }
 }

@@ -1,6 +1,5 @@
 "use strict";
 
-const { values } = require("../../../../config/middlewares.js");
 const OrderEmail = require("./OrderEmail.js");
 
 /**

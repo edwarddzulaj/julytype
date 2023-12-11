@@ -76,6 +76,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
         data: {
           stripeId: session.id,
           products: lineItems,
+          status: "pending",
         },
       });
 
@@ -100,6 +101,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
         await strapi.entityService.update("api::order.order", order.id, {
           data: {
             email: email,
+            status: "paid",
           },
         });
 
@@ -107,6 +109,12 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           await strapi
             .service("api::order.order")
             .sendTypefacesToEmail(name, email, order.products);
+
+          await strapi.entityService.update("api::order.order", order.id, {
+            data: {
+              status: "completed",
+            },
+          });
         } catch {
           console.error("Could not send an email to this user: " + email);
         }

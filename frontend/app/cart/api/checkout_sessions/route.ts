@@ -11,7 +11,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       { method: "POST", body: JSON.stringify({ products: cartItems }) }
     );
 
-    return NextResponse.json({ sessionId: response.stripeSession.id });
+    return NextResponse.json({ sessionId: response?.stripeSession?.id });
   } catch (err) {
     console.error(err);
     return NextResponse.json({ error: "Error creating checkout session" });
