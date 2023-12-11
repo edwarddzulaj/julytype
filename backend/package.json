@@ -9,12 +9,12 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
   "dependencies": {
     "@strapi/plugin-i18n": "4.12.4",
     "@strapi/plugin-users-permissions": "4.12.4",
     "@strapi/strapi": "4.12.4",
     "adm-zip": "^0.5.10",
+    "node-fetch": "2",
     "nodemailer": "^6.9.7",
     "pg": "8.8.0",
     "strapi-plugin-import-export-entries": "^1.21.0",

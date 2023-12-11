@@ -1,4 +1,5 @@
 const AdmZip = require("adm-zip");
+const fetch = require("node-fetch");
 const nodemailer = require("nodemailer");
 
 const STRAPI_ORIGIN =
