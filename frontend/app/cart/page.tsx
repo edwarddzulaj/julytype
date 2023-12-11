@@ -1,5 +1,10 @@
+"use client";
 import { fetchAPI } from "@/app/utils/fetch-api";
-import Link from "next/link";
+
+import { Provider } from "react-redux";
+import { store } from "../redux/store";
+
+import CartCheckout from "../components/Cart/CartCheckout/CartCheckout";
 
 async function getCartItems() {
   //   const path = `/simple-pages`;
@@ -13,25 +18,14 @@ async function getCartItems() {
   //   return responseData.data[0];
 }
 
-export default async function CartPage() {
-  const cartItems: any[] = [];
-
+export default function CartPage() {
   return (
-    <section className="container page cart">
-      <h3>Your cart</h3>
-      <hr />
-      <section className="cart-items">
-        {cartItems.length > 0 &&
-          cartItems.map((cartItem: any) => <div key={cartItem.id}>{cartItem.title}</div>)}
-        {cartItems.length === 0 && (
-          <div className="no-cart-items">
-            <h5>You have no items in your cart yet</h5>
-            <Link href="/" className="browse-more">
-              Browse more typefaces
-            </Link>
-          </div>
-        )}
+    <Provider store={store}>
+      <section className="container page cart">
+        <h3>Your cart</h3>
+        <hr />
+        <CartCheckout />
       </section>
-    </section>
+    </Provider>
   );
 }

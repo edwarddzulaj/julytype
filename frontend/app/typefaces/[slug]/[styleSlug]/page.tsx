@@ -8,7 +8,7 @@ import BuyButton from "@/app/components/UI/BuyButton";
 import ChooseScript from "@/app/components/Typeface/ChooseScript";
 import { FontsData } from "@/app/components/Typeface/Typetester/typetester-types";
 import OpentypeFeaturesPreview from "@/app/components/Typeface/OpentypeFeaturesPreview/OpentypeFeaturesPreview";
-import PurchaseSection from "@/app/components/Cart/PurchaseSection/PurchaseSection";
+import PurchaseSectionWrapper from "@/app/components/Cart/PurchaseSection/PurchaseSectionWrapper";
 import Section from "@/app/components/UI/Section";
 import { ScriptChoiceProvider } from "@/app/providers";
 import SupportedLanguages from "@/app/components/Typeface/SupportedLanguages";
@@ -105,7 +105,7 @@ export default async function Style({ params }: { params: { slug: string; styleS
           </Section>
         )}
         <Section title={`Buy ${typefaceTitle}`} noIndent={true}>
-          <PurchaseSection typeface={typeface} />
+          <PurchaseSectionWrapper typeface={typeface} />
         </Section>
       </section>
     </ScriptChoiceProvider>

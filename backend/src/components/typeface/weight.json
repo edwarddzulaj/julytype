@@ -24,9 +24,13 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": [
-        "files"
-      ]
+      "allowedTypes": ["files"]
+    },
+    "clientFontFiles": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": ["files"]
     },
     "typetesterLanguageGroup": {
       "displayName": "Typetester Language Group",

@@ -1,28 +1,45 @@
-export const licenseOptions = {
+import { PurchaseOption } from "./PurchaseSectionTypes";
+
+export const licenseOptions: PurchaseOption = {
   subtitle: "How and where is the font going to be used?",
   options: [
-    { label: "Desktop/Print", value: "desktop-print" },
-    { label: "Web", value: "web" },
-    { label: "App/Game", value: "app-game" },
-    { label: "Social Media", value: "social-media" },
-    { label: "Video", value: "video" },
-    { label: "Logo/Wordmark", value: "logo-wordmark" },
+    {
+      label: "Desktop/Print",
+      value: "desktop-print",
+      note: "To create printed and digital assets such as documents, books, objects, merchandise, signage and other similar things.",
+      checked: true,
+    },
+    { label: "Web", value: "web", note: "To create websites using the typeface." },
+    {
+      label: "App",
+      value: "app",
+      note: "Embed the typeface into an app such as mobile app, web app, game and digital POS system.",
+    },
+    {
+      label: "Video/Social Media",
+      value: "video-social-media",
+      note: "To create video content using the typeface such as YouTube, Netflix, movies, commercials, broadcasts and video billboards and design assets for a single brand's presence on social media platforms like Instagram, Snapchat, Facebook and TikTok.",
+    },
+    { label: "Logo/Wordmark", value: "logo-wordmark", note: "Make a logo/wordmark for one brand." },
   ],
-  info: {
-    text: "More about license types",
-    url: "/licensing",
-  },
 };
 
-export const companySizeOptions = {
+export const companySizeOptions: PurchaseOption = {
   subtitle: "How many employees are there in a company that is using the license?",
   options: [
-    { label: "1", value: "1" },
+    { label: "<1", value: "1", checked: true },
+    { label: "<3", value: "3" },
     { label: "<10", value: "10" },
-    { label: "<20", value: "20" },
+    { label: "<25", value: "25" },
+    { label: "<50", value: "50" },
     { label: "<100", value: "100" },
+    { label: "<150", value: "150" },
+    { label: "<250", value: "250" },
+    { label: "<500", value: "500" },
+    { label: "<750", value: "750" },
     { label: "<1000", value: "1000" },
-    { label: "<10000", value: "10000" },
+    { label: "<2500", value: "2500" },
+    { label: "<5000", value: "5000" },
   ],
   info: {
     text: "More about company size",
@@ -30,10 +47,10 @@ export const companySizeOptions = {
   },
 };
 
-export const discountOptions = {
+export const discountOptions: PurchaseOption = {
   subtitle: "Are you a student?",
   options: [
     { label: "Yes", value: "yes" },
-    { label: "No", value: "no" },
+    { label: "No", value: "no", checked: true },
   ],
 };

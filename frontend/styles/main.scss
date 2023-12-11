@@ -416,16 +416,89 @@ nav {
     }
 
     &.cart.page {
+      font-size: 16px;
+
       h3 {
         padding: $gutter-h * 2 0 $gutter-h 0;
       }
 
+      .cart-items {
+        .cart-item-container {
+          padding: $gutter-h * 1.5 0;
+          width: 100%;
+          display: flex;
+          gap: 8px;
+          justify-content: space-between;
+          border-bottom: 1px solid var(--foreground);
+
+          .details {
+            display: flex;
+            flex-direction: column;
+            gap: $gutter-h;
+
+            .title {
+              font-weight: 600;
+              margin-bottom: 5px;
+            }
+
+            .price {
+              text-decoration: line-through;
+              color: var(--red);
+            }
+          }
+
+          .actions {
+            padding-top: $gutter-thin-h;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: $gutter-h;
+            font-size: 16px;
+
+            .remove-action {
+              display: flex;
+              align-items: center;
+
+              &:hover {
+                text-decoration: underline;
+                cursor: pointer;
+              }
+            }
+
+            .edit-action {
+              @include buttons.tertiary();
+            }
+          }
+        }
+      }
+
       .no-cart-items {
         margin: $gutter-h * 3 0;
+      }
 
-        .browse-more {
-          margin-top: $gutter-h;
-          @include buttons.primary();
+      .cart-footer {
+        padding-top: $gutter-h * 1.5;
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+
+        .total-price {
+          font-weight: 600;
+
+          .price {
+            text-decoration: line-through;
+            color: var(--red);
+          }
+        }
+
+        .actions {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+
+          :last-child {
+            @include buttons.primary();
+          }
         }
       }
     }
@@ -777,6 +850,28 @@ footer {
       gap: $gutter-thin-h;
     }
   }
+
+  .checkout-action {
+    margin-top: $gutter-h * 2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 24px;
+
+    .total-price {
+      font-size: 20px;
+      font-weight: 600;
+
+      .price {
+        text-decoration: line-through;
+        color: var(--red);
+      }
+    }
+
+    .cart-link {
+      @include buttons.primary();
+    }
+  }
 }
 
 .purchase-option {
@@ -793,11 +888,48 @@ footer {
       }
 
       label {
+        .note {
+          display: inline;
+          font-size: 20px;
+          padding: 0 5px;
+
+          p.text {
+            display: none;
+          }
+          &:hover {
+            cursor: pointer;
+
+            p.text {
+              padding-bottom: 0;
+              display: block;
+            }
+          }
+        }
+      }
+    }
+
+    &.checkbox {
+      form {
+        flex-direction: column;
+
+        label {
+          font-size: 20px;
+        }
+      }
+    }
+
+    &.radio {
+      label {
         @include buttons.tertiary();
 
         padding: 13px 24px;
       }
     }
+  }
+
+  .iconly {
+    margin-left: -2px;
+    padding-left: 0;
   }
 }
 
@@ -807,6 +939,11 @@ footer {
   display: flex;
   justify-content: space-between;
   z-index: 9999;
+  pointer-events: none;
+
+  * {
+    pointer-events: all;
+  }
 
   @media (max-width: $mobile-breakpoint) {
     width: calc(100% - #{$gutter-thin-v} * 4);
@@ -832,16 +969,17 @@ footer {
   gap: 10px;
 
   &.with-discount {
-    grid-template-columns: minmax(min-content, 9ch) repeat(2, minmax(min-content, 8.2ch));
+    grid-template-columns: minmax(min-content, 9ch) repeat(2, minmax(min-content, 11ch));
   }
 
   .discount-label {
+    padding: 4px 8px;
+    flex-grow: 0;
     text-align: center;
     background-color: var(--red);
     color: var(--white);
-    padding: 4px 8px;
     border-radius: 4px;
-    flex-grow: 0;
+    font-weight: 600;
   }
 
   .discount-old-price {
@@ -863,11 +1001,19 @@ footer {
   }
 }
 
+div:hover > .iconly {
+  display: inline;
+  text-decoration: none;
+}
+
 .iconly {
   position: relative;
   padding: 0 2px;
   font-size: 20px;
   line-height: normal;
+
+  display: inline-block;
+  text-decoration: none;
 }
 
 .choose-fonts-popup {
