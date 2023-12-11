@@ -5,7 +5,7 @@
 
 export const BASE_TEXT = `
     ¿<span class="allcaps">Fish & «Chips» </span>(<span class="allcaps">FRESI</span>) <span class="allcaps">@ £24.65?</span> 
-    These new citations from 2013* 21/03/10 and 2<span class="frac">1/8 460/920</span>
+    These new citations from 2013<span class="ss01">*</span>  21/03/10 and 2<span class="frac">1/8 460/920</span>
     x<span class="subs sups">158</span> + y<span class="subs sups">23</span> × z<span class="subs sups">18</span> - a<span class="subs sups">4260</span>
 `;
 
@@ -16,6 +16,12 @@ export const options = [
     label: "All cap punctuation",
     text: BASE_TEXT,
     checked: true,
+  },
+  {
+    id: "ss01",
+    type: "opentype-feature",
+    label: "Stylistic Set",
+    text: BASE_TEXT,
   },
   {
     id: "frac",
