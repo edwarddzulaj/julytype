@@ -25,19 +25,42 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
     try {
       const lineItems = await Promise.all(
         products.map(async (product) => {
-          const typeface = await strapi
-            .service("api::typeface.typeface")
-            .findOne(product.id);
-
           const weightsNames = product.weights
             .map((weight) => weight.title)
             .join(", ");
 
-          const weightsData = product.weights.map((weight) => ({
-            styleId: weight.styleId,
-            id: weight.id,
-            title: weight.title,
-          }));
+          let weightsData = await Promise.all(
+            product.weights.map(async (weight) => {
+              const styleEntity = await strapi.entityService.findMany(
+                "api::style.style",
+                {
+                  filters: {
+                    id: weight.styleId,
+                  },
+                  populate: {
+                    weights: true,
+                  },
+                }
+              );
+
+              const chosenWeight = {
+                styleId: weight.styleId,
+                id: weight.id,
+                title: weight.title,
+                confirmedPrice: styleEntity[0].weights.some((styleWeight) => {
+                  return (
+                    styleWeight.id === weight.id &&
+                    styleWeight.price === weight.price &&
+                    styleWeight.discount === weight.discount
+                  );
+                }),
+              };
+
+              return chosenWeight;
+            })
+          );
+
+          if (!weightsData.every((w) => w.confirmedPrice)) return;
 
           return {
             price_data: {
