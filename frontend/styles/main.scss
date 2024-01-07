@@ -276,46 +276,16 @@ nav {
     }
 
     &.typeface {
-      .main-section:first-of-type {
-        h3 {
-          opacity: 0;
+      .quick-buttons {
+        .action-buttons {
+          display: flex;
+          align-self: flex-end;
+          gap: 10px;
+
+          pointer-events: all;
         }
       }
 
-      .typeface-styles {
-        display: flex;
-        flex-direction: column;
-        gap: $gutter-h;
-        padding: $gutter-h * 2 0;
-        text-align: center;
-
-        h2 {
-          font-weight: initial;
-        }
-
-        a:hover {
-          text-decoration: none;
-        }
-      }
-
-      .download {
-        a {
-          margin-top: $gutter-h;
-          @include buttons.tertiary();
-
-          &:hover {
-            text-decoration: none;
-          }
-        }
-
-        canvas {
-          width: 100% !important;
-          height: auto !important;
-        }
-      }
-    }
-
-    &.style {
       .choose-script {
         position: relative;
         top: $gutter-h * 4.5;
@@ -337,6 +307,12 @@ nav {
               border-radius: 8px;
             }
           }
+        }
+      }
+
+      .main-section:first-of-type {
+        h3 {
+          opacity: 0;
         }
       }
 
@@ -367,6 +343,22 @@ nav {
           display: flex;
           flex-direction: column;
           gap: $gutter-h * 4;
+        }
+      }
+
+      .download {
+        a {
+          margin-top: $gutter-h;
+          @include buttons.tertiary();
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+
+        canvas {
+          width: 100% !important;
+          height: auto !important;
         }
       }
     }
@@ -634,7 +626,10 @@ footer {
         }
       }
 
-      &.style {
+      &.typeface {
+        .quick-buttons {
+          height: calc(100vh - $nav-offset - $gutter-h * 5);
+        }
         .choose-script {
           top: $gutter-h * 1.5;
         }
@@ -642,24 +637,6 @@ footer {
         .font-tester {
           .font-sample {
             min-height: initial;
-          }
-        }
-      }
-
-      &.typeface,
-      &.style {
-        .quick-buttons {
-          height: calc(100vh - $nav-offset - $gutter-h * 5);
-          flex-direction: column;
-          pointer-events: none;
-
-          .action-buttons {
-            align-self: flex-end;
-          }
-
-          .back-button,
-          .action-buttons {
-            pointer-events: all;
           }
         }
 
@@ -933,6 +910,14 @@ footer {
   }
 }
 
+.styles-selector {
+  .styles {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+}
+
 .quick-buttons {
   width: calc(100% - #{$gutter-v} * 4);
   position: fixed;
@@ -940,6 +925,15 @@ footer {
   justify-content: space-between;
   z-index: 9999;
   pointer-events: none;
+
+  &.with-background {
+    width: calc(100% - #{$gutter-v} * 4);
+    padding: $gutter-h * 1.5 $gutter-v * 2 $gutter-h;
+    top: $nav-offset + $gutter-h;
+    left: 0;
+    border-bottom: 1px solid #e4e4e4;
+    background: $background-color;
+  }
 
   * {
     pointer-events: all;

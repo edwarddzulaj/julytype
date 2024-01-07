@@ -13,6 +13,7 @@ import PurchaseSectionWrapper from "@/app/components/Cart/PurchaseSection/Purcha
 import Section from "@/app/components/UI/Section";
 import { ScriptChoiceProvider } from "@/app/providers";
 import SupportedLanguages from "@/app/components/Typeface/SupportedLanguages";
+import StylesSelector from "@/app/components/Typeface/StylesSelector";
 import Typetester from "@/app/components/Typeface/Typetester/Typetester";
 
 async function getTypeface(slug: string) {
@@ -60,8 +61,9 @@ export default async function Typeface({ params }: { params: { slug: string } })
 
   return (
     <ScriptChoiceProvider>
-      <section className="container style">
-        <article className="quick-buttons">
+      <section className="container typeface">
+        <article className={`quick-buttons ${styles.data.length > 1 ? "with-background" : ""}`}>
+          {styles.data.length > 1 && <StylesSelector styles={styles.data} />}
           <div className="action-buttons">
             {/* {hasTrialFonts && <TrialFontsButton/>} */}
             <BuyButton>{`Buy ${title}`}</BuyButton>
