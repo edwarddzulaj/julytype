@@ -1,7 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
+
 import { fetchAPI } from "@/app/utils/fetch-api";
+import { getStrapiMedia } from "./utils/api-helpers";
 import { Typeface } from "@/@types/contentTypes";
 import { TypefaceWeight } from "@/@types/components";
+
 import { allStylesAndWeights, pluralize } from "./utils/text-helpers";
 import TypefaceSample from "./components/Typeface/TypefaceSample";
 
@@ -19,6 +23,7 @@ async function getTypefaces() {
         },
       },
       mainFont: { populate: "*" },
+      image: { populate: "*" },
     },
   };
 
@@ -33,7 +38,9 @@ export default async function Page() {
   return (
     <section className="container typeface-preview">
       {typefaces.map((typeface: Typeface) => {
-        const { title, slug, styles } = typeface.attributes;
+        const { title, slug, styles, image } = typeface.attributes;
+        const imageFile = image.data.attributes;
+
         let regular: TypefaceWeight | null = null;
         let hovered: TypefaceWeight | null = null;
 
@@ -53,6 +60,13 @@ export default async function Page() {
                 <span>{pluralize(numStyles, "style")}</span>
                 <span>{pluralize(numWeights, "weight")}</span>
               </div>
+              <Image
+                className="typeface-image"
+                src={getStrapiMedia(imageFile.url) as string}
+                width={imageFile.width}
+                height={imageFile.height}
+                alt={`${title} image`}
+              />
             </article>
           </Link>
         );

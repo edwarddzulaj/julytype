@@ -20,5 +20,5 @@ export function ScriptChoiceProvider({ children }: any) {
 }
 
 export function ThemeChangeProvider({ children }: any) {
-  return <ThemeProvider>{children}</ThemeProvider>;
+  return <ThemeProvider attribute="class">{children}</ThemeProvider>;
 }

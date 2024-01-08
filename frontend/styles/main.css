@@ -256,7 +256,7 @@ www.nedkamburov.com
   --foreground: var(--black);
 }
 
-[data-theme=dark] {
+.dark {
   --background: var(--black);
   --foreground: var(--white);
 }
@@ -457,9 +457,14 @@ nav .mobile-nav {
 }
 .wrapper .container.typeface-preview {
   padding-top: 3.24rem;
-  display: flex;
-  flex-direction: column;
-  gap: 6.48rem;
+  max-width: 1300px;
+  margin: auto;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  gap: 4.86rem;
 }
 .wrapper .container.typeface-preview a {
   display: flex;
@@ -983,6 +988,10 @@ footer .pages {
     max-width: calc(100vw - 5.184rem);
     min-height: calc(100vh - 2.43rem * 9);
     padding: 7.29rem 2.592rem;
+  }
+  .wrapper .container.typeface-preview {
+    display: grid;
+    grid-template-columns: 1fr;
   }
   .wrapper .container.typeface-preview h2 {
     font-size: 9rem !important;
@@ -1781,6 +1790,15 @@ div.dropdown .Dropdown-menu > .Dropdown-option:hover {
 }
 .checkbox-dropdown ul li input {
   flex-shrink: 0;
+}
+
+.typeface-image {
+  mix-blend-mode: multiply;
+}
+
+.dark .typeface-image {
+  mix-blend-mode: screen;
+  filter: invert(100%);
 }
 
 h1 {
