@@ -473,6 +473,9 @@ nav .mobile-nav {
 .wrapper .container.typeface-preview a:hover {
   text-decoration: none;
 }
+.wrapper .container.typeface-preview a:hover .typeface-image {
+  scale: 1.015;
+}
 .wrapper .container.typeface-preview a h2 {
   font-size: 12rem;
   text-align: center;
@@ -1804,6 +1807,7 @@ div.dropdown .Dropdown-menu > .Dropdown-option:hover {
 
 .typeface-image {
   mix-blend-mode: multiply;
+  transition: scale 0.3s ease-in-out;
 }
 
 .dark .typeface-image {

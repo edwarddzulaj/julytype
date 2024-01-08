@@ -238,6 +238,10 @@ nav {
 
         &:hover {
           text-decoration: none;
+
+          .typeface-image {
+            scale: 1.015;
+          }
         }
 
         h2 {
@@ -1331,6 +1335,7 @@ div.dropdown {
 
 .typeface-image {
   mix-blend-mode: multiply;
+  transition: scale $duration-s ease-in-out;
 }
 
 .dark {

@@ -42,12 +42,9 @@ export default async function Page() {
         const imageFile = image.data.attributes;
 
         let regular: TypefaceWeight | null = null;
-        let hovered: TypefaceWeight | null = null;
 
         styles.data[0].attributes.weights.forEach((weight: TypefaceWeight) => {
           if (weight.title.toLowerCase() === "regular") regular = weight;
-          if (weight.title.toLowerCase() === "black") hovered = weight;
-          if (weight.title.toLowerCase() === "bold") hovered = weight;
         });
 
         const { numStyles, numWeights } = allStylesAndWeights(styles.data);
@@ -55,7 +52,7 @@ export default async function Page() {
         return (
           <Link href={`/typefaces/${slug}`} key={typeface.id}>
             <article>
-              <TypefaceSample title={title} regularWeight={regular} hoverWeight={hovered} />
+              <TypefaceSample title={title} regularWeight={regular}/>
               <div className="typeface-details">
                 <span>{pluralize(numStyles, "style")}</span>
                 <span>{pluralize(numWeights, "weight")}</span>
