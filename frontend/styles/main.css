@@ -610,6 +610,14 @@ nav .mobile-nav {
   flex-direction: column;
   gap: 6.48rem;
 }
+.wrapper .container.typeface .main-section .about-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.wrapper .container.typeface .main-section .about-section p:nth-of-type(2) {
+  padding-top: 0;
+}
 .wrapper .container.typeface .download a {
   margin-top: 1.62rem;
   display: inline-flex;
@@ -1058,6 +1066,7 @@ footer .pages {
 .main-section:not(.no-indent) .section-wrapper section {
   width: 100%;
   max-width: 1280px;
+  display: grid;
 }
 .main-section .section-wrapper:not(.no-title) section {
   padding-top: 1.62rem;
@@ -1504,8 +1513,9 @@ div:hover > .iconly {
   color: var(--grey);
 }
 
-.supported-languages article:not(:first-of-type) {
-  margin-top: 3.24rem;
+.supported-languages {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 .supported-languages article h6 {
   font-weight: 600;

@@ -99,8 +99,10 @@ export default async function Typeface({ params }: { params: { slug: string } })
           </Section>
         )}
         <Section title={`About ${typefaceTitle}`}>
-          {/* eslint-disable-next-line react/no-children-prop */}
-          <Markdown children={aboutText} />
+          <div className="about-section">
+            {/* eslint-disable-next-line react/no-children-prop */}
+            <Markdown children={aboutText} />
+          </div>
         </Section>
         <Section title={`Opentype features preview`}>
           <OpentypeFeaturesPreview fontFamilyTitle={opentypeFeaturesFontTitle} />

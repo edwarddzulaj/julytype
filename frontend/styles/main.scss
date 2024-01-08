@@ -330,6 +330,16 @@ nav {
           flex-direction: column;
           gap: $gutter-h * 4;
         }
+
+        .about-section {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+
+          p:nth-of-type(2) {
+            padding-top: 0;
+          }
+        }
       }
 
       .download {
@@ -713,6 +723,7 @@ footer {
       section {
         width: 100%;
         max-width: 1280px;
+        display: grid;
       }
     }
   }
@@ -1055,11 +1066,10 @@ div:hover > .iconly {
 }
 
 .supported-languages {
-  article {
-    &:not(:first-of-type) {
-      margin-top: $gutter-h * 2;
-    }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
+  article {
     h6 {
       font-weight: 600;
     }
