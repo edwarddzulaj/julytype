@@ -1283,6 +1283,12 @@ footer .pages {
   flex-direction: row;
   gap: 20px;
 }
+.styles-selector .styles .style.active {
+  text-decoration: underline;
+}
+.styles-selector .styles .style:hover {
+  cursor: pointer;
+}
 
 .quick-buttons {
   width: calc(100% - 2.16rem * 4);

@@ -919,6 +919,16 @@ footer {
     display: flex;
     flex-direction: row;
     gap: 20px;
+
+    .style {
+      &.active {
+        text-decoration: underline;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 }
 
