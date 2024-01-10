@@ -25,26 +25,6 @@ www.nedkamburov.com
   src: url(../app/assets/fonts/AdobeBlank/AdobeBlank.woff) format("woff");
 }
 
-// @font-face {
-//   font-style: normal;
-//   font-family: "Font Regular 2 Italic";
-//   src:
-//   // url(../assets/fonts/WilliamTextProRegIta.woff2) format("woff2"),
-//   // url(../assets/fonts/WilliamTextProRegIta.woff) format("woff"),
-//     url(../assets/fonts/WilliamTextProRegIta.otf) format("opentype");
-//   // url(../assets/fonts/WilliamTextProRegIta.ttf) format("truetype");
-// }
-
-// @font-face {
-//   font-style: normal;
-//   font-family: "Font Title";
-//   src:
-//     url(../assets/fonts/KHSHRegular/KHSH_Regular.woff2) format("woff2"),
-//     url(../assets/fonts/KHSHRegular/KHSH_Regular.woff) format("woff"),
-//     url(../assets/fonts/KHSHRegular/KHSH_Regular.otf) format("opentype"),
-//     url(../assets/fonts/KHSHRegular/KHSH_Regular.ttf) format("truetype");
-// }
-
 :root {
   /* Website colours */
   --blue: #008bf8;
@@ -57,7 +37,7 @@ www.nedkamburov.com
   --foreground: var(--black);
 }
 
-[data-theme="dark"] {
+.dark {
   --background: var(--black);
   --foreground: var(--white);
 }
@@ -242,9 +222,15 @@ nav {
   .container {
     &.typeface-preview {
       padding-top: $gutter-h * 2;
-      display: flex;
-      flex-direction: column;
-      gap: $gutter-h * 4;
+      max-width: 1300px;
+      margin: auto;
+      left: 0;
+      right: 0;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      justify-items: center;
+      gap: $gutter-h * 3;
 
       a {
         display: flex;
@@ -252,6 +238,10 @@ nav {
 
         &:hover {
           text-decoration: none;
+
+          .typeface-image {
+            scale: 1.015;
+          }
         }
 
         h2 {
@@ -276,46 +266,16 @@ nav {
     }
 
     &.typeface {
-      .main-section:first-of-type {
-        h3 {
-          opacity: 0;
+      .quick-buttons {
+        .action-buttons {
+          display: flex;
+          align-self: flex-end;
+          gap: 10px;
+
+          pointer-events: all;
         }
       }
 
-      .typeface-styles {
-        display: flex;
-        flex-direction: column;
-        gap: $gutter-h;
-        padding: $gutter-h * 2 0;
-        text-align: center;
-
-        h2 {
-          font-weight: initial;
-        }
-
-        a:hover {
-          text-decoration: none;
-        }
-      }
-
-      .download {
-        a {
-          margin-top: $gutter-h;
-          @include buttons.tertiary();
-
-          &:hover {
-            text-decoration: none;
-          }
-        }
-
-        canvas {
-          width: 100% !important;
-          height: auto !important;
-        }
-      }
-    }
-
-    &.style {
       .choose-script {
         position: relative;
         top: $gutter-h * 4.5;
@@ -337,6 +297,17 @@ nav {
               border-radius: 8px;
             }
           }
+        }
+      }
+
+      .choose-weight {
+        position: fixed;
+        top: $gutter-h * 13;
+      }
+
+      .main-section:first-of-type {
+        h3 {
+          opacity: 0;
         }
       }
 
@@ -367,6 +338,36 @@ nav {
           display: flex;
           flex-direction: column;
           gap: $gutter-h * 4;
+
+          .font-tester {
+            scroll-margin-top: 17.5vh;
+          }
+        }
+
+        .about-section {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+
+          p:nth-of-type(2) {
+            padding-top: 0;
+          }
+        }
+      }
+
+      .download {
+        a {
+          margin-top: $gutter-h;
+          @include buttons.tertiary();
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+
+        canvas {
+          width: 100% !important;
+          height: auto !important;
         }
       }
     }
@@ -629,12 +630,18 @@ footer {
 
     .container {
       &.typeface-preview {
+        display: grid;
+        grid-template-columns: 1fr;
+
         h2 {
           font-size: $font-preview * 0.75 !important;
         }
       }
 
-      &.style {
+      &.typeface {
+        .quick-buttons {
+          height: calc(100vh - $nav-offset - $gutter-h * 5);
+        }
         .choose-script {
           top: $gutter-h * 1.5;
         }
@@ -642,24 +649,6 @@ footer {
         .font-tester {
           .font-sample {
             min-height: initial;
-          }
-        }
-      }
-
-      &.typeface,
-      &.style {
-        .quick-buttons {
-          height: calc(100vh - $nav-offset - $gutter-h * 5);
-          flex-direction: column;
-          pointer-events: none;
-
-          .action-buttons {
-            align-self: flex-end;
-          }
-
-          .back-button,
-          .action-buttons {
-            pointer-events: all;
           }
         }
 
@@ -747,6 +736,7 @@ footer {
       section {
         width: 100%;
         max-width: 1280px;
+        display: grid;
       }
     }
   }
@@ -933,6 +923,24 @@ footer {
   }
 }
 
+.styles-selector {
+  .styles {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    .style {
+      &.active {
+        text-decoration: underline;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
 .quick-buttons {
   width: calc(100% - #{$gutter-v} * 4);
   position: fixed;
@@ -940,6 +948,15 @@ footer {
   justify-content: space-between;
   z-index: 9999;
   pointer-events: none;
+
+  &.with-background {
+    width: calc(100% - #{$gutter-v} * 4);
+    padding: $gutter-h * 1.5 $gutter-v * 2 $gutter-h;
+    top: $nav-offset + $gutter-h;
+    left: 0;
+    border-bottom: 1px solid #e4e4e4;
+    background: $background-color;
+  }
 
   * {
     pointer-events: all;
@@ -1072,11 +1089,10 @@ div:hover > .iconly {
 }
 
 .supported-languages {
-  article {
-    &:not(:first-of-type) {
-      margin-top: $gutter-h * 2;
-    }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
+  article {
     h6 {
       font-weight: 600;
     }
@@ -1333,6 +1349,18 @@ div.dropdown {
         flex-shrink: 0;
       }
     }
+  }
+}
+
+.typeface-image {
+  mix-blend-mode: multiply;
+  transition: scale $duration-s ease-in-out;
+}
+
+.dark {
+  .typeface-image {
+    mix-blend-mode: screen;
+    filter: invert(100%);
   }
 }
 

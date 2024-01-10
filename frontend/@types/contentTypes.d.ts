@@ -29,6 +29,7 @@ export interface Typeface {
     wholePackageDiscount: number;
     trialFonts: { data: { id: number; attributes: Attribute.Media[] }[] };
     mainFont: Attribute.File;
+    image: Attribute.Media;
     slug: string;
     createdAt: Date;
     updatedAt: Date;

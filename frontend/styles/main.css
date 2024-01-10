@@ -256,7 +256,7 @@ www.nedkamburov.com
   --foreground: var(--black);
 }
 
-[data-theme=dark] {
+.dark {
   --background: var(--black);
   --foreground: var(--white);
 }
@@ -457,9 +457,14 @@ nav .mobile-nav {
 }
 .wrapper .container.typeface-preview {
   padding-top: 3.24rem;
-  display: flex;
-  flex-direction: column;
-  gap: 6.48rem;
+  max-width: 1300px;
+  margin: auto;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  gap: 4.86rem;
 }
 .wrapper .container.typeface-preview a {
   display: flex;
@@ -467,6 +472,9 @@ nav .mobile-nav {
 }
 .wrapper .container.typeface-preview a:hover {
   text-decoration: none;
+}
+.wrapper .container.typeface-preview a:hover .typeface-image {
+  scale: 1.015;
 }
 .wrapper .container.typeface-preview a h2 {
   font-size: 12rem;
@@ -482,21 +490,143 @@ nav .mobile-nav {
   content: "∙";
   margin: 0 calc(1.296rem / 3);
 }
+.wrapper .container.typeface .quick-buttons .action-buttons {
+  display: flex;
+  align-self: flex-end;
+  gap: 10px;
+  pointer-events: all;
+}
+.wrapper .container.typeface .choose-script {
+  position: relative;
+  top: 7.29rem;
+  left: 0;
+  width: -moz-fit-content;
+  width: fit-content;
+  z-index: 1111;
+}
+.wrapper .container.typeface .choose-script .buttons {
+  margin-top: 0.972rem;
+  display: flex;
+  gap: 8px;
+}
+.wrapper .container.typeface .choose-script .buttons button {
+  display: inline-flex;
+  padding: 14px 16px;
+  border-radius: 12px;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 100% */
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+  color: var(--foreground);
+  background-color: var(--background);
+  padding: 6px 12px;
+  border-radius: 8px;
+  outline: 1px solid var(--foreground);
+}
+.wrapper .container.typeface .choose-script .buttons button:hover {
+  cursor: pointer;
+}
+.wrapper .container.typeface .choose-script .buttons button:hover, .wrapper .container.typeface .choose-script .buttons button.selected {
+  background-color: var(--foreground);
+  color: var(--background);
+}
+.wrapper .container.typeface .choose-script .buttons button:focus-visible {
+  outline: 2px solid var(--foreground);
+}
+.wrapper .container.typeface .choose-script .buttons button:focus:not(:focus-visible) {
+  outline: none;
+}
+.wrapper .container.typeface .choose-script .buttons button:active {
+  color: var(--foreground);
+  background-color: var(--background);
+}
+.wrapper .container.typeface .choose-script .buttons button:disabled {
+  color: var(--grey);
+}
+.wrapper .container.typeface .choose-script .buttons button.active {
+  display: inline-flex;
+  padding: 14px 16px;
+  border-radius: 12px;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 100% */
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+  color: var(--white);
+  background-color: var(--blue);
+  background-color: var(--black);
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+.wrapper .container.typeface .choose-script .buttons button.active:hover {
+  cursor: pointer;
+}
+.wrapper .container.typeface .choose-script .buttons button.active:hover {
+  background-color: var(--black);
+}
+.wrapper .container.typeface .choose-script .buttons button.active:focus-visible {
+  outline: 2px solid var(--black);
+}
+.wrapper .container.typeface .choose-script .buttons button.active:focus:not(:focus-visible) {
+  outline: none;
+}
+.wrapper .container.typeface .choose-script .buttons button.active:active {
+  color: var(--white);
+  background-color: var(--blue);
+}
+.wrapper .container.typeface .choose-script .buttons button.active:disabled {
+  background-color: var(--grey);
+}
+.wrapper .container.typeface .choose-script .buttons button.active:active {
+  background-color: var(--black);
+}
+.wrapper .container.typeface .choose-weight {
+  position: fixed;
+  top: 21.06rem;
+}
 .wrapper .container.typeface .main-section:first-of-type h3 {
   opacity: 0;
 }
-.wrapper .container.typeface .typeface-styles {
+.wrapper .container.typeface .main-section:first-of-type {
+  padding-top: 1.62rem;
+}
+.wrapper .container.typeface .main-section:first-of-type h3 {
+  opacity: 0;
+}
+.wrapper .container.typeface .main-section .styles-weights {
+  margin-bottom: 9.72rem;
   display: flex;
   flex-direction: column;
   gap: 1.62rem;
-  padding: 3.24rem 0;
   text-align: center;
 }
-.wrapper .container.typeface .typeface-styles h2 {
+.wrapper .container.typeface .main-section .styles-weights h2 {
+  font-size: 58px;
+  line-height: 58px;
   font-weight: initial;
 }
-.wrapper .container.typeface .typeface-styles a:hover {
-  text-decoration: none;
+.wrapper .container.typeface .main-section .typetesters {
+  display: flex;
+  flex-direction: column;
+  gap: 6.48rem;
+}
+.wrapper .container.typeface .main-section .typetesters .font-tester {
+  scroll-margin-top: 17.5vh;
+}
+.wrapper .container.typeface .main-section .about-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.wrapper .container.typeface .main-section .about-section p:nth-of-type(2) {
+  padding-top: 0;
 }
 .wrapper .container.typeface .download a {
   margin-top: 1.62rem;
@@ -543,120 +673,6 @@ nav .mobile-nav {
 .wrapper .container.typeface .download canvas {
   width: 100% !important;
   height: auto !important;
-}
-.wrapper .container.style .choose-script {
-  position: relative;
-  top: 7.29rem;
-  left: 0;
-  width: -moz-fit-content;
-  width: fit-content;
-  z-index: 1111;
-}
-.wrapper .container.style .choose-script .buttons {
-  margin-top: 0.972rem;
-  display: flex;
-  gap: 8px;
-}
-.wrapper .container.style .choose-script .buttons button {
-  display: inline-flex;
-  padding: 14px 16px;
-  border-radius: 12px;
-  align-items: center;
-  flex-shrink: 0;
-  border: none;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
-  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
-  color: var(--foreground);
-  background-color: var(--background);
-  padding: 6px 12px;
-  border-radius: 8px;
-  outline: 1px solid var(--foreground);
-}
-.wrapper .container.style .choose-script .buttons button:hover {
-  cursor: pointer;
-}
-.wrapper .container.style .choose-script .buttons button:hover, .wrapper .container.style .choose-script .buttons button.selected {
-  background-color: var(--foreground);
-  color: var(--background);
-}
-.wrapper .container.style .choose-script .buttons button:focus-visible {
-  outline: 2px solid var(--foreground);
-}
-.wrapper .container.style .choose-script .buttons button:focus:not(:focus-visible) {
-  outline: none;
-}
-.wrapper .container.style .choose-script .buttons button:active {
-  color: var(--foreground);
-  background-color: var(--background);
-}
-.wrapper .container.style .choose-script .buttons button:disabled {
-  color: var(--grey);
-}
-.wrapper .container.style .choose-script .buttons button.active {
-  display: inline-flex;
-  padding: 14px 16px;
-  border-radius: 12px;
-  align-items: center;
-  flex-shrink: 0;
-  border: none;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
-  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
-  color: var(--white);
-  background-color: var(--blue);
-  background-color: var(--black);
-  padding: 6px 12px;
-  border-radius: 8px;
-}
-.wrapper .container.style .choose-script .buttons button.active:hover {
-  cursor: pointer;
-}
-.wrapper .container.style .choose-script .buttons button.active:hover {
-  background-color: var(--black);
-}
-.wrapper .container.style .choose-script .buttons button.active:focus-visible {
-  outline: 2px solid var(--black);
-}
-.wrapper .container.style .choose-script .buttons button.active:focus:not(:focus-visible) {
-  outline: none;
-}
-.wrapper .container.style .choose-script .buttons button.active:active {
-  color: var(--white);
-  background-color: var(--blue);
-}
-.wrapper .container.style .choose-script .buttons button.active:disabled {
-  background-color: var(--grey);
-}
-.wrapper .container.style .choose-script .buttons button.active:active {
-  background-color: var(--black);
-}
-.wrapper .container.style .main-section:first-of-type {
-  padding-top: 1.62rem;
-}
-.wrapper .container.style .main-section:first-of-type h3 {
-  opacity: 0;
-}
-.wrapper .container.style .main-section .styles-weights {
-  margin-bottom: 9.72rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.62rem;
-  text-align: center;
-}
-.wrapper .container.style .main-section .styles-weights h2 {
-  font-size: 58px;
-  line-height: 58px;
-  font-weight: initial;
-}
-.wrapper .container.style .main-section .typetesters {
-  display: flex;
-  flex-direction: column;
-  gap: 6.48rem;
 }
 .wrapper .container.page h2 {
   padding-top: 3.24rem;
@@ -991,46 +1007,40 @@ footer .pages {
     min-height: calc(100vh - 2.43rem * 9);
     padding: 7.29rem 2.592rem;
   }
+  .wrapper .container.typeface-preview {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
   .wrapper .container.typeface-preview h2 {
     font-size: 9rem !important;
   }
-  .wrapper .container.style .choose-script {
+  .wrapper .container.typeface .quick-buttons {
+    height: calc(100vh - 2.43rem - 8.1rem);
+  }
+  .wrapper .container.typeface .choose-script {
     top: 2.43rem;
   }
-  .wrapper .container.style .font-tester .font-sample {
+  .wrapper .container.typeface .font-tester .font-sample {
     min-height: initial;
   }
-  .wrapper .container.typeface .quick-buttons, .wrapper .container.style .quick-buttons {
-    height: calc(100vh - 2.43rem - 8.1rem);
-    flex-direction: column;
-    pointer-events: none;
-  }
-  .wrapper .container.typeface .quick-buttons .action-buttons, .wrapper .container.style .quick-buttons .action-buttons {
-    align-self: flex-end;
-  }
-  .wrapper .container.typeface .quick-buttons .back-button,
-  .wrapper .container.typeface .quick-buttons .action-buttons, .wrapper .container.style .quick-buttons .back-button,
-  .wrapper .container.style .quick-buttons .action-buttons {
-    pointer-events: all;
-  }
-  .wrapper .container.typeface .main-section:first-of-type, .wrapper .container.style .main-section:first-of-type {
+  .wrapper .container.typeface .main-section:first-of-type {
     padding-top: 4.86rem;
   }
-  .wrapper .container.typeface .main-section:first-of-type h3, .wrapper .container.style .main-section:first-of-type h3 {
+  .wrapper .container.typeface .main-section:first-of-type h3 {
     opacity: 1;
   }
-  .wrapper .container.typeface .typetesters, .wrapper .container.style .typetesters {
+  .wrapper .container.typeface .typetesters {
     max-width: calc(100vw - 5.184rem);
   }
-  .wrapper .container.typeface .weights-packages .weight-details, .wrapper .container.style .weights-packages .weight-details {
+  .wrapper .container.typeface .weights-packages .weight-details {
     flex-wrap: wrap;
     width: 100%;
     justify-content: flex-end;
   }
-  .wrapper .container.typeface .weights-packages .weight-details .checkbox-option, .wrapper .container.style .weights-packages .weight-details .checkbox-option {
+  .wrapper .container.typeface .weights-packages .weight-details .checkbox-option {
     flex-grow: 1;
   }
-  .wrapper .container.typeface .weights-packages .weight-details .buying-price, .wrapper .container.style .weights-packages .weight-details .buying-price {
+  .wrapper .container.typeface .weights-packages .weight-details .buying-price {
     align-self: flex-end;
   }
   footer {
@@ -1066,6 +1076,7 @@ footer .pages {
 .main-section:not(.no-indent) .section-wrapper section {
   width: 100%;
   max-width: 1280px;
+  display: grid;
 }
 .main-section .section-wrapper:not(.no-title) section {
   padding-top: 1.62rem;
@@ -1274,6 +1285,18 @@ footer .pages {
   padding-left: 0;
 }
 
+.styles-selector .styles {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.styles-selector .styles .style.active {
+  text-decoration: underline;
+}
+.styles-selector .styles .style:hover {
+  cursor: pointer;
+}
+
 .quick-buttons {
   width: calc(100% - 2.16rem * 4);
   position: fixed;
@@ -1281,6 +1304,14 @@ footer .pages {
   justify-content: space-between;
   z-index: 9999;
   pointer-events: none;
+}
+.quick-buttons.with-background {
+  width: calc(100% - 2.16rem * 4);
+  padding: 2.43rem 4.32rem 1.62rem;
+  top: 4.05rem;
+  left: 0;
+  border-bottom: 1px solid #e4e4e4;
+  background: var(--background);
 }
 .quick-buttons * {
   pointer-events: all;
@@ -1498,8 +1529,9 @@ div:hover > .iconly {
   color: var(--grey);
 }
 
-.supported-languages article:not(:first-of-type) {
-  margin-top: 3.24rem;
+.supported-languages {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 .supported-languages article h6 {
   font-weight: 600;
@@ -1650,6 +1682,9 @@ div:hover > .iconly {
 .opentype-features-preview .text-container .frac-on {
   font-feature-settings: "frac" 1;
 }
+.opentype-features-preview .text-container .ss1-on {
+  font-feature-settings: "ss01" 1;
+}
 .opentype-features-preview .text-container .subs.subs-on {
   font-feature-settings: "subs";
 }
@@ -1781,6 +1816,16 @@ div.dropdown .Dropdown-menu > .Dropdown-option:hover {
 }
 .checkbox-dropdown ul li input {
   flex-shrink: 0;
+}
+
+.typeface-image {
+  mix-blend-mode: multiply;
+  transition: scale 0.3s ease-in-out;
+}
+
+.dark .typeface-image {
+  mix-blend-mode: screen;
+  filter: invert(100%);
 }
 
 h1 {
