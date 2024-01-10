@@ -14,7 +14,8 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "images.pexels.com",
+        hostname: "strapi-julytype-1zhv.onrender.com",
+        pathname: "/uploads/**",
       },
     ],
   },
