@@ -446,6 +446,29 @@ nav {
               text-decoration: line-through;
               color: var(--red);
             }
+
+            .licenses {
+              display: flex;
+              gap: 10px;
+
+              .license {
+                display: flex;
+                align-items: center;
+
+                width: max-content;
+                height: min-content;
+                padding: 10px 10px 7px;
+                border: 1px solid $color;
+                border-radius: 8px;
+              }
+            }
+
+            .add-license,
+            .company-sizes {
+              display: block;
+              position: relative;
+              width: 100%;
+            }
           }
 
           .actions {
@@ -1302,6 +1325,7 @@ input[type="range"] {
 div.dropdown {
   @include dropdown.base();
   min-width: var(--min-width);
+  border: 1px solid $color;
 }
 
 .checkbox-dropdown {

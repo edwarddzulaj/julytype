@@ -29,7 +29,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
     const existingProduct = cart.products.find((p) => p.id === typeface.id);
     if (existingProduct) {
       licenseTypes = existingProduct.licenseTypes;
-      companySize = [existingProduct.companySize.toString()];
+      companySize = [existingProduct.companySize?.toString()];
       discount = existingProduct.discount ? ["yes"] : ["no"];
     } else {
       const defaultLicenseType = licenseOptions.options.find((o) => o.checked);

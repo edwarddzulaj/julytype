@@ -796,6 +796,27 @@ nav .mobile-nav {
   text-decoration: line-through;
   color: var(--red);
 }
+.wrapper .container.cart.page .cart-items .cart-item-container .details .licenses {
+  display: flex;
+  gap: 10px;
+}
+.wrapper .container.cart.page .cart-items .cart-item-container .details .licenses .license {
+  display: flex;
+  align-items: center;
+  width: -moz-max-content;
+  width: max-content;
+  height: -moz-min-content;
+  height: min-content;
+  padding: 10px 10px 7px;
+  border: 1px solid var(--foreground);
+  border-radius: 8px;
+}
+.wrapper .container.cart.page .cart-items .cart-item-container .details .add-license,
+.wrapper .container.cart.page .cart-items .cart-item-container .details .company-sizes {
+  display: block;
+  position: relative;
+  width: 100%;
+}
 .wrapper .container.cart.page .cart-items .cart-item-container .actions {
   padding-top: 0.972rem;
   display: flex;
@@ -1752,6 +1773,7 @@ div.dropdown {
   background-color: var(--background);
   overflow: hidden;
   min-width: var(--min-width);
+  border: 1px solid var(--foreground);
 }
 div.dropdown.is-open {
   box-shadow: 0px 1px 3px 0px var(--foreground);

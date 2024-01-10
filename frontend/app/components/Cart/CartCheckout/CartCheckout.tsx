@@ -65,7 +65,7 @@ export default function CartCheckout() {
       <div className="cart-footer">
         {cartItems.length > 0 && (
           <div className="total-price">
-            Price total: &nbsp;
+            Subtotal: &nbsp;
             {prices.price !== prices.finalPrice && (
               <>
                 <span className="price">{prices.price} EUR</span>&nbsp;
