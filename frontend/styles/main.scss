@@ -300,6 +300,11 @@ nav {
         }
       }
 
+      .choose-weight {
+        position: fixed;
+        top: $gutter-h * 13;
+      }
+
       .main-section:first-of-type {
         h3 {
           opacity: 0;
@@ -333,6 +338,10 @@ nav {
           display: flex;
           flex-direction: column;
           gap: $gutter-h * 4;
+
+          .font-tester {
+            scroll-margin-top: 17.5vh;
+          }
         }
 
         .about-section {

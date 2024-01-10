@@ -6,13 +6,13 @@ import { FontsData } from "./Typetester/typetester-types";
 import { Style } from "@/@types/contentTypes";
 import { TypefaceWeight } from "@/@types/components";
 
-import { SelectedStyleIdContext } from "@/app/providers";
+import { SelectedStyleContext } from "@/app/providers";
 import Typetester from "./Typetester/Typetester";
 
 export default function StyleWeights({ styles }: { styles: Style[] }) {
-  const { styleId } = useContext(SelectedStyleIdContext);
+  const { style: chosenStyle } = useContext(SelectedStyleContext);
 
-  const style = styles.find((s) => s.id == styleId) || styles[0];
+  const style = styles.find((s) => s.id == chosenStyle.id) || styles[0];
   const { title, weights, lineHeight } = style?.attributes ?? { title: "", weights: [] };
   return (
     <section className="typetesters">

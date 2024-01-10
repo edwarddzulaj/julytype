@@ -4,6 +4,7 @@ import { getStrapiMedia } from "@/app/utils/api-helpers";
 
 import BuyButton from "@/app/components/UI/BuyButton";
 import ChooseScript from "@/app/components/Typeface/ChooseScript";
+import ChooseWeight from "@/app/components/Typeface/ChooseWeight";
 import Markdown from "react-markdown";
 import OpentypeFeaturesPreview from "@/app/components/Typeface/OpentypeFeaturesPreview/OpentypeFeaturesPreview";
 import PDFPreview from "@/app/components/Typeface/PDFPreview";
@@ -68,6 +69,7 @@ export default async function Typeface({ params }: { params: { slug: string } })
             </div>
           </article>
           <ChooseScript />
+          <ChooseWeight styles={styles.data} />
           <Section title="Overview">
             <StyleWeights styles={styles.data} />
           </Section>

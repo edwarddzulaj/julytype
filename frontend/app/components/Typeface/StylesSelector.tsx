@@ -1,14 +1,14 @@
 "use client";
 import { Style } from "@/@types/contentTypes";
-import { SelectedStyleIdContext } from "@/app/providers";
+import { SelectedStyleContext } from "@/app/providers";
 import { useContext, useState } from "react";
 
 export default function StylesSelector({ styles }: { styles: Style[] }) {
-  const context = useContext(SelectedStyleIdContext);
+  const context = useContext(SelectedStyleContext);
   const [selectedStyleId, setSelectedStyleId] = useState(styles[0].id);
-  const selectStyle = (styleId: number) => {
-    setSelectedStyleId(styleId);
-    context.updateStyleId(styleId);
+  const selectStyle = (id: number, title: string) => {
+    setSelectedStyleId(id);
+    context.updateStyle(id, title);
   };
 
   return (
@@ -19,7 +19,7 @@ export default function StylesSelector({ styles }: { styles: Style[] }) {
           <li
             key={style.id}
             className={`style ${style.id === selectedStyleId ? "active" : ""}`}
-            onClick={() => selectStyle(style.id)}
+            onClick={() => selectStyle(style.id, style.attributes.title)}
           >
             {style.attributes.title}
           </li>

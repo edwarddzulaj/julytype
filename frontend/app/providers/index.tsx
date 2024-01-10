@@ -4,9 +4,9 @@ import { createContext, useState } from "react";
 import { ThemeProvider } from "next-themes";
 
 export const ScriptChoiceContext = createContext({ script: "", updateScript: (s: string) => {} });
-export const SelectedStyleIdContext = createContext({
-  styleId: 0,
-  updateStyleId: (id: number) => {},
+export const SelectedStyleContext = createContext({
+  style: { id: 0, title: "Typeface style" },
+  updateStyle: (id: number, title: string) => {},
 });
 
 export function ScriptChoiceProvider({ children }: any) {
@@ -24,16 +24,16 @@ export function ScriptChoiceProvider({ children }: any) {
 }
 
 export function SelectedStyleProvider({ children }: any) {
-  const [styleId, setStyleId] = useState(0);
+  const [style, setStyle] = useState({ id: 0, title: "Typeface style" });
 
-  const updateStyleId = (id: number) => {
-    setStyleId(id);
+  const updateStyle = (id: number, title: string) => {
+    setStyle({ id, title });
   };
 
   return (
-    <SelectedStyleIdContext.Provider value={{ styleId, updateStyleId }}>
+    <SelectedStyleContext.Provider value={{ style, updateStyle }}>
       {children}
-    </SelectedStyleIdContext.Provider>
+    </SelectedStyleContext.Provider>
   );
 }
 

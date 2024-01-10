@@ -587,6 +587,10 @@ nav .mobile-nav {
 .wrapper .container.typeface .choose-script .buttons button.active:active {
   background-color: var(--black);
 }
+.wrapper .container.typeface .choose-weight {
+  position: fixed;
+  top: 21.06rem;
+}
 .wrapper .container.typeface .main-section:first-of-type h3 {
   opacity: 0;
 }
@@ -612,6 +616,9 @@ nav .mobile-nav {
   display: flex;
   flex-direction: column;
   gap: 6.48rem;
+}
+.wrapper .container.typeface .main-section .typetesters .font-tester {
+  scroll-margin-top: 17.5vh;
 }
 .wrapper .container.typeface .main-section .about-section {
   display: grid;
