@@ -776,7 +776,7 @@ nav .mobile-nav {
 }
 .wrapper .container.cart.page .cart .cart-header {
   display: grid;
-  grid-template-columns: 1fr 7fr 8fr;
+  grid-template-columns: minmax(32px, 1fr) 7fr 8fr;
   -moz-column-gap: 16px;
        column-gap: 16px;
   padding-bottom: 6px;
@@ -784,11 +784,14 @@ nav .mobile-nav {
 }
 .wrapper .container.cart.page .cart .cart-items .cart-item-container {
   display: grid;
-  grid-template-columns: 1fr 7fr 8fr;
+  grid-template-columns: minmax(42px, 1fr) 7fr 8fr;
   -moz-column-gap: 16px;
        column-gap: 16px;
   padding: 2.43rem 0;
   border-bottom: 1px solid var(--grey);
+}
+.wrapper .container.cart.page .cart .cart-items .cart-item-container .checkbox-container {
+  flex-shrink: 0;
 }
 .wrapper .container.cart.page .cart .cart-items .cart-item-container .checkbox-container input[type=checkbox] {
   top: 4px;
@@ -836,12 +839,18 @@ nav .mobile-nav {
   margin: 4.86rem 0;
 }
 .wrapper .container.cart.page .cart-footer {
+  position: relative;
   padding-top: 2.43rem;
   display: flex;
   justify-content: space-between;
   gap: 8px;
 }
 .wrapper .container.cart.page .cart-footer .total-price {
+  display: grid;
+  grid-template-columns: 8fr 7.8fr;
+  -moz-column-gap: 16px;
+       column-gap: 16px;
+  width: 100%;
   font-weight: 600;
 }
 .wrapper .container.cart.page .cart-footer .total-price .price {
@@ -849,9 +858,12 @@ nav .mobile-nav {
   color: var(--red);
 }
 .wrapper .container.cart.page .cart-footer .actions {
+  position: absolute;
+  right: 0;
   display: flex;
   align-items: center;
   gap: 16px;
+  flex-shrink: 0;
 }
 .wrapper .container.cart.page .cart-footer .actions :last-child {
   display: inline-flex;
@@ -1029,6 +1041,34 @@ footer .pages {
   }
   .wrapper .container.typeface .weights-packages .weight-details .buying-price {
     align-self: flex-end;
+  }
+  .wrapper .container.page.cart .cart-header {
+    -moz-column-gap: 6px;
+         column-gap: 6px;
+  }
+  .wrapper .container.page.cart .cart-header :last-child {
+    justify-self: end;
+  }
+  .wrapper .container.page.cart .cart-items .cart-item-container {
+    -moz-column-gap: 6px !important;
+         column-gap: 6px !important;
+  }
+  .wrapper .container.page.cart .cart-items .cart-item-container .details-container .licenses {
+    flex-direction: column;
+  }
+  .wrapper .container.page.cart .cart-items .cart-item-container .details-container .licenses .add-license {
+    width: -moz-max-content;
+    width: max-content;
+  }
+  .wrapper .container.page.cart .cart-items .cart-item-container .price-container {
+    text-align: right;
+    justify-self: end;
+  }
+  .wrapper .container.page.cart .cart-footer .total-price {
+    display: flex;
+  }
+  .wrapper .container.page.cart .cart-footer .actions {
+    margin-top: 3.24rem;
   }
   footer {
     width: calc(100vw - 1.296rem * 4);

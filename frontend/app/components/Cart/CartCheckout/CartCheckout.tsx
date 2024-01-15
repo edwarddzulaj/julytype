@@ -77,19 +77,23 @@ export default function CartCheckout() {
       <div className="cart-footer">
         {cartItems.length > 0 && (
           <div className="total-price">
-            Subtotal: &nbsp;
-            {prices.price !== prices.finalPrice && (
-              <>
-                <span className="price">{prices.price} EUR</span>&nbsp;
-              </>
-            )}
-            <span className="discount-price">{prices.finalPrice} EUR</span>
+            <div>Subtotal:</div>
+            <div>
+              {prices.price !== prices.finalPrice && (
+                <>
+                  <span className="price">{prices.price} EUR</span>&nbsp;
+                </>
+              )}
+              <span className="discount-price">{prices.finalPrice} EUR</span>
+            </div>
           </div>
         )}
         <div className="actions">
-          <Link href="/" className="browse-more">
-            Browse more typefaces
-          </Link>
+          {cartItems.length < 1 && (
+            <Link href="/" className="browse-more">
+              Browse more typefaces
+            </Link>
+          )}
           {cartItems.length > 0 && (
             <div className="payment" onClick={redirectToCheckout}>
               {isRedirecting ? "Redirecting..." : "Proceed to payment"}

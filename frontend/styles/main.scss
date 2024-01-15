@@ -424,7 +424,7 @@ nav {
       .cart {
         .cart-header {
           display: grid;
-          grid-template-columns: 1fr 7fr 8fr;
+          grid-template-columns: minmax(32px, 1fr) 7fr 8fr;
           column-gap: 16px;
           padding-bottom: 6px;
           border-bottom: 1px solid var(--foreground);
@@ -433,12 +433,13 @@ nav {
         .cart-items {
           .cart-item-container {
             display: grid;
-            grid-template-columns: 1fr 7fr 8fr;
+            grid-template-columns: minmax(42px, 1fr) 7fr 8fr;
             column-gap: 16px;
             padding: $gutter-h * 1.5 0;
             border-bottom: 1px solid var(--grey);
 
             .checkbox-container {
+              flex-shrink: 0;
               input[type="checkbox"] {
                 top: 4px;
                 left: 6px;
@@ -498,12 +499,17 @@ nav {
       }
 
       .cart-footer {
+        position: relative;
         padding-top: $gutter-h * 1.5;
         display: flex;
         justify-content: space-between;
         gap: 8px;
 
         .total-price {
+          display: grid;
+          grid-template-columns: 8fr 7.8fr;
+          column-gap: 16px;
+          width: 100%;
           font-weight: 600;
 
           .price {
@@ -513,9 +519,12 @@ nav {
         }
 
         .actions {
+          position: absolute;
+          right: 0;
           display: flex;
           align-items: center;
           gap: 16px;
+          flex-shrink: 0;
 
           :last-child {
             @include buttons.primary();
@@ -704,6 +713,47 @@ footer {
             .buying-price {
               align-self: flex-end;
             }
+          }
+        }
+      }
+
+      &.page.cart {
+        .cart-header {
+          column-gap: 6px;
+
+          :last-child {
+            justify-self: end;
+          }
+        }
+
+        .cart-items {
+          .cart-item-container {
+            column-gap: 6px !important;
+
+            .details-container {
+              .licenses {
+                flex-direction: column;
+
+                .add-license {
+                  width: max-content;
+                }
+              }
+            }
+
+            .price-container {
+              text-align: right;
+              justify-self: end;
+            }
+          }
+        }
+
+        .cart-footer {
+          .total-price {
+            display: flex;
+          }
+
+          .actions {
+            margin-top: $gutter-h * 2;
           }
         }
       }
