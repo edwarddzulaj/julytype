@@ -21,7 +21,8 @@ export function formatData(items: Array<CartItem>) {
     if (existingProduct) {
       existingProduct.weights.push({ ...item.weight, styleId: item.styleId });
       existingProduct.totalPrice += regularPrice;
-      existingProduct.totalDiscountPrice += priceWithDiscount;
+      (existingProduct.selected = item.selected),
+        (existingProduct.totalDiscountPrice += priceWithDiscount);
     } else {
       const newProduct: ProductItem = {
         id: item.id,
@@ -29,6 +30,7 @@ export function formatData(items: Array<CartItem>) {
         totalPrice: regularPrice,
         totalDiscountPrice: priceWithDiscount,
         weights: [],
+        selected: item.selected,
         licenseTypes: item.licenseTypes,
         companySize: item.companySize,
         discount: item.discount,

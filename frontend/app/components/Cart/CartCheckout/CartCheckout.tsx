@@ -3,7 +3,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useAppSelector } from "../../../redux/hooks";
 
 import Link from "next/link";
-import { ProductItem } from "@/app/redux/cartReducer";
+import { ProductItem, emptyCart } from "@/app/redux/cartReducer";
 import ProductItemContainer from "./ProductItemContainer";
 import { useEffect, useState } from "react";
 import { calculateTotalPricesForCart, formatData } from "@/app/utils/cart-helpers";
@@ -11,6 +11,7 @@ import { calculateTotalPricesForCart, formatData } from "@/app/utils/cart-helper
 export default function CartCheckout() {
   const cart = useAppSelector((state) => state.cart);
   const [cartItems, setCartItems] = useState<Array<ProductItem>>([]);
+  const [finalCartItems, setFinalCartItems] = useState<Array<ProductItem>>([]);
   const [prices, setPrices] = useState({ price: 0, finalPrice: 0 });
   const [isRedirecting, setIsRedirecting] = useState(false);
 
@@ -18,10 +19,14 @@ export default function CartCheckout() {
     const items = formatData(cart.products);
     setCartItems(items), [cart.products];
 
-    const { totalPriceCart, discountPriceCart } = calculateTotalPricesForCart(items);
+    const finalCartItems = items.filter((i) => i.selected === true);
+    setFinalCartItems(finalCartItems);
+
+    const { totalPriceCart, discountPriceCart } = calculateTotalPricesForCart(finalCartItems);
     setPrices({ price: totalPriceCart, finalPrice: discountPriceCart });
   }, [cart.products]);
 
+  emptyCart();
   const redirectToCheckout = async () => {
     try {
       const stripe = await loadStripe(
@@ -35,7 +40,7 @@ export default function CartCheckout() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ cartItems }),
+        body: JSON.stringify({ cartItems: finalCartItems }),
       });
 
       const { sessionId } = await checkoutResponse.json();
@@ -52,10 +57,17 @@ export default function CartCheckout() {
   };
 
   return (
-    <>
+    <section className="cart">
+      <div className="cart-header">
+        <div>No.</div>
+        <div>Item</div>
+        <div>Price</div>
+      </div>
       <div className="cart-items">
         {cartItems.length > 0 &&
-          cartItems.map((item) => <ProductItemContainer key={item.id} item={item} />)}
+          cartItems.map((item, index) => (
+            <ProductItemContainer key={item.id} item={item} index={index} />
+          ))}
         {cartItems.length === 0 && (
           <div className="no-cart-items">
             <h5>You have no items in your cart yet</h5>
@@ -79,15 +91,12 @@ export default function CartCheckout() {
             Browse more typefaces
           </Link>
           {cartItems.length > 0 && (
-            <div
-              className="payment"
-              onClick={() => cart.products.length > 0 && redirectToCheckout()}
-            >
+            <div className="payment" onClick={redirectToCheckout}>
               {isRedirecting ? "Redirecting..." : "Proceed to payment"}
             </div>
           )}
         </div>
       </div>
-    </>
+    </section>
   );
 }

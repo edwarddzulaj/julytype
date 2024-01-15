@@ -86,6 +86,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
           styleId: selectedItem.styleId!,
           name: typeface.attributes.title,
           weight: selectedItem,
+          selected: true,
           licenseTypes: purchaseDetails.licenseTypes!,
           companySize: +purchaseDetails.companySize![0],
           discount: purchaseDetails.discount![0] === "yes",

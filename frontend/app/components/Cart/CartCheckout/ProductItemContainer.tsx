@@ -1,24 +1,29 @@
 "use client";
 import Dropdown from "react-dropdown";
-import Link from "next/link";
 
 import { TypefaceWeight } from "@/@types/components";
-import { removeFromCart, ProductItem, updateProduct } from "@/app/redux/cartReducer";
+import { ProductItem, updateProduct } from "@/app/redux/cartReducer";
+import { useAppSelector } from "@/app/redux/hooks";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { useAppSelector } from "@/app/redux/hooks";
 import Iconly, { icons } from "../../UI/Iconly";
 
 import { calculateTotalPrices } from "@/app/utils/cart-helpers";
 import { licenseOptions, companySizeOptions } from "../PurchaseSection/purchase-option-configs";
 import { pluralize } from "@/app/utils/text-helpers";
 
-export default function ProductItemContainer({ item }: { item: ProductItem }) {
+export default function ProductItemContainer({
+  item,
+  index,
+}: {
+  item: ProductItem;
+  index: number;
+}) {
   const [licenseTypeDefault, setLicenseTypeDefault] = useState("Add license type");
   const [allWeights, setAllWeights] = useState("");
   const [prices, setPrices] = useState({ price: 0, finalPrice: 0 });
-
   const dispatch = useDispatch();
+  const cart = useAppSelector((state) => state.cart);
 
   const companySizeOptionsList = companySizeOptions.options.map((option) => ({
     value: option.value,
@@ -30,10 +35,12 @@ export default function ProductItemContainer({ item }: { item: ProductItem }) {
     (option) => !item.licenseTypes.includes(option.value)
   );
 
-  const removeProductItem = () => {
-    item.weights.forEach((weight) => {
-      dispatch(removeFromCart({ weight: { id: weight.id } }));
-    });
+  const toggleProductItem = () => {
+    dispatch(updateProduct({ ...item, selected: !getCurrentCartItem(item.id)!.selected }));
+  };
+
+  const getCurrentCartItem = (id: number) => {
+    return cart.products.find((p) => p.id === id);
   };
 
   const handleCompanySizeChange = (option: any) => {
@@ -65,7 +72,20 @@ export default function ProductItemContainer({ item }: { item: ProductItem }) {
   }, [item.companySize, item.discount, item.licenseTypes, item.weights]);
   return (
     <section className="cart-item-container">
-      <article className="details">
+      <article className="checkbox-container">
+        <label className="index" htmlFor={index.toString()}>
+          {index + 1}
+        </label>
+        <input
+          type="checkbox"
+          name={index.toString()}
+          id={index.toString()}
+          defaultChecked={getCurrentCartItem(item.id)!.selected}
+          onClick={toggleProductItem}
+          title="Remove from cart"
+        />
+      </article>
+      <article className="details-container">
         <div>
           <h6 className="title">Weights and styles</h6>
           {allWeights}
@@ -77,15 +97,17 @@ export default function ProductItemContainer({ item }: { item: ProductItem }) {
               const licenseOption = licenseOptions.options.find((o) => o.value === license);
               return (
                 <li className="license" key={license}>
-                  {licenseOption!.label}{" "}
-                  <span
-                    className="remove-license"
-                    onClick={() => {
-                      handleLicenseTypeChange(licenseOption, true);
-                    }}
-                  >
-                    <Iconly icon={icons.close}></Iconly>
-                  </span>
+                  {licenseOption!.label}
+                  {item.licenseTypes.length > 1 && (
+                    <span
+                      className="remove-license"
+                      onClick={() => {
+                        handleLicenseTypeChange(licenseOption, true);
+                      }}
+                    >
+                      <Iconly icon={icons.close}></Iconly>
+                    </span>
+                  )}
                 </li>
               );
             })}
@@ -114,28 +136,16 @@ export default function ProductItemContainer({ item }: { item: ProductItem }) {
             />
           </div>
         </div>
-        <div>
-          <h6 className="title">Price</h6>
-          <div>
-            {prices.price !== prices.finalPrice && (
-              <>
-                <span className="price">{prices.price} EUR</span>&nbsp;
-              </>
-            )}
-            <span className="discount-price">{prices.finalPrice} EUR</span>
-          </div>
-        </div>
       </article>
-      <article className="actions">
-        <div className="remove-action" onClick={removeProductItem}>
-          Remove from cart <Iconly icon={icons.close}></Iconly>
+      <article className="price-container">
+        <div>
+          {prices.price !== prices.finalPrice && (
+            <>
+              <span className="price">{prices.price} EUR</span>&nbsp;
+            </>
+          )}
+          <span className="discount-price">{prices.finalPrice} EUR</span>
         </div>
-        <Link
-          className="edit-action"
-          href={`/typefaces/${item.name.toLowerCase()}#font-selection-options`}
-        >
-          Edit buying options
-        </Link>
       </article>
     </section>
   );
