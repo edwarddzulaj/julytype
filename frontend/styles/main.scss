@@ -235,13 +235,11 @@ nav {
       a {
         display: flex;
         justify-content: center;
+        transition: scale calc($duration-s / 2) ease-in-out;
 
         &:hover {
           text-decoration: none;
-
-          .typeface-image {
-            scale: 1.015;
-          }
+          scale: 1.025;
         }
 
         h2 {
@@ -1378,7 +1376,6 @@ div.dropdown {
 
 .typeface-image {
   mix-blend-mode: multiply;
-  transition: scale $duration-s ease-in-out;
 }
 
 .dark {
