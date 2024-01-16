@@ -1,8 +1,9 @@
 "use client";
 import { loadStripe } from "@stripe/stripe-js";
 import { useAppSelector } from "../../../redux/hooks";
-
+import { useDispatch } from "react-redux";
 import Link from "next/link";
+
 import { ProductItem, emptyCart } from "@/app/redux/cartReducer";
 import ProductItemContainer from "./ProductItemContainer";
 import { useEffect, useState } from "react";
@@ -10,6 +11,8 @@ import { calculateTotalPricesForCart, formatData } from "@/app/utils/cart-helper
 
 export default function CartCheckout() {
   const cart = useAppSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
   const [cartItems, setCartItems] = useState<Array<ProductItem>>([]);
   const [finalCartItems, setFinalCartItems] = useState<Array<ProductItem>>([]);
   const [prices, setPrices] = useState({ price: 0, finalPrice: 0 });
@@ -26,7 +29,10 @@ export default function CartCheckout() {
     setPrices({ price: totalPriceCart, finalPrice: discountPriceCart });
   }, [cart.products]);
 
-  emptyCart();
+  const handleEmptyCart = () => {
+    dispatch(emptyCart());
+  };
+
   const redirectToCheckout = async () => {
     try {
       const stripe = await loadStripe(
@@ -58,11 +64,19 @@ export default function CartCheckout() {
 
   return (
     <section className="cart">
-      <div className="cart-header">
-        <div>No.</div>
-        <div>Item</div>
-        <div>Price</div>
-      </div>
+      {cartItems.length > 0 && (
+        <>
+          <h6 className="empty-cart" onClick={handleEmptyCart}>
+            Empty cart
+          </h6>
+
+          <div className="cart-header">
+            <div>No.</div>
+            <div>Item</div>
+            <div>Price</div>
+          </div>
+        </>
+      )}
       <div className="cart-items">
         {cartItems.length > 0 &&
           cartItems.map((item, index) => (

@@ -80,7 +80,7 @@ export default function ProductItemContainer({
           type="checkbox"
           name={index.toString()}
           id={index.toString()}
-          defaultChecked={getCurrentCartItem(item.id)!.selected}
+          defaultChecked={getCurrentCartItem(item.id)?.selected}
           onClick={toggleProductItem}
           title="Remove from cart"
         />

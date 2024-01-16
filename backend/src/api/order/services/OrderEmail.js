@@ -16,7 +16,7 @@ module.exports = class OrderEmail {
     this.products = products;
   }
 
-  async retrieveFontURLS() {
+  async retrieveFontURLs() {
     // @ts-ignore
     const fontGroup = this.#getFontDetails(this.products);
 
@@ -38,10 +38,11 @@ module.exports = class OrderEmail {
 
         let fontURLs = { [style.title]: [] };
 
-        style.weights.forEach((weight) => {
-          weight.clientFontFiles.forEach((fontFile) => {
+        group.weights.forEach((weight) => {
+          const selectedWeight = style.weights.find((w) => w.id === weight.id);
+          selectedWeight.clientFontFiles.forEach((fontFile) => {
             fontURLs[style.title].push([
-              `${style.title} ${weight.title}`,
+              `${style.title} ${selectedWeight.title}`,
               fontFile.url,
             ]);
           });
@@ -58,21 +59,25 @@ module.exports = class OrderEmail {
     try {
       const promises = [];
 
-      for (const [styleTitle, fonts] of Object.entries(fontURLs)) {
-        for (const [fontTitle, url] of fonts) {
-          const promise = fetch(STRAPI_ORIGIN + url).then(async (response) => {
-            const buffer = await response.arrayBuffer();
-            const fileExtension = url.substring(url.lastIndexOf(".") + 1);
+      fontURLs.forEach((fontGroup) => {
+        for (const [styleTitle, fonts] of Object.entries(fontGroup)) {
+          for (const [fontTitle, url] of fonts) {
+            const promise = fetch(STRAPI_ORIGIN + url).then(
+              async (response) => {
+                const buffer = await response.arrayBuffer();
+                const fileExtension = url.substring(url.lastIndexOf(".") + 1);
 
-            zip.addFile(
-              `JT ${styleTitle}/${fontTitle}.${fileExtension}`,
-              Buffer.from(buffer)
+                zip.addFile(
+                  `JT ${styleTitle}/${fontTitle}.${fileExtension}`,
+                  Buffer.from(buffer)
+                );
+              }
             );
-          });
 
-          promises.push(promise);
+            promises.push(promise);
+          }
         }
-      }
+      });
 
       await Promise.all(promises);
       return zip;

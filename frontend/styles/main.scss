@@ -422,6 +422,15 @@ nav {
       }
 
       .cart {
+        .empty-cart {
+          text-align: right;
+          margin-bottom: 10px;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
         .cart-header {
           display: grid;
           grid-template-columns: minmax(32px, 1fr) 7fr 8fr;

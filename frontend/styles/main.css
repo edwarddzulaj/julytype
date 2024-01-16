@@ -774,6 +774,13 @@ nav .mobile-nav {
 .wrapper .container.cart.page h3 {
   padding: 3.24rem 0 1.62rem 0;
 }
+.wrapper .container.cart.page .cart .empty-cart {
+  text-align: right;
+  margin-bottom: 10px;
+}
+.wrapper .container.cart.page .cart .empty-cart:hover {
+  cursor: pointer;
+}
 .wrapper .container.cart.page .cart .cart-header {
   display: grid;
   grid-template-columns: minmax(32px, 1fr) 7fr 8fr;
