@@ -8,19 +8,13 @@
   "attributes": {
     "name": {
       "type": "enumeration",
-      "enum": [
-        "Cyrillic",
-        "Latin",
-        "Arabic",
-        "Greek",
-        "Korean"
-      ],
+      "enum": ["Cyrillic", "Latin", "Arabic", "Greek", "Korean"],
       "required": true,
       "default": "Latin"
     },
     "languages": {
       "type": "text",
-      "default": "English, German, Dutch",
+      "default": "English, German, Spanish",
       "required": true
     }
   }

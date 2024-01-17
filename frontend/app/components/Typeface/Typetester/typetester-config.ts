@@ -9,7 +9,9 @@ export const languages = {
   latin: [
     { value: "en-GB", label: "English" },
     { value: "de", label: "German" },
-    { value: "nl", label: "Dutch" },
+    { value: "fr", label: "French" },
+    { value: "es", label: "Spanish" },
+    { value: "it", label: "Italian" },
   ],
   cyrillic: [
     { value: "bg", label: "Bulgarian" },

@@ -16,11 +16,8 @@
       "type": "enumeration",
       "enum": [
         "English",
-        "Dutch",
         "German",
         "French",
-        "Norwegian",
-        "Polish",
         "Spanish",
         "Italian",
         "Ukrainian (Cyrillic)",
