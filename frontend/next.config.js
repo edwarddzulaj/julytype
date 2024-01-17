@@ -23,6 +23,11 @@ const nextConfig = {
         hostname: "strapi-julytype-1zhv.onrender.com",
         pathname: "/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "strapi-julytype-1zhv.onrender.com",
+        pathname: "/assets/**",
+      },
     ],
   },
   async redirects() {
