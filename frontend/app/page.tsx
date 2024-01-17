@@ -52,13 +52,13 @@ export default async function Page() {
         return (
           <Link href={`/typefaces/${slug}`} key={typeface.id}>
             <article>
-              <TypefaceSample title={title} regularWeight={regular}/>
+              <TypefaceSample title={title} regularWeight={regular} />
               <div className="typeface-details">
                 <span>{pluralize(numStyles, "style")}</span>
                 <span>{pluralize(numWeights, "weight")}</span>
               </div>
               <Image
-                className="typeface-image"
+                className="globus-image"
                 src={getStrapiMedia(imageFile.url) as string}
                 width={imageFile.width}
                 height={imageFile.height}

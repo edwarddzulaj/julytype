@@ -70,7 +70,7 @@ export default async function Typeface({ params }: { params: { slug: string } })
           </article>
           <ChooseScript />
           <ChooseWeight styles={styles.data} />
-          <Section title="Overview">
+          <Section>
             <StyleWeights styles={styles.data} />
           </Section>
           {specimen?.data?.attributes?.url && (

@@ -9,7 +9,7 @@ export default function Section({
 }) {
   return (
     <section className={`main-section${noIndent ? " no-indent" : ""}`}>
-      <h3>{title}</h3>
+      <h4>{title}</h4>
       <div className={`section-wrapper${!title ? " no-title" : ""}`}>
         <section>{children}</section>
       </div>

@@ -1,5 +1,7 @@
-import Section from "./components/UI/Section";
-import { fetchAPI } from "./utils/fetch-api";
+import Link from "next/link";
+import Image from "next/image";
+import { fetchAPI } from "../utils/fetch-api";
+import { getStrapiMedia } from "../utils/api-helpers";
 
 const stripe = require("stripe")(process.env.STRIPE_TEST_SECRET_KEY as string);
 
@@ -42,19 +44,19 @@ export default async function SuccessPage({ sessionId }: { sessionId: string | u
   }
 
   return (
-    <section className="container page">
-      {customerName && <h2>Thank you, {customerName.split(" ")[0]}!</h2>}
-      {!customerName && <h2>Thank you!</h2>}
-      <section className="sections">
-        <Section>
-          <h5>
-            Your payment is successful!
-            <br />
-            We will send your typeface package to your email &nbsp;
-            <i>{customerEmail}</i> in the next couple of minutes.
-          </h5>
-        </Section>
-      </section>
+    <section className="container page success">
+      <h2>Thank you for your purchase!</h2>
+      <h5>You will receive an email shortly.</h5>
+      <Image
+        className="globus-image"
+        src={getStrapiMedia("/assets/images/success-globus.jpeg") as string}
+        width={360}
+        height={400}
+        alt="Success globus"
+      ></Image>
+      <Link className="back-home" href="/">
+        Back home
+      </Link>
     </section>
   );
 }

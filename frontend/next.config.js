@@ -13,6 +13,12 @@ const nextConfig = {
         pathname: "/uploads/**",
       },
       {
+        protocol: "http",
+        hostname: "localhost",
+        port: "1337",
+        pathname: "/assets/**",
+      },
+      {
         protocol: "https",
         hostname: "strapi-julytype-1zhv.onrender.com",
         pathname: "/uploads/**",

@@ -371,19 +371,9 @@ nav {
     }
 
     &.page {
-      h2 {
-        padding-top: $gutter-h * 2;
-        padding-bottom: $gutter-h * 3;
-      }
-
-      @media (max-width: $mobile-breakpoint) {
-        h2 {
-          padding-top: $gutter-thin-h * 2;
-          padding-bottom: $gutter-thin-h * 3;
-        }
-      }
-
       .main-section {
+        margin-bottom: $gutter-h * 2.5;
+
         .download-trial-fonts {
           margin: $gutter-h 0;
           display: flex;
@@ -403,18 +393,40 @@ nav {
             @include buttons.secondary;
           }
         }
-
-        section {
-          padding-top: $gutter-h * 2;
-        }
       }
 
       .main-section + h4 {
         margin-top: $gutter-h * 4;
       }
+
+      .back-home {
+        @include buttons.primary();
+      }
+
+      h2 {
+        padding-top: $gutter-h * 2;
+        padding-bottom: $gutter-h * 3;
+      }
+
+      @media (max-width: $mobile-breakpoint) {
+        h2 {
+          padding-top: $gutter-thin-h * 2;
+          padding-bottom: $gutter-thin-h * 3;
+        }
+      }
+
+      h5 {
+        font-size: 24px;
+        font-weight: normal;
+      }
+
+      img {
+        width: 360px;
+        margin: 40px 0;
+      }
     }
 
-    &.cart.page {
+    &.page.cart {
       font-size: 16px;
 
       h3 {
@@ -539,6 +551,16 @@ nav {
             @include buttons.primary();
           }
         }
+      }
+    }
+
+    &.page.not-found {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .back-home {
+        margin-top: 40px;
       }
     }
   }
@@ -793,44 +815,23 @@ footer {
     margin-bottom: initial;
   }
 
-  h3 {
+  h4 {
     margin-bottom: $gutter-h;
   }
 
   &:not(.no-indent) {
     display: grid;
-
-    // @media (max-width: 1280px) {
-    //   grid-template-columns: minmax(100px, 1fr) 10fr;
-    //   gap: $gutter-v * 4;
-
-    //   h3 {
-    //     position: relative;
-    //   }
-    // }
+    grid-template-columns: minmax(100px, 300px) 3fr;
+    gap: 20px;
 
     .section-wrapper {
       display: grid;
       justify-items: center;
 
-      &:not(.no-title) {
-        section {
-          padding-top: $gutter-h * 2;
-        }
-      }
-
       section {
         width: 100%;
         max-width: 1280px;
         display: grid;
-      }
-    }
-  }
-
-  .section-wrapper {
-    &:not(.no-title) {
-      section {
-        padding-top: $gutter-h;
       }
     }
   }
@@ -1439,12 +1440,12 @@ div.dropdown {
   }
 }
 
-.typeface-image {
+.globus-image {
   mix-blend-mode: multiply;
 }
 
 .dark {
-  .typeface-image {
+  .globus-image {
     mix-blend-mode: screen;
     filter: invert(100%);
   }
