@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { PurchaseOption } from "./PurchaseSectionTypes";
 import Link from "next/link";
+import { Tooltip } from "react-tooltip";
 import Iconly, { icons } from "@/app/components/UI/Iconly";
 
 export default function PurchaseOption({
@@ -43,30 +44,36 @@ export default function PurchaseOption({
         <div className={`options ${optionType}`}>
           <form>
             {options.map((option) => (
-              <label
-                key={option.value}
-                className={selectedOptions.includes(option.value) ? "selected" : ""}
-              >
-                <input
-                  type={optionType}
-                  name="option"
-                  value={option.value}
-                  disabled={
-                    requireOneCheckbox &&
-                    selectedOptions.length <= 1 &&
-                    selectedOptions.includes(option.value)
-                  }
-                  defaultChecked={option.checked}
-                  onClick={() => handleOptionChange(option.value)}
-                />
-                {option.label}
+              <div key={option.value}>
+                <label className={selectedOptions.includes(option.value) ? "selected" : ""}>
+                  <input
+                    type={optionType}
+                    name="option"
+                    value={option.value}
+                    disabled={
+                      requireOneCheckbox &&
+                      selectedOptions.length <= 1 &&
+                      selectedOptions.includes(option.value)
+                    }
+                    defaultChecked={option.checked}
+                    onClick={() => handleOptionChange(option.value)}
+                  />
+                  {option.label}
+                </label>
                 {option.note && (
-                  <div className="note">
+                  <div
+                    className="note"
+                    data-tooltip-id={option.value}
+                    data-tooltip-content={option.note}
+                    data-tooltip-class-name="tooltip"
+                  >
                     <Iconly icon={icons.info} />
-                    <p className="text">{option.note}</p>
+                    <Tooltip id={option.value} openOnClick>
+                      close
+                    </Tooltip>
                   </div>
                 )}
-              </label>
+              </div>
             ))}
           </form>
         </div>

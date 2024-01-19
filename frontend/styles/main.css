@@ -1300,20 +1300,13 @@ footer .pages {
 .purchase-option .options form input[type=radio] {
   display: none;
 }
-.purchase-option .options form label .note {
+.purchase-option .options form .note {
   display: inline;
   font-size: 20px;
   padding: 0 5px;
 }
-.purchase-option .options form label .note p.text {
-  display: none;
-}
-.purchase-option .options form label .note:hover {
+.purchase-option .options form .note:hover {
   cursor: pointer;
-}
-.purchase-option .options form label .note:hover p.text {
-  padding-bottom: 0;
-  display: block;
 }
 .purchase-option .options.checkbox form {
   flex-direction: column;
@@ -1897,6 +1890,16 @@ div.dropdown .Dropdown-menu > .Dropdown-option:hover {
 }
 .checkbox-dropdown ul li input {
   flex-shrink: 0;
+}
+
+.tooltip {
+  max-width: 360px;
+  font-size: 14px !important;
+  line-height: 1.2;
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
+  border-radius: 8px !important;
+  box-shadow: 2px 2px 13px 0px var(--grey);
 }
 
 .globus-image {

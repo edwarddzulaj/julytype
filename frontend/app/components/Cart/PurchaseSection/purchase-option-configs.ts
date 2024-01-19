@@ -22,6 +22,10 @@ export const licenseOptions: PurchaseOption = {
     },
     { label: "Logo/Wordmark", value: "logo-wordmark", note: "Make a logo/wordmark for one brand." },
   ],
+  info: {
+    text: "More about licenses",
+    url: "/licensing",
+  },
 };
 
 export const companySizeOptions: PurchaseOption = {
