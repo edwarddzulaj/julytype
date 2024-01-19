@@ -38,7 +38,7 @@ export default function FontSelection({
       });
     } else {
       weightRefs.current.forEach((ref) => {
-        // ref!.checked = false;
+        ref!.checked = false;
         ref!.disabled = false;
       });
     }
