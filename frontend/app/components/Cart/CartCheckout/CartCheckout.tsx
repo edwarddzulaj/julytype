@@ -9,6 +9,11 @@ import ProductItemContainer from "./ProductItemContainer";
 import { useEffect, useState } from "react";
 import { calculateTotalPricesForCart, formatData } from "@/app/utils/cart-helpers";
 
+const publicKey =
+  process.env.NEXT_PUBLIC_STRAPI_ENV === "production"
+    ? process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+    : process.env.NEXT_PUBLIC_TEST_STRIPE_PUBLISHABLE_KEY;
+
 export default function CartCheckout() {
   const cart = useAppSelector((state) => state.cart);
   const dispatch = useDispatch();
@@ -35,9 +40,7 @@ export default function CartCheckout() {
 
   const redirectToCheckout = async () => {
     try {
-      const stripe = await loadStripe(
-        process.env.NEXT_PUBLIC_TEST_STRIPE_PUBLISHABLE_KEY as string
-      );
+      const stripe = await loadStripe(publicKey as string);
       if (!stripe) throw new Error("Stripe failed to initialize.");
       setIsRedirecting(true);
 
