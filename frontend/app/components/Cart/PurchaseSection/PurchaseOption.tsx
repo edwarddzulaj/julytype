@@ -78,7 +78,7 @@ export default function PurchaseOption({
           </form>
         </div>
         {info && (
-          <Link href={info.url}>
+          <Link href={info.url} className="info-link">
             <Iconly icon={icons.info} />
             {info.text}
           </Link>

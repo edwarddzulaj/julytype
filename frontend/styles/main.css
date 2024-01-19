@@ -1353,6 +1353,9 @@ footer .pages {
 .purchase-option .options.radio label:disabled {
   color: var(--grey);
 }
+.purchase-option .info-link {
+  text-decoration: underline;
+}
 .purchase-option .iconly {
   margin-left: -2px;
   padding-left: 0;
