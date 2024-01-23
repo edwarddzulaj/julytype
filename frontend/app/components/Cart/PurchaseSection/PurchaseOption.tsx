@@ -12,7 +12,7 @@ export default function PurchaseOption({
   optionType = "radio",
   requireOneCheckbox = false,
 }: {
-  config: PurchaseOption;
+  config: PurchaseOption<string | number>;
   setCallback: Function;
   optionType?: "radio" | "checkbox";
   requireOneCheckbox?: boolean;
@@ -21,7 +21,7 @@ export default function PurchaseOption({
   const defaultOption = options.find((o) => o.checked);
   const [selectedOptions, setSelectedOptions] = useState([defaultOption?.value] || null);
 
-  const handleOptionChange = (value: string) => {
+  const handleOptionChange = (value: string | number) => {
     if (optionType === "checkbox") {
       if (selectedOptions.includes(value)) {
         setSelectedOptions([...selectedOptions.filter((o) => o !== value)]);
@@ -44,7 +44,7 @@ export default function PurchaseOption({
         <div className={`options ${optionType}`}>
           <form>
             {options.map((option) => (
-              <div key={option.value}>
+              <div key={option.label}>
                 <label className={selectedOptions.includes(option.value) ? "selected" : ""}>
                   <input
                     type={optionType}
@@ -63,12 +63,12 @@ export default function PurchaseOption({
                 {option.note && (
                   <div
                     className="note"
-                    data-tooltip-id={option.value}
+                    data-tooltip-id={option.label}
                     data-tooltip-content={option.note}
                     data-tooltip-class-name="tooltip"
                   >
                     <Iconly icon={icons.info} />
-                    <Tooltip id={option.value} openOnClick>
+                    <Tooltip id={option.label} openOnClick>
                       close
                     </Tooltip>
                   </div>

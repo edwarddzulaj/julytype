@@ -57,7 +57,7 @@ export default function FontSelection({
 
   const toggleWholePackage = () => {
     if (!wholePackageSelected) {
-      setPurchaseDetails({ ...purchaseDetails, wholePackage: true });
+      setPurchaseDetails({ ...purchaseDetails, wholePackageDiscount: true });
       setWholePackageSelected(true);
 
       const allItems = getAllItems(true);
@@ -65,7 +65,7 @@ export default function FontSelection({
         setSelectedItems([...selectedItems, ...allItems]);
       }
     } else {
-      setPurchaseDetails({ ...purchaseDetails, wholePackage: false });
+      setPurchaseDetails({ ...purchaseDetails, wholePackageDiscount: false });
       setWholePackageSelected(false);
 
       const allItems = getAllItems();

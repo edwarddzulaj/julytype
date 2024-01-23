@@ -1,8 +1,8 @@
 import { TypefaceWeight } from "@/@types/components";
-export interface PurchaseOption {
+export interface PurchaseOption<ValueType> {
   subtitle?: string;
   options: {
-    value: string;
+    value: ValueType;
     label: string;
     note?: string;
     checked?: boolean;
@@ -14,14 +14,14 @@ export interface PurchaseOption {
 }
 
 export interface PurchaseDetails {
-  licenseTypes: string[] | undefined;
-  companySize: string[] | undefined;
-  discount: string[] | undefined;
-  wholePackage: boolean | undefined;
+  licenseTypes: string[];
+  companySize: int;
+  studentDiscount: boolean;
+  wholePackageDiscount: boolean;
 }
 
 export interface BuyingPrice {
   price: number;
   discount?: number;
-  purchaseDetails?: PurchaseDetails;
+  purchaseDetails: PurchaseDetails;
 }

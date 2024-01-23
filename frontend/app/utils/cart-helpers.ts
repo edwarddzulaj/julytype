@@ -1,22 +1,23 @@
 import { TypefaceWeight } from "@/@types/components";
 import { ProductItem, CartItem } from "../redux/cartReducer";
 import { licenseRates } from "./license-helpers";
+import { PurchaseDetails } from "../components/Cart/PurchaseSection/PurchaseSectionTypes";
 
 export function formatData(items: Array<CartItem>) {
   let typefaceProducts: Array<ProductItem> = [];
 
   items.forEach((item) => {
     const existingProduct = typefaceProducts.find((p) => p.id === item.id);
-    const licenseType = item.licenseTypes[0];
-    const numCompanyUsers = item.companySize;
-    const studentDiscount = item.discount;
-    const wholePackage = item.wholePackage;
+    const purchaseDetails = {
+      licenseTypes: item.licenseTypes,
+      companySize: item.companySize,
+      studentDiscount: !!item.studentDiscount,
+      wholePackageDiscount: !!item.wholePackageDiscount,
+    };
 
     const [regularPrice, priceWithDiscount] = calculatePrices(
       { price: item.weight.price, discount: item.weight.discount },
-      licenseType,
-      numCompanyUsers,
-      studentDiscount
+      purchaseDetails
     );
 
     if (existingProduct) {
@@ -34,8 +35,8 @@ export function formatData(items: Array<CartItem>) {
         selected: item.selected,
         licenseTypes: item.licenseTypes,
         companySize: item.companySize,
-        discount: item.discount,
-        wholePackage: item.wholePackage,
+        studentDiscount: item.studentDiscount,
+        wholePackageDiscount: item.wholePackageDiscount,
       };
 
       newProduct.weights.push({ ...item.weight, styleId: item.styleId });
@@ -51,18 +52,19 @@ export const calculatePrices = (
     price: number;
     discount: number | undefined;
   } = { price: 0, discount: undefined },
-  licenseType: string = "desktop-print",
-  numCompanyUsers: number = 1,
-  studentDiscount: boolean = false
+  purchaseDetails: PurchaseDetails | undefined
 ) => {
-  const multiplyRate = licenseRates[licenseType as keyof licenseRates][numCompanyUsers];
+  const licenseType = purchaseDetails?.licenseTypes[0] || "desktop-print";
+  const companySize = purchaseDetails?.companySize || 1;
+
+  const multiplyRate = licenseRates[licenseType as keyof licenseRates][companySize];
   let price = prices.price;
 
   if (multiplyRate) {
     price = prices.price * multiplyRate;
   }
 
-  if (studentDiscount) {
+  if (purchaseDetails?.studentDiscount) {
     price = price * 0.5;
   }
 
@@ -85,22 +87,15 @@ export const calculateTotalPricesForCart = (products: Array<ProductItem>) => {
 
 export const calculateTotalPrices = (
   weights: TypefaceWeight[],
-  licenseTypes: string[] = [],
-  companySize: string[] = [],
-  studentDiscount: boolean = false
+  purchaseDetails: PurchaseDetails
 ) => {
-  const licenseType = licenseTypes[0] || "";
-  const numCompanyUsers = +companySize[0] || 1;
-
   let totalPrice = 0;
   let discountPrice = 0;
 
   weights.forEach((weight) => {
     const [price, priceWithDiscount] = calculatePrices(
       { price: weight.price, discount: weight.discount },
-      licenseType,
-      numCompanyUsers,
-      studentDiscount
+      purchaseDetails
     );
     totalPrice += price;
     discountPrice += priceWithDiscount;

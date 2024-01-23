@@ -13,8 +13,8 @@ export interface CartItem {
   licenseTypes: string[];
   selected: boolean;
   companySize: number;
-  discount?: boolean;
-  wholePackage?: boolean;
+  studentDiscount?: boolean;
+  wholePackageDiscount?: boolean;
 }
 
 export interface ProductItem {
@@ -26,8 +26,8 @@ export interface ProductItem {
   licenseTypes: string[];
   companySize: number;
   selected: boolean;
-  discount?: boolean;
-  wholePackage?: boolean;
+  studentDiscount?: boolean;
+  wholePackageDiscount?: boolean;
 }
 
 const initialState = {

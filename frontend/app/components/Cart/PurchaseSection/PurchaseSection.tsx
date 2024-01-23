@@ -17,71 +17,29 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
   const [prices, setPrices] = useState({ price: 0, finalPrice: 0 });
   const [selectedItems, setSelectedItems] = useState<SelectedItem[]>([]);
   const [purchaseDetails, setPurchaseDetails] = useState<PurchaseDetails>({
-    licenseTypes: undefined,
-    companySize: undefined,
-    discount: ["no"],
-    wholePackage: false,
+    licenseTypes: [],
+    companySize: 1,
+    studentDiscount: false,
+    wholePackageDiscount: false,
   });
 
+  // Set up purchase details and selected cart items
   useEffect(() => {
-    let licenseTypes = [];
-    let companySize = [];
-    let discount = ["no"];
-    let wholePackage = false;
-
-    const existingProduct = cart.products.find((p) => p.id === typeface.id);
-    if (existingProduct) {
-      licenseTypes = existingProduct.licenseTypes;
-      companySize = [existingProduct.companySize?.toString()];
-      discount = existingProduct.discount ? ["yes"] : ["no"];
-      wholePackage = !!existingProduct.wholePackage;
-    } else {
-      const defaultLicenseType = licenseOptions.options.find((o) => o.checked);
-      const defaultCompanySize = companySizeOptions.options.find((o) => o.checked);
-
-      licenseTypes = defaultLicenseType ? [defaultLicenseType.value] : [];
-      companySize = defaultCompanySize ? [defaultCompanySize.value] : [];
-    }
-
-    setPurchaseDetails({
-      ...purchaseDetails,
-      ...(licenseTypes ? { licenseTypes: licenseTypes } : {}),
-      ...(companySize ? { companySize: companySize } : {}),
-      ...(discount ? { discount: discount } : {}),
-      ...(wholePackage ? { wholePackage: wholePackage } : {}),
-    });
-
+    initialisePurchaseDetails();
+    initialiseCartItems();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    const addedProducts = cart.products.filter((p) => p.id === typeface.id);
-
-    if (addedProducts) {
-      addedProducts.forEach((p) => {
-        setSelectedItems([...selectedItems, p.weight]);
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (purchaseDetails.wholePackage) {
+    if (purchaseDetails.wholePackageDiscount) {
       const [price, discountPrice] = calculatePrices(
         { price: typeface.attributes.price, discount: typeface.attributes.wholePackageDiscount },
-        purchaseDetails.licenseTypes![0],
-        +purchaseDetails.companySize![0],
-        purchaseDetails.discount![0] === "yes"
+        purchaseDetails
       );
 
       setPrices({ price: price, finalPrice: discountPrice });
     } else {
-      const { totalPrice, discountPrice } = calculateTotalPrices(
-        selectedItems,
-        purchaseDetails.licenseTypes,
-        purchaseDetails.companySize,
-        purchaseDetails.discount![0] === "yes"
-      );
+      const { totalPrice, discountPrice } = calculateTotalPrices(selectedItems, purchaseDetails);
 
       setPrices({ price: totalPrice, finalPrice: discountPrice });
     }
@@ -89,11 +47,52 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
     selectedItems,
     purchaseDetails.licenseTypes,
     purchaseDetails.companySize,
-    purchaseDetails.discount,
-    purchaseDetails.wholePackage,
+    purchaseDetails.studentDiscount,
+    purchaseDetails.wholePackageDiscount,
     typeface.attributes.price,
     typeface.attributes.wholePackageDiscount,
+    purchaseDetails,
   ]);
+
+  const initialisePurchaseDetails = () => {
+    let initialPurchaseDetails: PurchaseDetails = {
+      licenseTypes: [],
+      companySize: 1,
+      studentDiscount: false,
+      wholePackageDiscount: false,
+    };
+
+    const existingProduct: CartItem | undefined = cart.products.find((p) => p.id === typeface.id);
+    if (existingProduct) {
+      initialPurchaseDetails = {
+        licenseTypes: existingProduct.licenseTypes,
+        companySize: existingProduct.companySize,
+        studentDiscount: !!existingProduct?.studentDiscount,
+        wholePackageDiscount: !!existingProduct.wholePackageDiscount,
+      };
+    } else {
+      const defaultLicenseType = licenseOptions.options.find((o) => o.checked);
+      const defaultCompanySize = companySizeOptions.options.find((o) => o.checked);
+
+      initialPurchaseDetails.licenseTypes = defaultLicenseType ? [defaultLicenseType.value] : [];
+      initialPurchaseDetails.companySize = defaultCompanySize ? defaultCompanySize.value : 1;
+    }
+
+    setPurchaseDetails({
+      ...purchaseDetails,
+      ...initialPurchaseDetails,
+    });
+  };
+
+  const initialiseCartItems = () => {
+    const addedProducts = cart.products.filter((p) => p.id === typeface.id);
+
+    if (addedProducts) {
+      addedProducts.forEach((p) => {
+        setSelectedItems([...selectedItems, p.weight]);
+      });
+    }
+  };
 
   const addItemsToCart = () => {
     if (purchaseDetails.licenseTypes && purchaseDetails.companySize) {
@@ -106,10 +105,10 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
           name: typeface.attributes.title,
           weight: selectedItem,
           selected: true,
-          licenseTypes: purchaseDetails.licenseTypes!,
-          companySize: +purchaseDetails.companySize![0],
-          discount: purchaseDetails.discount![0] === "yes",
-          wholePackage: purchaseDetails.wholePackage,
+          licenseTypes: purchaseDetails.licenseTypes,
+          companySize: purchaseDetails.companySize,
+          studentDiscount: purchaseDetails.studentDiscount,
+          wholePackageDiscount: purchaseDetails.wholePackageDiscount,
         };
 
         dispatch(addToCart(item));
@@ -137,8 +136,8 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
           <h5>Company Size</h5>
           <PurchaseOption
             config={companySizeOptions}
-            setCallback={(optionValues: string[]) => {
-              setPurchaseDetails({ ...purchaseDetails, companySize: optionValues });
+            setCallback={(companySizeString: string[]) => {
+              setPurchaseDetails({ ...purchaseDetails, companySize: +companySizeString[0] });
             }}
           />
         </div>
@@ -146,10 +145,10 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
           <h5>Discount</h5>
           <PurchaseOption
             config={discountOptions}
-            setCallback={(optionValues: string[]) => {
+            setCallback={(studentDiscountString: string[]) => {
               setPurchaseDetails({
                 ...purchaseDetails,
-                discount: optionValues,
+                studentDiscount: +studentDiscountString[0] > 0,
               });
             }}
           />

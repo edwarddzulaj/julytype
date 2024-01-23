@@ -3,6 +3,7 @@ import Dropdown from "react-dropdown";
 
 import { TypefaceWeight } from "@/@types/components";
 import { ProductItem, updateProduct } from "@/app/redux/cartReducer";
+import { PurchaseDetails } from "../PurchaseSection/PurchaseSectionTypes";
 import { useAppSelector } from "@/app/redux/hooks";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
@@ -26,7 +27,7 @@ export default function ProductItemContainer({
   const cart = useAppSelector((state) => state.cart);
 
   const companySizeOptionsList = companySizeOptions.options.map((option) => ({
-    value: option.value,
+    value: option.value.toString(),
     label: `Less than ${option.label.replace("<", "")}`,
   }));
   const initialCompanySize = companySizeOptionsList.find((o) => +o.value === item.companySize);
@@ -61,15 +62,23 @@ export default function ProductItemContainer({
 
   useEffect(() => {
     setAllWeights(combineAllTitles(item.weights));
+    const purchaseDetails: PurchaseDetails = {
+      licenseTypes: item.licenseTypes,
+      companySize: item.companySize,
+      studentDiscount: !!item.studentDiscount,
+      wholePackageDiscount: !!item.wholePackageDiscount,
+    };
 
-    const { totalPrice, discountPrice } = calculateTotalPrices(
-      item.weights,
-      item.licenseTypes,
-      [item.companySize?.toString()],
-      item.discount
-    );
+    const { totalPrice, discountPrice } = calculateTotalPrices(item.weights, purchaseDetails);
+
     setPrices({ price: totalPrice, finalPrice: discountPrice });
-  }, [item.companySize, item.discount, item.licenseTypes, item.weights]);
+  }, [
+    item.companySize,
+    item.studentDiscount,
+    item.licenseTypes,
+    item.weights,
+    item.wholePackageDiscount,
+  ]);
   return (
     <section className="cart-item-container">
       <article className="checkbox-container">
