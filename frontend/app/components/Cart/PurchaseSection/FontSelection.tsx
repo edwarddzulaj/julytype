@@ -47,6 +47,10 @@ export default function FontSelection({
     }
   }, [wholePackageSelected]);
 
+  useEffect(() => {
+    setWholePackageSelected(purchaseDetails.wholePackageDiscount);
+  }, [purchaseDetails]);
+
   const handleOptionChange = (weight: TypefaceWeight | undefined, styleId: number | undefined) => {
     if (selectedItems.find((addedItem) => addedItem.id === weight!.id)) {
       setSelectedItems(selectedItems.filter((i) => i.id !== weight!.id));
@@ -76,11 +80,12 @@ export default function FontSelection({
   const getAllItems = (intersectWithSelectedItems = false) => {
     const allItems: SelectedItem[] = [];
 
-    styles.data.forEach((style) =>
+    styles.data.forEach((style) => {
       style.attributes.weights.forEach((weight) => {
-        allItems.push({ ...weight, styleId: style.id });
-      })
-    );
+        const fullTitle = `${style.attributes.title} ${weight.title}`;
+        allItems.push({ ...weight, styleId: style.id, title: fullTitle });
+      });
+    });
 
     if (intersectWithSelectedItems) {
       return allItems.filter((item) => !selectedItems.some((i) => i.id === item.id));
@@ -97,7 +102,12 @@ export default function FontSelection({
           <div className="typeface-package">
             <div className="typeface-details">
               <div className="checkbox-option">
-                <input type="checkbox" value="whole" onClick={toggleWholePackage} />
+                <input
+                  type="checkbox"
+                  value="whole"
+                  onChange={toggleWholePackage}
+                  checked={wholePackageSelected}
+                />
                 <label>{typeface.attributes.title} Family Complete Pack</label>
               </div>
               <div className="styles-and-weights">
@@ -120,6 +130,7 @@ export default function FontSelection({
             {styles.data.map((style: Style) =>
               style.attributes.weights.map((weight) => {
                 const fullTitle = `${style.attributes.title} ${weight.title}`;
+
                 return (
                   <div className="weight-details" key={weight.id}>
                     <div className="checkbox-option">
@@ -127,8 +138,8 @@ export default function FontSelection({
                         ref={(el) => (weightRefs.current[allWeights.indexOf(fullTitle)] = el)}
                         type="checkbox"
                         value={weight.id}
-                        defaultChecked={!!selectedItems.find((item) => item.id === weight.id)}
-                        onClick={() =>
+                        checked={!!selectedItems.find((item) => item.id === weight.id)}
+                        onChange={() =>
                           handleOptionChange(
                             {
                               ...weight,

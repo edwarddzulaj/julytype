@@ -9,17 +9,19 @@ import Iconly, { icons } from "@/app/components/UI/Iconly";
 export default function PurchaseOption({
   config,
   setCallback,
+  selectedOption,
   optionType = "radio",
   requireOneCheckbox = false,
 }: {
   config: PurchaseOption<string | number>;
   setCallback: Function;
+  selectedOption?: string[] | number | undefined;
   optionType?: "radio" | "checkbox";
   requireOneCheckbox?: boolean;
 }) {
   const { subtitle, options, info } = config;
   const defaultOption = options.find((o) => o.checked);
-  const [selectedOptions, setSelectedOptions] = useState([defaultOption?.value] || null);
+  const [selectedOptions, setSelectedOptions] = useState([defaultOption?.value]);
 
   const handleOptionChange = (value: string | number) => {
     if (optionType === "checkbox") {
@@ -37,6 +39,17 @@ export default function PurchaseOption({
     setCallback(selectedOptions);
   }, [selectedOptions]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const checkForSelectedOption = (option: any) => {
+    if (selectedOption) {
+      if (Array.isArray(selectedOption)) {
+        return selectedOption.includes(option.value);
+      } else {
+        return selectedOption === option.value;
+      }
+    }
+
+    return option.checked;
+  };
   return (
     <article className="purchase-option">
       <div>
@@ -45,7 +58,7 @@ export default function PurchaseOption({
           <form>
             {options.map((option) => (
               <div key={option.label}>
-                <label className={selectedOptions.includes(option.value) ? "selected" : ""}>
+                <label className={checkForSelectedOption(option) ? "selected" : ""}>
                   <input
                     type={optionType}
                     name="option"
@@ -55,8 +68,8 @@ export default function PurchaseOption({
                       selectedOptions.length <= 1 &&
                       selectedOptions.includes(option.value)
                     }
-                    defaultChecked={option.checked}
-                    onClick={() => handleOptionChange(option.value)}
+                    checked={checkForSelectedOption(option)}
+                    onChange={() => handleOptionChange(option.value)}
                   />
                   {option.label}
                 </label>

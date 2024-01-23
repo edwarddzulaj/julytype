@@ -6,7 +6,7 @@ import PurchaseOption from "./PurchaseOption";
 import { companySizeOptions, discountOptions, licenseOptions } from "./purchase-option-configs";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
-import { CartItem, addToCart } from "@/app/redux/cartReducer";
+import { addToCart, CartItem } from "@/app/redux/cartReducer";
 import { calculatePrices, calculateTotalPrices } from "@/app/utils/cart-helpers";
 import { PurchaseDetails } from "./PurchaseSectionTypes";
 import { SelectedItem } from "@/app/redux/cartReducer";
@@ -88,9 +88,13 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
     const addedProducts = cart.products.filter((p) => p.id === typeface.id);
 
     if (addedProducts) {
+      const weights: SelectedItem[] = [];
+
       addedProducts.forEach((p) => {
-        setSelectedItems([...selectedItems, p.weight]);
+        weights.push(p.weight);
       });
+
+      setSelectedItems([...selectedItems, ...weights]);
     }
   };
 
@@ -126,6 +130,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
           <PurchaseOption
             config={licenseOptions}
             optionType="checkbox"
+            selectedOption={purchaseDetails.licenseTypes}
             requireOneCheckbox={true}
             setCallback={(optionValues: string[]) => {
               setPurchaseDetails({ ...purchaseDetails, licenseTypes: optionValues });
@@ -136,6 +141,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
           <h5>Company Size</h5>
           <PurchaseOption
             config={companySizeOptions}
+            selectedOption={purchaseDetails.companySize}
             setCallback={(companySizeString: string[]) => {
               setPurchaseDetails({ ...purchaseDetails, companySize: +companySizeString[0] });
             }}
@@ -145,6 +151,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
           <h5>Discount</h5>
           <PurchaseOption
             config={discountOptions}
+            selectedOption={purchaseDetails.studentDiscount ? 1 : 0}
             setCallback={(studentDiscountString: string[]) => {
               setPurchaseDetails({
                 ...purchaseDetails,
