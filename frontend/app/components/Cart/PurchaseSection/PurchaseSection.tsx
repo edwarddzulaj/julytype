@@ -7,7 +7,7 @@ import { companySizeOptions, discountOptions, licenseOptions } from "./purchase-
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
 import { CartItem, addToCart } from "@/app/redux/cartReducer";
-import { calculateTotalPrices } from "@/app/utils/cart-helpers";
+import { calculatePrices, calculateTotalPrices } from "@/app/utils/cart-helpers";
 import { PurchaseDetails, SelectedItem } from "./PurchaseSectionTypes";
 
 export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
@@ -19,18 +19,21 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
     licenseTypes: undefined,
     companySize: undefined,
     discount: ["no"],
+    wholePackage: false,
   });
 
   useEffect(() => {
     let licenseTypes = [];
     let companySize = [];
     let discount = ["no"];
+    let wholePackage = false;
 
     const existingProduct = cart.products.find((p) => p.id === typeface.id);
     if (existingProduct) {
       licenseTypes = existingProduct.licenseTypes;
       companySize = [existingProduct.companySize?.toString()];
       discount = existingProduct.discount ? ["yes"] : ["no"];
+      wholePackage = !!existingProduct.wholePackage;
     } else {
       const defaultLicenseType = licenseOptions.options.find((o) => o.checked);
       const defaultCompanySize = companySizeOptions.options.find((o) => o.checked);
@@ -44,6 +47,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
       ...(licenseTypes ? { licenseTypes: licenseTypes } : {}),
       ...(companySize ? { companySize: companySize } : {}),
       ...(discount ? { discount: discount } : {}),
+      ...(wholePackage ? { wholePackage: wholePackage } : {}),
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -61,19 +65,31 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
   }, []);
 
   useEffect(() => {
-    const { totalPrice, discountPrice } = calculateTotalPrices(
-      selectedItems,
-      purchaseDetails.licenseTypes,
-      purchaseDetails.companySize,
-      purchaseDetails.discount![0] === "yes"
-    );
+    if (purchaseDetails.wholePackage) {
+      const [price, discountPrice] = calculatePrices(
+        { price: typeface.attributes.price, discount: typeface.attributes.wholePackageDiscount },
+        purchaseDetails.licenseTypes![0],
+        +purchaseDetails.companySize![0],
+        purchaseDetails.discount![0] === "yes"
+      );
 
-    setPrices({ price: totalPrice, finalPrice: discountPrice });
+      setPrices({ price: price, finalPrice: discountPrice });
+    } else {
+      const { totalPrice, discountPrice } = calculateTotalPrices(
+        selectedItems,
+        purchaseDetails.licenseTypes,
+        purchaseDetails.companySize,
+        purchaseDetails.discount![0] === "yes"
+      );
+
+      setPrices({ price: totalPrice, finalPrice: discountPrice });
+    }
   }, [
     selectedItems,
     purchaseDetails.licenseTypes,
     purchaseDetails.companySize,
     purchaseDetails.discount,
+    purchaseDetails.wholePackage,
   ]);
 
   const addItemsToCart = () => {
@@ -90,7 +106,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
           licenseTypes: purchaseDetails.licenseTypes!,
           companySize: +purchaseDetails.companySize![0],
           discount: purchaseDetails.discount![0] === "yes",
-          wholePackage: false,
+          wholePackage: purchaseDetails.wholePackage,
         };
 
         dispatch(addToCart(item));
@@ -143,6 +159,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
           selectedItems={selectedItems}
           setSelectedItems={setSelectedItems}
           purchaseDetails={purchaseDetails}
+          setPurchaseDetails={setPurchaseDetails}
         />
       </div>
       <div className="checkout-action">

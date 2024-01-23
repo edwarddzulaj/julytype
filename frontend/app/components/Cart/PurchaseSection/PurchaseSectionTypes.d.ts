@@ -17,6 +17,7 @@ export interface PurchaseDetails {
   licenseTypes: string[] | undefined;
   companySize: string[] | undefined;
   discount: string[] | undefined;
+  wholePackage: boolean | undefined;
 }
 
 export interface BuyingPrice {

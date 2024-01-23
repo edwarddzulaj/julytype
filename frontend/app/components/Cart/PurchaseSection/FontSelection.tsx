@@ -3,8 +3,9 @@ import { Style, Typeface } from "@/@types/contentTypes";
 import { TypefaceWeight } from "@/@types/components";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import BuyingPrice from "./BuyingPrice";
 import { allStylesAndWeights, pluralize } from "@/app/utils/text-helpers";
+import BuyingPrice from "./BuyingPrice";
+import { SelectedItem } from "./PurchaseSectionTypes";
 import { PurchaseDetails } from "./PurchaseSectionTypes";
 
 export default function FontSelection({
@@ -12,11 +13,13 @@ export default function FontSelection({
   selectedItems,
   setSelectedItems,
   purchaseDetails,
+  setPurchaseDetails,
 }: {
   typeface: Typeface;
   selectedItems: TypefaceWeight[];
   setSelectedItems: Function;
   purchaseDetails: PurchaseDetails;
+  setPurchaseDetails: Function;
 }) {
   const { price, wholePackageDiscount, styles } = typeface.attributes;
   const { numStyles, numWeights, allWeights } = useMemo(() => {
@@ -44,13 +47,7 @@ export default function FontSelection({
     }
   }, [wholePackageSelected]);
 
-  const handleOptionChange = (weight: TypefaceWeight | undefined, styleId: number) => {
-    if (!weight) {
-      // setSelectedOption("whole"); //TODO: implement adding the whole typeface
-    } else {
-      // setSelectedOption(weight.title);
-    }
-
+  const handleOptionChange = (weight: TypefaceWeight | undefined, styleId: number | undefined) => {
     if (selectedItems.find((addedItem) => addedItem.id === weight!.id)) {
       setSelectedItems(selectedItems.filter((i) => i.id !== weight!.id));
     } else {
@@ -59,7 +56,37 @@ export default function FontSelection({
   };
 
   const toggleWholePackage = () => {
-    setWholePackageSelected(!wholePackageSelected);
+    if (!wholePackageSelected) {
+      setPurchaseDetails({ ...purchaseDetails, wholePackage: true });
+      setWholePackageSelected(true);
+
+      const allItems = getAllItems(true);
+      if (allItems) {
+        setSelectedItems([...selectedItems, ...allItems]);
+      }
+    } else {
+      setPurchaseDetails({ ...purchaseDetails, wholePackage: false });
+      setWholePackageSelected(false);
+
+      const allItems = getAllItems();
+      setSelectedItems(selectedItems.filter((item) => !allItems.some((i) => i.id === item.id)));
+    }
+  };
+
+  const getAllItems = (intersectWithSelectedItems = false) => {
+    const allItems: SelectedItem[] = [];
+
+    styles.data.forEach((style) =>
+      style.attributes.weights.forEach((weight) => {
+        allItems.push({ ...weight, styleId: style.id });
+      })
+    );
+
+    if (intersectWithSelectedItems) {
+      return allItems.filter((item) => !selectedItems.some((i) => i.id === item.id));
+    } else {
+      return allItems;
+    }
   };
 
   return (
