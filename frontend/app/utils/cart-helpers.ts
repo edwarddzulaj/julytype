@@ -10,6 +10,7 @@ export function formatData(items: Array<CartItem>) {
     const licenseType = item.licenseTypes[0];
     const numCompanyUsers = item.companySize;
     const studentDiscount = item.discount;
+    const wholePackage = item.wholePackage;
 
     const [regularPrice, priceWithDiscount] = calculatePrices(
       { price: item.weight.price, discount: item.weight.discount },

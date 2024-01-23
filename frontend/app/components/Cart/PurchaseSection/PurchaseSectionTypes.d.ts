@@ -25,7 +25,3 @@ export interface BuyingPrice {
   discount?: number;
   purchaseDetails?: PurchaseDetails;
 }
-
-export interface SelectedItem extends TypefaceWeight {
-  styleId?: number;
-}

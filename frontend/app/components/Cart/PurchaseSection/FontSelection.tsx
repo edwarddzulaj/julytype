@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 import { allStylesAndWeights, pluralize } from "@/app/utils/text-helpers";
 import BuyingPrice from "./BuyingPrice";
-import { SelectedItem } from "./PurchaseSectionTypes";
+import { SelectedItem } from "@/app/redux/cartReducer";
 import { PurchaseDetails } from "./PurchaseSectionTypes";
 
 export default function FontSelection({

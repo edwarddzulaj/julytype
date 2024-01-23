@@ -8,7 +8,8 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
 import { CartItem, addToCart } from "@/app/redux/cartReducer";
 import { calculatePrices, calculateTotalPrices } from "@/app/utils/cart-helpers";
-import { PurchaseDetails, SelectedItem } from "./PurchaseSectionTypes";
+import { PurchaseDetails } from "./PurchaseSectionTypes";
+import { SelectedItem } from "@/app/redux/cartReducer";
 
 export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
   const cart = useAppSelector((state) => state.cart);
@@ -90,6 +91,8 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
     purchaseDetails.companySize,
     purchaseDetails.discount,
     purchaseDetails.wholePackage,
+    typeface.attributes.price,
+    typeface.attributes.wholePackageDiscount,
   ]);
 
   const addItemsToCart = () => {

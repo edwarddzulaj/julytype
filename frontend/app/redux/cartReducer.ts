@@ -1,6 +1,10 @@
 import { TypefaceWeight } from "@/@types/components";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
+export interface SelectedItem extends TypefaceWeight {
+  styleId?: number;
+}
+
 export interface CartItem {
   id: number;
   styleId: number;
@@ -18,7 +22,7 @@ export interface ProductItem {
   name: string;
   totalPrice: number;
   totalDiscountPrice: number;
-  weights: Array<TypefaceWeight & { styleId: number }>;
+  weights: Array<SelectedItem>;
   licenseTypes: string[];
   companySize: number;
   selected: boolean;
