@@ -32,6 +32,7 @@ async function getTypeface(slug: string) {
       supportedLanguages: { populate: "*" },
       specimen: { populate: "*" },
       trialFonts: { populate: "*" },
+      variableFont: { populate: "*" },
     },
     filters: {
       slug: slug,

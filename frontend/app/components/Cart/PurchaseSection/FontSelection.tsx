@@ -21,7 +21,7 @@ export default function FontSelection({
   purchaseDetails: PurchaseDetails;
   setPurchaseDetails: Function;
 }) {
-  const { price, wholePackageDiscount, styles } = typeface.attributes;
+  const { title, price, wholePackageDiscount, styles, variableFont } = typeface.attributes;
   const { numStyles, numWeights, allWeights } = useMemo(() => {
     return allStylesAndWeights(styles.data);
   }, [styles.data]);
@@ -52,10 +52,18 @@ export default function FontSelection({
   }, [purchaseDetails]);
 
   const handleOptionChange = (weight: TypefaceWeight | undefined, styleId: number | undefined) => {
-    if (selectedItems.find((addedItem) => addedItem.id === weight!.id)) {
+    if (selectedItems.some((addedItem) => addedItem.id === weight!.id)) {
       setSelectedItems(selectedItems.filter((i) => i.id !== weight!.id));
     } else {
       setSelectedItems([...selectedItems, { ...weight, styleId: styleId }]);
+    }
+  };
+
+  const handleVariableOptionChange = (variableWeight: TypefaceWeight) => {
+    if (selectedItems.some((addedItem) => addedItem.id === variableWeight!.id)) {
+      setSelectedItems(selectedItems.filter((i) => i.id !== variableWeight!.id));
+    } else {
+      setSelectedItems([...selectedItems, { ...variableWeight, isVariableFont: true }]);
     }
   };
 
@@ -108,7 +116,7 @@ export default function FontSelection({
                   onChange={toggleWholePackage}
                   checked={wholePackageSelected}
                 />
-                <label>{typeface.attributes.title} Family Complete Pack</label>
+                <label>{title} Family Complete Pack</label>
               </div>
               <div className="styles-and-weights">
                 Includes {pluralize(numStyles, "Style")} • {pluralize(numWeights, "Weight")}:{" "}
@@ -138,7 +146,7 @@ export default function FontSelection({
                         ref={(el) => (weightRefs.current[allWeights.indexOf(fullTitle)] = el)}
                         type="checkbox"
                         value={weight.id}
-                        checked={!!selectedItems.find((item) => item.id === weight.id)}
+                        checked={selectedItems.some((item) => item.id === weight.id)}
                         onChange={() =>
                           handleOptionChange(
                             {
@@ -165,6 +173,33 @@ export default function FontSelection({
                 );
               })
             )}
+          </div>
+        </div>
+        <div>
+          <h6>Or go variable</h6>
+          <div className="typeface-package">
+            <div className="typeface-details">
+              <div className="checkbox-option">
+                <input
+                  type="checkbox"
+                  value="variable"
+                  checked={selectedItems.some((item) => item.id === variableFont.id)}
+                  onChange={() =>
+                    handleVariableOptionChange({
+                      ...variableFont,
+                      title: `${title} Variable`,
+                    })
+                  }
+                />
+                <label>{title} Variable</label>
+              </div>
+              <div className="styles-and-weights">Includes variable weights and optical sizing</div>
+            </div>
+              <BuyingPrice
+                price={variableFont.price}
+                discount={variableFont.discount}
+                purchaseDetails={purchaseDetails}
+              />
           </div>
         </div>
       </form>

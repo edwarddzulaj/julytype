@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_typeface_variable_fonts",
+  "info": {
+    "displayName": "variableFont"
+  },
+  "options": {},
+  "attributes": {
+    "fontFile": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "price": {
+      "type": "float",
+      "required": true
+    },
+    "discount": {
+      "type": "integer",
+      "max": 100,
+      "min": 0
+    }
+  }
+}

@@ -30,6 +30,7 @@ export interface Typeface {
     trialFonts: { data: { id: number; attributes: Attribute.Media[] }[] };
     mainFont: Attribute.File;
     image: Attribute.Media;
+    variableFont: Attribute.Media;
     slug: string;
     createdAt: Date;
     updatedAt: Date;
