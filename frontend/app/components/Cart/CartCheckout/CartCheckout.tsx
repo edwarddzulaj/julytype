@@ -4,10 +4,10 @@ import { useAppSelector } from "../../../redux/hooks";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 
-import { ProductItem, emptyCart } from "@/app/redux/cartReducer";
-import ProductItemContainer from "./ProductItemContainer";
+import { CartItem, emptyCart } from "@/app/redux/cartReducer";
+import CartItemContainer from "./CartItemContainer";
 import { useEffect, useState } from "react";
-import { calculateTotalPricesForCart, formatData } from "@/app/utils/cart-helpers";
+import { calculateTotalPricesForCart } from "@/app/utils/cart-helpers";
 
 const publicKey =
   process.env.NEXT_PUBLIC_STRAPI_ENV === "production"
@@ -18,21 +18,20 @@ export default function CartCheckout() {
   const cart = useAppSelector((state) => state.cart);
   const dispatch = useDispatch();
 
-  const [cartItems, setCartItems] = useState<Array<ProductItem>>([]);
-  const [finalCartItems, setFinalCartItems] = useState<Array<ProductItem>>([]);
+  const [cartItems, setCartItems] = useState<Array<CartItem>>([]);
+  const [finalCartItems, setFinalCartItems] = useState<Array<CartItem>>([]);
   const [prices, setPrices] = useState({ price: 0, finalPrice: 0 });
   const [isRedirecting, setIsRedirecting] = useState(false);
 
   useEffect(() => {
-    const items = formatData(cart.products);
-    setCartItems(items), [cart.products];
+    setCartItems(cart.items);
 
-    const finalCartItems = items.filter((i) => i.selected === true);
+    const finalCartItems = cart.items.filter((i) => i.selected === true);
     setFinalCartItems(finalCartItems);
 
     const { totalPriceCart, discountPriceCart } = calculateTotalPricesForCart(finalCartItems);
     setPrices({ price: totalPriceCart, finalPrice: discountPriceCart });
-  }, [cart.products]);
+  }, [cart.items]);
 
   const handleEmptyCart = () => {
     dispatch(emptyCart());
@@ -83,7 +82,7 @@ export default function CartCheckout() {
       <div className="cart-items">
         {cartItems.length > 0 &&
           cartItems.map((item, index) => (
-            <ProductItemContainer key={item.id} item={item} index={index} />
+            <CartItemContainer key={item.typefaceId} item={item} index={index} />
           ))}
         {cartItems.length === 0 && (
           <div className="no-cart-items">

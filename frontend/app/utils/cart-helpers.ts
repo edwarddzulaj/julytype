@@ -1,51 +1,7 @@
 import { TypefaceWeight } from "@/@types/components";
-import { ProductItem, CartItem } from "../redux/cartReducer";
+import { CartItem } from "../redux/cartReducer";
 import { licenseRates } from "./license-helpers";
 import { PurchaseDetails } from "../components/Cart/PurchaseSection/PurchaseSectionTypes";
-
-export function formatData(items: Array<CartItem>) {
-  let typefaceProducts: Array<ProductItem> = [];
-
-  items.forEach((item) => {
-    const existingProduct = typefaceProducts.find((p) => p.id === item.id);
-    const purchaseDetails = {
-      licenseTypes: item.licenseTypes,
-      companySize: item.companySize,
-      studentDiscount: !!item.studentDiscount,
-      wholePackageDiscount: !!item.wholePackageDiscount,
-    };
-
-    const [regularPrice, priceWithDiscount] = calculatePrices(
-      { price: item.weight.price, discount: item.weight.discount },
-      purchaseDetails
-    );
-
-    if (existingProduct) {
-      existingProduct.weights.push({ ...item.weight, styleId: item.styleId });
-      existingProduct.totalPrice += regularPrice;
-      (existingProduct.selected = item.selected),
-        (existingProduct.totalDiscountPrice += priceWithDiscount);
-    } else {
-      const newProduct: ProductItem = {
-        id: item.id,
-        name: item.name,
-        totalPrice: regularPrice,
-        totalDiscountPrice: priceWithDiscount,
-        weights: [],
-        selected: item.selected,
-        licenseTypes: item.licenseTypes,
-        companySize: item.companySize,
-        studentDiscount: item.studentDiscount,
-        wholePackageDiscount: item.wholePackageDiscount,
-      };
-
-      newProduct.weights.push({ ...item.weight, styleId: item.styleId });
-      typefaceProducts.push(newProduct);
-    }
-  });
-
-  return typefaceProducts;
-}
 
 export const calculatePrices = (
   prices: {
@@ -73,13 +29,13 @@ export const calculatePrices = (
   return [roundToTwoDecimalPlaces(price), roundToTwoDecimalPlaces(discountPrice)];
 };
 
-export const calculateTotalPricesForCart = (products: Array<ProductItem>) => {
+export const calculateTotalPricesForCart = (items: Array<CartItem>) => {
   let totalPriceCart = 0;
   let discountPriceCart = 0;
 
-  products.forEach((product) => {
-    totalPriceCart += product.totalPrice;
-    discountPriceCart += product.totalDiscountPrice;
+  items.forEach((item) => {
+    totalPriceCart += item.totalPrice;
+    discountPriceCart += item.totalDiscountPrice;
   });
 
   return { totalPriceCart, discountPriceCart };

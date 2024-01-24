@@ -2,7 +2,7 @@
 import Dropdown from "react-dropdown";
 
 import { TypefaceWeight } from "@/@types/components";
-import { ProductItem, updateProduct } from "@/app/redux/cartReducer";
+import { CartItem, updateCartItem } from "@/app/redux/cartReducer";
 import { PurchaseDetails } from "../PurchaseSection/PurchaseSectionTypes";
 import { useAppSelector } from "@/app/redux/hooks";
 import { useDispatch } from "react-redux";
@@ -13,49 +13,62 @@ import { calculateTotalPrices } from "@/app/utils/cart-helpers";
 import { licenseOptions, companySizeOptions } from "../PurchaseSection/purchase-option-configs";
 import { pluralize } from "@/app/utils/text-helpers";
 
-export default function ProductItemContainer({
-  item,
-  index,
-}: {
-  item: ProductItem;
-  index: number;
-}) {
+export default function CartItemContainer({ item, index }: { item: CartItem; index: number }) {
   const [licenseTypeDefault, setLicenseTypeDefault] = useState("Add license type");
   const [allWeights, setAllWeights] = useState("");
   const [prices, setPrices] = useState({ price: 0, finalPrice: 0 });
   const dispatch = useDispatch();
   const cart = useAppSelector((state) => state.cart);
 
+  const { licenseTypes, companySize, studentDiscount, wholePackageDiscount } = item.purchaseDetails;
   const companySizeOptionsList = companySizeOptions.options.map((option) => ({
     value: option.value.toString(),
     label: `Less than ${option.label.replace("<", "")}`,
   }));
-  const initialCompanySize = companySizeOptionsList.find((o) => +o.value === item.companySize);
+  const initialCompanySize = companySizeOptionsList.find((o) => +o.value === companySize);
 
   const licenseOptionsList = licenseOptions.options.filter(
-    (option) => !item.licenseTypes.includes(option.value)
+    (option) => !licenseTypes.includes(option.value)
   );
 
-  const toggleProductItem = () => {
-    dispatch(updateProduct({ ...item, selected: !getCurrentCartItem(item.id)!.selected }));
+  const toggleCartItem = () => {
+    dispatch(updateCartItem({ ...item, selected: !getCurrentCartItem(item.typefaceId)!.selected }));
   };
 
   const getCurrentCartItem = (id: number) => {
-    return cart.products.find((p) => p.id === id);
+    return cart.items.find((item) => item.typefaceId === id);
   };
 
   const handleCompanySizeChange = (option: any) => {
-    dispatch(updateProduct({ ...item, companySize: +option.value }));
+    dispatch(
+      updateCartItem({
+        ...item,
+        purchaseDetails: { ...item.purchaseDetails, companySize: +option.value },
+      })
+    );
   };
 
   const handleLicenseTypeChange = (option: any, remove = false) => {
-    if (remove && item.licenseTypes.length > 1) {
-      const filteredLicenseTypes = item.licenseTypes.filter(
+    if (remove && licenseTypes.length > 1) {
+      const filteredLicenseTypes = licenseTypes.filter(
         (licenseType) => licenseType !== option.value
       );
-      dispatch(updateProduct({ ...item, licenseTypes: filteredLicenseTypes }));
+      dispatch(
+        updateCartItem({
+          ...item,
+          purchaseDetails: { ...item.purchaseDetails, licenseTypes: filteredLicenseTypes },
+        })
+      );
     } else {
-      dispatch(updateProduct({ ...item, licenseTypes: [...item.licenseTypes, option.value] }));
+      dispatch(
+        updateCartItem({
+          ...item,
+          purchaseDetails: {
+            ...item.purchaseDetails,
+            licenseTypes: [...item.purchaseDetails.licenseTypes, option.value],
+          },
+        })
+      );
       setLicenseTypeDefault("Add license type");
     }
   };
@@ -63,22 +76,16 @@ export default function ProductItemContainer({
   useEffect(() => {
     setAllWeights(combineAllTitles(item.weights));
     const purchaseDetails: PurchaseDetails = {
-      licenseTypes: item.licenseTypes,
-      companySize: item.companySize,
-      studentDiscount: !!item.studentDiscount,
-      wholePackageDiscount: !!item.wholePackageDiscount,
+      licenseTypes: licenseTypes,
+      companySize: companySize,
+      studentDiscount: !!studentDiscount,
+      wholePackageDiscount: !!wholePackageDiscount,
     };
 
     const { totalPrice, discountPrice } = calculateTotalPrices(item.weights, purchaseDetails);
 
     setPrices({ price: totalPrice, finalPrice: discountPrice });
-  }, [
-    item.companySize,
-    item.studentDiscount,
-    item.licenseTypes,
-    item.weights,
-    item.wholePackageDiscount,
-  ]);
+  }, [companySize, studentDiscount, licenseTypes, item.weights, wholePackageDiscount]);
   return (
     <section className="cart-item-container">
       <article className="checkbox-container">
@@ -89,8 +96,8 @@ export default function ProductItemContainer({
           type="checkbox"
           name={index.toString()}
           id={index.toString()}
-          defaultChecked={getCurrentCartItem(item.id)?.selected}
-          onClick={toggleProductItem}
+          checked={getCurrentCartItem(item.typefaceId)?.selected}
+          onChange={toggleCartItem}
           title="Remove from cart"
         />
       </article>
@@ -100,14 +107,14 @@ export default function ProductItemContainer({
           {allWeights}
         </div>
         <div>
-          <h6 className="title">License {pluralize(item.licenseTypes.length, "Type", false)}</h6>
+          <h6 className="title">License {pluralize(licenseTypes.length, "Type", false)}</h6>
           <ul className="licenses">
-            {item.licenseTypes.map((license) => {
+            {licenseTypes.map((license) => {
               const licenseOption = licenseOptions.options.find((o) => o.value === license);
               return (
                 <li className="license" key={license}>
                   {licenseOption!.label}
-                  {item.licenseTypes.length > 1 && (
+                  {licenseTypes.length > 1 && (
                     <span
                       className="remove-license"
                       onClick={() => {

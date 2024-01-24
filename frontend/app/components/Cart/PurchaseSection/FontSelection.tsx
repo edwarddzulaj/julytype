@@ -28,6 +28,7 @@ export default function FontSelection({
 
   const [wholePackageSelected, setWholePackageSelected] = useState(false);
   const weightRefs = useRef<Array<HTMLInputElement | null>>([]);
+  const variableFontRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     weightRefs.current = weightRefs.current.slice(0, allWeights.length);
@@ -39,11 +40,17 @@ export default function FontSelection({
         ref!.checked = true;
         ref!.disabled = true;
       });
+
+      variableFontRef!.current!.checked = true;
+      variableFontRef!.current!.disabled = true;
     } else {
       weightRefs.current.forEach((ref) => {
         ref!.checked = false;
         ref!.disabled = false;
       });
+
+      variableFontRef!.current!.checked = false;
+      variableFontRef!.current!.disabled = false;
     }
   }, [wholePackageSelected]);
 
@@ -93,6 +100,11 @@ export default function FontSelection({
         const fullTitle = `${style.attributes.title} ${weight.title}`;
         allItems.push({ ...weight, styleId: style.id, title: fullTitle });
       });
+    });
+
+    allItems.push({
+      ...variableFont,
+      title: `${title} Variable`,
     });
 
     if (intersectWithSelectedItems) {
@@ -181,6 +193,7 @@ export default function FontSelection({
             <div className="typeface-details">
               <div className="checkbox-option">
                 <input
+                  ref={variableFontRef}
                   type="checkbox"
                   value="variable"
                   checked={selectedItems.some((item) => item.id === variableFont.id)}
@@ -195,11 +208,11 @@ export default function FontSelection({
               </div>
               <div className="styles-and-weights">Includes variable weights and optical sizing</div>
             </div>
-              <BuyingPrice
-                price={variableFont.price}
-                discount={variableFont.discount}
-                purchaseDetails={purchaseDetails}
-              />
+            <BuyingPrice
+              price={variableFont.price}
+              discount={variableFont.discount}
+              purchaseDetails={purchaseDetails}
+            />
           </div>
         </div>
       </form>

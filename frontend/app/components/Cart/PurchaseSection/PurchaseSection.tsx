@@ -6,7 +6,7 @@ import PurchaseOption from "./PurchaseOption";
 import { companySizeOptions, discountOptions, licenseOptions } from "./purchase-option-configs";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
-import { addToCart, CartItem } from "@/app/redux/cartReducer";
+import { addToCart, CartItem, updateCartItem } from "@/app/redux/cartReducer";
 import { calculatePrices, calculateTotalPrices } from "@/app/utils/cart-helpers";
 import { PurchaseDetails } from "./PurchaseSectionTypes";
 import { SelectedItem } from "@/app/redux/cartReducer";
@@ -23,7 +23,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
     wholePackageDiscount: false,
   });
 
-  // Set up purchase details and selected cart items
+  // Set up purchase details and selected weights
   useEffect(() => {
     initialisePurchaseDetails();
     initialiseCartItems();
@@ -62,13 +62,15 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
       wholePackageDiscount: false,
     };
 
-    const existingProduct: CartItem | undefined = cart.products.find((p) => p.id === typeface.id);
-    if (existingProduct) {
+    const existingCartItem: CartItem | undefined = cart.items.find(
+      (item) => item.typefaceId === typeface.id
+    );
+    if (existingCartItem) {
       initialPurchaseDetails = {
-        licenseTypes: existingProduct.licenseTypes,
-        companySize: existingProduct.companySize,
-        studentDiscount: !!existingProduct?.studentDiscount,
-        wholePackageDiscount: !!existingProduct.wholePackageDiscount,
+        licenseTypes: existingCartItem.purchaseDetails.licenseTypes,
+        companySize: existingCartItem.purchaseDetails.companySize,
+        studentDiscount: !!existingCartItem.purchaseDetails.studentDiscount,
+        wholePackageDiscount: !!existingCartItem.purchaseDetails.wholePackageDiscount,
       };
     } else {
       const defaultLicenseType = licenseOptions.options.find((o) => o.checked);
@@ -85,39 +87,39 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
   };
 
   const initialiseCartItems = () => {
-    const addedProducts = cart.products.filter((p) => p.id === typeface.id);
+    const addedItem = cart.items.find((item: CartItem) => item.typefaceId === typeface.id);
 
-    if (addedProducts) {
-      const weights: SelectedItem[] = [];
-
-      addedProducts.forEach((p) => {
-        weights.push(p.weight);
-      });
-
-      setSelectedItems([...selectedItems, ...weights]);
+    if (addedItem) {
+      setSelectedItems([...selectedItems, ...addedItem.weights]);
     }
   };
 
   const addItemsToCart = () => {
     if (purchaseDetails.licenseTypes && purchaseDetails.companySize) {
+      let finalItems: SelectedItem[] = [];
+      const addedItem = cart.items.find((item: CartItem) => item.typefaceId === typeface.id);
+
       selectedItems.forEach((selectedItem: SelectedItem) => {
-        if (cart.products.find((p) => p.weight.id === selectedItem.id)) return;
-
-        const item: CartItem = {
-          id: typeface.id,
-          styleId: selectedItem.styleId!,
-          name: typeface.attributes.title,
-          weight: selectedItem,
-          selected: true,
-          licenseTypes: purchaseDetails.licenseTypes,
-          companySize: purchaseDetails.companySize,
-          studentDiscount: purchaseDetails.studentDiscount,
-          wholePackageDiscount: purchaseDetails.wholePackageDiscount,
-        };
-
-        dispatch(addToCart(item));
+        finalItems.push(selectedItem);
       });
 
+      const { totalPrice, discountPrice } = calculateTotalPrices(selectedItems, purchaseDetails);
+
+      const item: CartItem = {
+        typefaceId: typeface.id,
+        name: typeface.attributes.title,
+        weights: finalItems,
+        selected: true,
+        purchaseDetails,
+        totalPrice: totalPrice,
+        totalDiscountPrice: discountPrice,
+      };
+
+      if (addedItem) {
+        dispatch(updateCartItem(item));
+      } else {
+        dispatch(addToCart(item));
+      }
       window.location.href = "/cart";
     }
   };
