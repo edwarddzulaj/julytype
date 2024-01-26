@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { PurchaseOption } from "./PurchaseSectionTypes";
 import Link from "next/link";
-import { Tooltip } from "react-tooltip";
+import { Tooltip } from "../../UI/Tooltip";
 import Iconly, { icons } from "@/app/components/UI/Iconly";
 
 export default function PurchaseOption({
@@ -74,17 +74,9 @@ export default function PurchaseOption({
                   {option.label}
                 </label>
                 {option.note && (
-                  <div
-                    className="note"
-                    data-tooltip-id={option.label}
-                    data-tooltip-content={option.note}
-                    data-tooltip-class-name="tooltip"
-                  >
-                    <Iconly icon={icons.info} />
-                    <Tooltip id={option.label} openOnClick>
-                      close
-                    </Tooltip>
-                  </div>
+                  <span className="note">
+                    <Tooltip id={option.label} content={option.note} />
+                  </span>
                 )}
               </div>
             ))}
