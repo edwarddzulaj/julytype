@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { PurchaseOption } from "./PurchaseSectionTypes";
 import Link from "next/link";
+
+import DiscountBadge from "../../UI/DiscountBadge";
 import { Tooltip } from "../../UI/Tooltip";
 import Iconly, { icons } from "@/app/components/UI/Iconly";
 
@@ -57,25 +59,32 @@ export default function PurchaseOption({
         <div className={`options ${optionType}`}>
           <form>
             {options.map((option) => (
-              <div key={option.label}>
-                <label className={checkForSelectedOption(option) ? "selected" : ""}>
-                  <input
-                    type={optionType}
-                    name="option"
-                    value={option.value}
-                    disabled={
-                      requireOneCheckbox &&
-                      selectedOptions.length <= 1 &&
-                      selectedOptions.includes(option.value)
-                    }
-                    checked={checkForSelectedOption(option)}
-                    onChange={() => handleOptionChange(option.value)}
-                  />
-                  {option.label}
-                </label>
-                {option.note && (
-                  <span className="note">
-                    <Tooltip id={option.label} content={option.note} />
+              <div key={option.label} className="option-row">
+                <div>
+                  <label className={checkForSelectedOption(option) ? "selected" : ""}>
+                    <input
+                      type={optionType}
+                      name="option"
+                      value={option.value}
+                      disabled={
+                        requireOneCheckbox &&
+                        selectedOptions.length <= 1 &&
+                        selectedOptions.includes(option.value)
+                      }
+                      checked={checkForSelectedOption(option)}
+                      onChange={() => handleOptionChange(option.value)}
+                    />
+                    {option.label}
+                  </label>
+                  {option.note && (
+                    <span className="note">
+                      <Tooltip id={option.label} content={option.note} />
+                    </span>
+                  )}
+                </div>
+                {option.discount && !checkForSelectedOption(option) && (
+                  <span className="discount">
+                    <DiscountBadge discountPercent={option.discount.percent} />
                   </span>
                 )}
               </div>

@@ -964,13 +964,18 @@ footer {
         display: none;
       }
 
-      .note {
-        display: inline;
-        font-size: 20px;
-        padding: 0 5px;
+      .option-row {
+        display: flex;
+        justify-content: space-between;
 
-        &:hover {
-          cursor: pointer;
+        .note {
+          display: inline;
+          font-size: 20px;
+          padding: 0 5px;
+
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
     }
@@ -1068,16 +1073,6 @@ footer {
 
   &.with-discount {
     grid-template-columns: minmax(min-content, 9ch) repeat(2, minmax(min-content, 11ch));
-  }
-
-  .discount-label {
-    padding: 4px 8px;
-    flex-grow: 0;
-    text-align: center;
-    background-color: var(--red);
-    color: var(--white);
-    border-radius: 4px;
-    font-weight: 600;
   }
 
   .discount-old-price {
@@ -1453,6 +1448,16 @@ div.dropdown {
       cursor: pointer;
     }
   }
+}
+
+.discount-badge {
+  padding: 4px 8px;
+  text-align: center;
+  background-color: var(--red);
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .globus-image {

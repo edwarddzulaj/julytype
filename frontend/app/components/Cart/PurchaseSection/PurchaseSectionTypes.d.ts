@@ -1,12 +1,15 @@
 import { TypefaceWeight } from "@/@types/components";
 export interface PurchaseOption<ValueType> {
-  subtitle?: string;
   options: {
     value: ValueType;
     label: string;
     note?: string;
     checked?: boolean;
+    discount?: {
+      percent: number;
+    };
   }[];
+  subtitle?: string;
   info?: {
     text: string;
     url: string | URL;

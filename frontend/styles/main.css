@@ -1300,12 +1300,16 @@ footer .pages {
 .purchase-option .options form input[type=radio] {
   display: none;
 }
-.purchase-option .options form .note {
+.purchase-option .options form .option-row {
+  display: flex;
+  justify-content: space-between;
+}
+.purchase-option .options form .option-row .note {
   display: inline;
   font-size: 20px;
   padding: 0 5px;
 }
-.purchase-option .options form .note:hover {
+.purchase-option .options form .option-row .note:hover {
   cursor: pointer;
 }
 .purchase-option .options.checkbox form {
@@ -1448,15 +1452,6 @@ footer .pages {
 }
 .buying-price.with-discount {
   grid-template-columns: minmax(min-content, 9ch) repeat(2, minmax(min-content, 11ch));
-}
-.buying-price .discount-label {
-  padding: 4px 8px;
-  flex-grow: 0;
-  text-align: center;
-  background-color: var(--red);
-  color: var(--white);
-  border-radius: 4px;
-  font-weight: 600;
 }
 .buying-price .discount-old-price {
   font-style: normal;
@@ -1912,6 +1907,16 @@ div.dropdown .Dropdown-menu > .Dropdown-option:hover {
 }
 .tooltip .close:hover {
   cursor: pointer;
+}
+
+.discount-badge {
+  padding: 4px 8px;
+  text-align: center;
+  background-color: var(--red);
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .globus-image {
