@@ -21,7 +21,6 @@ const { createCoreController } = require("@strapi/strapi").factories;
 module.exports = createCoreController("api::order.order", ({ strapi }) => ({
   async create(ctx) {
     const { cartItems: products } = ctx.request.body;
-
     try {
       const lineItems = await Promise.all(
         products.map(async (product) => {
@@ -34,6 +33,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
               },
             }
           );
+
 
           const weightsNames = product.weights
             .map((weight) => weight.title)
@@ -85,7 +85,8 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
             })
           );
 
-          if (!weightsData.every((w) => w.confirmedPrice) || product.totalPrice !== typefaceEntity.price) return;
+          const isWholePackageConfirmed = product.purchaseDetails.wholePackageDiscount ? product.totalPrice === typefaceEntity.price : true;
+          if (!weightsData.every((w) => w.confirmedPrice) || !isWholePackageConfirmed) return;
 
           const formattedWeightsData = weightsData.map(obj => (JSON.stringify({ [obj.title]: obj })));
           return {
@@ -129,8 +130,8 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
 
       return { stripeSession: session };
     } catch (error) {
-      console.error(error);
       ctx.response.status = 500;
+      console.error(error);
       return { error };
     }
   },

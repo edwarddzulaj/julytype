@@ -1462,6 +1462,9 @@ div.dropdown {
 
 .globus-image {
   mix-blend-mode: multiply;
+
+  min-width: 300px;
+  min-height: 200px;
 }
 
 .dark {

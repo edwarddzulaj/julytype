@@ -41,18 +41,22 @@ export default function FontSelection({
         ref!.disabled = true;
       });
 
-      variableFontRef!.current!.checked = true;
-      variableFontRef!.current!.disabled = true;
+      if (variableFont) {
+        variableFontRef!.current!.checked = true;
+        variableFontRef!.current!.disabled = true;
+      }
     } else {
       weightRefs.current.forEach((ref) => {
         ref!.checked = false;
         ref!.disabled = false;
       });
 
-      variableFontRef!.current!.checked = false;
-      variableFontRef!.current!.disabled = false;
+      if (variableFont) {
+        variableFontRef!.current!.checked = false;
+        variableFontRef!.current!.disabled = false;
+      }
     }
-  }, [wholePackageSelected]);
+  }, [variableFont, wholePackageSelected]);
 
   useEffect(() => {
     setWholePackageSelected(purchaseDetails.wholePackageDiscount);
@@ -165,6 +169,8 @@ export default function FontSelection({
                             {
                               ...weight,
                               title: fullTitle,
+                              typetesterLanguageGroup: [],
+                              fontFile: [],
                             },
                             style.id
                           )
@@ -188,34 +194,38 @@ export default function FontSelection({
             )}
           </div>
         </div>
-        <div>
-          <h6>Or go variable</h6>
-          <div className="typeface-package">
-            <div className="typeface-details">
-              <div className="checkbox-option">
-                <input
-                  ref={variableFontRef}
-                  type="checkbox"
-                  value="variable"
-                  checked={selectedItems.some((item) => item.id === variableFont.id)}
-                  onChange={() =>
-                    handleVariableOptionChange({
-                      ...variableFont,
-                      title: `${title} Variable`,
-                    })
-                  }
-                />
-                <label>{title} Variable</label>
+        {variableFont && (
+          <div>
+            <h6>Or go variable</h6>
+            <div className="typeface-package">
+              <div className="typeface-details">
+                <div className="checkbox-option">
+                  <input
+                    ref={variableFontRef}
+                    type="checkbox"
+                    value="variable"
+                    checked={selectedItems.some((item) => item.id === variableFont.id)}
+                    onChange={() =>
+                      handleVariableOptionChange({
+                        ...variableFont,
+                        title: `${title} Variable`,
+                      })
+                    }
+                  />
+                  <label>{title} Variable</label>
+                </div>
+                <div className="styles-and-weights">
+                  Includes variable weights and optical sizing
+                </div>
               </div>
-              <div className="styles-and-weights">Includes variable weights and optical sizing</div>
+              <BuyingPrice
+                price={variableFont.price}
+                discount={variableFont.discount}
+                purchaseDetails={purchaseDetails}
+              />
             </div>
-            <BuyingPrice
-              price={variableFont.price}
-              discount={variableFont.discount}
-              purchaseDetails={purchaseDetails}
-            />
           </div>
-        </div>
+        )}
       </form>
     </article>
   );

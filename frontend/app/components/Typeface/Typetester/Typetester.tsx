@@ -370,7 +370,7 @@ const buildSampleText = (
     }
   }
 
-  const randomText = samples[index!]?.text.trim();
+  const randomText = samples[index!]?.text?.trim();
   const defaultSize = samples[index!]?.defaultFontSize || 148;
   const defaultAlignment = samples[index!]?.textAlignment || "center";
   const defaultColumns = samples[index!]?.twoColumns ? 2 : 1;
