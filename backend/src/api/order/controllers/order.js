@@ -25,11 +25,21 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
     try {
       const lineItems = await Promise.all(
         products.map(async (product) => {
+          const typefaceEntity = await strapi.entityService.findOne(
+            "api::typeface.typeface", product.typefaceId,
+            {
+              fields: ['price', 'wholePackageDiscount'],
+              populate: {
+                variableFont: true,
+              },
+            }
+          );
+
           const weightsNames = product.weights
             .map((weight) => weight.title)
             .join(", ");
 
-          // Confirm the price for each weight from the cart with the databse
+          // Compare the price of each weight from the cart with the database and confirm it
           let weightsData = await Promise.all(
             product.weights.map(async (weight) => {
 
@@ -63,15 +73,6 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
                   );
                 });
               } else if (weight.isVariableFont) {
-                const typefaceEntity = await strapi.entityService.findOne(
-                  "api::typeface.typeface", product.typefaceId,
-                  {
-                    populate: {
-                      variableFont: true,
-                    },
-                  }
-                );
-
                 const variableFont = typefaceEntity.variableFont;
 
                 chosenWeight.isVariableFont = true;
@@ -84,18 +85,16 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
             })
           );
 
-          if (!weightsData.every((w) => w.confirmedPrice)) return;
+          if (!weightsData.every((w) => w.confirmedPrice) || product.totalPrice !== typefaceEntity.price) return;
 
-
+          const formattedWeightsData = weightsData.map(obj => (JSON.stringify({ [obj.title]: obj })));
           return {
             price_data: {
               currency: "eur",
               product_data: {
                 name: `JT ${product.name}`,
                 description: `Your selected weights from JT ${product.name}: ${weightsNames}`,
-                metadata: {
-                  weights: JSON.stringify(weightsData),
-                },
+                metadata: { ...formattedWeightsData },
                 images: [
                   `${process.env.STRAPI_URL}/assets/images/order-globus.jpeg`,
                 ],
@@ -130,6 +129,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
 
       return { stripeSession: session };
     } catch (error) {
+      console.error(error);
       ctx.response.status = 500;
       return { error };
     }
@@ -145,8 +145,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       });
       const order = orders[0];
 
-      // if (!order.email && email) {
-      if (1 === 1) {
+      if (!order.email && email) {
         await strapi.entityService.update("api::order.order", order.id, {
           data: {
             email: email,

@@ -105,6 +105,7 @@ export default function FontSelection({
     allItems.push({
       ...variableFont,
       title: `${title} Variable`,
+      isVariableFont: true,
     });
 
     if (intersectWithSelectedItems) {

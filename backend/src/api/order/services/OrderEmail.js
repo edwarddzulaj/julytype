@@ -29,7 +29,11 @@ module.exports = class OrderEmail {
             "api::typeface.typeface", group.typefaceId,
             {
               populate: {
-                variableFont: true,
+                variableFont: {
+                  populate: {
+                    fontFile: true,
+                  },
+                },
               },
             }
           );
@@ -150,9 +154,8 @@ module.exports = class OrderEmail {
     let fontGroup = [];
 
     products.forEach((product) => {
-      const weightsData = JSON.parse(
-        product.price_data.product_data.metadata.weights
-      );
+      const weightsData = Object.values(product.price_data.product_data.metadata)
+        .flatMap(obj => Object.values(JSON.parse(obj)));
 
       weightsData.forEach((weight) => {
         const existingGroup = fontGroup.find(
@@ -163,7 +166,7 @@ module.exports = class OrderEmail {
           existingGroup.weights.push(weight);
         } else {
           const newGroup = {
-            typefaceId: product.typefaceId,
+            typefaceId: weight.typefaceId,
             styleId: weight.styleId,
             isVariableFont: weight.isVariableFont,
             weights: [weight],

@@ -82,10 +82,21 @@ export default function CartItemContainer({ item, index }: { item: CartItem; ind
       wholePackageDiscount: !!wholePackageDiscount,
     };
 
-    const { totalPrice, discountPrice } = calculateTotalPrices(item.weights, purchaseDetails);
-
-    setPrices({ price: totalPrice, finalPrice: discountPrice });
-  }, [companySize, studentDiscount, licenseTypes, item.weights, wholePackageDiscount]);
+    if (purchaseDetails.wholePackageDiscount) {
+      setPrices({ price: item.totalPrice, finalPrice: item.totalDiscountPrice });
+    } else {
+      const { totalPrice, discountPrice } = calculateTotalPrices(item.weights, purchaseDetails);
+      setPrices({ price: totalPrice, finalPrice: discountPrice });
+    }
+  }, [
+    companySize,
+    studentDiscount,
+    licenseTypes,
+    wholePackageDiscount,
+    item.weights,
+    item.totalPrice,
+    item.totalDiscountPrice,
+  ]);
   return (
     <section className="cart-item-container">
       <article className="checkbox-container">

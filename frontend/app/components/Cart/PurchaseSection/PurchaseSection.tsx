@@ -103,17 +103,29 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
         finalItems.push(selectedItem);
       });
 
-      const { totalPrice, discountPrice } = calculateTotalPrices(selectedItems, purchaseDetails);
-
       const item: CartItem = {
         typefaceId: typeface.id,
         name: typeface.attributes.title,
         weights: finalItems,
         selected: true,
         purchaseDetails,
-        totalPrice: totalPrice,
-        totalDiscountPrice: discountPrice,
+        totalPrice: 0,
+        totalDiscountPrice: 0,
       };
+
+      if (purchaseDetails.wholePackageDiscount) {
+        const [price, priceWithDiscount] = calculatePrices(
+          { price: typeface.attributes.price, discount: typeface.attributes.wholePackageDiscount },
+          purchaseDetails
+        );
+
+        item.totalPrice = price;
+        item.totalDiscountPrice = priceWithDiscount;
+      } else {
+        const { totalPrice, discountPrice } = calculateTotalPrices(selectedItems, purchaseDetails);
+        item.totalPrice = totalPrice;
+        item.totalDiscountPrice = discountPrice;
+      }
 
       if (addedItem) {
         dispatch(updateCartItem(item));
