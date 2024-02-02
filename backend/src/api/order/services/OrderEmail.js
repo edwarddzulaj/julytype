@@ -22,31 +22,52 @@ module.exports = class OrderEmail {
 
     return await Promise.all(
       fontGroup.map(async (group) => {
-        const style = await strapi.entityService.findOne(
-          "api::style.style",
-          group.styleId,
-          {
-            populate: {
-              weights: {
-                populate: {
-                  clientFontFiles: true,
+        let fontURLs = {};
+
+        if (group.isVariableFont) {
+          const typefaceEntity = await strapi.entityService.findOne(
+            "api::typeface.typeface", group.typefaceId,
+            {
+              populate: {
+                variableFont: true,
+              },
+            }
+          );
+
+          const variableFont = typefaceEntity.variableFont;
+          const groupKey = `${typefaceEntity.title} Variable`;
+
+          fontURLs = { ...fontURLs, [groupKey]: [] };
+          fontURLs[groupKey].push([
+            groupKey,
+            variableFont.fontFile.url,
+          ]);
+        } else {
+          const style = await strapi.entityService.findOne(
+            "api::style.style",
+            group.styleId,
+            {
+              populate: {
+                weights: {
+                  populate: {
+                    clientFontFiles: true,
+                  },
                 },
               },
-            },
-          }
-        );
+            }
+          );
 
-        let fontURLs = { [style.title]: [] };
-
-        group.weights.forEach((weight) => {
-          const selectedWeight = style.weights.find((w) => w.id === weight.id);
-          selectedWeight.clientFontFiles.forEach((fontFile) => {
-            fontURLs[style.title].push([
-              `${style.title} ${selectedWeight.title}`,
-              fontFile.url,
-            ]);
+          fontURLs = { ...fontURLs, [style.title]: [] };
+          group.weights.forEach((weight) => {
+            const selectedWeight = style.weights.find((w) => w.id === weight.id);
+            selectedWeight.clientFontFiles.forEach((fontFile) => {
+              fontURLs[style.title].push([
+                `${style.title} ${selectedWeight.title}`,
+                fontFile.url,
+              ]);
+            });
           });
-        });
+        }
 
         return fontURLs;
       })
@@ -88,9 +109,8 @@ module.exports = class OrderEmail {
   }
 
   async send(zip, clientName, clientEmail) {
-    const TEXT_MESSAGE = `Hello ${
-      clientName.split(" ")[0]
-    } and thank you for purchasing our fonts, we have packaged a zip for you with your order. \r Enjoy!`;
+    const TEXT_MESSAGE = `Hello ${clientName.split(" ")[0]
+      } and thank you for purchasing our fonts, we have packaged a zip for you with your order. \r Enjoy!`;
 
     const message = {
       from: process.env.ORDERS_EMAIL_ADDRESS,
@@ -143,7 +163,9 @@ module.exports = class OrderEmail {
           existingGroup.weights.push(weight);
         } else {
           const newGroup = {
+            typefaceId: product.typefaceId,
             styleId: weight.styleId,
+            isVariableFont: weight.isVariableFont,
             weights: [weight],
           };
           fontGroup.push(newGroup);

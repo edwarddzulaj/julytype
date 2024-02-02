@@ -20,7 +20,7 @@ const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::order.order", ({ strapi }) => ({
   async create(ctx) {
-    const { products } = ctx.request.body;
+    const { cartItems: products } = ctx.request.body;
 
     try {
       const lineItems = await Promise.all(
@@ -29,38 +29,63 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
             .map((weight) => weight.title)
             .join(", ");
 
+          // Confirm the price for each weight from the cart with the databse
           let weightsData = await Promise.all(
             product.weights.map(async (weight) => {
-              const styleEntity = await strapi.entityService.findMany(
-                "api::style.style",
-                {
-                  filters: {
-                    id: weight.styleId,
-                  },
-                  populate: {
-                    weights: true,
-                  },
-                }
-              );
 
-              const chosenWeight = {
-                styleId: weight.styleId,
+              let chosenWeight = {
+                typefaceId: product.typefaceId,
+                styleId: weight.styleId || null,
                 id: weight.id,
                 title: weight.title,
-                confirmedPrice: styleEntity[0].weights.some((styleWeight) => {
+                isVariableFont: false,
+                confirmedPrice: false
+              };
+
+              if (weight.styleId) {
+                const styleEntity = await strapi.entityService.findMany(
+                  "api::style.style",
+                  {
+                    filters: {
+                      id: weight.styleId,
+                    },
+                    populate: {
+                      weights: true,
+                    },
+                  }
+                );
+
+                chosenWeight.confirmedPrice = styleEntity[0].weights.some((styleWeight) => {
                   return (
                     styleWeight.id === weight.id &&
                     styleWeight.price === weight.price &&
                     styleWeight.discount === weight.discount
                   );
-                }),
-              };
+                });
+              } else if (weight.isVariableFont) {
+                const typefaceEntity = await strapi.entityService.findOne(
+                  "api::typeface.typeface", product.typefaceId,
+                  {
+                    populate: {
+                      variableFont: true,
+                    },
+                  }
+                );
+
+                const variableFont = typefaceEntity.variableFont;
+
+                chosenWeight.isVariableFont = true;
+                chosenWeight.confirmedPrice = variableFont.id === weight.id &&
+                  variableFont.price === weight.price &&
+                  variableFont.discount === weight.discount
+              }
 
               return chosenWeight;
             })
           );
 
           if (!weightsData.every((w) => w.confirmedPrice)) return;
+
 
           return {
             price_data: {
@@ -75,7 +100,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
                   `${process.env.STRAPI_URL}/assets/images/order-globus.jpeg`,
                 ],
               },
-              unit_amount: product.totalPrice * 100,
+              unit_amount: product.totalDiscountPrice * 100,
             },
             quantity: 1,
           };
@@ -120,7 +145,8 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       });
       const order = orders[0];
 
-      if (!order.email && email) {
+      // if (!order.email && email) {
+      if (1 === 1) {
         await strapi.entityService.update("api::order.order", order.id, {
           data: {
             email: email,
