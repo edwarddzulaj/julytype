@@ -1897,12 +1897,21 @@ div.dropdown .Dropdown-menu > .Dropdown-option:hover {
 
 .tooltip {
   max-width: 360px;
+  padding: 8px 12px 8px 8px !important;
   font-size: 14px !important;
   line-height: 1.2;
   background-color: var(--background) !important;
   color: var(--foreground) !important;
   border-radius: 8px !important;
   box-shadow: 2px 2px 13px 0px var(--grey);
+}
+.tooltip .close {
+  position: absolute;
+  top: 0px;
+  right: -3px;
+}
+.tooltip .close:hover {
+  cursor: pointer;
 }
 
 .globus-image {
