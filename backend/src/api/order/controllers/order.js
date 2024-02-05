@@ -34,7 +34,6 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
             }
           );
 
-
           const weightsNames = product.weights
             .map((weight) => weight.title)
             .join(", ");

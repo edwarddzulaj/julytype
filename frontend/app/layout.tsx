@@ -6,6 +6,7 @@ import { ThemeChangeProvider } from "./providers/index";
 import { fetchAPI } from "./utils/fetch-api";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import Custom404 from "./[simplePageSlug]/404";
 
 const FALLBACK_SEO = {
   title: "JulyType",
@@ -61,8 +62,8 @@ export default async function RootLayout({
   params: { lang: string };
 }) {
   const settings = await getSettings();
-  // TODO: CREATE A CUSTOM ERROR PAGE
-  if (!settings.data) return null;
+
+  if (!settings.data) return Custom404();
 
   const { websiteDetails, footerContent } = settings.data.attributes;
 

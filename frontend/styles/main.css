@@ -1899,6 +1899,7 @@ div.dropdown .Dropdown-menu > .Dropdown-option:hover {
   color: var(--foreground) !important;
   border-radius: 8px !important;
   box-shadow: 2px 2px 13px 0px var(--grey);
+  opacity: 1 !important;
 }
 .tooltip .close {
   position: absolute;
