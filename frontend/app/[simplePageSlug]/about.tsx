@@ -23,7 +23,7 @@ export default function About(title: string, sections: any) {
       <Section>
         <Image
           className="globus-image"
-          src={getStrapiMedia("/assets/images/about-globus.jpeg") as string}
+          src={getStrapiMedia("/assets/images/about-globus.svg") as string}
           width={250}
           height={200}
           alt="About the website globus"

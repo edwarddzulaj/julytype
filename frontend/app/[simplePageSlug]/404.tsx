@@ -10,9 +10,10 @@ export default function Custom404() {
       <Link className="back-home" href="/">
         Back home
       </Link>
+      
       <Image
         className="globus-image"
-        src={getStrapiMedia("/assets/images/404-globus.jpeg") as string}
+        src={getStrapiMedia("/assets/images/404-globus.svg") as string}
         width={360}
         height={300}
         alt="Page not found globus"

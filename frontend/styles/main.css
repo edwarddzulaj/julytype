@@ -1922,8 +1922,14 @@ div.dropdown .Dropdown-menu > .Dropdown-option:hover {
 
 .globus-image {
   mix-blend-mode: multiply;
-  min-width: 300px;
-  min-height: 200px;
+  min-width: 400px;
+  min-height: 300px;
+}
+@media (max-width: 680px) {
+  .globus-image {
+    min-width: 250px;
+    min-height: 200px;
+  }
 }
 
 .dark .globus-image {

@@ -49,7 +49,7 @@ export default async function SuccessPage({ sessionId }: { sessionId: string | u
       <h5>You will receive an email shortly.</h5>
       <Image
         className="globus-image"
-        src={getStrapiMedia("/assets/images/success-globus.jpeg") as string}
+        src={getStrapiMedia("/assets/images/success-globus.svg") as string}
         width={360}
         height={400}
         alt="Success globus"

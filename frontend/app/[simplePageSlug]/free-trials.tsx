@@ -32,7 +32,7 @@ export default function FreeTrials(title: string, sections: any) {
         <Section>
           <Image
             className="globus-image"
-            src={getStrapiMedia("/assets/images/free-trials-globus.jpeg") as string}
+            src={getStrapiMedia("/assets/images/free-trials-globus.svg") as string}
             width={250}
             height={200}
             alt="Free trials globus"
