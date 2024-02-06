@@ -5,12 +5,10 @@
   },
   "options": {},
   "attributes": {
-    "fontFile": {
-      "allowedTypes": [
-        "files"
-      ],
+    "fontFiles": {
+      "allowedTypes": ["files"],
       "type": "media",
-      "multiple": false,
+      "multiple": true,
       "required": true
     },
     "price": {

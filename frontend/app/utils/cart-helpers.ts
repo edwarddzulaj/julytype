@@ -10,15 +10,7 @@ export const calculatePrices = (
   } = { price: 0, discount: undefined },
   purchaseDetails: PurchaseDetails | undefined
 ) => {
-  const licenseType = purchaseDetails?.licenseTypes[0] || "desktop-print";
-  const companySize = purchaseDetails?.companySize || 1;
-
-  const multiplyRate = licenseRates[licenseType as keyof licenseRates][companySize];
-  let price = prices.price;
-
-  if (multiplyRate) {
-    price = prices.price * multiplyRate;
-  }
+  let price = applyAllLicenses(purchaseDetails, prices.price);
 
   if (purchaseDetails?.studentDiscount) {
     price = price * 0.5;
@@ -34,8 +26,9 @@ export const calculateTotalPricesForCart = (items: Array<CartItem>) => {
   let discountPriceCart = 0;
 
   items.forEach((item) => {
-    totalPriceCart += item.totalPrice;
-    discountPriceCart += item.totalDiscountPrice;
+    const { totalPrice, discountPrice } = calculateTotalPrices(item.weights, item.purchaseDetails);
+    totalPriceCart += totalPrice;
+    discountPriceCart += discountPrice;
   });
 
   return { totalPriceCart, discountPriceCart };
@@ -57,10 +50,27 @@ export const calculateTotalPrices = (
     discountPrice += priceWithDiscount;
   });
 
-  return { totalPrice, discountPrice };
+  return {
+    totalPrice: roundToTwoDecimalPlaces(totalPrice),
+    discountPrice: roundToTwoDecimalPlaces(discountPrice),
+  };
 };
 
-function roundToTwoDecimalPlaces(number: number) {
+function applyAllLicenses(purchaseDetails: PurchaseDetails | undefined, initialPrice: number) {
+  const licenseTypes = purchaseDetails?.licenseTypes || ["desktop-print"];
+  let price = 0;
+
+  licenseTypes.forEach((licenseType: string, i: number) => {
+    const companySize = purchaseDetails?.companySize || 1;
+
+    const multiplyRate = licenseRates[licenseType as keyof licenseRates][companySize];
+    const secondLicenseDiscount = i > 0 ? 0.7 : 1;
+    price += initialPrice * multiplyRate * secondLicenseDiscount;
+  });
+
+  return price;
+}
+export function roundToTwoDecimalPlaces(number: number) {
   if (Number.isInteger(number)) {
     return number;
   } else {

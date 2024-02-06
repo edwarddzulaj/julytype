@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import "@/styles/reset.css";
 import "@/styles/main.css";
@@ -46,11 +46,16 @@ export async function generateMetadata(): Promise<Metadata> {
         url: "/safari-pinned-tab.svg",
       },
     },
+    manifest: "/site.webmanifest",
+  };
+}
+
+export function generateViewport(): Viewport {
+  return {
     themeColor: [
       { media: "(prefers-color-scheme: light)", color: "#FCFCFC" },
       { media: "(prefers-color-scheme: dark)", color: "#191919" },
     ],
-    manifest: "/site.webmanifest",
   };
 }
 

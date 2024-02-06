@@ -21,6 +21,7 @@ const { createCoreController } = require("@strapi/strapi").factories;
 module.exports = createCoreController("api::order.order", ({ strapi }) => ({
   async create(ctx) {
     const { cartItems: products } = ctx.request.body;
+
     try {
       const lineItems = await Promise.all(
         products.map(async (product) => {
@@ -87,14 +88,19 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           const isWholePackageConfirmed = product.purchaseDetails.wholePackageDiscount ? product.totalPrice === typefaceEntity.price : true;
           if (!weightsData.every((w) => w.confirmedPrice) || !isWholePackageConfirmed) return;
 
-          const formattedWeightsData = weightsData.map(obj => (JSON.stringify({ [obj.title]: obj })));
+          const formattedWeightsData = weightsData.reduce((prev, curr) => ({ ...prev, ['Weight: ' + curr.title]: JSON.stringify(curr) }), {})
+          const formattedMetadata = {
+            licenses: JSON.stringify(product.purchaseDetails),
+            ...formattedWeightsData
+          }
+
           return {
             price_data: {
               currency: "eur",
               product_data: {
                 name: `JT ${product.name}`,
                 description: `Your selected weights from JT ${product.name}: ${weightsNames}`,
-                metadata: { ...formattedWeightsData },
+                metadata: formattedMetadata,
                 images: [
                   `${process.env.STRAPI_URL}/assets/images/order-globus.jpeg`,
                 ],

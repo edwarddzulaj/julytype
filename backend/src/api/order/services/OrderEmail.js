@@ -7,6 +7,7 @@ const STRAPI_ORIGIN =
     ? process.env.STRAPI_URL
     : process.env.STRAPI_TEST_URL;
 
+const WEB_FONT_FORMATS = ['.woff', '.woff2'];
 module.exports = class OrderEmail {
   /**
    * @param {any} products
@@ -31,7 +32,7 @@ module.exports = class OrderEmail {
               populate: {
                 variableFont: {
                   populate: {
-                    fontFile: true,
+                    fontFiles: true,
                   },
                 },
               },
@@ -42,10 +43,14 @@ module.exports = class OrderEmail {
           const groupKey = `${typefaceEntity.title} Variable`;
 
           fontURLs = { ...fontURLs, [groupKey]: [] };
-          fontURLs[groupKey].push([
-            groupKey,
-            variableFont.fontFile.url,
-          ]);
+          variableFont.fontFiles.forEach((fontFile) => {
+            if (WEB_FONT_FORMATS.includes(fontFile.ext) && !group.needsWebFonts) return;
+
+            fontURLs[groupKey].push([
+              groupKey,
+              fontFile.url,
+            ]);
+          });
         } else {
           const style = await strapi.entityService.findOne(
             "api::style.style",
@@ -65,6 +70,8 @@ module.exports = class OrderEmail {
           group.weights.forEach((weight) => {
             const selectedWeight = style.weights.find((w) => w.id === weight.id);
             selectedWeight.clientFontFiles.forEach((fontFile) => {
+              if (WEB_FONT_FORMATS.includes(fontFile.ext) && !group.needsWebFonts) return;
+
               fontURLs[style.title].push([
                 `${style.title} ${selectedWeight.title}`,
                 fontFile.url,
@@ -154,8 +161,14 @@ module.exports = class OrderEmail {
     let fontGroup = [];
 
     products.forEach((product) => {
-      const weightsData = Object.values(product.price_data.product_data.metadata)
-        .flatMap(obj => Object.values(JSON.parse(obj)));
+      const weightsData = Object.entries(product.price_data.product_data.metadata)
+        .filter(([key]) => key.includes('Weight'))
+        .map(([_, value]) => {
+          return JSON.parse(value);
+        });
+
+      const licensesData = JSON.parse(product.price_data.product_data.metadata.licenses).licenseTypes;
+      const needsWebFonts = licensesData.includes('web');
 
       weightsData.forEach((weight) => {
         const existingGroup = fontGroup.find(
@@ -169,6 +182,7 @@ module.exports = class OrderEmail {
             typefaceId: weight.typefaceId,
             styleId: weight.styleId,
             isVariableFont: weight.isVariableFont,
+            needsWebFonts: needsWebFonts,
             weights: [weight],
           };
           fontGroup.push(newGroup);
