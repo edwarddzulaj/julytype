@@ -1624,10 +1624,9 @@ div:hover > .iconly {
   width: 100%;
   position: absolute;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: center;
-  gap: 24px;
-  row-gap: 12px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 @media (max-width: 840px) {
@@ -1657,6 +1656,12 @@ div:hover > .iconly {
 .font-tester .font-tester-header .opentype-features {
   font-size: 16px;
 }
+.font-tester .font-tester-header .alignment,
+.font-tester .font-tester-header .columns {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
 .font-tester .font-tester-header .alignment label,
 .font-tester .font-tester-header .columns label {
   font-size: 20px;
@@ -1677,8 +1682,7 @@ div:hover > .iconly {
 }
 .font-tester .font-tester-header .edit-text {
   position: relative;
-  top: -2px;
-  font-size: 16px;
+  box-shadow: 1px 1px 6px 0px rgba(0, 139, 248, 0.6) !important;
 }
 .font-tester .font-tester-header .edit-text .edit-button {
   display: inline-flex;
@@ -1697,6 +1701,8 @@ div:hover > .iconly {
   padding: 6px 12px;
   border-radius: 8px;
   outline: 1px solid var(--foreground);
+  outline: none;
+  height: 100%;
   width: 8.5ch;
   display: flex;
   justify-content: center;
@@ -1723,8 +1729,24 @@ div:hover > .iconly {
 .font-tester .font-tester-header .edit-text .edit-button:disabled {
   color: var(--grey);
 }
+.font-tester .font-tester-header .edit-text .edit-button.editing {
+  color: var(--background);
+  background-color: var(--foreground);
+}
+.font-tester .font-tester-header .typetester-button {
+  height: 36px;
+  border-radius: 10px;
+  background: var(--background);
+  box-shadow: 1px 2px 6px 0px var(--foreground);
+}
 .font-tester .font-tester-header input[type=radio] {
   display: none;
+}
+.font-tester .font-tester-header .inner-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
 }
 .font-tester .font-sample {
   min-height: 20vh;
@@ -1773,6 +1795,7 @@ div:hover > .iconly {
 .slider {
   height: -moz-max-content;
   height: max-content;
+  padding: 0 10px;
   display: flex;
   align-items: center;
   gap: 1.296rem;
@@ -1815,36 +1838,47 @@ input[type=range]::-moz-range-thumb {
 }
 
 div.dropdown {
+  min-width: var(--min-width), 17ch;
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 0em;
   color: var(--foreground);
   border-radius: 8px;
   background-color: var(--background);
-  overflow: hidden;
-  min-width: var(--min-width);
+}
+div.dropdown .react-select__control {
+  background-color: var(--background);
+  border-radius: 8px;
+  padding: 10px 10px 7px;
   border: 1px solid var(--foreground);
 }
-div.dropdown.is-open {
-  box-shadow: 0px 1px 3px 0px var(--foreground);
+div.dropdown .react-select__single-value, div.dropdown .react-select__placeholder {
+  color: var(--foreground);
 }
-div.dropdown.is-open .Dropdown-control {
-  border-radius: 8px 8px 0 0;
+div.dropdown .react-select__indicator-separator {
+  display: none;
 }
-div.dropdown .Dropdown-control {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 10px 2px;
-  border-radius: 8px;
+div.dropdown .react-select__menu {
+  margin-top: -1px;
+  padding: 0;
+  background-color: var(--background);
+  border: 1px solid var(--foreground);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
-div.dropdown .Dropdown-menu .Dropdown-option {
+div.dropdown .react-select__menu-list {
+  padding: 0;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+div.dropdown .react-select__option {
+  background-color: var(--background);
+  color: var(--foreground);
   border-top: 1px solid var(--foreground);
-  padding: 11px 10px 9px 10px;
 }
-div.dropdown .Dropdown-control:hover,
-div.dropdown .Dropdown-menu > .Dropdown-option:hover {
-  color: var(--background);
+div.dropdown .react-select__option:hover {
   background-color: var(--foreground);
+  color: var(--background);
   cursor: pointer;
 }
 

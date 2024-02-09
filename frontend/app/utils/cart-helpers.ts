@@ -58,9 +58,10 @@ export const calculateTotalPrices = (
 
 function applyAllLicenses(purchaseDetails: PurchaseDetails | undefined, initialPrice: number) {
   const licenseTypes = purchaseDetails?.licenseTypes || ["desktop-print"];
-  let price = 0;
 
+  let price = 0;
   licenseTypes.forEach((licenseType: string, i: number) => {
+    if (!(licenseType in licenseRates)) return;
     const companySize = purchaseDetails?.companySize || 1;
 
     const multiplyRate = licenseRates[licenseType as keyof licenseRates][companySize];

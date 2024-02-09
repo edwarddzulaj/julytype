@@ -224,7 +224,7 @@ export default function Typetester({
         }`}
       >
         <div
-          className="fontfamily"
+          className="fontfamily typetester-button"
           style={{ "--min-width": countMaxLabelLength(fontsData) } as React.CSSProperties}
         >
           <Dropdown
@@ -239,7 +239,7 @@ export default function Typetester({
         {!(isMobileView && isTextEditable === "false") && (
           <>
             <div
-              className="lang extra-option"
+              className="lang extra-option typetester-button"
               style={
                 {
                   "--min-width": countMaxLabelLength(
@@ -257,7 +257,7 @@ export default function Typetester({
                 arrowOpen={<Iconly icon={icons.chevronUp} />}
               />
             </div>
-            <div className="fontsize slider extra-option">
+            <div className="fontsize slider extra-option typetester-button">
               <label htmlFor="fontsize">
                 <span className="fontsize-value">{fontSize}px</span>
               </label>
@@ -270,66 +270,71 @@ export default function Typetester({
                 value={fontSize}
               />
             </div>
-            <div className="opentype-features extra-option">
+            <div className="opentype-features extra-option typetester-button">
               <CheckboxDropdown
                 dropdownItems={opentypeFeatures}
                 handleOnChange={handleOpentypeFeatures}
               />
             </div>
-            <div className="case-options extra-option">
-              <CheckboxDropdown
-                title="Change case"
-                dropdownItems={caseOptions}
-                handleOnChange={handleCaseOptions}
-              />
-            </div>
-            <div className="alignment extra-option">
-              {alignmentOptions.map((option) => (
-                <span key={option.value}>
-                  <label
-                    htmlFor={`${option.value}-${fontFamily.value}`}
-                    className={alignment === option.value ? "active" : ""}
-                    title={option.label}
-                  >
-                    <Iconly icon={icons[option.label]} />
-                  </label>
-                  <input
-                    type="radio"
-                    id={`${option.value}-${fontFamily.value}`}
-                    name="alignment"
-                    value={option.value}
-                    checked={alignment === option.value}
-                    onChange={handleAlignment}
-                  />
-                </span>
-              ))}
-            </div>
-            <div className="columns extra-option">
-              {columnOptions.map((option) => (
-                <span key={option.value}>
-                  <label
-                    htmlFor={`${option.value}-${fontFamily.value}`}
-                    title={option.label}
-                    className={textColumns === option.value ? "active" : ""}
-                  >
-                    <Iconly icon={icons[option.label]} />
-                  </label>
-                  <input
-                    type="radio"
-                    id={`${option.value}-${fontFamily.value}`}
-                    name="textcolumns"
-                    value={option.value}
-                    checked={textColumns == option.value}
-                    onChange={handleColumns}
-                  />
-                </span>
-              ))}
+            <div className="inner-section">
+              <div className="case-options extra-option typetester-button">
+                <CheckboxDropdown
+                  title="Change case"
+                  dropdownItems={caseOptions}
+                  handleOnChange={handleCaseOptions}
+                />
+              </div>
+              <div className="alignment extra-option typetester-button">
+                {alignmentOptions.map((option) => (
+                  <span key={option.value}>
+                    <label
+                      htmlFor={`${option.value}-${fontFamily.value}`}
+                      className={alignment === option.value ? "active" : ""}
+                      title={option.label}
+                    >
+                      <Iconly icon={icons[option.label]} />
+                    </label>
+                    <input
+                      type="radio"
+                      id={`${option.value}-${fontFamily.value}`}
+                      name="alignment"
+                      value={option.value}
+                      checked={alignment === option.value}
+                      onChange={handleAlignment}
+                    />
+                  </span>
+                ))}
+              </div>
+              <div className="columns extra-option typetester-button">
+                {columnOptions.map((option) => (
+                  <span key={option.value}>
+                    <label
+                      htmlFor={`${option.value}-${fontFamily.value}`}
+                      title={option.label}
+                      className={textColumns === option.value ? "active" : ""}
+                    >
+                      <Iconly icon={icons[option.label]} />
+                    </label>
+                    <input
+                      type="radio"
+                      id={`${option.value}-${fontFamily.value}`}
+                      name="textcolumns"
+                      value={option.value}
+                      checked={textColumns == option.value}
+                      onChange={handleColumns}
+                    />
+                  </span>
+                ))}
+              </div>
             </div>
           </>
         )}
-        <div className="edit-text">
-          <button className="edit-button" onClick={(e) => handleEditableClick(e, fontTesterRef)}>
-            {isTextEditable === "false" ? "Edit text" : "Editing"}
+        <div className="edit-text typetester-button">
+          <button
+            className={`edit-button ${isTextEditable === "false" ? "" : "editing"}`}
+            onClick={(e) => handleEditableClick(e, fontTesterRef)}
+          >
+            {isTextEditable === "false" ? "Edit" : "Editing"}
           </button>
         </div>
       </div>

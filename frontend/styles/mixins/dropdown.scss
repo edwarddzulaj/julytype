@@ -1,40 +1,57 @@
 @mixin base {
+  min-width: var(--min-width), 17ch;
+
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 0em;
   color: var(--foreground);
   border-radius: 8px;
   background-color: var(--background);
-  overflow: hidden;
 
-  &.is-open {
-    .Dropdown-control {
-      border-radius: 8px 8px 0 0;
+  .react-select {
+    &__control {
+      background-color: var(--background);
+
+      border-radius: 8px;
+      padding: 10px 10px 7px;
+      border: 1px solid $color;
     }
 
-    box-shadow: 0px 1px 3px 0px var(--foreground);
-  }
+    &__single-value,
+    &__placeholder {
+      color: var(--foreground);
+    }
 
-  .Dropdown-control {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 10px 2px;
-    border-radius: 8px;
-  }
+    &__indicator-separator {
+      display: none;
+    }
 
-  .Dropdown-menu {
-    .Dropdown-option {
+    // Opened menu styling
+    &__menu {
+      margin-top: -1px;
+      padding: 0;
+      background-color: var(--background);
+      border: 1px solid $color;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+
+    &__menu-list {
+      padding: 0;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+
+    &__option {
+      background-color: var(--background);
+      color: var(--foreground);
       border-top: 1px solid var(--foreground);
-      padding: 11px 10px 9px 10px;
-    }
-  }
 
-  .Dropdown-control,
-  .Dropdown-menu > .Dropdown-option {
-    &:hover {
-      color: var(--background);
-      background-color: var(--foreground);
-      cursor: pointer;
+      &:hover {
+        background-color: var(--foreground);
+        color: var(--background);
+        cursor: pointer;
+      }
     }
   }
 }

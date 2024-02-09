@@ -1193,10 +1193,9 @@ div:hover > .iconly {
     width: 100%;
     position: absolute;
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: center;
-    gap: 24px;
-    row-gap: 12px;
+    gap: 12px;
     flex-wrap: wrap;
 
     @media (max-width: $mobile-breakpoint) {
@@ -1235,6 +1234,10 @@ div:hover > .iconly {
 
     .alignment,
     .columns {
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+
       label {
         font-size: 20px;
         opacity: 0.5;
@@ -1254,22 +1257,43 @@ div:hover > .iconly {
 
     .edit-text {
       position: relative;
-      top: -2px;
-      font-size: 16px;
+      box-shadow: 1px 1px 6px 0px rgba(0, 139, 248, 0.6) !important;
 
       .edit-button {
         @include buttons.tertiary;
+        outline: none;
+        height: 100%;
         width: 8.5ch;
         display: flex;
         justify-content: center;
 
         font-family: inherit;
         font-size: inherit;
+
+        &.editing {
+          color: var(--background);
+          background-color: var(--foreground);
+        }
       }
+    }
+
+    .typetester-button {
+      height: 36px;
+
+      border-radius: 10px;
+      background: var(--background);
+      box-shadow: 1px 2px 6px 0px var(--foreground);
     }
 
     input[type="radio"] {
       display: none;
+    }
+
+    .inner-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
     }
   }
 
@@ -1330,6 +1354,7 @@ div:hover > .iconly {
 
 .slider {
   height: max-content;
+  padding: 0 10px;
   display: flex;
   align-items: center;
   gap: $gutter-thin-v;
@@ -1377,8 +1402,6 @@ input[type="range"] {
 
 div.dropdown {
   @include dropdown.base();
-  min-width: var(--min-width);
-  border: 1px solid $color;
 }
 
 .checkbox-dropdown {

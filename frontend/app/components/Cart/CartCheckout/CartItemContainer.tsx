@@ -1,8 +1,8 @@
 "use client";
-import Dropdown from "react-dropdown";
 
 import { TypefaceWeight } from "@/@types/components";
 import { CartItem, updateCartItem } from "@/app/redux/cartReducer";
+import Dropdown from "../../UI/Dropdown";
 import { PurchaseDetails } from "../PurchaseSection/PurchaseSectionTypes";
 import { useAppSelector } from "@/app/redux/hooks";
 import { useDispatch } from "react-redux";
@@ -14,7 +14,6 @@ import { licenseOptions, companySizeOptions } from "../PurchaseSection/purchase-
 import { pluralize } from "@/app/utils/text-helpers";
 
 export default function CartItemContainer({ item, index }: { item: CartItem; index: number }) {
-  const [licenseTypeDefault, setLicenseTypeDefault] = useState("Add license type");
   const [allWeights, setAllWeights] = useState("");
   const [prices, setPrices] = useState({ price: 0, finalPrice: 0 });
   const dispatch = useDispatch();
@@ -69,7 +68,6 @@ export default function CartItemContainer({ item, index }: { item: CartItem; ind
           },
         })
       );
-      setLicenseTypeDefault("Add license type");
     }
   };
 
@@ -124,7 +122,7 @@ export default function CartItemContainer({ item, index }: { item: CartItem; ind
               const licenseOption = licenseOptions.options.find((o) => o.value === license);
               return (
                 <li className="license" key={license}>
-                  {licenseOption!.label}
+                  {licenseOption?.label || ""}
                   {licenseTypes.length > 1 && (
                     <span
                       className="remove-license"
@@ -140,12 +138,9 @@ export default function CartItemContainer({ item, index }: { item: CartItem; ind
             })}
             <div className="add-license">
               <Dropdown
-                className="dropdown"
                 options={licenseOptionsList}
-                onChange={handleLicenseTypeChange}
-                value={licenseTypeDefault}
-                arrowClosed={<Iconly icon={icons.chevronDown} />}
-                arrowOpen={<Iconly icon={icons.chevronUp} />}
+                placeholder="Add license type"
+                onChange={(e: React.ChangeEvent) => handleLicenseTypeChange(e)}
               />
             </div>
           </ul>
@@ -154,12 +149,9 @@ export default function CartItemContainer({ item, index }: { item: CartItem; ind
           <h6 className="title">Company Size</h6>
           <div className="company-sizes">
             <Dropdown
-              className="dropdown"
               options={companySizeOptionsList}
-              onChange={handleCompanySizeChange}
-              value={initialCompanySize}
-              arrowClosed={<Iconly icon={icons.chevronDown} />}
-              arrowOpen={<Iconly icon={icons.chevronUp} />}
+              defaultValue={initialCompanySize}
+              onChange={(e: React.ChangeEvent) => handleCompanySizeChange(e)}
             />
           </div>
         </div>
