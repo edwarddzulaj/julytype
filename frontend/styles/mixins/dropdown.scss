@@ -10,11 +10,28 @@
 
   .react-select {
     &__control {
-      background-color: var(--background);
-
-      border-radius: 8px;
       padding: 10px 10px 7px;
-      border: 1px solid $color;
+
+      background-color: var(--background);
+      box-shadow: 1px 2px 6px 0px rgba(0, 0, 0, 0.4);
+      border-radius: 8px;
+
+      &--menu-is-open {
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+      }
+
+      &--is-focused {
+        border: none !important;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &__value-container {
+      padding: 0;
     }
 
     &__single-value,
@@ -26,12 +43,19 @@
       display: none;
     }
 
+    &__indicator {
+      position: relative;
+      top: -1px !important;
+      color: var(--foreground);
+      padding: 0;
+      scale: 1.4;
+    }
+
     // Opened menu styling
     &__menu {
       margin-top: -1px;
       padding: 0;
       background-color: var(--background);
-      border: 1px solid $color;
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
     }
@@ -40,6 +64,7 @@
       padding: 0;
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
+      box-shadow: 1px 2px 6px 0px rgba(0, 0, 0, 0.4);
     }
 
     &__option {

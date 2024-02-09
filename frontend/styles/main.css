@@ -1847,10 +1847,23 @@ div.dropdown {
   background-color: var(--background);
 }
 div.dropdown .react-select__control {
-  background-color: var(--background);
-  border-radius: 8px;
   padding: 10px 10px 7px;
-  border: 1px solid var(--foreground);
+  background-color: var(--background);
+  box-shadow: 1px 2px 6px 0px rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+}
+div.dropdown .react-select__control--menu-is-open {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+div.dropdown .react-select__control--is-focused {
+  border: none !important;
+}
+div.dropdown .react-select__control:hover {
+  cursor: pointer;
+}
+div.dropdown .react-select__value-container {
+  padding: 0;
 }
 div.dropdown .react-select__single-value, div.dropdown .react-select__placeholder {
   color: var(--foreground);
@@ -1858,11 +1871,17 @@ div.dropdown .react-select__single-value, div.dropdown .react-select__placeholde
 div.dropdown .react-select__indicator-separator {
   display: none;
 }
+div.dropdown .react-select__indicator {
+  position: relative;
+  top: -1px !important;
+  color: var(--foreground);
+  padding: 0;
+  scale: 1.4;
+}
 div.dropdown .react-select__menu {
   margin-top: -1px;
   padding: 0;
   background-color: var(--background);
-  border: 1px solid var(--foreground);
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
@@ -1870,6 +1889,7 @@ div.dropdown .react-select__menu-list {
   padding: 0;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  box-shadow: 1px 2px 6px 0px rgba(0, 0, 0, 0.4);
 }
 div.dropdown .react-select__option {
   background-color: var(--background);
