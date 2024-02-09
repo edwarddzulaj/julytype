@@ -7,15 +7,19 @@ export function getRandomIndex(min: number, max: number) {
 }
 
 export function indexAllSamples(languages: any) {
-  const allSamplesLatin: any = [];
-  const allSamplesCyrillic: any = [];
+  const allSamplesLatin: any = {};
+  const allSamplesCyrillic: any = {};
 
   languages.map((lang: TypetesterTextGroup) => {
     const isCyrillic = lang.language.includes("Cyrillic");
+    const langName = lang.language.split(" ")[0];
+
     if (isCyrillic) {
-      allSamplesCyrillic.push(lang.language, ...lang.sample);
+      allSamplesCyrillic[langName] = [];
+      allSamplesCyrillic[langName].push(...lang.sample);
     } else {
-      allSamplesLatin.push(lang.language, ...lang.sample);
+      allSamplesLatin[langName] = [];
+      allSamplesLatin[langName].push(...lang.sample);
     }
   });
 

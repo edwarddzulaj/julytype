@@ -1191,7 +1191,7 @@ div:hover > .iconly {
 
   .font-tester-header {
     width: 100%;
-    position: absolute;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1301,7 +1301,7 @@ div:hover > .iconly {
 
   .font-sample {
     min-height: 20vh;
-    padding-top: $gutter-h * 5;
+    padding-top: $gutter-h * 2;
     transition: font-size 0.1s ease-out;
     font-family: "Adobe Blank";
 
@@ -1404,16 +1404,6 @@ input[type="range"] {
 
 div.dropdown {
   @include dropdown.base();
-
-  // .react-select {
-  //   &__control {
-  //     &:hover {
-  //       .react-select__placeholder {
-  //         border: 1px solid rgba(0, 255, 0, 1);
-  //       }
-  //     }
-  //   }
-  // }
 }
 
 .checkbox-dropdown {

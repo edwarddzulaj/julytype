@@ -1622,7 +1622,7 @@ div:hover > .iconly {
 }
 .font-tester .font-tester-header {
   width: 100%;
-  position: absolute;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1752,7 +1752,7 @@ div:hover > .iconly {
 }
 .font-tester .font-sample {
   min-height: 20vh;
-  padding-top: 8.1rem;
+  padding-top: 3.24rem;
   transition: font-size 0.1s ease-out;
   font-family: "Adobe Blank";
   white-space-collapse: preserve-breaks;
