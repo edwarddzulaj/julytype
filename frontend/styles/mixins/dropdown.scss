@@ -15,6 +15,7 @@
       background-color: var(--background);
       box-shadow: 1px 2px 6px 0px rgba(0, 0, 0, 0.4);
       border-radius: 8px;
+      border: none;
 
       &--menu-is-open {
         border-bottom-left-radius: 0px;
@@ -23,6 +24,17 @@
 
       &--is-focused {
         border: none !important;
+      }
+
+      &:hover {
+        background-color: var(--foreground);
+        cursor: pointer;
+
+        .react-select__single-value,
+        .react-select__placeholder,
+        .react-select__indicator {
+          color: var(--background);
+        }
       }
     }
 

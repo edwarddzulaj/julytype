@@ -1404,6 +1404,16 @@ input[type="range"] {
 
 div.dropdown {
   @include dropdown.base();
+
+  // .react-select {
+  //   &__control {
+  //     &:hover {
+  //       .react-select__placeholder {
+  //         border: 1px solid rgba(0, 255, 0, 1);
+  //       }
+  //     }
+  //   }
+  // }
 }
 
 .checkbox-dropdown {

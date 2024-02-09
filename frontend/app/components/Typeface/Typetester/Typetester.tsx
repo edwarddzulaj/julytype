@@ -230,8 +230,9 @@ export default function Typetester({
         >
           <Dropdown
             options={fontsData}
+            instanceId={`${fontFamily.value}-font-family`}
+            defaultValue={fontFamily}
             onChange={handleFontFamily}
-            defaultValue={fontFamily.value}
           />
         </div>
         {!(isMobileView && isTextEditable === "false") && (
@@ -248,6 +249,7 @@ export default function Typetester({
             >
               <Dropdown
                 options={isLatin ? languages.latin : languages.cyrillic}
+                instanceId={`${fontFamily.value}-language`}
                 onChange={handleLanguage}
                 placeholder="Language"
               />

@@ -1853,6 +1853,7 @@ div.dropdown .react-select__control {
   background-color: var(--background);
   box-shadow: 1px 2px 6px 0px rgba(0, 0, 0, 0.4);
   border-radius: 8px;
+  border: none;
 }
 div.dropdown .react-select__control--menu-is-open {
   border-bottom-left-radius: 0px;
@@ -1860,6 +1861,15 @@ div.dropdown .react-select__control--menu-is-open {
 }
 div.dropdown .react-select__control--is-focused {
   border: none !important;
+}
+div.dropdown .react-select__control:hover {
+  background-color: var(--foreground);
+  cursor: pointer;
+}
+div.dropdown .react-select__control:hover .react-select__single-value,
+div.dropdown .react-select__control:hover .react-select__placeholder,
+div.dropdown .react-select__control:hover .react-select__indicator {
+  color: var(--background);
 }
 div.dropdown .react-select__value-container {
   padding: 0;
