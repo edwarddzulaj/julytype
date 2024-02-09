@@ -1773,6 +1773,7 @@ div:hover > .iconly {
   padding-top: 0;
 }
 .glyph-map .glyph-map-row .glyph-map-row-header {
+  font-family: "Font Regular";
   font-size: 18px;
   margin-bottom: 8px;
 }

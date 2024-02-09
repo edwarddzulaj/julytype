@@ -6,14 +6,16 @@ import Iconly, { icons } from "../UI/Iconly";
 
 export default function GlyphMap({
   glyphMap,
+  fontFamilyTitle,
   showAllButton,
 }: {
   glyphMap: Typeface["attributes"]["glyphMap"];
+  fontFamilyTitle?: string;
   showAllButton?: boolean;
 }) {
   const [showAll, setShowAll] = useState(false);
   return (
-    <div className="glyph-map">
+    <div className="glyph-map" style={{ fontFamily: `${fontFamilyTitle}, Adobe Blank` }}>
       <>
         {glyphMap.map((glyphMapRow) => (
           <article key={glyphMapRow.id} className="glyph-map-row">

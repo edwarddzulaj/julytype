@@ -100,7 +100,11 @@ export default async function Typeface({ params }: { params: { slug: string } })
           )}
           {glyphMap && glyphMap.length > 0 && (
             <Section title={`Glyphs`}>
-              <GlyphMap glyphMap={glyphMap} showAllButton={true} />
+              <GlyphMap
+                glyphMap={glyphMap}
+                fontFamilyTitle={opentypeFeaturesFontTitle}
+                showAllButton={true}
+              />
             </Section>
           )}
           <Section title={`Buy ${typefaceTitle}`} noIndent={true}>
