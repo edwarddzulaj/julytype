@@ -19,6 +19,12 @@ export interface Style {
   };
 }
 
+export interface GlyphMapRow {
+  id: number;
+  title: string;
+  content: string;
+}
+
 export interface Typeface {
   id: number;
   attributes: {
@@ -31,6 +37,7 @@ export interface Typeface {
     mainFont: Attribute.File;
     image: Attribute.Media;
     variableFont: Attribute.Media;
+    glyphMap: GlyphMapRow[];
     slug: string;
     createdAt: Date;
     updatedAt: Date;

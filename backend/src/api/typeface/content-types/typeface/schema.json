@@ -72,6 +72,11 @@
       "type": "component",
       "repeatable": false,
       "component": "typeface.variable-font"
+    },
+    "glyphMap": {
+      "type": "component",
+      "repeatable": true,
+      "component": "typeface.glyph-map-row"
     }
   }
 }

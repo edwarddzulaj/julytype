@@ -1765,6 +1765,22 @@ div:hover > .iconly {
   cursor: pointer;
 }
 
+.glyph-map .glyph-map-row {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--foreground);
+}
+.glyph-map .glyph-map-row:first-of-type {
+  padding-top: 0;
+}
+.glyph-map .glyph-map-row .glyph-map-row-header {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+.glyph-map .glyph-map-row .glyph-map-row-content {
+  font-size: 50px;
+  line-height: 60px;
+}
+
 .opentype-features-preview .text-container {
   color: var(--grey);
 }

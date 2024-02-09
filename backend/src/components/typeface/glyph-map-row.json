@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_typeface_glyph_map_rows",
+  "info": {
+    "displayName": "glyphMap",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}

@@ -5,6 +5,7 @@ import { getStrapiMedia } from "@/app/utils/api-helpers";
 import BuyButton from "@/app/components/UI/BuyButton";
 import ChooseScript from "@/app/components/Typeface/ChooseScript";
 import ChooseWeight from "@/app/components/Typeface/ChooseWeight";
+import GlyphMap from "@/app/components/Typeface/GlyphMap";
 import Markdown from "react-markdown";
 import OpentypeFeaturesPreview from "@/app/components/Typeface/OpentypeFeaturesPreview/OpentypeFeaturesPreview";
 import PDFPreview from "@/app/components/Typeface/PDFPreview";
@@ -33,6 +34,7 @@ async function getTypeface(slug: string) {
       specimen: { populate: "*" },
       trialFonts: { populate: "*" },
       variableFont: { populate: "*" },
+      glyphMap: { populate: "*" },
     },
     filters: {
       slug: slug,
@@ -47,7 +49,8 @@ export default async function Typeface({ params }: { params: { slug: string } })
   const { slug } = params;
   const typeface: Typeface = await getTypeface(slug);
   const typefaceTitle = typeface.attributes.title;
-  const { specimen, aboutText, styles, trialFonts, supportedLanguages } = typeface.attributes;
+  const { specimen, aboutText, styles, trialFonts, supportedLanguages, glyphMap } =
+    typeface.attributes;
   const hasTrialFonts = trialFonts?.data?.length > 0;
 
   const styleSlug = styles.data[0].attributes.slug;
@@ -93,6 +96,11 @@ export default async function Typeface({ params }: { params: { slug: string } })
           {supportedLanguages && supportedLanguages.length > 0 && (
             <Section title={`Supported Languages`}>
               <SupportedLanguages languageData={supportedLanguages} />
+            </Section>
+          )}
+          {glyphMap && glyphMap.length > 0 && (
+            <Section title={`Glyphs`}>
+              <GlyphMap glyphMap={glyphMap} showAllButton={true} />
             </Section>
           )}
           <Section title={`Buy ${typefaceTitle}`} noIndent={true}>
