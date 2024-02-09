@@ -8,7 +8,7 @@ const CustomDropdownIndicator = (props: any) => {
   } = props;
   return (
     <DropdownIndicator {...props}>
-      {menuIsOpen ? <Iconly icon={icons.chevronDown} /> : <Iconly icon={icons.chevronUp} />}
+      {menuIsOpen ? <Iconly icon={icons.chevronUp} /> : <Iconly icon={icons.chevronDown} />}
     </DropdownIndicator>
   );
 };

@@ -1661,10 +1661,12 @@ div:hover > .iconly {
   display: flex;
   align-items: center;
   padding: 0 10px;
+  line-height: 0;
 }
 .font-tester .font-tester-header .alignment label,
 .font-tester .font-tester-header .columns label {
   font-size: 20px;
+  line-height: 0;
   opacity: 0.5;
   transition: opacity 0.3s ease-in-out;
   -webkit-user-select: none;
@@ -1859,9 +1861,6 @@ div.dropdown .react-select__control--menu-is-open {
 div.dropdown .react-select__control--is-focused {
   border: none !important;
 }
-div.dropdown .react-select__control:hover {
-  cursor: pointer;
-}
 div.dropdown .react-select__value-container {
   padding: 0;
 }
@@ -1918,12 +1917,12 @@ div.dropdown .react-select__option:hover {
 }
 .checkbox-dropdown label.title span {
   position: relative;
-  top: -2px;
   font-size: 20px;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
   pointer-events: none;
+  scale: 1.2;
 }
 .checkbox-dropdown label.title:hover {
   color: var(--background);
@@ -1931,6 +1930,8 @@ div.dropdown .react-select__option:hover {
   cursor: pointer;
 }
 .checkbox-dropdown ul {
+  position: relative;
+  z-index: 1000;
   padding: 10px 10px 6px;
   padding-top: 1.62rem;
 }

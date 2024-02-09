@@ -1237,9 +1237,11 @@ div:hover > .iconly {
       display: flex;
       align-items: center;
       padding: 0 10px;
+      line-height: 0;
 
       label {
         font-size: 20px;
+        line-height: 0;
         opacity: 0.5;
         transition: opacity $duration-s ease-in-out;
         user-select: none;
@@ -1421,10 +1423,10 @@ div.dropdown {
 
     span {
       position: relative;
-      top: -2px;
       font-size: 20px;
       user-select: none;
       pointer-events: none;
+      scale: 1.2;
     }
 
     &:hover {
@@ -1435,6 +1437,8 @@ div.dropdown {
   }
 
   ul {
+    position: relative;
+    z-index: 1000;
     padding: 10px 10px 6px;
     padding-top: $gutter-h;
 

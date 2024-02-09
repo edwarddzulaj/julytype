@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
-import Dropdown from "react-dropdown";
+
 import CheckboxDropdown from "../../UI/CheckboxDropdown";
+import Dropdown from "../../UI/Dropdown";
 import { FontsData } from "./typetester-types";
 import { TypetesterTextGroup } from "@/@types/components";
 
@@ -228,12 +229,9 @@ export default function Typetester({
           style={{ "--min-width": countMaxLabelLength(fontsData) } as React.CSSProperties}
         >
           <Dropdown
-            className="dropdown"
             options={fontsData}
             onChange={handleFontFamily}
-            value={fontFamily.value}
-            arrowClosed={<Iconly icon={icons.chevronDown} />}
-            arrowOpen={<Iconly icon={icons.chevronUp} />}
+            defaultValue={fontFamily.value}
           />
         </div>
         {!(isMobileView && isTextEditable === "false") && (
@@ -249,12 +247,9 @@ export default function Typetester({
               }
             >
               <Dropdown
-                className="dropdown"
                 options={isLatin ? languages.latin : languages.cyrillic}
                 onChange={handleLanguage}
                 placeholder="Language"
-                arrowClosed={<Iconly icon={icons.chevronDown} />}
-                arrowOpen={<Iconly icon={icons.chevronUp} />}
               />
             </div>
             <div className="fontsize slider extra-option typetester-button">
@@ -334,7 +329,7 @@ export default function Typetester({
             className={`edit-button ${isTextEditable === "false" ? "" : "editing"}`}
             onClick={(e) => handleEditableClick(e, fontTesterRef)}
           >
-            {isTextEditable === "false" ? "Edit" : "Editing"}
+            {isTextEditable === "false" ? "Edit text" : "Editing"}
           </button>
         </div>
       </div>
