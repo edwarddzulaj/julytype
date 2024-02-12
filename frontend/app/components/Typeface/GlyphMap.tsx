@@ -2,7 +2,6 @@
 
 import { Typeface } from "@/@types/contentTypes";
 import { useState } from "react";
-import Iconly, { icons } from "../UI/Iconly";
 
 export default function GlyphMap({
   glyphMap,
@@ -13,7 +12,6 @@ export default function GlyphMap({
   fontFamilyTitle?: string;
   showAllButton?: boolean;
 }) {
-  const [showAll, setShowAll] = useState(false);
   return (
     <div className="glyph-map" style={{ fontFamily: `${fontFamilyTitle}, Adobe Blank` }}>
       <>
@@ -24,22 +22,6 @@ export default function GlyphMap({
           </article>
         ))}
       </>
-      {/* {showAllButton && (
-        <>
-          <div className="show-more-less">
-            {showAll && (
-              <>
-                Show less <Iconly icon={icons.chevronUp} />
-              </>
-            )}
-            {!showAll && (
-              <>
-                Show all <Iconly icon={icons.chevronDown} />
-              </>
-            )}
-          </div>
-        </>
-      )} */}
     </div>
   );
 }
