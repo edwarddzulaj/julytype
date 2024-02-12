@@ -5,8 +5,9 @@ import PurchaseOption from "../../Cart/PurchaseSection/PurchaseOption";
 import { useEffect, useRef, useState } from "react";
 
 export default function OpentypeFeaturesPreview({ fontFamilyTitle }: { fontFamilyTitle?: string }) {
+  const TEXT_SIZE = 64;
   const textRef = useRef<HTMLDivElement>(null);
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState<string[]>([]);
 
   const mappedOptions = {
     options: options.map((option) => ({
@@ -16,17 +17,16 @@ export default function OpentypeFeaturesPreview({ fontFamilyTitle }: { fontFamil
     })),
   };
 
-  const TEXT_SIZE = 64;
-
   useEffect(() => {
     updateStyles(textRef, selectedOption);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedOption]);
 
-  const updateStyles = (textRef: any, selectedOption: string) => {
+  const updateStyles = (textRef: any, selectedOption: string[]) => {
     const allSpans = textRef.current.querySelectorAll("span");
     allSpans.forEach((span: HTMLDivElement) => {
-      const activeName = `${Array.from(span.classList).find((c) => c === selectedOption)}-on`;
-      if (span.classList.contains(selectedOption)) {
+      const activeName = `${Array.from(span.classList).find((c) => c === selectedOption[0])}-on`;
+      if (span.classList.contains(selectedOption[0])) {
         span.classList.add(activeName);
         span.classList.add("active");
       } else {
@@ -40,7 +40,8 @@ export default function OpentypeFeaturesPreview({ fontFamilyTitle }: { fontFamil
     <div className="opentype-features-preview">
       <PurchaseOption
         config={mappedOptions}
-        setCallback={(optionValue: string) => setSelectedOption(optionValue)}
+        selectedOption={selectedOption}
+        setCallback={(optionValues: string[]) => setSelectedOption(optionValues)}
       />
       <p
         className="text-container"
