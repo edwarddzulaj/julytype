@@ -43,7 +43,7 @@ export default function Typetester({
   const fontTesterRef = useRef<HTMLInputElement>(null);
   const [fontFamily, setFontFamily] = useState(fontsData[0]);
   const [fontLoaded, setFontLoaded] = useState(false);
-  const [sampleLang, setSampleLang] = useState(languages.latin[0].label);
+  const [sampleLang, setSampleLang] = useState(languages.latin[0]);
   const [fontSize, setFontSize] = useState(isMobileView ? 38 : 148);
   const [features, setFeatures] = useState(opentypeFeatures);
   const [cases, setCases] = useState(caseOptions);
@@ -102,7 +102,7 @@ export default function Typetester({
   const containerOptions = useMemo(() => {
     return {
       contentEditable: `${isTextEditable}`,
-      lang: `${sampleLang}`,
+      lang: `${sampleLang.value}`,
     };
   }, [isTextEditable, sampleLang]);
 
@@ -126,7 +126,7 @@ export default function Typetester({
   };
 
   const handleLanguage = (e: any) => {
-    setSampleLang(e.label);
+    setSampleLang(e);
   };
 
   const handleFontSize = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -138,6 +138,7 @@ export default function Typetester({
     const featureId = e.target.id;
 
     const feature = updatedFeatures.find((f) => f.value === featureId);
+    console.log(feature, updatedFeatures);
     if (feature) {
       feature.checked = !feature.checked;
       setFeatures(updatedFeatures);
@@ -192,7 +193,7 @@ export default function Typetester({
 
   const updateTextSample = () => {
     const [sampleText, index, sampleLanguage, defaultFontSize, defaultAlignment, defaultColumns] =
-      buildSampleText(typetesterLanguageGroup, typetester.index, isLatin, sampleLang);
+      buildSampleText(typetesterLanguageGroup, typetester.index, isLatin, sampleLang.label);
     setFontSize(defaultFontSize);
     setAlignment(defaultAlignment);
     setTextColumns(defaultColumns);
@@ -203,7 +204,7 @@ export default function Typetester({
     const chosenLang = langs.find((l) => l.label.includes(sampleLanguage));
 
     if (chosenLang) {
-      setSampleLang(chosenLang!.label);
+      setSampleLang(chosenLang);
     }
   };
 
@@ -252,8 +253,8 @@ export default function Typetester({
                 instanceId={`${fontFamily.value}-language`}
                 value={
                   isLatin
-                    ? languages.latin.find((l) => l.label === sampleLang)
-                    : languages.cyrillic.find((l) => l.label === sampleLang)
+                    ? languages.latin.find((l) => l.label === sampleLang.label)
+                    : languages.cyrillic.find((l) => l.label === sampleLang.label)
                 }
                 onChange={handleLanguage}
                 placeholder="Language"
@@ -360,7 +361,7 @@ const buildSampleText = (
   typetesterLanguageGroup: TypetesterTextGroup[] | undefined,
   index: number | null = null,
   isLatin = true,
-  sampleLang: string = ""
+  sampleLangLabel: string = ""
 ) => {
   if (!typetesterLanguageGroup || typetesterLanguageGroup.length === 0)
     return ["Type something here", 0];
@@ -369,7 +370,7 @@ const buildSampleText = (
   let samples =
     !isLatin && Object.values(allSamplesCyrillic).length > 0 ? allSamplesCyrillic : allSamplesLatin;
 
-  const sampleLanguage = sampleLang in samples ? sampleLang : Object.keys(samples)[0];
+  const sampleLanguage = sampleLangLabel in samples ? sampleLangLabel : Object.keys(samples)[0];
   samples = samples[sampleLanguage];
 
   if (!index) {
