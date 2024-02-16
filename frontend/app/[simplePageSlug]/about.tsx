@@ -14,7 +14,7 @@ export default function About(title: string, sections: any) {
             <>
               <Section title={section.title} key={section.id}>
                 {/* eslint-disable-next-line react/no-children-prop */}
-                <Markdown>{section.content}</Markdown>
+                <Markdown className="markdown-text">{section.content}</Markdown>
               </Section>
             </>
           );
