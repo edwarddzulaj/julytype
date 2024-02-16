@@ -354,6 +354,9 @@ nav {
       }
 
       .download {
+        padding-top: 20px;
+        border-top: 1px solid var(--foreground);
+
         a {
           margin-top: $gutter-h;
           @include buttons.tertiary();
@@ -821,7 +824,7 @@ footer {
 
   &:not(.no-indent) {
     display: grid;
-    grid-template-columns: minmax(100px, 300px) 3fr;
+    grid-template-columns: minmax(100px, 300px) 3fr 0fr;
     gap: 20px;
 
     .section-wrapper {
@@ -832,6 +835,17 @@ footer {
         width: 100%;
         max-width: 1280px;
         display: grid;
+      }
+    }
+  }
+
+  // Center the content on really big screens
+  @media (min-width: 1800px) {
+    grid-template-columns: minmax(100px, 300px) 3fr minmax(100px, 300px) !important;
+
+    .section-wrapper {
+      section {
+        max-width: 1480px;
       }
     }
   }
@@ -1300,9 +1314,11 @@ div:hover > .iconly {
   }
 
   .font-sample {
-    min-height: 20vh;
-    padding-top: $gutter-h * 2;
-    transition: font-size 0.1s ease-out;
+    min-height: 25vh;
+    padding-top: $gutter-h * 3;
+    // transition:
+    //   font-size 0.1s ease-out,
+    //   line-height 0.1s ease-out;
     font-family: "Adobe Blank";
 
     // Some settings to create the same layout when the div is editable

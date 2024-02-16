@@ -138,7 +138,6 @@ export default function Typetester({
     const featureId = e.target.id;
 
     const feature = updatedFeatures.find((f) => f.value === featureId);
-    console.log(feature, updatedFeatures);
     if (feature) {
       feature.checked = !feature.checked;
       setFeatures(updatedFeatures);
