@@ -12,6 +12,7 @@ export interface Style {
     title: string;
     slug: string;
     lineHeight: number;
+    isDefaultStyle?: boolean;
     createdAt: Date;
     updatedAt: Date;
     publishedAt: Date;

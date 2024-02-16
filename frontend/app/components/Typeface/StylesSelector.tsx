@@ -5,7 +5,8 @@ import { useContext, useState } from "react";
 
 export default function StylesSelector({ styles }: { styles: Style[] }) {
   const context = useContext(SelectedStyleContext);
-  const [selectedStyleId, setSelectedStyleId] = useState(styles[0].id);
+  const defaultStyleId = styles.findLast((s) => s.attributes.isDefaultStyle)?.id || styles[0].id;
+  const [selectedStyleId, setSelectedStyleId] = useState(defaultStyleId);
   const selectStyle = (id: number, title: string) => {
     setSelectedStyleId(id);
     context.updateStyle(id, title);

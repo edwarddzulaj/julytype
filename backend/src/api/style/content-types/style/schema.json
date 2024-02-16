@@ -26,6 +26,10 @@
     "lineHeight": {
       "type": "decimal",
       "default": 1.4
+    },
+    "isDefaultStyle": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
