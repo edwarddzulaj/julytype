@@ -1173,11 +1173,14 @@ footer .pages {
   display: grid;
 }
 @media (min-width: 1800px) {
-  .main-section {
+  .main-section:not(.no-indent) {
     grid-template-columns: minmax(100px, 300px) 3fr minmax(100px, 300px) !important;
   }
-  .main-section .section-wrapper section {
+  .main-section:not(.no-indent) .section-wrapper section {
     max-width: 1480px;
+  }
+  .main-section.no-indent .section-wrapper section {
+    max-width: 1980px;
   }
 }
 @media (max-width: 840px) {

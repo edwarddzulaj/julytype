@@ -849,11 +849,21 @@ footer {
 
   // Center the content on really big screens
   @media (min-width: 1800px) {
-    grid-template-columns: minmax(100px, 300px) 3fr minmax(100px, 300px) !important;
+    &:not(.no-indent) {
+      grid-template-columns: minmax(100px, 300px) 3fr minmax(100px, 300px) !important;
 
-    .section-wrapper {
-      section {
-        max-width: 1480px;
+      .section-wrapper {
+        section {
+          max-width: 1480px;
+        }
+      }
+    }
+
+    &.no-indent {
+      .section-wrapper {
+        section {
+          max-width: 1980px;
+        }
       }
     }
   }
