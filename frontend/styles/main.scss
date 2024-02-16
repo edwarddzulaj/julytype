@@ -717,8 +717,11 @@ footer {
           }
         }
 
-        .choose-script {
-          top: $gutter-h * 1.5;
+        .fixed-controls {
+          position: relative;
+          top: 0;
+          left: 0;
+          margin-bottom: $gutter-h * 2;
         }
 
         .font-tester {
@@ -728,7 +731,7 @@ footer {
         }
 
         .main-section:first-of-type {
-          padding-top: $gutter-h * 3;
+          padding-top: $gutter-h;
 
           h3 {
             opacity: 1;
@@ -1201,6 +1204,10 @@ div:hover > .iconly {
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: $gutter-h;
 
+      @media (max-width: $mobile-breakpoint) {
+        grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+      }
+
       &.collapsed {
         max-height: 20vh;
       }
@@ -1260,7 +1267,7 @@ div:hover > .iconly {
 
     .alignment,
     .columns {
-      display: flex;
+      display: flex !important;
       align-items: center;
       padding: 0 10px;
       line-height: 0;
@@ -1395,8 +1402,13 @@ div:hover > .iconly {
       font-feature-settings: "frac" 1;
     }
 
-    .ss1-on {
-      font-feature-settings: "ss01" 1;
+    .ss01-on {
+      font-feature-settings: "ss01";
+    }
+
+    .allcaps-on,
+    .calt-on {
+      font-feature-settings: "calt" 0;
     }
 
     .subs.subs-on {
@@ -1420,7 +1432,7 @@ div:hover > .iconly {
 .slider {
   height: max-content;
   padding: 0 10px;
-  display: flex;
+  display: flex !important;
   align-items: center;
   gap: $gutter-thin-v;
 

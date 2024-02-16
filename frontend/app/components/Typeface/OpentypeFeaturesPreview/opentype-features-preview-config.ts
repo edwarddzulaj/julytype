@@ -4,8 +4,8 @@
 // For example, "20<ot>FRESI</ot>21" will highlight FRESI and leave out 20 and 21.
 
 export const BASE_TEXT = `
-    ¿<span class="allcaps">Fish & «Chips» </span>(<span class="allcaps">FRESI</span>) <span class="allcaps">@ £24.65?</span> 
-    These new citations from 2013<span class="ss01">*</span>  21/03/10 and 2<span class="frac">1/8 460/920</span>
+    ¿<span class="allcaps">Fish & <span class="calt">«</span>Chips<span class="calt">»</span> </span>(<span class="allcaps">FRESI</span>) <span class="allcaps">@ £24.65?</span> 
+    These new citations from 2013<span class="ss01">*Mg</span>  21/03/10 and 2<span class="frac">1/8 460/920</span>
     x<span class="subs sups">158</span> + y<span class="subs sups">23</span> × z<span class="subs sups">18</span> - a<span class="subs sups">4260</span>
 `;
 
@@ -21,6 +21,12 @@ export const options = [
     id: "ss01",
     type: "opentype-feature",
     label: "Stylistic Set",
+    text: BASE_TEXT,
+  },
+  {
+    id: "calt",
+    type: "opentype-feature",
+    label: "Contextual alternates",
     text: BASE_TEXT,
   },
   {

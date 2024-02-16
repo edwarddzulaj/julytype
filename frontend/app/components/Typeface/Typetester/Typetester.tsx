@@ -59,7 +59,7 @@ export default function Typetester({
   useEffect(() => {
     updateTextSample();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLatin, sampleLang]);
+  }, [isLatin, sampleLang, isMobileView]);
 
   useEffect(() => {
     document.fonts.ready.then((fontFaceSet) => {
@@ -193,7 +193,7 @@ export default function Typetester({
   const updateTextSample = () => {
     const [sampleText, index, sampleLanguage, defaultFontSize, defaultAlignment, defaultColumns] =
       buildSampleText(typetesterLanguageGroup, typetester.index, isLatin, sampleLang.label);
-    setFontSize(defaultFontSize);
+    setFontSize(isMobileView ? defaultFontSize * 0.3 : defaultFontSize);
     setAlignment(defaultAlignment);
     setTextColumns(defaultColumns);
 
@@ -261,7 +261,7 @@ export default function Typetester({
             </div>
             <div className="fontsize slider extra-option typetester-button">
               <label htmlFor="fontsize">
-                <span className="fontsize-value">{fontSize}px</span>
+                <span className="fontsize-value">{fontSize.toFixed()}px</span>
               </label>
               <input
                 id="fontsize"

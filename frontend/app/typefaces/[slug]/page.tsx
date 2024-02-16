@@ -65,7 +65,7 @@ export default async function Typeface({ params }: { params: { slug: string } })
           <article className={`quick-buttons ${styles.data.length > 1 ? "with-background" : ""}`}>
             {styles.data.length > 1 && <StylesSelector styles={styles.data} />}
             <div className="action-buttons">
-              <BuyButton>{`Buy ${title}`}</BuyButton>
+              <BuyButton>{`Buy ${typefaceTitle}`}</BuyButton>
             </div>
           </article>
           <Section>
