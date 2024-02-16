@@ -32,7 +32,6 @@ async function getTypeface(slug: string) {
       },
       supportedLanguages: { populate: "*" },
       specimen: { populate: "*" },
-      trialFonts: { populate: "*" },
       variableFont: { populate: "*" },
       glyphMap: { populate: "*" },
     },
@@ -49,9 +48,7 @@ export default async function Typeface({ params }: { params: { slug: string } })
   const { slug } = params;
   const typeface: Typeface = await getTypeface(slug);
   const typefaceTitle = typeface.attributes.title;
-  const { specimen, aboutText, styles, trialFonts, supportedLanguages, glyphMap } =
-    typeface.attributes;
-  const hasTrialFonts = trialFonts?.data?.length > 0;
+  const { specimen, aboutText, styles, supportedLanguages, glyphMap } = typeface.attributes;
 
   const styleSlug = styles.data[0].attributes.slug;
   const style: Style | undefined = typeface.attributes.styles.data.find(
@@ -68,7 +65,6 @@ export default async function Typeface({ params }: { params: { slug: string } })
           <article className={`quick-buttons ${styles.data.length > 1 ? "with-background" : ""}`}>
             {styles.data.length > 1 && <StylesSelector styles={styles.data} />}
             <div className="action-buttons">
-              {/* {hasTrialFonts && <TrialFontsButton/>} */}
               <BuyButton>{`Buy ${title}`}</BuyButton>
             </div>
           </article>
