@@ -68,9 +68,11 @@ export default async function Typeface({ params }: { params: { slug: string } })
               <BuyButton>{`Buy ${title}`}</BuyButton>
             </div>
           </article>
-          <ChooseScript />
-          <ChooseWeight styles={styles.data} />
           <Section>
+            <article className="fixed-controls">
+              <ChooseScript />
+              <ChooseWeight styles={styles.data} />
+            </article>
             <StyleWeights styles={styles.data} />
           </Section>
           {specimen?.data?.attributes?.url && (

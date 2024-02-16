@@ -1,5 +1,5 @@
 import { Typeface } from "@/@types/contentTypes";
-import { capitalize } from "@/app/typefaces/[slug]/helpers";
+import SupportedLanguagesBlock from "./SupportedLanguagesBlock";
 
 export default function SupportedLanguages({
   languageData,
@@ -9,19 +9,7 @@ export default function SupportedLanguages({
   return (
     <article className="supported-languages">
       {languageData.map((alphabet) => {
-        const { name, languages } = alphabet;
-        const mappedLanguages = languages.split(", ");
-
-        return (
-          <article key={name}>
-            <h6>{capitalize(name)}</h6>
-            <article className="languages">
-              {mappedLanguages.map((language) => (
-                <div key={language}>{language}</div>
-              ))}
-            </article>
-          </article>
-        );
+        return <SupportedLanguagesBlock key={alphabet.name} alphabet={alphabet} />;
       })}
     </article>
   );

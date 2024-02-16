@@ -489,26 +489,34 @@ nav .mobile-nav {
   content: "∙";
   margin: 0 calc(1.296rem / 3);
 }
+.wrapper .container.typeface .quick-buttons:not(.with-background) {
+  justify-content: end;
+}
 .wrapper .container.typeface .quick-buttons .action-buttons {
   display: flex;
-  align-self: flex-end;
   gap: 10px;
   pointer-events: all;
 }
-.wrapper .container.typeface .choose-script {
+.wrapper .container.typeface .fixed-controls {
+  position: fixed;
+  top: 14.904rem;
+  left: 4.32rem;
+  z-index: 1111;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.wrapper .container.typeface .fixed-controls .choose-script {
   position: relative;
-  top: 7.29rem;
-  left: 0;
   width: -moz-fit-content;
   width: fit-content;
-  z-index: 1111;
 }
-.wrapper .container.typeface .choose-script .buttons {
+.wrapper .container.typeface .fixed-controls .choose-script .buttons {
   margin-top: 0.972rem;
   display: flex;
   gap: 8px;
 }
-.wrapper .container.typeface .choose-script .buttons button {
+.wrapper .container.typeface .fixed-controls .choose-script .buttons button {
   display: inline-flex;
   padding: 14px 16px;
   border-radius: 12px;
@@ -526,27 +534,27 @@ nav .mobile-nav {
   border-radius: 8px;
   outline: 1px solid var(--foreground);
 }
-.wrapper .container.typeface .choose-script .buttons button:hover {
+.wrapper .container.typeface .fixed-controls .choose-script .buttons button:hover {
   cursor: pointer;
 }
-.wrapper .container.typeface .choose-script .buttons button:hover, .wrapper .container.typeface .choose-script .buttons button.selected {
+.wrapper .container.typeface .fixed-controls .choose-script .buttons button:hover, .wrapper .container.typeface .fixed-controls .choose-script .buttons button.selected {
   background-color: var(--foreground);
   color: var(--background);
 }
-.wrapper .container.typeface .choose-script .buttons button:focus-visible {
+.wrapper .container.typeface .fixed-controls .choose-script .buttons button:focus-visible {
   outline: 2px solid var(--foreground);
 }
-.wrapper .container.typeface .choose-script .buttons button:focus:not(:focus-visible) {
+.wrapper .container.typeface .fixed-controls .choose-script .buttons button:focus:not(:focus-visible) {
   outline: none;
 }
-.wrapper .container.typeface .choose-script .buttons button:active {
+.wrapper .container.typeface .fixed-controls .choose-script .buttons button:active {
   color: var(--foreground);
   background-color: var(--background);
 }
-.wrapper .container.typeface .choose-script .buttons button:disabled {
+.wrapper .container.typeface .fixed-controls .choose-script .buttons button:disabled {
   color: var(--grey);
 }
-.wrapper .container.typeface .choose-script .buttons button.active {
+.wrapper .container.typeface .fixed-controls .choose-script .buttons button.active {
   display: inline-flex;
   padding: 14px 16px;
   border-radius: 12px;
@@ -564,37 +572,33 @@ nav .mobile-nav {
   padding: 6px 12px;
   border-radius: 8px;
 }
-.wrapper .container.typeface .choose-script .buttons button.active:hover {
+.wrapper .container.typeface .fixed-controls .choose-script .buttons button.active:hover {
   cursor: pointer;
 }
-.wrapper .container.typeface .choose-script .buttons button.active:hover {
+.wrapper .container.typeface .fixed-controls .choose-script .buttons button.active:hover {
   background-color: var(--black);
 }
-.wrapper .container.typeface .choose-script .buttons button.active:focus-visible {
+.wrapper .container.typeface .fixed-controls .choose-script .buttons button.active:focus-visible {
   outline: 2px solid var(--black);
 }
-.wrapper .container.typeface .choose-script .buttons button.active:focus:not(:focus-visible) {
+.wrapper .container.typeface .fixed-controls .choose-script .buttons button.active:focus:not(:focus-visible) {
   outline: none;
 }
-.wrapper .container.typeface .choose-script .buttons button.active:active {
+.wrapper .container.typeface .fixed-controls .choose-script .buttons button.active:active {
   color: var(--white);
   background-color: var(--blue);
 }
-.wrapper .container.typeface .choose-script .buttons button.active:disabled {
+.wrapper .container.typeface .fixed-controls .choose-script .buttons button.active:disabled {
   background-color: var(--grey);
 }
-.wrapper .container.typeface .choose-script .buttons button.active:active {
+.wrapper .container.typeface .fixed-controls .choose-script .buttons button.active:active {
   background-color: var(--black);
-}
-.wrapper .container.typeface .choose-weight {
-  position: fixed;
-  top: 21.06rem;
 }
 .wrapper .container.typeface .main-section:first-of-type h3 {
   opacity: 0;
 }
 .wrapper .container.typeface .main-section:first-of-type {
-  padding-top: 1.62rem;
+  padding-top: 8.1rem;
 }
 .wrapper .container.typeface .main-section:first-of-type h3 {
   opacity: 0;
@@ -1612,18 +1616,22 @@ div:hover > .iconly {
   color: var(--grey);
 }
 
-.supported-languages {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.supported-languages article:not(:first-of-type) {
+  margin-top: 3.24rem;
 }
 .supported-languages article h6 {
   font-weight: 600;
 }
 .supported-languages article .languages {
+  max-height: auto;
+  overflow: hidden;
   margin-top: 0.972rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1.62rem;
+}
+.supported-languages article .languages.collapsed {
+  max-height: 20vh;
 }
 
 .font-tester {
@@ -1776,21 +1784,32 @@ div:hover > .iconly {
   cursor: pointer;
 }
 
-.glyph-map .glyph-map-row {
+.glyph-map .glyph-map-rows {
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+  overflow: hidden;
+}
+.glyph-map .glyph-map-rows.collapsed {
+  max-height: 56.214rem;
+}
+.glyph-map .glyph-map-rows .glyph-map-row {
   padding: 24px 0;
   border-bottom: 1px solid var(--foreground);
 }
-.glyph-map .glyph-map-row:first-of-type {
+.glyph-map .glyph-map-rows .glyph-map-row:first-of-type {
   padding-top: 0;
 }
-.glyph-map .glyph-map-row .glyph-map-row-header {
+.glyph-map .glyph-map-rows .glyph-map-row .glyph-map-row-header {
   font-family: "Font Regular";
   font-size: 18px;
   margin-bottom: 8px;
 }
-.glyph-map .glyph-map-row .glyph-map-row-content {
+.glyph-map .glyph-map-rows .glyph-map-row .glyph-map-row-content {
   font-size: 50px;
   line-height: 60px;
+}
+.glyph-map .show-all-action {
+  margin-top: 1.62rem;
 }
 
 .opentype-features-preview .text-container {
@@ -2000,6 +2019,16 @@ div.dropdown .react-select__option:hover {
   right: -3px;
 }
 .tooltip .close:hover {
+  cursor: pointer;
+}
+
+.show-all-action {
+  text-decoration: underline;
+}
+.show-all-action .iconly {
+  top: 2px;
+}
+.show-all-action:hover {
   cursor: pointer;
 }
 
