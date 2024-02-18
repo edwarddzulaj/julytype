@@ -238,7 +238,7 @@ www.nedkamburov.com
 @font-face {
   font-style: normal;
   font-family: "Font Regular";
-  src: url(../app/assets/fonts/JT-Picolo/JTPicoloVF.ttf) format("truetype");
+  src: url(../app/assets/fonts/JT-Picolo/JTPicolo-Variable.woff2) format("woff2"), url(../app/assets/fonts/JT-Picolo/JTPicolo-Variable.woff) format("woff"), url(../app/assets/fonts/JT-Picolo/JTPicolo-Variable.ttf) format("truetype");
 }
 @font-face {
   font-style: normal;
