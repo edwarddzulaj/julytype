@@ -1437,6 +1437,52 @@ div:hover > .iconly {
   }
 }
 
+.student-email-verification {
+  display: flex;
+  flex-direction: column;
+  gap: $gutter-thin-v;
+
+  form {
+    .form-row {
+      display: flex;
+      gap: calc($gutter-thin-v / 2);
+
+      input {
+        padding: 10px 16px;
+        font-family: "Font Regular";
+        font-size: 16px;
+        border-radius: 10px;
+        border: 1px solid var(--foreground);
+
+        &::placeholder {
+          color: var(--grey);
+        }
+
+        &#email {
+          width: 320px;
+        }
+      }
+
+      button[type="submit"] {
+        @include buttons.tertiary;
+      }
+    }
+
+    .message {
+      margin-top: $gutter-thin-h;
+      font-size: 14px;
+
+      &.validation-error {
+        color: var(--red);
+      }
+
+      &.success {
+        color: var(--blue);
+      }
+    }
+  }
+}
+
 .checkbox-option {
   display: flex;
 

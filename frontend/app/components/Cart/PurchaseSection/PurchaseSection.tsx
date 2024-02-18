@@ -17,6 +17,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
   const dispatch = useAppDispatch();
   const [prices, setPrices] = useState({ price: 0, finalPrice: 0 });
   const [selectedItems, setSelectedItems] = useState<SelectedItem[]>([]);
+  const [studentDiscountToggle, setStudentDiscountToggle] = useState(false);
   const [purchaseDetails, setPurchaseDetails] = useState<PurchaseDetails>({
     licenseTypes: [],
     companySize: 1,
@@ -137,6 +138,14 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
     }
   };
 
+  const allowStudentDiscount = (emailObj: { email: string; isVerified: boolean }) => {
+    if (emailObj.email && emailObj.isVerified) {
+      setPurchaseDetails({ ...purchaseDetails, studentDiscount: true });
+    } else {
+      setPurchaseDetails({ ...purchaseDetails, studentDiscount: false });
+    }
+  };
+
   return (
     <section className="purchase-section">
       <div className="license-options">
@@ -167,16 +176,15 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
           <div>
             <PurchaseOption
               config={discountOptions}
-              selectedOption={purchaseDetails.studentDiscount ? 1 : 0}
+              selectedOption={studentDiscountToggle ? 1 : 0}
               setCallback={(studentDiscountString: string[]) => {
-                setPurchaseDetails({
-                  ...purchaseDetails,
-                  studentDiscount: +studentDiscountString[0] > 0,
-                });
+                setStudentDiscountToggle(+studentDiscountString[0] > 0);
               }}
             />
-            {purchaseDetails.studentDiscount && (
-              <StudentEmailVerificationForm setEmailValid={() => {}} />
+            {studentDiscountToggle && (
+              <StudentEmailVerificationForm
+                setStudentEmailValid={(email: any) => allowStudentDiscount(email)}
+              />
             )}
           </div>
         </div>

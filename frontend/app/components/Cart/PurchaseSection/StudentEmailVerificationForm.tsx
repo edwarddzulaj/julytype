@@ -4,11 +4,14 @@ import { fetchAPI } from "@/app/utils/fetch-api";
 import { useRef, useState } from "react";
 
 export default function StudentEmailVerificationForm({
-  setEmailValid,
+  setStudentEmailValid,
 }: {
-  setEmailValid: Function;
+  setStudentEmailValid: Function;
 }) {
   const [isStudentEmailInvalid, setIsStudentEmailInvalid] = useState(false);
+  const [isVerificationCodeSent, setIsVerificationCodeSent] = useState(false);
+  const [isEmailVerified, setIsEmailVerified] = useState(false);
+
   const studentEmailRef = useRef<HTMLInputElement>(null);
   const verificationCodeRef = useRef<HTMLInputElement>(null);
 
@@ -29,12 +32,16 @@ export default function StudentEmailVerificationForm({
         }
       );
 
-      if (response.status === 406) {
+      if (response.status === 200) {
+        setIsVerificationCodeSent(true);
+        setTimeout(() => {
+          setIsVerificationCodeSent(false);
+        }, 7000);
+      } else {
         setIsStudentEmailInvalid(true);
-
         setTimeout(() => {
           setIsStudentEmailInvalid(false);
-        }, 5000);
+        }, 7000);
       }
     }
   };
@@ -59,16 +66,20 @@ export default function StudentEmailVerificationForm({
       );
 
       if (response.status === 200) {
-        console.log("it works!!");
-        // setIsStudentEmailInvalid(true);
+        setStudentEmailValid({ email: studentEmailRef.current?.value, isVerified: true });
+
+        setIsEmailVerified(true);
+        setTimeout(() => {
+          setIsEmailVerified(false);
+        }, 7000);
       }
     }
   };
 
   return (
-    <>
+    <div className="student-email-verification">
       <form>
-        <div>
+        <div className="form-row">
           <input
             ref={studentEmailRef}
             type="email"
@@ -82,22 +93,34 @@ export default function StudentEmailVerificationForm({
           </button>
         </div>
         {isStudentEmailInvalid && (
-          <p>Student email appears to be invalid. Try again with a different email.</p>
+          <p className="message validation-error">
+            Student email appears to be invalid. Try again with a different email.
+          </p>
+        )}
+        {isVerificationCodeSent && (
+          <p className="message success">Verification code has been sent to your email address.</p>
         )}
       </form>
       <form>
-        <input
-          ref={verificationCodeRef}
-          type="text"
-          name="verification-code"
-          id="verification-code"
-          placeholder="Verification code*"
-          required
-        />
-        <button type="submit" onClick={verifyEmail}>
-          Submit
-        </button>
+        <div className="form-row">
+          <input
+            ref={verificationCodeRef}
+            type="text"
+            name="verification-code"
+            id="verification-code"
+            placeholder="Verification code*"
+            required
+          />
+          <button type="submit" onClick={verifyEmail}>
+            Submit
+          </button>
+        </div>
+        {isEmailVerified && (
+          <p className="message success">
+            Your student email has been verified. You get 50% discount.
+          </p>
+        )}
       </form>
-    </>
+    </div>
   );
 }

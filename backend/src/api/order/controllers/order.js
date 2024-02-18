@@ -186,19 +186,14 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
     const { studentEmail } = ctx.request.body;
 
     try {
-      // const isValidStudentEmail = await swot.isAcademic(studentEmail);
-      const isValidStudentEmail = true;
-      const randomCode = Math.floor(Math.random() * 1000) + 1
+      const isValidStudentEmail = await swot.isAcademic(studentEmail);
+      const sixDigitCode = Math.floor(100000 + Math.random() * 900000);
 
       if (isValidStudentEmail) {
         await strapi
           .service("api::order.order")
-          .sendVerificationCode(studentEmail, randomCode);
-        console.log(randomCode);
-        await nds.set(`code: ${studentEmail}`, randomCode)
-      } else {
-        ctx.response.status = 406;
-        return ctx.response;
+          .sendVerificationCode(studentEmail, sixDigitCode);
+        await nds.set(`code: ${studentEmail}`, sixDigitCode)
       }
 
       ctx.response.status = 200;
@@ -211,15 +206,13 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
   async verifyStudentEmail(ctx) {
     const { studentEmail, code } = ctx.request.body;
     const storageKey = `code: ${studentEmail}`;
+
     try {
       const storedCode = await nds.get(storageKey);
 
       if (storedCode == code) {
         await nds.remove(storageKey);
         ctx.response.status = 200;
-        return ctx.response;
-      } else {
-        ctx.response.status = 406;
         return ctx.response;
       }
     } catch (error) {
