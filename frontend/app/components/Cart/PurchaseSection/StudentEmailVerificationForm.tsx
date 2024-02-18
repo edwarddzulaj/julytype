@@ -9,22 +9,22 @@ export default function StudentEmailVerificationForm({
   setEmailValid: Function;
 }) {
   const [isStudentEmailInvalid, setIsStudentEmailInvalid] = useState(false);
-  const studentEmail = useRef<HTMLInputElement>(null);
-  const verificationCode = useRef<HTMLInputElement>(null);
+  const studentEmailRef = useRef<HTMLInputElement>(null);
+  const verificationCodeRef = useRef<HTMLInputElement>(null);
 
   const sendVerificationCode = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsStudentEmailInvalid(false);
-    const studentEmailInput = studentEmail.current?.value;
+    const studentEmail = studentEmailRef.current?.value;
 
-    if (studentEmail.current?.value) {
+    if (studentEmail) {
       const response = await fetchAPI(
         "/order/send_verification_code",
         {},
         {
           method: "POST",
           body: JSON.stringify({
-            studentEmail: studentEmailInput,
+            studentEmail: studentEmail,
           }),
         }
       );
@@ -39,8 +39,30 @@ export default function StudentEmailVerificationForm({
     }
   };
 
-  const verifyEmail = (e: React.FormEvent) => {
+  const verifyEmail = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const studentEmail = studentEmailRef.current?.value;
+    const verificationCode = verificationCodeRef.current?.value;
+
+    if (verificationCode) {
+      const response = await fetchAPI(
+        "/order/verify_student_email",
+        {},
+        {
+          method: "POST",
+          body: JSON.stringify({
+            studentEmail: studentEmail,
+            code: verificationCode,
+          }),
+        }
+      );
+
+      if (response.status === 200) {
+        console.log("it works!!");
+        // setIsStudentEmailInvalid(true);
+      }
+    }
   };
 
   return (
@@ -48,7 +70,7 @@ export default function StudentEmailVerificationForm({
       <form>
         <div>
           <input
-            ref={studentEmail}
+            ref={studentEmailRef}
             type="email"
             name="email"
             id="email"
@@ -65,7 +87,7 @@ export default function StudentEmailVerificationForm({
       </form>
       <form>
         <input
-          ref={verificationCode}
+          ref={verificationCodeRef}
           type="text"
           name="verification-code"
           id="verification-code"

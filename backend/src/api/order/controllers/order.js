@@ -11,7 +11,10 @@ const STRIPE_KEY = isProduction
 
 // @ts-ignore
 const stripe = require("stripe")(STRIPE_KEY);
-const swot = require("swot-node")
+const { NodeDiskStorage } = require('node-disk-storage');
+const swot = require("swot-node");
+
+const nds = new NodeDiskStorage();
 
 /**
  * order controller
@@ -183,10 +186,16 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
     const { studentEmail } = ctx.request.body;
 
     try {
-      const isValidStudentEmail = await swot.isAcademic(studentEmail);
+      // const isValidStudentEmail = await swot.isAcademic(studentEmail);
+      const isValidStudentEmail = true;
+      const randomCode = Math.floor(Math.random() * 1000) + 1
 
       if (isValidStudentEmail) {
-        console.log('send verification email');
+        await strapi
+          .service("api::order.order")
+          .sendVerificationCode(studentEmail, randomCode);
+        console.log(randomCode);
+        await nds.set(`code: ${studentEmail}`, randomCode)
       } else {
         ctx.response.status = 406;
         return ctx.response;
@@ -194,6 +203,25 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
 
       ctx.response.status = 200;
       return ctx.response;
+    } catch (error) {
+      ctx.response.status = 500;
+      return { error };
+    }
+  },
+  async verifyStudentEmail(ctx) {
+    const { studentEmail, code } = ctx.request.body;
+    const storageKey = `code: ${studentEmail}`;
+    try {
+      const storedCode = await nds.get(storageKey);
+
+      if (storedCode == code) {
+        await nds.remove(storageKey);
+        ctx.response.status = 200;
+        return ctx.response;
+      } else {
+        ctx.response.status = 406;
+        return ctx.response;
+      }
     } catch (error) {
       ctx.response.status = 500;
       return { error };
