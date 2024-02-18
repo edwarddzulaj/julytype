@@ -8,5 +8,13 @@ module.exports = {
         auth: false,
       },
     },
+    {
+      method: "POST",
+      path: "/order/send_verification_code",
+      handler: "order.sendVerificationCode",
+      config: {
+        auth: false,
+      },
+    },
   ],
 };

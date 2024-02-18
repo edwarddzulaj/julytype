@@ -11,6 +11,7 @@ const STRIPE_KEY = isProduction
 
 // @ts-ignore
 const stripe = require("stripe")(STRIPE_KEY);
+const swot = require("swot-node")
 
 /**
  * order controller
@@ -170,9 +171,29 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
             },
           });
         } catch {
-          console.error("Could not send an email to this user: " + email);
+          console.error("Could not send an email to this customer: " + email);
         }
       }
+    } catch (error) {
+      ctx.response.status = 500;
+      return { error };
+    }
+  },
+  async sendVerificationCode(ctx) {
+    const { studentEmail } = ctx.request.body;
+
+    try {
+      const isValidStudentEmail = await swot.isAcademic(studentEmail);
+
+      if (isValidStudentEmail) {
+        console.log('send verification email');
+      } else {
+        ctx.response.status = 406;
+        return ctx.response;
+      }
+
+      ctx.response.status = 200;
+      return ctx.response;
     } catch (error) {
       ctx.response.status = 500;
       return { error };

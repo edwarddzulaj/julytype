@@ -10,6 +10,7 @@ import { addToCart, CartItem, updateCartItem } from "@/app/redux/cartReducer";
 import { calculatePrices, calculateTotalPrices } from "@/app/utils/cart-helpers";
 import { PurchaseDetails } from "./PurchaseSectionTypes";
 import { SelectedItem } from "@/app/redux/cartReducer";
+import StudentEmailVerificationForm from "./StudentEmailVerificationForm";
 
 export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
   const cart = useAppSelector((state) => state.cart);
@@ -163,16 +164,21 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
         </div>
         <div>
           <h5>Discount</h5>
-          <PurchaseOption
-            config={discountOptions}
-            selectedOption={purchaseDetails.studentDiscount ? 1 : 0}
-            setCallback={(studentDiscountString: string[]) => {
-              setPurchaseDetails({
-                ...purchaseDetails,
-                studentDiscount: +studentDiscountString[0] > 0,
-              });
-            }}
-          />
+          <div>
+            <PurchaseOption
+              config={discountOptions}
+              selectedOption={purchaseDetails.studentDiscount ? 1 : 0}
+              setCallback={(studentDiscountString: string[]) => {
+                setPurchaseDetails({
+                  ...purchaseDetails,
+                  studentDiscount: +studentDiscountString[0] > 0,
+                });
+              }}
+            />
+            {purchaseDetails.studentDiscount && (
+              <StudentEmailVerificationForm setEmailValid={() => {}} />
+            )}
+          </div>
         </div>
       </div>
       <div id="font-selection-options" className="font-selection-options">
