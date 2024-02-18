@@ -119,6 +119,17 @@ module.exports = class OrderEmail {
     }
   }
 
+  async zipExtraFiles(zip) {
+    try {
+      const pdfLicenseBuffer = await this.#getLicensePDF();
+      zip.addFile('JulyType-License.pdf', Buffer.from(pdfLicenseBuffer));
+
+      return zip;
+    } catch (error) {
+      console.error('Could not add PDF license: ', error);
+    }
+  }
+
   async send(zip, clientName, clientEmail) {
     const TEXT_MESSAGE = `Hello ${clientName.split(" ")[0]
       } and thank you for purchasing our fonts, we have packaged a zip for you with your order. \r Enjoy!`;
@@ -192,4 +203,16 @@ module.exports = class OrderEmail {
 
     return fontGroup;
   }
+
+  // @ts-ignore
+  async #getLicensePDF() {
+    const pdfLicenseURL = STRAPI_ORIGIN + '/assets/files/JulyType-License.pdf';
+
+    try {
+      const response = await fetch(pdfLicenseURL);
+      return response.arrayBuffer();
+    } catch (error) {
+      console.error('Could not fetch PDF license file');
+    }
+  };
 };
