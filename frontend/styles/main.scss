@@ -1420,7 +1420,7 @@ div:hover > .iconly {
     }
 
     .smallcaps-on {
-      text-transform: lowercase;
+      font-variant: small-caps;
     }
 
     .allcaps-on,
@@ -1429,7 +1429,7 @@ div:hover > .iconly {
     }
 
     .oldstyle-on {
-      font-feature-settings: "onum";
+      font-variant-numeric: oldstyle-nums;
     }
 
     .frac-on {

@@ -1836,14 +1836,14 @@ div:hover > .iconly {
   font-feature-settings: "ss01";
 }
 .opentype-features-preview .text-container .smallcaps-on {
-  text-transform: lowercase;
+  font-variant: small-caps;
 }
 .opentype-features-preview .text-container .allcaps-on,
 .opentype-features-preview .text-container .calt-on {
   font-feature-settings: "case";
 }
 .opentype-features-preview .text-container .oldstyle-on {
-  font-feature-settings: "onum";
+  font-variant-numeric: oldstyle-nums;
 }
 .opentype-features-preview .text-container .frac-on {
   font-feature-settings: "frac" 1;
