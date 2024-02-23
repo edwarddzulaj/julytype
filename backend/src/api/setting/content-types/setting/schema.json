@@ -22,6 +22,14 @@
       "type": "component",
       "repeatable": false,
       "component": "settings.footer-details"
+    },
+    "license": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
     }
   }
 }

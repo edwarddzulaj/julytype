@@ -121,12 +121,12 @@ module.exports = class OrderEmail {
 
   async zipExtraFiles(zip) {
     try {
-      const pdfLicenseBuffer = await this.#getLicensePDF();
-      zip.addFile('JulyType-License.pdf', Buffer.from(pdfLicenseBuffer));
+      const [licenseFileBuffer, licenseFileExt] = await this.#getLicenseFile();
+      zip.addFile('JulyType-License' + licenseFileExt, Buffer.from(licenseFileBuffer));
 
       return zip;
     } catch (error) {
-      console.error('Could not add PDF license: ', error);
+      console.error('Could not add license file: ', error);
     }
   }
 
@@ -205,12 +205,21 @@ module.exports = class OrderEmail {
   }
 
   // @ts-ignore
-  async #getLicensePDF() {
-    const pdfLicenseURL = STRAPI_ORIGIN + '/assets/files/JulyType-License.pdf';
-
+  async #getLicenseFile() {    
     try {
-      const response = await fetch(pdfLicenseURL);
-      return response.arrayBuffer();
+      const settingsEntity = await strapi.entityService.findOne(
+        "api::setting.setting", 1,
+        {
+          populate: {
+            license: true
+          },
+        }
+      );
+      const licenseFileURL = STRAPI_ORIGIN + settingsEntity?.license.url;
+      const licenseFileExt = settingsEntity?.license.ext;
+
+      const response = await fetch(licenseFileURL);
+      return [await response.arrayBuffer(), licenseFileExt];
     } catch (error) {
       console.error('Could not fetch PDF license file');
     }
