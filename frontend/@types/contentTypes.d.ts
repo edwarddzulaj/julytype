@@ -24,6 +24,7 @@ export interface GlyphMapRow {
   id: number;
   title: string;
   content: string;
+  opentypeFeature?: string;
 }
 
 export interface Typeface {

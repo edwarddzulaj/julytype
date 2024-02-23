@@ -2,6 +2,7 @@
 
 import { Typeface } from "@/@types/contentTypes";
 import { useState } from "react";
+import GlyphMapRow from "./GlyphMapRow";
 import ShowAllButton from "../UI/ShowAllButton";
 
 export default function GlyphMap({
@@ -20,10 +21,7 @@ export default function GlyphMap({
       <div className="glyph-map" style={{ fontFamily: `${fontFamilyTitle}, Adobe Blank` }}>
         <div className={`glyph-map-rows ${isCollapsed ? "collapsed" : ""}`}>
           {glyphMap.map((glyphMapRow) => (
-            <article key={glyphMapRow.id} className="glyph-map-row">
-              <h5 className="glyph-map-row-header">{glyphMapRow.title}</h5>
-              <p className="glyph-map-row-content">{glyphMapRow.content}</p>
-            </article>
+            <GlyphMapRow key={glyphMapRow.id} glyphMapRow={glyphMapRow} />
           ))}
         </div>
         {showAllButton && (

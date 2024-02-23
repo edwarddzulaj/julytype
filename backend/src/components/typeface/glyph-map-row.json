@@ -11,6 +11,24 @@
     },
     "content": {
       "type": "richtext"
+    },
+    "opentypeFeature": {
+      "type": "enumeration",
+      "enum": [
+        "language: bg, Bulgarian, Cyrillic",
+        "opentype: liga, Ligatures",
+        "opentype: frac, Fractions",
+        "opentype: c2sc, Small capitals from capitals",
+        "opentype: smcp, Small caps",
+        "opentype: subs, Subscript",
+        "opentype: sups, Superscript",
+        "opentype: onum, Old style figures",
+        "opentype: lnum, Lining figures",
+        "opentype: tnum, Tabular figures",
+        "opentype: calt, Contextual alternates",
+        "opentype: ss01, Stylistic set 1",
+        "opentype: ss02, Stylistic set 2"
+      ]
     }
   }
 }
