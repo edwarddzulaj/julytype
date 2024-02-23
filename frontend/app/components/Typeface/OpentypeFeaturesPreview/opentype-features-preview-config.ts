@@ -4,10 +4,18 @@
 // For example, "20<ot>FRESI</ot>21" will highlight FRESI and leave out 20 and 21.
 
 export const BASE_TEXT = `
-    ¿<span class="allcaps">Fish & <span class="calt">«</span>Chips<span class="calt">»</span> </span>(<span class="allcaps">FRESI</span>) <span class="allcaps">@ £24.65?</span> 
-    These new citations from 2013<span class="ss01">*Mg</span>  21/03/10 and 2<span class="frac">1/8 460/920</span>
-    x<span class="subs sups">158</span> + y<span class="subs sups">23</span> × z<span class="subs sups">18</span> - a<span class="subs sups">4260</span>
+<span class="allcaps"><span class="calt">«</span>Gelato<span class="calt">»</span> 
+<span class="calt">•</span>How<span class="calt">? @</span>Hodori <span class="calt">(</span>Muse<span class="calt">)</span></span><br/>
+Wolf<span class="ss01">g</span>an<span class="ss01">g</span> Mozart 1756 <span class="ss01">& Ж</span>емчуг<br/>
+<span class="smallcaps">Frédéric 1896 & Maria 18<span class="calt">:</span>67</span><br/>
+<span class="oldstyle">Henrica Maria Paré 1896–1972</span><br/>
+ Just add <span class="frac">1/2, 3/4</span> or <span class="frac">5/8</span> of Cocoa<br/>
+<span class="subs">2H2 (g)+O2 (g)→2H2 O(l)</span><br/>
+<span class="sups">F(x,y)2 + x32 × y47 = z2</span>
 `;
+
+
+
 
 export const options = [
   {
@@ -24,9 +32,21 @@ export const options = [
     text: BASE_TEXT,
   },
   {
+    id: "smallcaps",
+    type: "text-transformation",
+    label: "Small caps",
+    text: BASE_TEXT,
+  },
+  {
     id: "calt",
     type: "opentype-feature",
     label: "Contextual alternates",
+    text: BASE_TEXT,
+  },
+  {
+    id: "oldstyle",
+    type: "opentype-feature",
+    label: "Oldstyle figures",
     text: BASE_TEXT,
   },
   {

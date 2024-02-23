@@ -1414,18 +1414,28 @@ div:hover > .iconly {
       text-transform: uppercase;
     }
 
-    .frac-on {
-      font-feature-settings: "frac" 1;
-    }
 
     .ss01-on {
       font-feature-settings: "ss01";
     }
 
+    .smallcaps-on {
+      text-transform: lowercase;
+    }
+
     .allcaps-on,
     .calt-on {
-      font-feature-settings: "calt" 0;
+      font-feature-settings: "case";
     }
+
+    .oldstyle-on {
+      font-feature-settings: "onum";
+    }
+
+    .frac-on {
+      font-feature-settings: "frac" 1;
+    }
+
 
     .subs.subs-on {
       font-feature-settings: "subs";

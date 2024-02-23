@@ -1832,15 +1832,21 @@ div:hover > .iconly {
 .opentype-features-preview .text-container .allcaps-on {
   text-transform: uppercase;
 }
-.opentype-features-preview .text-container .frac-on {
-  font-feature-settings: "frac" 1;
-}
 .opentype-features-preview .text-container .ss01-on {
   font-feature-settings: "ss01";
 }
+.opentype-features-preview .text-container .smallcaps-on {
+  text-transform: lowercase;
+}
 .opentype-features-preview .text-container .allcaps-on,
 .opentype-features-preview .text-container .calt-on {
-  font-feature-settings: "calt" 0;
+  font-feature-settings: "case";
+}
+.opentype-features-preview .text-container .oldstyle-on {
+  font-feature-settings: "onum";
+}
+.opentype-features-preview .text-container .frac-on {
+  font-feature-settings: "frac" 1;
 }
 .opentype-features-preview .text-container .subs.subs-on {
   font-feature-settings: "subs";
