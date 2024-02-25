@@ -1,16 +1,22 @@
 "use client";
 import { Style } from "@/@types/contentTypes";
 import { SelectedStyleContext } from "@/app/providers";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export default function StylesSelector({ styles }: { styles: Style[] }) {
   const context = useContext(SelectedStyleContext);
-  const defaultStyleId = styles.findLast((s) => s.attributes.isDefaultStyle)?.id || styles[0].id;
-  const [selectedStyleId, setSelectedStyleId] = useState(defaultStyleId);
+  const defaultStyle = styles.findLast((s) => s.attributes.isDefaultStyle) || styles[0];
+  const [selectedStyleId, setSelectedStyleId] = useState(defaultStyle.id);
+
   const selectStyle = (id: number, title: string) => {
     setSelectedStyleId(id);
     context.updateStyle(id, title);
   };
+
+  useEffect(() => {
+    context.updateStyle(defaultStyle.id, defaultStyle.attributes.title);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="styles-selector">
