@@ -111,11 +111,11 @@ export default function Typetester({
 
   const styleOptions = useMemo(() => {
     return {
-      fontSize: adaptSizeToViewportUnits(fontSize),
+      fontSize: adaptSizeToViewport(fontSize),
       fontFeatureSettings: buildOpentypeFeatures(features),
       textTransform: cases.find((c) => c.checked)?.value! as any,
       textAlign: alignment as any,
-      lineHeight: adaptSizeToViewportUnits(fontSize * lineHeight),
+      lineHeight: adaptSizeToViewport(fontSize * lineHeight),
       columnCount: textColumns,
       fontFamily: fontLoaded ? fontFamily.label : "",
     };
@@ -402,7 +402,7 @@ const buildOpentypeFeatures = (features: any) => {
     }
   }
 
-  // special formatting as the font features require every attribute to in quotes, e.g font-feature-settings: "liga"
+  // special formatting as the font-features require every attribute to be in quotes, e.g font-feature-settings: "liga"
   return `${validFeatures.join(`, `)}`;
 };
 
@@ -417,7 +417,11 @@ const countMaxLabelLength = (options: any) => {
   return `${maxLength - 1}ch`;
 };
 
-const adaptSizeToViewportUnits = (sizeNum: number) => {
+const adaptSizeToViewport = (sizeNum: number) => {
+  const isLargestScreen = window.innerWidth > 2200;
   const adaptedSize = (sizeNum / window.innerWidth) * 100;
-  return `${adaptedSize}vw`;
+  const adaptedSizeInVW = `${adaptedSize}vw`;
+  const adaptedSizeInPixels = `${sizeNum}px`;
+
+  return isLargestScreen ? adaptedSizeInPixels : adaptedSizeInVW;
 };
