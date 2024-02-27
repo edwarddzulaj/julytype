@@ -413,9 +413,9 @@ nav {
   min-height: 2.43rem;
   position: fixed;
   width: calc(100vw - 2.16rem * 4);
-  padding: 1.62rem 4.32rem 0.972rem;
+  padding: 1.62rem 6.48rem 0.972rem;
   display: flex;
-  gap: 4.32rem;
+  gap: 6.48rem;
   background-color: var(--black);
   color: var(--white);
   border-bottom: 1px solid var(--white);
@@ -447,6 +447,9 @@ nav .inner-nav .close {
 nav .mobile-nav {
   display: none;
 }
+nav a {
+  font-size: 16px;
+}
 
 .wrapper {
   position: relative;
@@ -476,12 +479,13 @@ nav .mobile-nav {
   scale: 1.025;
 }
 .wrapper .container.typeface-preview a h2 {
-  font-size: 12rem;
+  font-size: 72px;
+  line-height: normal;
   text-align: center;
   font-weight: initial;
 }
 .wrapper .container.typeface-preview a .typeface-details {
-  margin-top: 3.24rem;
+  margin-top: 0.972rem;
   display: flex;
   justify-content: center;
 }
@@ -966,7 +970,7 @@ nav .mobile-nav {
 }
 
 footer {
-  padding: 1.62rem 7.56rem;
+  padding: 1.62rem 100px;
   background-color: var(--black);
   color: var(--white);
   border-top: 1px solid var(--white);
@@ -1008,6 +1012,10 @@ footer .pages {
     font-size: 22px;
     font-weight: 600;
   }
+  nav .inner-nav .pages a {
+    font-size: 22px !important;
+    font-weight: bold !important;
+  }
   nav .inner-nav .settings {
     display: flex;
     align-items: flex-start;
@@ -1020,7 +1028,7 @@ footer .pages {
   }
   nav .inner-nav .settings .inner-settings .theme-switcher .iconly {
     padding: 0;
-    left: -2px;
+    left: -8px;
     top: 2px;
     font-size: 24px;
   }
@@ -1071,7 +1079,7 @@ footer .pages {
     grid-template-columns: 1fr;
   }
   .wrapper .container.typeface-preview h2 {
-    font-size: 9rem !important;
+    font-size: 46px !important;
   }
   .wrapper .container.typeface {
     padding-top: 4.86rem;
@@ -1140,10 +1148,11 @@ footer .pages {
   }
   footer {
     width: calc(100vw - 1.296rem * 4);
-    padding: 1.62rem 2.592rem 0.972rem;
+    padding: 1.62rem 2.592rem;
     justify-content: space-between;
     flex-direction: column;
     gap: 16px;
+    font-size: 16px;
   }
   footer .pages {
     flex-wrap: wrap;
@@ -2147,12 +2156,12 @@ div.dropdown .react-select__option:hover {
 
 .globus-image {
   mix-blend-mode: multiply;
-  min-width: 400px;
+  min-width: 420px;
   min-height: 300px;
 }
-@media (max-width: 680px) {
+@media (max-width: 840px) {
   .globus-image {
-    min-width: 250px;
+    min-width: 330px;
     min-height: 200px;
   }
 }

@@ -52,7 +52,6 @@ $color: var(--foreground);
 
 $font-size: 1.5rem;
 $line-height: 1.2;
-$font-preview: $font-size * 8;
 
 $gutter-v: $font-size * $line-height * 1.2;
 $gutter-h: $font-size * $line-height * 0.9;
@@ -169,9 +168,9 @@ nav {
   min-height: $nav-offset;
   position: fixed;
   width: calc(100vw - #{$gutter-v} * 4);
-  padding: $gutter-h $gutter-v * 2 $gutter-thin-h;
+  padding: $gutter-h $gutter-v * 3 $gutter-thin-h;
   display: flex;
-  gap: $gutter-v * 2;
+  gap: $gutter-v * 3;
   background-color: var(--black);
   color: var(--white);
   border-bottom: 1px solid var(--white);
@@ -213,6 +212,10 @@ nav {
   .mobile-nav {
     display: none;
   }
+
+  a {
+    font-size: 16px;
+  }
 }
 
 .wrapper {
@@ -246,13 +249,14 @@ nav {
         }
 
         h2 {
-          font-size: $font-preview;
+          font-size: 72px;
+          line-height: normal;
           text-align: center;
           font-weight: initial;
         }
 
         .typeface-details {
-          margin-top: $gutter-h * 2;
+          margin-top: $gutter-thin-h;
           display: flex;
           justify-content: center;
 
@@ -581,7 +585,7 @@ nav {
 }
 
 footer {
-  padding: $gutter-h $gutter-v * 3.5;
+  padding: $gutter-h 100px;
   background-color: var(--black);
   color: var(--white);
   border-top: 1px solid var(--white);
@@ -627,6 +631,11 @@ footer {
 
         font-size: 22px;
         font-weight: 600;
+
+        a {
+          font-size: 22px !important;
+          font-weight: bold !important;
+        }
       }
 
       .settings {
@@ -642,7 +651,7 @@ footer {
           .theme-switcher {
             .iconly {
               padding: 0;
-              left: -2px;
+              left: -8px;
               top: 2px;
               font-size: 24px;
             }
@@ -708,7 +717,7 @@ footer {
         grid-template-columns: 1fr;
 
         h2 {
-          font-size: $font-preview * 0.75 !important;
+          font-size: 46px !important;
         }
       }
 
@@ -810,10 +819,11 @@ footer {
 
   footer {
     width: calc(100vw - #{$gutter-thin-v} * 4);
-    padding: $gutter-h $gutter-thin-v * 2 $gutter-thin-h;
+    padding: $gutter-h $gutter-thin-v * 2;
     justify-content: space-between;
     flex-direction: column;
     gap: 16px;
+    font-size: 16px;
 
     .pages {
       flex-wrap: wrap;
@@ -1654,11 +1664,11 @@ div.dropdown {
 .globus-image {
   mix-blend-mode: multiply;
 
-  min-width: 400px;
+  min-width: 420px;
   min-height: 300px;
 
-  @media (max-width: 680px) {
-    min-width: 250px;
+  @media (max-width: $mobile-breakpoint) {
+    min-width: 330px;
     min-height: 200px;
   }
 }
