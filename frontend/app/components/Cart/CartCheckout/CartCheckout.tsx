@@ -20,6 +20,7 @@ export default function CartCheckout() {
 
   const [cartItems, setCartItems] = useState<Array<CartItem>>([]);
   const [finalCartItems, setFinalCartItems] = useState<Array<CartItem>>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [prices, setPrices] = useState({ price: 0, finalPrice: 0 });
   const [isRedirecting, setIsRedirecting] = useState(false);
 
@@ -31,6 +32,7 @@ export default function CartCheckout() {
 
     const { totalPriceCart, discountPriceCart } = calculateTotalPricesForCart(finalCartItems);
     setPrices({ price: totalPriceCart, finalPrice: discountPriceCart });
+    setIsLoading(false);
   }, [cart.items]);
 
   const handleEmptyCart = () => {
@@ -81,29 +83,35 @@ export default function CartCheckout() {
       )}
       <div className="cart-items">
         {cartItems.length > 0 &&
+          !isLoading &&
           cartItems.map((item, index) => (
             <CartItemContainer key={item.typefaceId} item={item} index={index} />
           ))}
-        {cartItems.length === 0 && (
+        {cartItems.length === 0 && !isLoading && (
           <div className="no-cart-items">
             <h5>You have no items in your cart yet</h5>
+          </div>
+        )}
+        {isLoading && (
+          <div className="no-cart-items">
+            <h5>Loading items...</h5>
           </div>
         )}
       </div>
       <div className="cart-footer">
         {cartItems.length > 0 && (
           <div className="total-price">
-            <div>Subtotal:</div>
+            <div></div>
+            <div className="subtotal">Subtotal:</div>
             <div>
               {prices.price !== prices.finalPrice && (
-                <>
-                  <span className="price">{prices.price} EUR</span>&nbsp;
-                </>
+                <span className="price">{prices.price} EUR</span>
               )}
               <span className="discount-price">{prices.finalPrice} EUR</span>
             </div>
           </div>
         )}
+        <div></div>
         <div className="actions">
           {cartItems.length < 1 && (
             <Link href="/" className="browse-more">

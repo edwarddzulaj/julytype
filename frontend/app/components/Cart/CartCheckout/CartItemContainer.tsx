@@ -158,11 +158,7 @@ export default function CartItemContainer({ item, index }: { item: CartItem; ind
       </article>
       <article className="price-container">
         <div>
-          {prices.price !== prices.finalPrice && (
-            <>
-              <span className="price">{prices.price} EUR</span>&nbsp;
-            </>
-          )}
+          {prices.price !== prices.finalPrice && <span className="price">{prices.price} EUR</span>}
           <span className="discount-price">{prices.finalPrice} EUR</span>
         </div>
       </article>

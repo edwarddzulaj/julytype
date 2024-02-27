@@ -459,15 +459,18 @@ nav {
       font-size: 16px;
 
       h3 {
-        padding: $gutter-h * 2 0 $gutter-h 0;
+        padding: $gutter-h * 4 0 $gutter-h 0;
       }
 
       .cart {
         .empty-cart {
-          text-align: right;
-          margin-bottom: 10px;
+          width: fit-content;
+          position: relative;
+          top: -$gutter-h * 2.5;
+          right: calc(-100% + $gutter-v * 4);
 
           &:hover {
+            text-decoration: underline;
             cursor: pointer;
           }
         }
@@ -477,6 +480,7 @@ nav {
           grid-template-columns: minmax(32px, 1fr) 7fr 8fr;
           column-gap: 16px;
           padding-bottom: 6px;
+          font-size: 14px;
           border-bottom: 1px solid var(--foreground);
         }
 
@@ -485,8 +489,8 @@ nav {
             display: grid;
             grid-template-columns: minmax(42px, 1fr) 7fr 8fr;
             column-gap: 16px;
-            padding: $gutter-h * 1.5 0;
-            border-bottom: 1px solid var(--grey);
+            padding: $gutter-h * 2 0;
+            border-bottom: 1px solid #cdcdcd;
 
             .checkbox-container {
               flex-shrink: 0;
@@ -499,7 +503,7 @@ nav {
             .details-container {
               display: flex;
               flex-direction: column;
-              gap: $gutter-h;
+              gap: $gutter-h * 1.4;
 
               .title {
                 font-weight: 600;
@@ -536,6 +540,7 @@ nav {
 
             .price-container {
               .price {
+                margin-right: calc($gutter-thin-v / 2);
                 text-decoration: line-through;
                 color: var(--red);
               }
@@ -550,19 +555,22 @@ nav {
 
       .cart-footer {
         position: relative;
-        padding-top: $gutter-h * 1.5;
+        padding-top: $gutter-h * 3;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         gap: 8px;
+        font-size: 20px;
 
         .total-price {
           display: grid;
-          grid-template-columns: 8fr 7.8fr;
+          grid-template-columns: minmax(42px, 1fr) 7fr 8fr;
           column-gap: 16px;
           width: 100%;
           font-weight: 600;
 
           .price {
+            margin-right: calc($gutter-thin-v / 2);
             text-decoration: line-through;
             color: var(--red);
           }
@@ -819,17 +827,30 @@ footer {
             .price-container {
               text-align: right;
               justify-self: end;
+
+              .discount-price {
+                display: inline-block;
+              }
             }
           }
         }
 
         .cart-footer {
+          flex-direction: column;
+          align-items: flex-end;
+
           .total-price {
             display: flex;
+            column-gap: 0;
+
+            .subtotal {
+              margin-right: $gutter-thin-v;
+            }
           }
 
           .actions {
-            margin-top: $gutter-h * 2;
+            position: relative;
+            margin-top: $gutter-thin-h;
           }
         }
       }
