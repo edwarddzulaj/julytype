@@ -9,7 +9,7 @@ const downloadString = "```download-typefaces-component```";
 
 export default function FreeTrials(title: string, sections: any) {
   return (
-    <section className="container page about">
+    <section className="container page free-trials">
       <h2>{title}</h2>
       <section className="sections">
         {sections.map((section: PageSection) => {
