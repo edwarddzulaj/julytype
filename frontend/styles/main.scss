@@ -1414,7 +1414,6 @@ div:hover > .iconly {
       text-transform: uppercase;
     }
 
-
     .ss01-on {
       font-feature-settings: "ss01";
     }
@@ -1435,7 +1434,6 @@ div:hover > .iconly {
     .frac-on {
       font-feature-settings: "frac" 1;
     }
-
 
     .subs.subs-on {
       font-feature-settings: "subs";
@@ -1506,10 +1504,12 @@ div:hover > .iconly {
   padding: 0 10px;
   display: flex !important;
   align-items: center;
-  gap: $gutter-thin-v;
+  gap: calc($gutter-thin-v / 2);
 
   label {
-    max-width: 6ch;
+    width: 6ch;
+    flex-grow: 0;
+    text-align: right;
   }
 }
 

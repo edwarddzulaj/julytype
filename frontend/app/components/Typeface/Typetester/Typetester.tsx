@@ -20,6 +20,9 @@ import {
 import Iconly, { icons } from "../../UI/Iconly";
 import { ScriptChoiceContext } from "@/app/providers";
 
+const MIN_FONT_SIZE = 12;
+const MAX_FONT_SIZE = 250;
+
 export default function Typetester({
   fontsData = [
     {
@@ -44,7 +47,7 @@ export default function Typetester({
   const [fontFamily, setFontFamily] = useState(fontsData[0]);
   const [fontLoaded, setFontLoaded] = useState(false);
   const [sampleLang, setSampleLang] = useState(languages.latin[0]);
-  const [fontSize, setFontSize] = useState(isMobileView ? 38 : 148);
+  const [fontSize, setFontSize] = useState(isMobileView ? 52 : 148);
   const [features, setFeatures] = useState(opentypeFeatures);
   const [cases, setCases] = useState(caseOptions);
   const [alignment, setAlignment] = useState(alignmentOptions.find((f) => f.checked)?.value);
@@ -108,11 +111,11 @@ export default function Typetester({
 
   const styleOptions = useMemo(() => {
     return {
-      fontSize: `${fontSize}px`,
+      fontSize: adaptSizeToViewportUnits(fontSize),
       fontFeatureSettings: buildOpentypeFeatures(features),
       textTransform: cases.find((c) => c.checked)?.value! as any,
       textAlign: alignment as any,
-      lineHeight: `${fontSize * lineHeight}px`,
+      lineHeight: adaptSizeToViewportUnits(fontSize * lineHeight),
       columnCount: textColumns,
       fontFamily: fontLoaded ? fontFamily.label : "",
     };
@@ -260,15 +263,14 @@ export default function Typetester({
               />
             </div>
             <div className="fontsize slider extra-option typetester-button">
-              <label htmlFor="fontsize">
-                <span className="fontsize-value">{fontSize.toFixed()}px</span>
-              </label>
+              <label htmlFor="fontsize">{fontSize.toFixed()}px</label>
               <input
                 id="fontsize"
                 onInput={handleFontSize}
                 type="range"
-                min="12"
-                max="250"
+                step="1"
+                min={MIN_FONT_SIZE}
+                max={MAX_FONT_SIZE}
                 value={fontSize}
               />
             </div>
@@ -413,4 +415,9 @@ const countMaxLabelLength = (options: any) => {
   });
 
   return `${maxLength - 1}ch`;
+};
+
+const adaptSizeToViewportUnits = (sizeNum: number) => {
+  const adaptedSize = (sizeNum / window.innerWidth) * 100;
+  return `${adaptedSize}vw`;
 };

@@ -1942,10 +1942,12 @@ div:hover > .iconly {
   padding: 0 10px;
   display: flex !important;
   align-items: center;
-  gap: 1.296rem;
+  gap: 0.648rem;
 }
 .slider label {
-  max-width: 6ch;
+  width: 6ch;
+  flex-grow: 0;
+  text-align: right;
 }
 
 input[type=range] {
