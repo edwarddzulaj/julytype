@@ -12,7 +12,11 @@ export interface PurchaseOption<ValueType> {
   subtitle?: string;
   info?: {
     text: string;
-    url: string | URL;
+    url?: string | URL;
+  };
+  extraInfo?: {
+    text: string;
+    url?: string | URL;
   };
 }
 

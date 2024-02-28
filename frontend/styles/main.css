@@ -412,8 +412,8 @@ textarea {
 nav {
   min-height: 2.4192rem;
   position: fixed;
-  width: calc(100vw - 2.304rem * 4);
-  padding: 1.728rem 6.912rem 1.0368rem;
+  width: calc(100vw - 2.304rem * 8);
+  padding: 1.728rem 9.216rem 1.0368rem;
   display: flex;
   gap: 6.912rem;
   background-color: var(--black);
@@ -508,15 +508,17 @@ nav a {
   z-index: 1111;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 3.456rem;
 }
 .wrapper .container.typeface .fixed-controls .choose-script {
   position: relative;
   width: -moz-fit-content;
   width: fit-content;
 }
+.wrapper .container.typeface .fixed-controls .choose-script h6 {
+  font-size: 14px;
+}
 .wrapper .container.typeface .fixed-controls .choose-script .buttons {
-  margin-top: 1.0368rem;
   display: flex;
   gap: 8px;
 }
@@ -597,6 +599,13 @@ nav a {
 }
 .wrapper .container.typeface .fixed-controls .choose-script .buttons button.active:active {
   background-color: var(--black);
+}
+.wrapper .container.typeface .fixed-controls .choose-weight h6 {
+  font-size: 14px;
+}
+.wrapper .container.typeface .fixed-controls .choose-weight ul > li {
+  font-size: 24px;
+  line-height: 30px;
 }
 .wrapper .container.typeface .main-section:first-of-type h3 {
   opacity: 0;
@@ -770,7 +779,7 @@ nav a {
 .wrapper .container.page .main-section .section-wrapper .download-trial-fonts .download-some:disabled {
   color: var(--grey);
 }
-.wrapper .container.page .main-section + h4 {
+.wrapper .container.page .main-section + h3 {
   margin-top: 6.912rem;
 }
 .wrapper .container.page .back-home {
@@ -1220,6 +1229,9 @@ footer .pages {
   max-width: 1280px;
   display: grid;
 }
+.main-section.no-indent .section-wrapper {
+  margin-top: 1.728rem;
+}
 @media (min-width: 1800px) {
   .main-section:not(.no-indent) {
     grid-template-columns: minmax(100px, 300px) 3fr minmax(100px, 300px) !important;
@@ -1263,7 +1275,8 @@ footer .pages {
   font-weight: 700;
 }
 .purchase-section .font-selection form div .typeface-package .typeface-details .styles-and-weights {
-  margin-top: 1.0368rem;
+  max-width: 720px;
+  margin-top: 8px;
   padding-left: 25px;
 }
 .purchase-section .font-selection form div .typeface-package .typeface-price {
@@ -1427,14 +1440,10 @@ footer .pages {
 .purchase-option .options.radio label:disabled {
   color: var(--grey);
 }
-.purchase-option .info-link {
-  text-decoration: underline;
-}
-.purchase-option .iconly {
-  margin-left: -2px;
-  padding-left: 0;
-}
 
+.styles-selector h6 {
+  font-size: 14px;
+}
 .styles-selector .styles {
   display: flex;
   flex-direction: row;
@@ -1457,7 +1466,7 @@ footer .pages {
 }
 .quick-buttons.with-background {
   width: calc(100% - 2.304rem * 4);
-  padding: 2.592rem 4.608rem 1.728rem;
+  padding: 3.456rem 4.608rem 1.0368rem;
   top: 4.1472rem;
   left: 0;
   border-bottom: 1px solid #e4e4e4;
@@ -1705,8 +1714,8 @@ div:hover > .iconly {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
   flex-wrap: wrap;
+  gap: 12px;
 }
 @media (max-width: 840px) {
   .font-tester .font-tester-header {
@@ -1731,9 +1740,6 @@ div:hover > .iconly {
 }
 .font-tester .font-tester-header .fontsize {
   min-width: 25ch;
-}
-.font-tester .font-tester-header .opentype-features {
-  font-size: 16px;
 }
 .font-tester .font-tester-header .alignment,
 .font-tester .font-tester-header .columns {
@@ -1816,6 +1822,7 @@ div:hover > .iconly {
 }
 .font-tester .font-tester-header .typetester-button {
   height: 36px;
+  font-size: 14px;
   border-radius: 10px;
   background: var(--background);
   box-shadow: 1px 2px 6px 0px rgb(102, 102, 102);
@@ -2033,7 +2040,7 @@ input[type=range]::-moz-range-thumb {
 
 div.dropdown {
   min-width: var(--min-width), 17ch;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: 0em;
   color: var(--foreground);
@@ -2041,7 +2048,7 @@ div.dropdown {
   background-color: var(--background);
 }
 div.dropdown .react-select__control {
-  padding: 10px 10px 7px;
+  padding: 10px 7px 7px 12px;
   background-color: var(--background);
   box-shadow: 1px 2px 6px 0px rgba(0, 0, 0, 0.4);
   border-radius: 8px;
@@ -2074,9 +2081,10 @@ div.dropdown .react-select__indicator-separator {
 }
 div.dropdown .react-select__indicator {
   position: relative;
-  top: -1px !important;
+  top: -2px !important;
   color: var(--foreground);
   padding: 0;
+  font-size: 18px;
   scale: 1.4;
 }
 div.dropdown .react-select__menu {
@@ -2115,16 +2123,17 @@ div.dropdown .react-select__option:hover {
 .checkbox-dropdown label.title {
   display: flex;
   justify-content: space-between;
-  padding: 10px 10px 2px;
+  padding: 12px 10px 2px;
 }
-.checkbox-dropdown label.title span {
+.checkbox-dropdown label.title .dropdown-control span {
+  top: -2px;
   position: relative;
-  font-size: 20px;
+  font-size: 18px;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
   pointer-events: none;
-  scale: 1.2;
+  scale: 1.4;
 }
 .checkbox-dropdown label.title:hover {
   color: var(--background);
@@ -2187,6 +2196,29 @@ div.dropdown .react-select__option:hover {
   font-weight: 600;
 }
 
+.info-text {
+  position: relative;
+  max-width: 720px;
+}
+.info-text .iconly {
+  position: absolute;
+  padding: 0;
+  top: -3px;
+}
+.info-text p {
+  display: inline-block;
+  margin-left: 24px;
+}
+.info-text.link {
+  text-decoration: underline;
+}
+.info-text.warning {
+  color: var(--red);
+}
+.info-text + .info-text {
+  margin-top: 1.0368rem;
+}
+
 .markdown-text {
   -webkit-hyphens: auto;
           hyphens: auto;
@@ -2234,13 +2266,13 @@ h2 {
 h3 {
   font-style: normal;
   font-weight: 400;
-  font-size: 36px;
+  font-size: 32px;
   line-height: 42px;
   font-weight: 600;
 }
 @media (max-width: 840px) {
   h3 {
-    font-size: 32px;
+    font-size: 22px;
     line-height: 38px; /* 118.75% */
   }
 }

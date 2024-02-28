@@ -13,7 +13,7 @@ export default function ChooseScript() {
   };
   return (
     <article className="choose-script">
-      <div>Choose script</div>
+      <h6>Choose script</h6>
       <div className="buttons">
         <button className={isLatin ? "active" : ""} onClick={() => handleChangeScript("latin")}>
           Latin

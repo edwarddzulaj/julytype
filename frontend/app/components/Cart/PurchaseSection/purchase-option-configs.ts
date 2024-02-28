@@ -44,7 +44,7 @@ export const licenseOptions: PurchaseOption<string> = {
 export const companySizeOptions: PurchaseOption<number> = {
   subtitle: "How many employees are there in a company that is using the license?",
   options: [
-    { label: "<1", value: 1, checked: true },
+    { label: "1", value: 1, checked: true },
     { label: "<3", value: 3 },
     { label: "<10", value: 10 },
     { label: "<25", value: 25 },
@@ -60,7 +60,10 @@ export const companySizeOptions: PurchaseOption<number> = {
   ],
   info: {
     text: "More about company size",
-    url: "/about",
+    url: "/licensing",
+  },
+  extraInfo: {
+    text: "If your company size is less than 3 people, this license is free in combination with your web license. Please select web license type too for it to be eligible.",
   },
 };
 

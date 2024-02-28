@@ -40,10 +40,10 @@ export default function CheckboxDropdown({
   };
   return (
     <>
-      <div className={`checkbox-dropdown ${open && "open"}`} ref={dropdownRef}>
+      <div className={`checkbox-dropdown ${open ? "open" : ""}`} ref={dropdownRef}>
         <label className="title" onClick={toggleMenu}>
           {title}
-          <span>
+          <span className="dropdown-control">
             {!open && <Iconly icon={icons.chevronDown} />}
             {open && <Iconly icon={icons.chevronUp} />}
           </span>

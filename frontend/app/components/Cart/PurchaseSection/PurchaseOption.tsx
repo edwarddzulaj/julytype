@@ -2,11 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { PurchaseOption } from "./PurchaseSectionTypes";
-import Link from "next/link";
 
 import DiscountBadge from "../../UI/DiscountBadge";
 import { Tooltip } from "../../UI/Tooltip";
-import Iconly, { icons } from "@/app/components/UI/Iconly";
+import InfoText from "../../UI/InfoText";
 
 export default function PurchaseOption({
   config,
@@ -21,7 +20,7 @@ export default function PurchaseOption({
   optionType?: "radio" | "checkbox";
   requireOneCheckbox?: boolean;
 }) {
-  const { subtitle, options, info } = config;
+  const { subtitle, options, info, extraInfo } = config;
   const defaultOption = options.find((o) => o.checked);
   const [selectedOptions, setSelectedOptions] = useState([defaultOption?.value]);
 
@@ -91,12 +90,8 @@ export default function PurchaseOption({
             ))}
           </form>
         </div>
-        {info && (
-          <Link href={info.url} className="info-link">
-            <Iconly icon={icons.info} />
-            {info.text}
-          </Link>
-        )}
+        {info && <InfoText info={info} />}
+        {extraInfo && <InfoText info={extraInfo} attributes={{ className: "info-text warning" }} />}
       </div>
     </article>
   );

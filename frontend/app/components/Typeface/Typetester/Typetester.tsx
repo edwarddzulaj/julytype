@@ -240,28 +240,6 @@ export default function Typetester({
         </div>
         {!(isMobileView && isTextEditable === "false") && (
           <>
-            <div
-              className="lang extra-option typetester-button"
-              style={
-                {
-                  "--min-width": countMaxLabelLength(
-                    isLatin ? languages.latin : languages.cyrillic
-                  ),
-                } as React.CSSProperties
-              }
-            >
-              <Dropdown
-                options={isLatin ? languages.latin : languages.cyrillic}
-                instanceId={`${fontFamily.value}-language`}
-                value={
-                  isLatin
-                    ? languages.latin.find((l) => l.label === sampleLang.label)
-                    : languages.cyrillic.find((l) => l.label === sampleLang.label)
-                }
-                onChange={handleLanguage}
-                placeholder="Language"
-              />
-            </div>
             <div className="fontsize slider extra-option typetester-button">
               <label htmlFor="fontsize">{fontSize.toFixed()}px</label>
               <input
@@ -274,20 +252,7 @@ export default function Typetester({
                 value={fontSize}
               />
             </div>
-            <div className="opentype-features extra-option typetester-button">
-              <CheckboxDropdown
-                dropdownItems={opentypeFeatures}
-                handleOnChange={handleOpentypeFeatures}
-              />
-            </div>
             <div className="inner-section">
-              <div className="case-options extra-option typetester-button">
-                <CheckboxDropdown
-                  title="Change case"
-                  dropdownItems={caseOptions}
-                  handleOnChange={handleCaseOptions}
-                />
-              </div>
               <div className="alignment extra-option typetester-button">
                 {alignmentOptions.map((option) => (
                   <span key={option.value}>
@@ -329,6 +294,43 @@ export default function Typetester({
                     />
                   </span>
                 ))}
+              </div>
+            </div>
+            <div className="inner-section">
+              <div
+                className="lang extra-option typetester-button"
+                style={
+                  {
+                    "--min-width": countMaxLabelLength(
+                      isLatin ? languages.latin : languages.cyrillic
+                    ),
+                  } as React.CSSProperties
+                }
+              >
+                <Dropdown
+                  options={isLatin ? languages.latin : languages.cyrillic}
+                  instanceId={`${fontFamily.value}-language`}
+                  value={
+                    isLatin
+                      ? languages.latin.find((l) => l.label === sampleLang.label)
+                      : languages.cyrillic.find((l) => l.label === sampleLang.label)
+                  }
+                  onChange={handleLanguage}
+                  placeholder="Language"
+                />
+              </div>
+              <div className="opentype-features extra-option typetester-button">
+                <CheckboxDropdown
+                  dropdownItems={opentypeFeatures}
+                  handleOnChange={handleOpentypeFeatures}
+                />
+              </div>
+              <div className="case-options extra-option typetester-button">
+                <CheckboxDropdown
+                  title="Change case"
+                  dropdownItems={caseOptions}
+                  handleOnChange={handleCaseOptions}
+                />
               </div>
             </div>
           </>
@@ -418,6 +420,7 @@ const countMaxLabelLength = (options: any) => {
 };
 
 const adaptSizeToViewport = (sizeNum: number) => {
+  if (!window) return `${sizeNum}px`;
   const isLargestScreen = window.innerWidth > 2200;
   const adaptedSize = (sizeNum / window.innerWidth) * 100;
   const adaptedSizeInVW = `${adaptedSize}vw`;

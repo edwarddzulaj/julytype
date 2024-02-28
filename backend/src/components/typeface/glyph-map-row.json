@@ -16,6 +16,8 @@
       "type": "enumeration",
       "enum": [
         "language: bg, Bulgarian, Cyrillic",
+        "language: sr, Serbian, Cyrillic",
+        "language: uk, Ukrainian, Cyrillic",
         "opentype: liga, Ligatures",
         "opentype: frac, Fractions",
         "opentype: c2sc, Small capitals from capitals",

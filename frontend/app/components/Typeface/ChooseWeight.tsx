@@ -13,7 +13,7 @@ export default function ChooseWeight({ styles }: { styles: Style[] }) {
 
   useEffect(() => {
     const style = styles.find((s) => s.id == chosenStyle.id) || styles[0];
-    setStyleTitle(chosenStyle.title);
+    setStyleTitle(style.attributes.title);
 
     const { weights } = style?.attributes ?? { title: "", weights: [] };
     setFontWeights(weights);
@@ -23,7 +23,7 @@ export default function ChooseWeight({ styles }: { styles: Style[] }) {
     <article className="choose-weight">
       {fontWeights && fontWeights.length > 1 && (
         <>
-          Jump to
+          <h6>Jump to</h6>
           <ul>
             {fontWeights.map((weight) => {
               const fontTitle = `${styleTitle.trim()} ${weight?.title.trim()}`;
