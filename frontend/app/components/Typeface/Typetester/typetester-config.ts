@@ -31,7 +31,6 @@ export const opentypeFeatures = [
   { value: "lnum", label: "Lining figures" },
   { value: "tnum", label: "Tabular figures" },
   { value: "locl", label: "Localized forms", checked: true },
-  { value: "calt", label: "Contextual alternates", checked: true },
   { value: "ss01", label: "Stylistic set 1" },
   { value: "ss02", label: "Stylistic set 2" },
 ];

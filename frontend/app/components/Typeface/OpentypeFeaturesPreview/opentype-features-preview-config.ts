@@ -7,15 +7,12 @@ export const BASE_TEXT = `
 <span class="allcaps"><span class="calt">«</span>Gelato<span class="calt">»</span> 
 <span class="calt">•</span>How<span class="calt">? @</span>Hodori <span class="calt">(</span>Muse<span class="calt">)</span></span><br/>
 Wolf<span class="ss01">g</span>an<span class="ss01">g</span> Mozart 1756 <span class="ss01">& Ж</span>емчуг<br/>
-<span class="smallcaps">Frédéric 1896 & Maria 18<span class="calt">:</span>67</span><br/>
+<span class="smallcaps">Let’s meet at 18<span class="calt">:</span>46.</span><br/>
 <span class="oldstyle">Henrica Maria Paré 1896–1972</span><br/>
  Just add <span class="frac">1/2, 3/4</span> or <span class="frac">5/8</span> of Cocoa<br/>
 <span class="subs">2H2 (g)+O2 (g)→2H2 O(l)</span><br/>
 <span class="sups">F(x,y)2 + x32 × y47 = z2</span>
 `;
-
-
-
 
 export const options = [
   {
