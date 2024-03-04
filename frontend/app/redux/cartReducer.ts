@@ -1,6 +1,7 @@
 import { TypefaceWeight } from "@/@types/components";
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice, current } from "@reduxjs/toolkit";
 import { PurchaseDetails } from "../components/Cart/PurchaseSection/PurchaseSectionTypes";
+import { calculateTotalPrices } from "../utils/cart-helpers";
 
 export interface SelectedItem extends TypefaceWeight {
   styleId?: number;
@@ -47,7 +48,23 @@ export const cartSlice = createSlice({
         (item: CartItem) => item.typefaceId === action.payload.typefaceId
       );
 
-      state.items[itemIndex] = { ...state.items[itemIndex], ...action.payload };
+      state.items[itemIndex] = {
+        ...state.items[itemIndex],
+        ...action.payload,
+      };
+
+      // Update the total price after each update
+      const currentItem = current(state).items[itemIndex];
+      const { totalPrice, discountPrice } = calculateTotalPrices(
+        currentItem.weights,
+        currentItem.purchaseDetails
+      );
+
+      state.items[itemIndex] = {
+        ...state.items[itemIndex],
+        totalPrice: totalPrice,
+        totalDiscountPrice: discountPrice,
+      };
     },
   },
 });
