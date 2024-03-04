@@ -63,7 +63,7 @@ export const companySizeOptions: PurchaseOption<number> = {
     url: "/licensing",
   },
   extraInfo: {
-    text: "If your company size is less than 3 people, this license is free in combination with your web license. Please select web license type too for it to be eligible.",
+    text: "If your company size is less than 3 people, the Video/Social Media license is free in combination with your Web license. Please select Web license type too for it to be eligible.",
   },
 };
 

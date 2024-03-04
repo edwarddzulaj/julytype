@@ -4,6 +4,13 @@ export type licenseRates = {
   };
 };
 
+export type specialRules = {
+  [key: string]: {
+    licenseTypesCombination: string[];
+    companySizeCombination: number[];
+  };
+};
+
 export const licenseRates: licenseRates = Object.freeze({
   "desktop-print": {
     1: 1.0,
@@ -79,5 +86,12 @@ export const licenseRates: licenseRates = Object.freeze({
     1000: 34.71,
     2500: 43.51,
     5000: 76.0,
+  },
+});
+
+export const specialRules: specialRules = Object.freeze({
+  "video-social-media": {
+    licenseTypesCombination: ["video-social-media", "web"],
+    companySizeCombination: [1, 3],
   },
 });
