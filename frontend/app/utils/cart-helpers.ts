@@ -1,6 +1,6 @@
 import { TypefaceWeight } from "@/@types/components";
 import { CartItem } from "../redux/cartReducer";
-import { licenseRates } from "./license-helpers";
+import { licenseRates, specialRules } from "./license-helpers";
 import { PurchaseDetails } from "../components/Cart/PurchaseSection/PurchaseSectionTypes";
 
 export const calculatePrices = (
@@ -56,25 +56,44 @@ export const calculateTotalPrices = (
   };
 };
 
-function applyAllLicenses(purchaseDetails: PurchaseDetails | undefined, initialPrice: number) {
-  const licenseTypes = purchaseDetails?.licenseTypes || ["desktop-print"];
-
-  let price = 0;
-  licenseTypes.forEach((licenseType: string, i: number) => {
-    if (!(licenseType in licenseRates)) return;
-    const companySize = purchaseDetails?.companySize || 1;
-
-    const multiplyRate = licenseRates[licenseType as keyof licenseRates][companySize];
-    const secondLicenseDiscount = i > 0 ? 0.7 : 1;
-    price += initialPrice * multiplyRate * secondLicenseDiscount;
-  });
-
-  return price;
-}
 export function roundToTwoDecimalPlaces(number: number) {
   if (Number.isInteger(number)) {
     return number;
   } else {
     return Math.round(number * 100) / 100;
   }
+}
+
+function applyAllLicenses(purchaseDetails: PurchaseDetails | undefined, initialPrice: number) {
+  const licenseTypes = purchaseDetails?.licenseTypes || ["desktop-print"];
+  const SECOND_LICENSE_DISCOUNT_FACTOR = 0.7;
+
+  let price = 0;
+  licenseTypes.forEach((licenseType: string, i: number) => {
+    if (!(licenseType in licenseRates)) return;
+    const companySize = purchaseDetails?.companySize || 1;
+
+    let multiplyRate = licenseRates[licenseType as keyof licenseRates][companySize];
+    if (specialRulesApply(purchaseDetails, licenseType)) {
+      multiplyRate = 0;
+    }
+
+    const secondLicenseDiscount = i > 0 ? SECOND_LICENSE_DISCOUNT_FACTOR : 1;
+    price += initialPrice * multiplyRate * secondLicenseDiscount;
+  });
+
+  return price;
+}
+
+function specialRulesApply(purchaseDetails: PurchaseDetails | undefined, licenseType: string) {
+  const specialRuleMatrix = specialRules[licenseType as keyof specialRules];
+  if (!purchaseDetails || !licenseType || !specialRuleMatrix) return;
+  const { licenseTypes, companySize } = purchaseDetails;
+
+  const hasLicenseTypesCombination = specialRuleMatrix.licenseTypesCombination.every((type) =>
+    licenseTypes.includes(type)
+  );
+  const hasCompanySizesCombination = specialRuleMatrix.companySizeCombination.includes(companySize);
+
+  return hasLicenseTypesCombination && hasCompanySizesCombination;
 }

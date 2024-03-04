@@ -4,6 +4,13 @@ export type licenseRates = {
   };
 };
 
+export type specialRules = {
+  [key: string]: {
+    licenseTypesCombination: string[]; // The combination of license types that trigger the special rule.
+    companySizeCombination: number[]; // The combination of company size values that trigger the special rule.
+  };
+};
+
 export const licenseRates: licenseRates = Object.freeze({
   "desktop-print": {
     1: 1.0,
@@ -79,5 +86,18 @@ export const licenseRates: licenseRates = Object.freeze({
     1000: 34.71,
     2500: 43.51,
     5000: 76.0,
+  },
+});
+
+/**
+ * Defines special rules for license combinations based on company size.
+ * For example, if your company size is less than 3 people and the Video/Social Media license and Web license are chosen,
+ * the Video/Social Media license is free.
+ */
+
+export const specialRules: specialRules = Object.freeze({
+  "video-social-media": {
+    licenseTypesCombination: ["video-social-media", "web"],
+    companySizeCombination: [1, 3],
   },
 });
