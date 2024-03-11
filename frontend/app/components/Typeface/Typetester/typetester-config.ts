@@ -16,7 +16,6 @@ export const languages = {
   cyrillic: [
     { value: "bg", label: "Bulgarian" },
     { value: "uk", label: "Ukrainian" },
-    { value: "ru", label: "Russian" },
   ],
 };
 
