@@ -1417,20 +1417,26 @@ div:hover > .iconly {
   }
 
   .font-sample {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-break: break-all;
+
     min-height: 25vh;
     padding-top: $gutter-h * 3;
-    // transition:
-    //   font-size 0.1s ease-out,
-    //   line-height 0.1s ease-out;
     font-family: "Adobe Blank";
+    text-rendering: optimizelegibility;
 
     // Some settings to create the same layout when the div is editable
     white-space-collapse: preserve-breaks;
-    word-wrap: break-word;
     user-select: none;
 
     &:not(.edit-mode) {
       cursor: pointer;
+    }
+
+    &.double-column {
+      display: block;
     }
   }
 }

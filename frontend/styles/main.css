@@ -1837,17 +1837,24 @@ div:hover > .iconly {
   gap: 12px;
 }
 .font-tester .font-sample {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-break: break-all;
   min-height: 25vh;
   padding-top: 5.184rem;
   font-family: "Adobe Blank";
+  text-rendering: optimizelegibility;
   white-space-collapse: preserve-breaks;
-  word-wrap: break-word;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
 }
 .font-tester .font-sample:not(.edit-mode) {
   cursor: pointer;
+}
+.font-tester .font-sample.double-column {
+  display: block;
 }
 
 .glyph-map .glyph-map-rows {

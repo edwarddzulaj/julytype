@@ -347,7 +347,9 @@ export default function Typetester({
       {/* @ts-ignore because contentEditable value is 'plaintext-only' and it demands a Boolean type*/}
       <div
         ref={fontTesterRef}
-        className={`font-sample${isTextEditable === "false" ? "" : " edit-mode"}`}
+        className={`font-sample ${isTextEditable === "false" ? "" : "edit-mode"} ${
+          textColumns === 1 ? "single-column" : "double-column"
+        }`}
         onClick={handleFontSampleClick}
         suppressContentEditableWarning={true}
         {...staticOptions}
