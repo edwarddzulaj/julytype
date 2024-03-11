@@ -8,13 +8,19 @@ export default function OpentypeFeaturesPreview({ fontFamilyTitle }: { fontFamil
   const TEXT_SIZE = 64;
   const textRef = useRef<HTMLDivElement>(null);
   const [selectedOption, setSelectedOption] = useState<string[]>([]);
+  const showSmallCapsOption = fontFamilyTitle?.toLowerCase().includes("peleton");
 
   const mappedOptions = {
-    options: options.map((option) => ({
-      value: option.id,
-      label: option.label,
-      checked: option.checked,
-    })),
+    options: options
+      .filter((o) => {
+        if (o.id !== "smallcaps") return o;
+        else return showSmallCapsOption ? o : null;
+      })
+      .map((option) => ({
+        value: option.id,
+        label: option.label,
+        checked: option.checked,
+      })),
   };
 
   useEffect(() => {
