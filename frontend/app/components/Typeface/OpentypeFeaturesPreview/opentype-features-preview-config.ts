@@ -4,8 +4,7 @@
 // For example, "20<ot>FRESI</ot>21" will highlight FRESI and leave out 20 and 21.
 
 export const BASE_TEXT = `
-<span class="allcaps"><span class="calt">«</span>Gelato<span class="calt">»</span> 
-<span class="calt">•</span>How<span class="calt">? @</span>Hodori <span class="calt">(</span>Muse<span class="calt">)</span></span><br/>
+<span class="allcaps">«Gelato» •How? @Hodori (Muse)</span><br/>
 Wolf<span class="ss01">g</span>an<span class="ss01">g</span> Mozart 1756 <span class="ss01">& Ж</span>емчуг<br/>
 <span class="smallcaps">Let’s meet at 18<span class="calt">:</span>46.</span><br/>
 <span class="oldstyle">Henrica Maria Paré 1896–1972</span><br/>
@@ -32,12 +31,6 @@ export const options = [
     id: "smallcaps",
     type: "text-transformation",
     label: "Small caps",
-    text: BASE_TEXT,
-  },
-  {
-    id: "calt",
-    type: "opentype-feature",
-    label: "Contextual alternates",
     text: BASE_TEXT,
   },
   {

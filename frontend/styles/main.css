@@ -1886,16 +1886,13 @@ div:hover > .iconly {
 }
 .opentype-features-preview .text-container .allcaps-on {
   text-transform: uppercase;
+  font-feature-settings: "case";
 }
 .opentype-features-preview .text-container .ss01-on {
   font-feature-settings: "ss01";
 }
 .opentype-features-preview .text-container .smallcaps-on {
   font-variant: small-caps;
-}
-.opentype-features-preview .text-container .allcaps-on,
-.opentype-features-preview .text-container .calt-on {
-  font-feature-settings: "case";
 }
 .opentype-features-preview .text-container .oldstyle-on {
   font-variant-numeric: oldstyle-nums;
