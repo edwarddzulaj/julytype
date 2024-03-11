@@ -117,7 +117,7 @@ export default function StudentEmailVerificationForm({
         </div>
         {isEmailVerified && (
           <p className="message success">
-            Your student email has been verified. You get 50% discount.
+            Your student email has been verified. You get 80% discount.
           </p>
         )}
       </form>

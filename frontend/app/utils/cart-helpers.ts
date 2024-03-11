@@ -13,7 +13,7 @@ export const calculatePrices = (
   let price = applyAllLicenses(purchaseDetails, prices.price);
 
   if (purchaseDetails?.studentDiscount) {
-    price = price * 0.5;
+    price = price * 0.2;
   }
 
   let discountPrice = prices.discount ? Math.ceil(price - price * (prices.discount / 100)) : price;
@@ -26,9 +26,17 @@ export const calculateTotalPricesForCart = (items: Array<CartItem>) => {
   let discountPriceCart = 0;
 
   items.forEach((item) => {
-    const { totalPrice, discountPrice } = calculateTotalPrices(item.weights, item.purchaseDetails);
-    totalPriceCart += totalPrice;
-    discountPriceCart += discountPrice;
+    if (item.purchaseDetails.wholePackageDiscount) {
+      totalPriceCart += item.totalPrice;
+      discountPriceCart += item.totalDiscountPrice;
+    } else {
+      const { totalPrice, discountPrice } = calculateTotalPrices(
+        item.weights,
+        item.purchaseDetails
+      );
+      totalPriceCart += totalPrice;
+      discountPriceCart += discountPrice;
+    }
   });
 
   return { totalPriceCart, discountPriceCart };
