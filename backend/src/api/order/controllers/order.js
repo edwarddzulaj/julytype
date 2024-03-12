@@ -125,6 +125,9 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
               "We'll email you the font package after the payment is completed.",
           },
         },
+        automatic_tax: {
+          enabled: true,
+        },
         success_url: `${CLIENT_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: CLIENT_URL,
       });
