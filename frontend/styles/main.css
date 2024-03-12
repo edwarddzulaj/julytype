@@ -1840,12 +1840,12 @@ div:hover > .iconly {
   display: flex;
   align-items: center;
   justify-content: center;
-  word-break: break-all;
   min-height: 25vh;
   padding-top: 5.184rem;
   font-family: "Adobe Blank";
   text-rendering: optimizelegibility;
   white-space-collapse: preserve-breaks;
+  word-break: break-word;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
