@@ -29,6 +29,7 @@ export const opentypeFeatures = [
   { value: "onum", label: "Old style figures", checked: true },
   { value: "lnum", label: "Lining figures" },
   { value: "tnum", label: "Tabular figures" },
+  { value: "case", label: "Contextual alternates", checked: true },
   { value: "locl", label: "Localized forms", checked: true },
   { value: "ss01", label: "Stylistic set 1" },
   { value: "ss02", label: "Stylistic set 2" },
