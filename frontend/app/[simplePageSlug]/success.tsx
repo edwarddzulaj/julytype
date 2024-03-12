@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { fetchAPI } from "../utils/fetch-api";
 import { getStrapiMedia } from "../utils/api-helpers";
+import CartStateWrapper from "../components/Cart/CartCheckout/CartStateWrapper";
 
 const stripe = require("stripe")(process.env.STRIPE_TEST_SECRET_KEY as string);
 
@@ -45,6 +46,7 @@ export default async function SuccessPage({ sessionId }: { sessionId: string | u
 
   return (
     <section className="container page success">
+      <CartStateWrapper />
       <h2>Thank you for your purchase!</h2>
       <h5>You will receive an email shortly.</h5>
       <Image
