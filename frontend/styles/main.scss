@@ -527,6 +527,7 @@ nav {
               .licenses {
                 display: flex;
                 gap: 10px;
+                flex-wrap: wrap;
 
                 .license {
                   display: flex;
