@@ -80,12 +80,12 @@ export default function CartItemContainer({ item, index }: { item: CartItem; ind
       wholePackageDiscount: !!wholePackageDiscount,
     };
 
-    if (purchaseDetails.wholePackageDiscount) {
-      setPrices({ price: item.totalPrice, finalPrice: item.totalDiscountPrice });
-    } else {
-      const { totalPrice, discountPrice } = calculateTotalPrices(item.weights, purchaseDetails);
-      setPrices({ price: totalPrice, finalPrice: discountPrice });
-    }
+    const { totalPrice, discountPrice } = calculateTotalPrices(
+      item.weights,
+      purchaseDetails,
+      item.wholePackagePrices
+    );
+    setPrices({ price: totalPrice, finalPrice: discountPrice });
   }, [
     companySize,
     studentDiscount,
@@ -94,6 +94,7 @@ export default function CartItemContainer({ item, index }: { item: CartItem; ind
     item.weights,
     item.totalPrice,
     item.totalDiscountPrice,
+    item.wholePackagePrices,
   ]);
   return (
     <section className="cart-item-container">

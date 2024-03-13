@@ -33,18 +33,18 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
   }, []);
 
   useEffect(() => {
-    if (purchaseDetails.wholePackageDiscount) {
-      const [price, discountPrice] = calculatePrices(
-        { price: typeface.attributes.price, discount: typeface.attributes.wholePackageDiscount },
-        purchaseDetails
-      );
+    const wholePackagePrices = {
+      price: typeface.attributes.price,
+      discount: typeface.attributes.wholePackageDiscount,
+    };
 
-      setPrices({ price: price, finalPrice: discountPrice });
-    } else {
-      const { totalPrice, discountPrice } = calculateTotalPrices(selectedItems, purchaseDetails);
+    const { totalPrice, discountPrice } = calculateTotalPrices(
+      selectedItems,
+      purchaseDetails,
+      wholePackagePrices
+    );
 
-      setPrices({ price: totalPrice, finalPrice: discountPrice });
-    }
+    setPrices({ price: totalPrice, finalPrice: discountPrice });
   }, [
     selectedItems,
     purchaseDetails.licenseTypes,
@@ -54,6 +54,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
     typeface.attributes.price,
     typeface.attributes.wholePackageDiscount,
     purchaseDetails,
+    typeface,
   ]);
 
   const initialisePurchaseDetails = () => {
@@ -113,21 +114,19 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
         purchaseDetails,
         totalPrice: 0,
         totalDiscountPrice: 0,
+        wholePackagePrices: {
+          price: typeface.attributes.price,
+          discount: typeface.attributes.wholePackageDiscount,
+        },
       };
 
-      if (purchaseDetails.wholePackageDiscount) {
-        const [price, priceWithDiscount] = calculatePrices(
-          { price: typeface.attributes.price, discount: typeface.attributes.wholePackageDiscount },
-          purchaseDetails
-        );
-
-        item.totalPrice = price;
-        item.totalDiscountPrice = priceWithDiscount;
-      } else {
-        const { totalPrice, discountPrice } = calculateTotalPrices(selectedItems, purchaseDetails);
-        item.totalPrice = totalPrice;
-        item.totalDiscountPrice = discountPrice;
-      }
+      const { totalPrice, discountPrice } = calculateTotalPrices(
+        selectedItems,
+        purchaseDetails,
+        item.wholePackagePrices
+      );
+      item.totalPrice = totalPrice;
+      item.totalDiscountPrice = discountPrice;
 
       if (addedItem) {
         dispatch(updateCartItem(item));

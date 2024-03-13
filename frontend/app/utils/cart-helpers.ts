@@ -2,6 +2,7 @@ import { TypefaceWeight } from "@/@types/components";
 import { CartItem } from "../redux/cartReducer";
 import { licenseRates, specialRules } from "./license-helpers";
 import { PurchaseDetails } from "../components/Cart/PurchaseSection/PurchaseSectionTypes";
+import { Typeface } from "@/@types/contentTypes";
 
 export const calculatePrices = (
   prices: {
@@ -26,17 +27,13 @@ export const calculateTotalPricesForCart = (items: Array<CartItem>) => {
   let discountPriceCart = 0;
 
   items.forEach((item) => {
-    if (item.purchaseDetails.wholePackageDiscount) {
-      totalPriceCart += item.totalPrice;
-      discountPriceCart += item.totalDiscountPrice;
-    } else {
-      const { totalPrice, discountPrice } = calculateTotalPrices(
-        item.weights,
-        item.purchaseDetails
-      );
-      totalPriceCart += totalPrice;
-      discountPriceCart += discountPrice;
-    }
+    const { totalPrice, discountPrice } = calculateTotalPrices(
+      item.weights,
+      item.purchaseDetails,
+      item.wholePackagePrices
+    );
+    totalPriceCart += totalPrice;
+    discountPriceCart += discountPrice;
   });
 
   return { totalPriceCart, discountPriceCart };
@@ -44,19 +41,30 @@ export const calculateTotalPricesForCart = (items: Array<CartItem>) => {
 
 export const calculateTotalPrices = (
   weights: TypefaceWeight[],
-  purchaseDetails: PurchaseDetails
+  purchaseDetails: PurchaseDetails,
+  wholePackagePrices?: { price: number; discount: number }
 ) => {
   let totalPrice = 0;
   let discountPrice = 0;
 
-  weights.forEach((weight) => {
+  if (wholePackagePrices && purchaseDetails.wholePackageDiscount) {
     const [price, priceWithDiscount] = calculatePrices(
-      { price: weight.price, discount: weight.discount },
+      { price: wholePackagePrices.price, discount: wholePackagePrices.discount },
       purchaseDetails
     );
-    totalPrice += price;
-    discountPrice += priceWithDiscount;
-  });
+
+    totalPrice = price;
+    discountPrice = priceWithDiscount;
+  } else {
+    weights.forEach((weight) => {
+      const [price, priceWithDiscount] = calculatePrices(
+        { price: weight.price, discount: weight.discount },
+        purchaseDetails
+      );
+      totalPrice += price;
+      discountPrice += priceWithDiscount;
+    });
+  }
 
   return {
     totalPrice: roundToTwoDecimalPlaces(totalPrice),

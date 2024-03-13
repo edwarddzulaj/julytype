@@ -22,6 +22,10 @@ export interface CartItem {
   selected: boolean;
   totalPrice: number;
   totalDiscountPrice: number;
+  wholePackagePrices: {
+    price: number;
+    discount: number;
+  };
 }
 
 const initialState = {
@@ -57,7 +61,8 @@ export const cartSlice = createSlice({
       const currentItem = current(state).items[itemIndex];
       const { totalPrice, discountPrice } = calculateTotalPrices(
         currentItem.weights,
-        currentItem.purchaseDetails
+        currentItem.purchaseDetails,
+        currentItem.wholePackagePrices
       );
 
       state.items[itemIndex] = {
