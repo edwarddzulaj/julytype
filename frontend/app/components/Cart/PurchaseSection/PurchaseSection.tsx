@@ -204,6 +204,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
           {prices.price !== prices.finalPrice && <span className="price">{prices.price} EUR</span>}
           &nbsp;
           {prices.finalPrice} EUR
+          <h6 className="vat-disclaimer">excl. BTW</h6>
         </div>
         <button className="cart-link" disabled={selectedItems.length < 1} onClick={addItemsToCart}>
           Add to cart

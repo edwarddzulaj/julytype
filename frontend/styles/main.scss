@@ -504,7 +504,7 @@ nav {
             grid-template-columns: minmax(42px, 1fr) 7fr 8fr;
             column-gap: 16px;
             padding: $gutter-h * 2 0;
-            border-bottom: 1px solid #cdcdcd;
+            border-bottom: 1px solid var(--foreground);
 
             .checkbox-container {
               flex-shrink: 0;
@@ -574,18 +574,16 @@ nav {
 
       .cart-footer {
         position: relative;
-        padding-top: $gutter-h * 3;
+        padding-top: $gutter-h * 2;
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        gap: 8px;
+        align-items: flex-start;
+        gap: 36px;
         font-size: 20px;
 
         .total-price {
-          display: grid;
-          grid-template-columns: minmax(42px, 1fr) 7fr 8fr;
-          column-gap: 16px;
-          width: 100%;
+          text-align: right;
+          flex-grow: 1;
           font-weight: 600;
 
           .price {
@@ -596,8 +594,6 @@ nav {
         }
 
         .actions {
-          position: absolute;
-          right: 0;
           display: flex;
           align-items: center;
           gap: 16px;
@@ -855,21 +851,17 @@ footer {
         }
 
         .cart-footer {
+          padding-top: $gutter-h * 1.5;
           flex-direction: column;
-          align-items: flex-end;
 
           .total-price {
-            display: flex;
-            column-gap: 0;
-
-            .subtotal {
-              margin-right: $gutter-thin-v;
-            }
+            text-align: initial;
           }
 
           .actions {
             position: relative;
             margin-top: $gutter-thin-h;
+            align-self: flex-end;
           }
         }
       }
@@ -1063,10 +1055,19 @@ footer {
         text-decoration: line-through;
         color: var(--red);
       }
+
+      .vat-disclaimer {
+        text-align: right;
+
+        @media (max-width: $mobile-breakpoint) {
+          text-align: initial;
+        }
+      }
     }
 
     .cart-link {
       @include buttons.primary();
+      padding: 16px;
     }
   }
 }

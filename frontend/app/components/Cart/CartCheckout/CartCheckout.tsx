@@ -101,17 +101,16 @@ export default function CartCheckout() {
       <div className="cart-footer">
         {cartItems.length > 0 && (
           <div className="total-price">
-            <div></div>
-            <div className="subtotal">Subtotal:</div>
-            <div>
+            <div className="subtotal">
+              Subtotal: &nbsp;
               {prices.price !== prices.finalPrice && (
                 <span className="price">{prices.price} EUR</span>
               )}
               <span className="discount-price">{prices.finalPrice} EUR</span>
             </div>
+            <h6 className="vat-disclaimer">excl. BTW</h6>
           </div>
         )}
-        <div></div>
         <div className="actions">
           {cartItems.length < 1 && (
             <Link href="/" className="browse-more">

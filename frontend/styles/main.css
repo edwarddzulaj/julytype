@@ -873,7 +873,7 @@ nav a {
   -moz-column-gap: 16px;
        column-gap: 16px;
   padding: 3.456rem 0;
-  border-bottom: 1px solid #cdcdcd;
+  border-bottom: 1px solid var(--foreground);
 }
 .wrapper .container.page.cart .cart .cart-items .cart-item-container .checkbox-container {
   flex-shrink: 0;
@@ -930,19 +930,16 @@ nav a {
 }
 .wrapper .container.page.cart .cart-footer {
   position: relative;
-  padding-top: 5.184rem;
+  padding-top: 3.456rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 8px;
+  align-items: flex-start;
+  gap: 36px;
   font-size: 20px;
 }
 .wrapper .container.page.cart .cart-footer .total-price {
-  display: grid;
-  grid-template-columns: minmax(42px, 1fr) 7fr 8fr;
-  -moz-column-gap: 16px;
-       column-gap: 16px;
-  width: 100%;
+  text-align: right;
+  flex-grow: 1;
   font-weight: 600;
 }
 .wrapper .container.page.cart .cart-footer .total-price .price {
@@ -951,8 +948,6 @@ nav a {
   color: var(--red);
 }
 .wrapper .container.page.cart .cart-footer .actions {
-  position: absolute;
-  right: 0;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -1180,20 +1175,16 @@ footer .pages {
     display: inline-block;
   }
   .wrapper .container.page.cart .cart-footer {
+    padding-top: 2.592rem;
     flex-direction: column;
-    align-items: flex-end;
   }
   .wrapper .container.page.cart .cart-footer .total-price {
-    display: flex;
-    -moz-column-gap: 0;
-         column-gap: 0;
-  }
-  .wrapper .container.page.cart .cart-footer .total-price .subtotal {
-    margin-right: 1.3824rem;
+    text-align: initial;
   }
   .wrapper .container.page.cart .cart-footer .actions {
     position: relative;
     margin-top: 1.0368rem;
+    align-self: flex-end;
   }
   .wrapper .container.page h4 {
     top: initial;
@@ -1341,6 +1332,14 @@ footer .pages {
   text-decoration: line-through;
   color: var(--red);
 }
+.purchase-section .checkout-action .total-price .vat-disclaimer {
+  text-align: right;
+}
+@media (max-width: 840px) {
+  .purchase-section .checkout-action .total-price .vat-disclaimer {
+    text-align: initial;
+  }
+}
 .purchase-section .checkout-action .cart-link {
   display: inline-flex;
   padding: 14px 16px;
@@ -1355,6 +1354,7 @@ footer .pages {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--white);
   background-color: var(--blue);
+  padding: 16px;
 }
 .purchase-section .checkout-action .cart-link:hover {
   cursor: pointer;
