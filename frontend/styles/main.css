@@ -1938,33 +1938,45 @@ div:hover > .iconly {
   display: block;
 }
 
+.glyph-map {
+  display: flex;
+  flex-direction: column;
+}
+
 .glyph-map .glyph-map-rows {
-  max-height: -moz-fit-content;
-  max-height: fit-content;
   overflow: hidden;
+  max-height: calc(3 * (24px + 1px)); /* Calculate max-height for 3 rows */
+  margin-bottom: 8px; /* Add margin between rows and "Show All" button */
 }
-.glyph-map .glyph-map-rows.collapsed {
-  max-height: 52.4664rem;
+
+.glyph-map.collapsed .glyph-map-rows {
+  max-height: none; /* Remove max-height when collapsed */
 }
+
 .glyph-map .glyph-map-rows .glyph-map-row {
   padding: 24px 0;
   border-bottom: 1px solid var(--foreground);
 }
+
 .glyph-map .glyph-map-rows .glyph-map-row:first-of-type {
   padding-top: 0;
 }
+
 .glyph-map .glyph-map-rows .glyph-map-row .glyph-map-row-header {
   font-family: "Font Regular";
   font-size: 18px;
   margin-bottom: 8px;
 }
+
 .glyph-map .glyph-map-rows .glyph-map-row .glyph-map-row-content {
   font-size: 50px;
   line-height: 60px;
 }
+
 .glyph-map .show-all-action {
-  margin-top: 1.512rem;
+  margin-top: auto; /* Push "Show All" button to the bottom */
 }
+
 
 .opentype-features-preview .text-container {
   font-size: 64px;
