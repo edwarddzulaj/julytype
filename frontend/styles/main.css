@@ -1313,7 +1313,7 @@ footer .pages {
 .purchase-section .license-options > div,
 .purchase-section .font-selection-options {
   display: grid;
-  grid-template-columns: minmax(270px, 1fr) 10fr;
+  grid-template-columns: 2fr 8fr 2fr;
   gap: 2.016rem;
 }
 .purchase-section .license-options > div:not(:first-of-type),
@@ -1425,6 +1425,7 @@ footer .pages {
   border-radius: 8px;
   align-items: center;
   border: none;
+  line-height: 120%;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--foreground);
   background-color: var(--background);
@@ -1895,7 +1896,7 @@ div:hover > .iconly {
   height: 34px;
   border-radius: 8px;
   background: var(--background);
-  box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.1)
+  box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.3)
 }
 .font-tester .font-tester-header input[type=radio] {
   display: none;
