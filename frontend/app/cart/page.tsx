@@ -9,7 +9,7 @@ export default function CartPage() {
   return (
     <Provider store={store}>
       <section className="container page cart">
-        <h3>Your cart</h3>
+        <h2 className="page-title">Your cart</h2>
         <CartCheckout />
       </section>
     </Provider>

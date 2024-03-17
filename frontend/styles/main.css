@@ -850,7 +850,7 @@ nav a {
 .wrapper .container.page.cart {
   font-size: 16px;
 }
-.wrapper .container.page.cart h3 {
+.wrapper .container.page.cart .page-title {
   padding: 6.048rem 0 1.512rem 0;
 }
 .wrapper .container.page.cart .cart .empty-cart {
