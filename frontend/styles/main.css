@@ -1928,11 +1928,11 @@ div:hover > .iconly {
 }
 
 .glyph-map .glyph-map-rows {
+  overflow: hidden;
   max-height: -moz-fit-content;
   max-height: fit-content;
-  overflow: hidden;
 }
-.glyph-map .glyph-map-rows.collapsed {
+.glyph-map.collapsed .glyph-map-rows {
   /* max-height: 52.4664rem; */
   max-height: calc(3 * (24px + 1px)); 
 }
