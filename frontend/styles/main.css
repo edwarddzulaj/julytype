@@ -1906,7 +1906,7 @@ div:hover > .iconly {
   height: 34px;
   border-radius: 8px;
   background: var(--background);
-  box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.1)
+  box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.3)
 }
 .font-tester .font-tester-header input[type=radio] {
   display: none;
@@ -1943,43 +1943,28 @@ div:hover > .iconly {
   max-height: fit-content;
   overflow: hidden;
 }
-
-.glyph-map.collapsed .glyph-map-rows {
+.glyph-map .glyph-map-rows.collapsed {
   max-height: 52.4664rem;
 }
-
-.glyph-map.collapsed .glyph-map-rows .glyph-map-row:nth-child(n+3) {
-  display: none;
-}
-
 .glyph-map .glyph-map-rows .glyph-map-row {
   padding: 24px 0;
   border-bottom: 1px solid var(--foreground);
 }
-
 .glyph-map .glyph-map-rows .glyph-map-row:first-of-type {
   padding-top: 0;
 }
-
 .glyph-map .glyph-map-rows .glyph-map-row .glyph-map-row-header {
   font-family: "Font Regular";
   font-size: 18px;
   margin-bottom: 8px;
 }
-
 .glyph-map .glyph-map-rows .glyph-map-row .glyph-map-row-content {
   font-size: 50px;
   line-height: 60px;
 }
-
 .glyph-map .show-all-action {
   margin-top: 1.512rem;
 }
-
-.glyph-map.collapsed .show-all-action {
-  display: block;
-}
-
 
 .opentype-features-preview .text-container {
   font-size: 64px;
@@ -2159,7 +2144,7 @@ div.dropdown .react-select__control {
   min-height: auto;
   padding: 8px 7px 7px 12px;
   background-color: var(--background);
-  box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.1);
+  box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.3)
   border-radius: 8px;
   border: none;
 }
@@ -2207,7 +2192,7 @@ div.dropdown .react-select__menu-list {
   padding: 0;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.1);
+  box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.3)
 }
 div.dropdown .react-select__option {
   background-color: var(--background);
