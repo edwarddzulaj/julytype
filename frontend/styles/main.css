@@ -1416,23 +1416,20 @@ footer .pages {
   font-size: 20px;
 }
 .purchase-option .options.radio label {
+  height: 34px;
   font-style: normal;
-  font-weight: 600;
   font-size: 14px;
   line-height: 21px;
   font-weight: 400;
   display: inline-flex;
-  padding: 12px 16px;
-  border-radius: 12px;
+  border-radius: 8px;
   align-items: center;
   border: none;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--foreground);
   background-color: var(--background);
-  padding: 6px 12px;
-  border-radius: 8px;
   outline: 1px solid var(--foreground);
-  padding: 13px 24px;
+  padding: 0px 10px;
 }
 .purchase-option .options.radio label:hover {
   cursor: pointer;
@@ -1509,7 +1506,7 @@ footer .pages {
   line-height: 21px;
   font-weight: 400;
   display: inline-flex;
-  padding: 12px 16px;
+  padding: 10px 14px;
   border-radius: 12px;
   align-items: center;
   border: none;
@@ -1518,9 +1515,10 @@ footer .pages {
   background-color: var(--blue);
   font-weight: 400;
   letter-spacing: 0em;
-  font-size: 18px;
-  line-height: 28.8px;
+  font-size: 16px;
+  line-height: 165%;
 }
+
 .buy-button:hover {
   cursor: pointer;
 }
@@ -1540,16 +1538,17 @@ footer .pages {
 .buy-button:disabled {
   background-color: var(--grey);
 }
-@media (max-width: 1440px) {
+
+/* @media (max-width: 375px) {
   .buy-button {
     font-size: 16px;
-    line-height: 25.6px;
+    line-height: 165%;
   }
-}
-@media (max-width: 375px) {
+} */
+@media (min-width: 1441px) {
   .buy-button {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 18px;
+    line-height: 165%;
   }
 }
 
@@ -1637,7 +1636,7 @@ div:hover > .iconly {
   min-width: 40vw;
   padding: 3.78rem 4.032rem;
   background-color: var(--white);
-  border-radius: 10px;
+  border-radius: 8px;
 }
 .choose-fonts-popup .close-popup {
   position: absolute;
@@ -1844,8 +1843,6 @@ div:hover > .iconly {
   line-height: 21px;
   font-weight: 400;
   display: inline-flex;
-  padding: 12px 16px;
-  border-radius: 12px;
   align-items: center;
   border: none;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
@@ -1893,9 +1890,9 @@ div:hover > .iconly {
   line-height: 21px;
   font-weight: 400;
   height: 34px;
-  border-radius: 10px;
+  border-radius: 8px;
   background: var(--background);
-  box-shadow: 1px 2px 6px 0px rgb(102, 102, 102);
+  box-shadow: 1px 2px 6px 0px rgb(119, 119, 119);
 }
 .font-tester .font-tester-header input[type=radio] {
   display: none;
@@ -2005,7 +2002,7 @@ div:hover > .iconly {
   padding: 10px 16px;
   font-family: "Font Regular";
   font-size: 16px;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid var(--foreground);
 }
 .student-email-verification form .form-row input::-moz-placeholder {
@@ -2024,8 +2021,6 @@ div:hover > .iconly {
   line-height: 21px;
   font-weight: 400;
   display: inline-flex;
-  padding: 12px 16px;
-  border-radius: 12px;
   align-items: center;
   border: none;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
