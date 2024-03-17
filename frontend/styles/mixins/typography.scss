@@ -1,12 +1,12 @@
 @use "./screen.scss" as screen;
 
-@mixin base {
+@mixin _base {
   font-style: normal;
   font-weight: 600;
 }
 
 @mixin heading-1 {
-  @include base();
+  @include _base();
   font-size: 80px;
   line-height: 96px;
 
@@ -22,7 +22,7 @@
 }
 
 @mixin heading-2 {
-  @include base();
+  @include _base();
   font-size: 50px;
   line-height: 60px;
 
@@ -38,7 +38,7 @@
 }
 
 @mixin heading-3 {
-  @include base();
+  @include _base();
   font-size: 34px;
   line-height: 40.8px;
 
@@ -54,7 +54,7 @@
 }
 
 @mixin heading-4 {
-  @include base();
+  @include _base();
   font-size: 24px;
   line-height: 30px;
 
@@ -70,7 +70,7 @@
 }
 
 @mixin heading-5 {
-  @include base();
+  @include _base();
   font-size: 18px;
   line-height: 31.5px;
 
@@ -86,8 +86,45 @@
 }
 
 @mixin heading-6 {
-  @include base();
+  @include _base();
   font-size: 14px;
   line-height: 21px;
   font-weight: 400;
+}
+
+@mixin _body-base {
+  font-weight: 400;
+  letter-spacing: 0em;
+}
+
+@mixin body-big {
+  @include _body-base();
+  font-size: 28px;
+  line-height: 39.2px;
+
+  @include screen.notebook {
+    font-size: 24px;
+    line-height: 36px;
+  }
+
+  @include screen.mobile {
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
+
+@mixin body {
+  @include _body-base();
+  font-size: 18px;
+  line-height: 28.8px;
+
+  @include screen.notebook {
+    font-size: 16px;
+    line-height: 25.6px;
+  }
+
+  @include screen.mobile {
+    font-size: 16px;
+    line-height: 24px;
+  }
 }

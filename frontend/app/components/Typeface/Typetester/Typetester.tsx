@@ -22,6 +22,8 @@ import { ScriptChoiceContext } from "@/app/providers";
 
 const MIN_FONT_SIZE = 12;
 const MAX_FONT_SIZE = 250;
+const TABLET_BREAKPOINT = 780;
+const DESKTOP_BREAKPOINT = 1920;
 
 export default function Typetester({
   fontsData = [
@@ -95,10 +97,10 @@ export default function Typetester({
   }, [script]);
 
   useEffect(() => {
-    setIsMobileView(window && window.innerWidth <= 840);
+    setIsMobileView(window && window.innerWidth <= TABLET_BREAKPOINT);
 
     window.addEventListener("resize", () => {
-      setIsMobileView(window.innerWidth <= 840);
+      setIsMobileView(window.innerWidth <= TABLET_BREAKPOINT);
     });
   }, []);
 
@@ -423,7 +425,7 @@ const countMaxLabelLength = (options: any) => {
 
 const adaptSizeToViewport = (sizeNum: number) => {
   if (!window) return `${sizeNum}px`;
-  const isLargestScreen = window.innerWidth > 2200;
+  const isLargestScreen = window.innerWidth > DESKTOP_BREAKPOINT;
   const adaptedSize = (sizeNum / window.innerWidth) * 100;
   const adaptedSizeInVW = `${adaptedSize}vw`;
   const adaptedSizeInPixels = `${sizeNum}px`;

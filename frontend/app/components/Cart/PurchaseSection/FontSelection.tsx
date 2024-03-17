@@ -129,7 +129,7 @@ export default function FontSelection({
     <article className="font-selection">
       <form>
         <div>
-          <h6>Buy the whole family</h6>
+          <p>Buy the whole family</p>
           <div className="typeface-package">
             <div className="typeface-details">
               <div className="checkbox-option">
@@ -141,10 +141,10 @@ export default function FontSelection({
                 />
                 <label>{title} Family Complete Pack</label>
               </div>
-              <div className="styles-and-weights">
+              <p className="styles-and-weights">
                 Includes {pluralize(numStyles, "Style")} • {pluralize(numWeights, "Weight")}:{" "}
                 {allWeights.join(", ")} {variableFont && `and ${title} Variable`}
-              </div>
+              </p>
             </div>
             <div className="typeface-price">
               <BuyingPrice
@@ -225,9 +225,7 @@ export default function FontSelection({
                   <label>{title} Variable</label>
                 </div>
                 {numStyles > 1 && (
-                  <div className="styles-and-weights">
-                    Includes variable weights and optical sizing
-                  </div>
+                  <p className="styles-and-weights">Includes variable weights and optical sizing</p>
                 )}
               </div>
               <BuyingPrice

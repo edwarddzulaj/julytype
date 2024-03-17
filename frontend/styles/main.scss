@@ -295,7 +295,7 @@ nav {
       .fixed-controls {
         position: fixed;
         top: $gutter-h * 9.2;
-        left: $gutter-v * 2;
+        left: var(--margin);
         z-index: 1111;
         display: flex;
         flex-direction: column;
@@ -304,10 +304,6 @@ nav {
         .choose-script {
           position: relative;
           width: fit-content;
-
-          h6 {
-            font-size: 14px;
-          }
 
           .buttons {
             display: flex;
@@ -322,17 +318,6 @@ nav {
                 border-radius: 8px;
               }
             }
-          }
-        }
-
-        .choose-weight {
-          h6 {
-            font-size: 14px;
-          }
-
-          ul > li {
-            font-size: 24px;
-            line-height: 30px;
           }
         }
       }
@@ -930,7 +915,7 @@ footer {
 
   &.no-indent {
     .section-wrapper {
-      margin-top: $gutter-h;
+      margin-top: 32px;
     }
   }
 
@@ -982,6 +967,8 @@ footer {
         }
 
         .typeface-package {
+          margin-top: $gutter-h;
+
           display: flex;
 
           .typeface-details {
@@ -993,7 +980,7 @@ footer {
             }
 
             .styles-and-weights {
-              max-width: 720px;
+              max-width: 900px;
               margin-top: 8px;
               padding-left: 25px;
             }
@@ -1017,7 +1004,7 @@ footer {
       .weights-packages {
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 8px;
 
         .weight-details {
           display: flex;
@@ -1130,13 +1117,11 @@ footer {
 }
 
 .styles-selector {
-  h6 {
-    font-size: 14px;
-  }
-
   .styles {
     display: flex;
     flex-direction: row;
+    margin-top: 4px;
+    font-size: 18px;
     gap: 20px;
 
     .style {
@@ -1152,7 +1137,7 @@ footer {
 }
 
 .quick-buttons {
-  width: calc(100% - #{$gutter-v} * 4);
+  width: calc(100% - var(--margin) * 2);
   position: fixed;
   display: flex;
   justify-content: space-between;
@@ -1160,8 +1145,8 @@ footer {
   pointer-events: none;
 
   &.with-background {
-    width: calc(100% - #{$gutter-v} * 4);
-    padding: $gutter-h * 2 $gutter-v * 2 $gutter-thin-h;
+    width: calc(100% - var(--margin) * 2);
+    padding: $gutter-h * 2 var(--margin) $gutter-thin-h;
     top: $nav-offset + $gutter-h;
     left: 0;
     border-bottom: 1px solid #e4e4e4;
@@ -1187,7 +1172,8 @@ footer {
 }
 
 .buy-button {
-  @include buttons.primary();
+  @include buttons.primary;
+  @include typography.body;
 }
 
 .buying-price {
@@ -1200,7 +1186,7 @@ footer {
   }
 
   .discount-old-price {
-    @include typography.heading-5();
+    @include typography.heading-5;
     font-weight: normal;
     text-decoration: line-through;
     color: var(--grey);
@@ -1215,6 +1201,17 @@ footer {
   .discount-old-price {
     text-align: right;
     line-height: 24px;
+  }
+}
+
+.choose-weight {
+  margin-top: $gutter-h * 2;
+
+  ul > li {
+    margin-top: 8px;
+    font-size: 18px;
+    line-height: 18px;
+    text-align: left;
   }
 }
 
@@ -1291,7 +1288,7 @@ div:hover > .iconly {
 .supported-languages {
   article {
     &:not(:first-of-type) {
-      margin-top: $gutter-h * 2;
+      margin-top: 24px;
     }
 
     h6 {
@@ -1304,7 +1301,7 @@ div:hover > .iconly {
       margin-top: $gutter-thin-h;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: $gutter-h;
+      gap: 8px;
 
       @include screen.tablet {
         grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
@@ -1371,11 +1368,16 @@ div:hover > .iconly {
       line-height: 0;
 
       label {
-        font-size: 20px;
+        font-size: 25px;
         line-height: 0;
         opacity: 0.5;
         transition: opacity $duration-s ease-in-out;
         user-select: none;
+
+        .iconly {
+          padding: 5px 2px;
+          font-size: 25px;
+        }
 
         &.active {
           opacity: 1;
@@ -1411,8 +1413,8 @@ div:hover > .iconly {
     }
 
     .typetester-button {
-      height: 36px;
-      font-size: 14px;
+      @include typography.heading-6;
+      height: 34px;
       border-radius: 10px;
       background: var(--background);
       box-shadow: 1px 2px 6px 0px rgba(102, 102, 102);
@@ -1492,6 +1494,8 @@ div:hover > .iconly {
 
 .opentype-features-preview {
   .text-container {
+    font-size: 64px;
+    line-height: 78px;
     color: var(--grey);
 
     span.active {
@@ -1557,6 +1561,7 @@ div:hover > .iconly {
 
       button[type="submit"] {
         @include buttons.tertiary;
+        height: 36px;
       }
     }
 
@@ -1650,11 +1655,10 @@ div.dropdown {
   label.title {
     display: flex;
     justify-content: space-between;
-    padding: 12px 10px 2px;
+    padding: 8px 10px 3px;
 
     .dropdown-control {
       span {
-        top: -2px;
         position: relative;
         font-size: 18px;
         user-select: none;
@@ -1743,13 +1747,18 @@ div.dropdown {
     top: -3px;
   }
 
-  p {
+  h6 {
     display: inline-block;
     margin-left: 24px;
   }
 
   &.link {
-    text-decoration: underline;
+    .iconly {
+      top: -5px;
+    }
+    h6 {
+      text-decoration: underline;
+    }
   }
 
   &.warning {
@@ -1855,6 +1864,7 @@ b {
 p {
   width: 100%;
   display: inline-block;
+  @include typography.body;
 }
 
 p + p {

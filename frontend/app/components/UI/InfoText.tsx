@@ -14,13 +14,13 @@ export default function InfoText({
       {info?.url && (
         <Link href={info?.url} className="info-text link" {...attributes}>
           <Iconly icon={icons.info} />
-          <p>{info.text}</p>
+          <h6>{info.text}</h6>
         </Link>
       )}
       {info?.text && !info?.url && (
         <div className="info-text" {...attributes}>
           <Iconly icon={icons.info} />
-          <p>{info.text}</p>
+          <h6>{info.text}</h6>
         </div>
       )}
     </>

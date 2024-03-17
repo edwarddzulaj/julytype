@@ -5,7 +5,6 @@ import PurchaseOption from "../../Cart/PurchaseSection/PurchaseOption";
 import { useEffect, useRef, useState } from "react";
 
 export default function OpentypeFeaturesPreview({ fontFamilyTitle }: { fontFamilyTitle?: string }) {
-  const TEXT_SIZE = 64;
   const textRef = useRef<HTMLDivElement>(null);
   const [selectedOption, setSelectedOption] = useState<string[]>([]);
   const showSmallCapsOption = fontFamilyTitle?.toLowerCase().includes("peleton");
@@ -53,7 +52,7 @@ export default function OpentypeFeaturesPreview({ fontFamilyTitle }: { fontFamil
         className="text-container"
         ref={textRef}
         dangerouslySetInnerHTML={{ __html: BASE_TEXT }}
-        style={{ fontFamily: fontFamilyTitle, fontSize: `${TEXT_SIZE}px` }}
+        style={{ fontFamily: fontFamilyTitle }}
       />
     </div>
   );

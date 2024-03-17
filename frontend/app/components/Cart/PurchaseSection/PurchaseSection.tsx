@@ -149,7 +149,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
     <section className="purchase-section">
       <div className="license-options">
         <div>
-          <h5>License Type</h5>
+          <h4>License Type</h4>
           <PurchaseOption
             config={licenseOptions}
             optionType="checkbox"
@@ -161,7 +161,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
           />
         </div>
         <div>
-          <h5>Company Size</h5>
+          <h4>Company Size</h4>
           <PurchaseOption
             config={companySizeOptions}
             selectedOption={purchaseDetails.companySize}
@@ -171,7 +171,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
           />
         </div>
         <div>
-          <h5>Discount</h5>
+          <h4>Discount</h4>
           <div>
             <PurchaseOption
               config={discountOptions}
@@ -189,7 +189,7 @@ export default function PurchaseSection({ typeface }: { typeface: Typeface }) {
         </div>
       </div>
       <div id="font-selection-options" className="font-selection-options">
-        <h5>Choose weights and styles</h5>
+        <h4>Choose weights and styles</h4>
         <FontSelection
           typeface={typeface}
           selectedItems={selectedItems}

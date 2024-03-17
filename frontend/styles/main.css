@@ -512,7 +512,7 @@ nav a {
 .wrapper .container.typeface .fixed-controls {
   position: fixed;
   top: 13.9104rem;
-  left: 4.032rem;
+  left: var(--margin);
   z-index: 1111;
   display: flex;
   flex-direction: column;
@@ -523,24 +523,21 @@ nav a {
   width: -moz-fit-content;
   width: fit-content;
 }
-.wrapper .container.typeface .fixed-controls .choose-script h6 {
-  font-size: 14px;
-}
 .wrapper .container.typeface .fixed-controls .choose-script .buttons {
   display: flex;
   gap: 8px;
 }
 .wrapper .container.typeface .fixed-controls .choose-script .buttons button {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
   display: inline-flex;
-  padding: 14px 16px;
+  padding: 12px 16px;
   border-radius: 12px;
   align-items: center;
-  flex-shrink: 0;
   border: none;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--foreground);
   background-color: var(--background);
@@ -569,16 +566,16 @@ nav a {
   color: var(--grey);
 }
 .wrapper .container.typeface .fixed-controls .choose-script .buttons button.active {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
   display: inline-flex;
-  padding: 14px 16px;
+  padding: 12px 16px;
   border-radius: 12px;
   align-items: center;
-  flex-shrink: 0;
   border: none;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--white);
   background-color: var(--blue);
@@ -607,13 +604,6 @@ nav a {
 }
 .wrapper .container.typeface .fixed-controls .choose-script .buttons button.active:active {
   background-color: var(--black);
-}
-.wrapper .container.typeface .fixed-controls .choose-weight h6 {
-  font-size: 14px;
-}
-.wrapper .container.typeface .fixed-controls .choose-weight ul > li {
-  font-size: 24px;
-  line-height: 30px;
 }
 .wrapper .container.typeface .main-section:first-of-type h3 {
   opacity: 0;
@@ -658,16 +648,16 @@ nav a {
 }
 .wrapper .container.typeface .download a {
   margin-top: 1.512rem;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
   display: inline-flex;
-  padding: 14px 16px;
+  padding: 12px 16px;
   border-radius: 12px;
   align-items: center;
-  flex-shrink: 0;
   border: none;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--foreground);
   background-color: var(--background);
@@ -715,16 +705,16 @@ nav a {
   flex-wrap: wrap;
 }
 .wrapper .container.page .main-section .section-wrapper .download-trial-fonts .download-all {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
   display: inline-flex;
-  padding: 14px 16px;
+  padding: 12px 16px;
   border-radius: 12px;
   align-items: center;
-  flex-shrink: 0;
   border: none;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--white);
   background-color: var(--blue);
@@ -753,16 +743,16 @@ nav a {
   font-size: 24px;
 }
 .wrapper .container.page .main-section .section-wrapper .download-trial-fonts .download-some {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
   display: inline-flex;
-  padding: 14px 16px;
+  padding: 12px 16px;
   border-radius: 12px;
   align-items: center;
-  flex-shrink: 0;
   border: none;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--foreground);
   background-color: var(--background);
@@ -791,16 +781,16 @@ nav a {
   margin-top: 6.048rem;
 }
 .wrapper .container.page .back-home {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
   display: inline-flex;
-  padding: 14px 16px;
+  padding: 12px 16px;
   border-radius: 12px;
   align-items: center;
-  flex-shrink: 0;
   border: none;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--white);
   background-color: var(--blue);
@@ -962,16 +952,16 @@ nav a {
   flex-shrink: 0;
 }
 .wrapper .container.page.cart .cart-footer .actions :last-child {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
   display: inline-flex;
-  padding: 14px 16px;
+  padding: 12px 16px;
   border-radius: 12px;
   align-items: center;
-  flex-shrink: 0;
   border: none;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--white);
   background-color: var(--blue);
@@ -1233,7 +1223,7 @@ footer .pages {
   display: grid;
 }
 .main-section.no-indent .section-wrapper {
-  margin-top: 1.512rem;
+  margin-top: 32px;
 }
 @media (max-width: 1920px) {
   .main-section:not(.no-indent) {
@@ -1268,6 +1258,7 @@ footer .pages {
   margin-bottom: 0.9072rem;
 }
 .purchase-section .font-selection form div .typeface-package {
+  margin-top: 1.512rem;
   display: flex;
 }
 .purchase-section .font-selection form div .typeface-package .typeface-details {
@@ -1278,7 +1269,7 @@ footer .pages {
   font-weight: 700;
 }
 .purchase-section .font-selection form div .typeface-package .typeface-details .styles-and-weights {
-  max-width: 720px;
+  max-width: 900px;
   margin-top: 8px;
   padding-left: 25px;
 }
@@ -1298,7 +1289,7 @@ footer .pages {
 .purchase-section .font-selection form .weights-packages {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 .purchase-section .font-selection form .weights-packages .weight-details {
   display: flex;
@@ -1349,16 +1340,16 @@ footer .pages {
   }
 }
 .purchase-section .checkout-action .cart-link {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
   display: inline-flex;
-  padding: 14px 16px;
+  padding: 12px 16px;
   border-radius: 12px;
   align-items: center;
-  flex-shrink: 0;
   border: none;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--white);
   background-color: var(--blue);
@@ -1414,16 +1405,16 @@ footer .pages {
   font-size: 20px;
 }
 .purchase-option .options.radio label {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
   display: inline-flex;
-  padding: 14px 16px;
+  padding: 12px 16px;
   border-radius: 12px;
   align-items: center;
-  flex-shrink: 0;
   border: none;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--foreground);
   background-color: var(--background);
@@ -1453,12 +1444,11 @@ footer .pages {
   color: var(--grey);
 }
 
-.styles-selector h6 {
-  font-size: 14px;
-}
 .styles-selector .styles {
   display: flex;
   flex-direction: row;
+  margin-top: 4px;
+  font-size: 18px;
   gap: 20px;
 }
 .styles-selector .styles .style.active {
@@ -1469,7 +1459,7 @@ footer .pages {
 }
 
 .quick-buttons {
-  width: calc(100% - 2.016rem * 4);
+  width: calc(100% - var(--margin) * 2);
   position: fixed;
   display: flex;
   justify-content: space-between;
@@ -1477,8 +1467,8 @@ footer .pages {
   pointer-events: none;
 }
 .quick-buttons.with-background {
-  width: calc(100% - 2.016rem * 4);
-  padding: 3.024rem 4.032rem 0.9072rem;
+  width: calc(100% - var(--margin) * 2);
+  padding: 3.024rem var(--margin) 0.9072rem;
   top: 3.6288rem;
   left: 0;
   border-bottom: 1px solid #e4e4e4;
@@ -1502,19 +1492,23 @@ footer .pages {
 }
 
 .buy-button {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
   display: inline-flex;
-  padding: 14px 16px;
+  padding: 12px 16px;
   border-radius: 12px;
   align-items: center;
-  flex-shrink: 0;
   border: none;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--white);
   background-color: var(--blue);
+  font-weight: 400;
+  letter-spacing: 0em;
+  font-size: 18px;
+  line-height: 28.8px;
 }
 .buy-button:hover {
   cursor: pointer;
@@ -1534,6 +1528,18 @@ footer .pages {
 }
 .buy-button:disabled {
   background-color: var(--grey);
+}
+@media (max-width: 1440px) {
+  .buy-button {
+    font-size: 16px;
+    line-height: 25.6px;
+  }
+}
+@media (max-width: 375px) {
+  .buy-button {
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
 
 .buying-price {
@@ -1590,6 +1596,16 @@ footer .pages {
   line-height: 24px;
 }
 
+.choose-weight {
+  margin-top: 3.024rem;
+}
+.choose-weight ul > li {
+  margin-top: 8px;
+  font-size: 18px;
+  line-height: 18px;
+  text-align: left;
+}
+
 div:hover > .iconly {
   display: inline;
   text-decoration: none;
@@ -1644,16 +1660,16 @@ div:hover > .iconly {
   gap: 10px;
 }
 .choose-fonts-popup .actions .download-all {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
   display: inline-flex;
-  padding: 14px 16px;
+  padding: 12px 16px;
   border-radius: 12px;
   align-items: center;
-  flex-shrink: 0;
   border: none;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--white);
   background-color: var(--blue);
@@ -1678,16 +1694,16 @@ div:hover > .iconly {
   background-color: var(--grey);
 }
 .choose-fonts-popup .actions .download-later {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
   display: inline-flex;
-  padding: 14px 16px;
+  padding: 12px 16px;
   border-radius: 12px;
   align-items: center;
-  flex-shrink: 0;
   border: none;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--foreground);
   background-color: var(--background);
@@ -1714,7 +1730,7 @@ div:hover > .iconly {
 }
 
 .supported-languages article:not(:first-of-type) {
-  margin-top: 3.024rem;
+  margin-top: 24px;
 }
 .supported-languages article h6 {
   font-weight: 600;
@@ -1725,7 +1741,7 @@ div:hover > .iconly {
   margin-top: 0.9072rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.512rem;
+  gap: 8px;
 }
 @media (max-width: 780px) {
   .supported-languages article .languages {
@@ -1784,13 +1800,18 @@ div:hover > .iconly {
 }
 .font-tester .font-tester-header .alignment label,
 .font-tester .font-tester-header .columns label {
-  font-size: 20px;
+  font-size: 25px;
   line-height: 0;
   opacity: 0.5;
   transition: opacity 0.3s ease-in-out;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+}
+.font-tester .font-tester-header .alignment label .iconly,
+.font-tester .font-tester-header .columns label .iconly {
+  padding: 5px 2px;
+  font-size: 25px;
 }
 .font-tester .font-tester-header .alignment label.active,
 .font-tester .font-tester-header .columns label.active {
@@ -1806,16 +1827,16 @@ div:hover > .iconly {
   box-shadow: 1px 1px 6px 0px rgba(0, 139, 248, 0.6) !important;
 }
 .font-tester .font-tester-header .edit-text .edit-button {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
   display: inline-flex;
-  padding: 14px 16px;
+  padding: 12px 16px;
   border-radius: 12px;
   align-items: center;
-  flex-shrink: 0;
   border: none;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--foreground);
   background-color: var(--background);
@@ -1855,8 +1876,12 @@ div:hover > .iconly {
   background-color: var(--foreground);
 }
 .font-tester .font-tester-header .typetester-button {
-  height: 36px;
+  font-style: normal;
+  font-weight: 600;
   font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
+  height: 34px;
   border-radius: 10px;
   background: var(--background);
   box-shadow: 1px 2px 6px 0px rgb(102, 102, 102);
@@ -1920,6 +1945,8 @@ div:hover > .iconly {
 }
 
 .opentype-features-preview .text-container {
+  font-size: 64px;
+  line-height: 78px;
   color: var(--grey);
 }
 .opentype-features-preview .text-container span.active {
@@ -1974,22 +2001,23 @@ div:hover > .iconly {
   width: 320px;
 }
 .student-email-verification form .form-row button[type=submit] {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
   display: inline-flex;
-  padding: 14px 16px;
+  padding: 12px 16px;
   border-radius: 12px;
   align-items: center;
-  flex-shrink: 0;
   border: none;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--foreground);
   background-color: var(--background);
   padding: 6px 12px;
   border-radius: 8px;
   outline: 1px solid var(--foreground);
+  height: 36px;
 }
 .student-email-verification form .form-row button[type=submit]:hover {
   cursor: pointer;
@@ -2086,7 +2114,9 @@ div.dropdown {
   background-color: var(--background);
 }
 div.dropdown .react-select__control {
-  padding: 10px 7px 7px 12px;
+  height: 34px;
+  min-height: auto;
+  padding: 8px 7px 7px 12px;
   background-color: var(--background);
   box-shadow: 1px 2px 6px 0px rgba(0, 0, 0, 0.4);
   border-radius: 8px;
@@ -2161,10 +2191,9 @@ div.dropdown .react-select__option:hover {
 .checkbox-dropdown label.title {
   display: flex;
   justify-content: space-between;
-  padding: 12px 10px 2px;
+  padding: 8px 10px 3px;
 }
 .checkbox-dropdown label.title .dropdown-control span {
-  top: -2px;
   position: relative;
   font-size: 18px;
   -webkit-user-select: none;
@@ -2243,11 +2272,14 @@ div.dropdown .react-select__option:hover {
   padding: 0;
   top: -3px;
 }
-.info-text p {
+.info-text h6 {
   display: inline-block;
   margin-left: 24px;
 }
-.info-text.link {
+.info-text.link .iconly {
+  top: -5px;
+}
+.info-text.link h6 {
   text-decoration: underline;
 }
 .info-text.warning {
@@ -2428,6 +2460,22 @@ b {
 p {
   width: 100%;
   display: inline-block;
+  font-weight: 400;
+  letter-spacing: 0em;
+  font-size: 18px;
+  line-height: 28.8px;
+}
+@media (max-width: 1440px) {
+  p {
+    font-size: 16px;
+    line-height: 25.6px;
+  }
+}
+@media (max-width: 375px) {
+  p {
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
 
 p + p {

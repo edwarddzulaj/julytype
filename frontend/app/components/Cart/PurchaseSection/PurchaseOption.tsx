@@ -54,7 +54,7 @@ export default function PurchaseOption({
   return (
     <article className="purchase-option">
       <div>
-        {subtitle && <h6>{subtitle}</h6>}
+        {subtitle && <p>{subtitle}</p>}
         <div className={`options ${optionType}`}>
           <form>
             {options.map((option) => (
