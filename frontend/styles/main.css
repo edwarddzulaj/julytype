@@ -1894,7 +1894,7 @@ div:hover > .iconly {
   height: 34px;
   border-radius: 8px;
   background: var(--background);
-  box-shadow: 1px 2px 6px 0px rgb(119, 119, 119);
+  box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.1)
 }
 .font-tester .font-tester-header input[type=radio] {
   display: none;
@@ -2132,7 +2132,7 @@ div.dropdown .react-select__control {
   min-height: auto;
   padding: 8px 7px 7px 12px;
   background-color: var(--background);
-  box-shadow: 1px 2px 6px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.1);
   border-radius: 8px;
   border: none;
 }
@@ -2180,7 +2180,7 @@ div.dropdown .react-select__menu-list {
   padding: 0;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  box-shadow: 1px 2px 6px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.1);
 }
 div.dropdown .react-select__option {
   background-color: var(--background);
