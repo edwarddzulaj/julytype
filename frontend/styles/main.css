@@ -1416,10 +1416,10 @@ footer .pages {
   font-size: 20px;
 }
 .purchase-option .options.radio label {
-  height: 34px;
+  height: 50px;
   font-style: normal;
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 20px;
+  line-height: 120%;
   font-weight: 400;
   display: inline-flex;
   border-radius: 8px;
@@ -1429,8 +1429,20 @@ footer .pages {
   color: var(--foreground);
   background-color: var(--background);
   outline: 1px solid var(--foreground);
-  padding: 0px 10px;
+  padding: 0px 24px;
 }
+
+.opentype-features-preview .purchase-option .options[type="radio"] {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  font-weight: 400;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--background);
+} 
+/* open type feature buttons to have typetester button style without shadow */
+
 .purchase-option .options.radio label:hover {
   cursor: pointer;
 }
