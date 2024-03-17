@@ -716,7 +716,7 @@ nav a {
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
-  line-height: 21px;
+  line-height: 150%;
   font-weight: 400;
   display: inline-flex;
   padding: 12px 16px;
@@ -754,7 +754,7 @@ nav a {
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
-  line-height: 21px;
+  line-height: 150%;
   font-weight: 400;
   display: inline-flex;
   padding: 12px 16px;
@@ -792,7 +792,7 @@ nav a {
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
-  line-height: 21px;
+  line-height: 150%;
   font-weight: 400;
   display: inline-flex;
   padding: 12px 16px;
@@ -845,7 +845,7 @@ nav a {
   margin: 40px 0;
 }
 .wrapper .container.page p {
-  line-height: 24px;
+  line-height: 165%;
 }
 .wrapper .container.page.cart {
   font-size: 16px;
@@ -963,7 +963,7 @@ nav a {
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
-  line-height: 21px;
+  line-height: 150%;
   font-weight: 400;
   display: inline-flex;
   padding: 12px 16px;
@@ -1354,7 +1354,7 @@ footer .pages {
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
-  line-height: 21px;
+  line-height: 150%;
   font-weight: 400;
   display: inline-flex;
   padding: 12px 16px;
@@ -1505,7 +1505,7 @@ footer .pages {
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
-  line-height: 21px;
+  line-height: 150%;
   font-weight: 400;
   display: inline-flex;
   padding: 10px 14px;
@@ -1566,7 +1566,7 @@ footer .pages {
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
-  line-height: 31.5px;
+  line-height: 175%;
   font-weight: normal;
   text-decoration: line-through;
   color: var(--grey);
@@ -1574,32 +1574,32 @@ footer .pages {
 @media (max-width: 1440px) {
   .buying-price .discount-old-price {
     font-size: 16px;
-    line-height: 26.4px;
+    line-height: 165%;
   }
 }
 @media (max-width: 375px) {
   .buying-price .discount-old-price {
     font-size: 16px;
-    line-height: 20px;
+    line-height: 165%;
   }
 }
 .buying-price .price {
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
-  line-height: 31.5px;
+  line-height: 175%;
   font-weight: normal;
 }
 @media (max-width: 1440px) {
   .buying-price .price {
     font-size: 16px;
-    line-height: 26.4px;
+    line-height: 165%;
   }
 }
 @media (max-width: 375px) {
   .buying-price .price {
     font-size: 16px;
-    line-height: 20px;
+    line-height: 165%;
   }
 }
 .buying-price .price,
@@ -1675,7 +1675,7 @@ div:hover > .iconly {
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
-  line-height: 21px;
+  line-height: 150%;
   font-weight: 400;
   display: inline-flex;
   padding: 12px 16px;
@@ -1709,7 +1709,7 @@ div:hover > .iconly {
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
-  line-height: 21px;
+  line-height: 150%;
   font-weight: 400;
   display: inline-flex;
   padding: 12px 16px;
@@ -1844,7 +1844,7 @@ div:hover > .iconly {
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
-  line-height: 21px;
+  line-height: 150%;
   font-weight: 400;
   display: inline-flex;
   align-items: center;
@@ -1891,7 +1891,7 @@ div:hover > .iconly {
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
-  line-height: 21px;
+  line-height: 150%;
   font-weight: 400;
   height: 34px;
   border-radius: 8px;
@@ -2022,7 +2022,7 @@ div:hover > .iconly {
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
-  line-height: 21px;
+  line-height: 150%;
   font-weight: 400;
   display: inline-flex;
   align-items: center;
@@ -2479,18 +2479,18 @@ p {
   font-weight: 400;
   letter-spacing: 0em;
   font-size: 18px;
-  line-height: 28.8px;
+  line-height: 175%;
 }
 @media (max-width: 1440px) {
   p {
     font-size: 16px;
-    line-height: 25.6px;
+    line-height: 165%;
   }
 }
 @media (max-width: 375px) {
   p {
     font-size: 16px;
-    line-height: 24px;
+    line-height: 165%;
   }
 }
 
