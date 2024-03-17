@@ -1932,7 +1932,7 @@ div:hover > .iconly {
   max-height: -moz-fit-content;
   max-height: fit-content;
 }
-.glyph-map.collapsed .glyph-map-rows {
+.glyph-map-rows collapsed {
   /* max-height: 52.4664rem; */
   max-height: calc(3 * (24px + 1px)); 
 }
