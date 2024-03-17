@@ -1416,9 +1416,9 @@ footer .pages {
   font-size: 20px;
 }
 .purchase-option .options.radio label {
-  height: 50px;
+  height: 48px;
   font-style: normal;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 120%;
   font-weight: 400;
   display: inline-flex;
