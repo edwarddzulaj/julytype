@@ -51,7 +51,7 @@ www.nedkamburov.com
 $background-color: var(--background);
 $color: var(--foreground);
 
-$font-size: 1.6rem;
+$font-size: 1.4rem;
 $line-height: 1.2;
 
 $gutter-v: $font-size * $line-height * 1.2;
@@ -98,22 +98,29 @@ $mobile-breakpoint: 840px;
 }
 
 html {
+  --margin: 100px;
   width: 100%;
   scroll-behavior: smooth;
 
   // Responsiveness
-  @media (max-width: 480px) {
-    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
-    font-size: 7px;
+  @include screen.desktop {
+    font-size: 10px;
   }
 
-  @media (max-width: 680px) {
-    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+  @include screen.notebook {
+    --margin: 60px;
+    font-size: 9px;
+  }
+
+  @include screen.tablet {
+    --margin: 24px;
     font-size: 8px;
   }
 
-  @media (max-width: 900px) {
-    font-size: 10px;
+  @include screen.mobile {
+    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+    --margin: 24px;
+    font-size: 7px;
   }
 }
 
@@ -168,8 +175,8 @@ textarea {
 nav {
   min-height: $nav-offset;
   position: fixed;
-  width: calc(100vw - #{$gutter-v} * 8);
-  padding: $gutter-h $gutter-v * 4 $gutter-thin-h;
+  width: calc(100vw - var(--margin) * 2);
+  padding: $gutter-h var(--margin) $gutter-thin-h;
   display: flex;
   gap: $gutter-v * 3;
   background-color: var(--black);
@@ -221,9 +228,9 @@ nav {
 
 .wrapper {
   position: relative;
-  max-width: calc(100vw - ($gutter-v * 2) * 2);
+  max-width: calc(100vw - var(--margin) * 2);
   min-height: calc(100vh - #{$nav-offset} * 8);
-  padding: $nav-offset * 3 $gutter-v * 2;
+  padding: $nav-offset * 3 var(--margin);
   overflow-x: hidden;
 
   .container {
@@ -443,7 +450,7 @@ nav {
         padding-bottom: $gutter-h * 3;
       }
 
-      @media (max-width: $mobile-breakpoint) {
+      @include screen.tablet {
         h2 {
           padding-top: $gutter-thin-h * 2;
           padding-bottom: $gutter-thin-h * 3;
@@ -628,7 +635,7 @@ nav {
 }
 
 footer {
-  padding: $gutter-h 100px;
+  padding: $gutter-h var(--margin);
   background-color: var(--black);
   color: var(--white);
   border-top: 1px solid var(--white);
@@ -643,10 +650,10 @@ footer {
   }
 }
 
-@media (max-width: $mobile-breakpoint) {
+@include screen.tablet {
   nav {
-    width: calc(100vw - #{$gutter-thin-v} * 4);
-    padding: $gutter-h $gutter-thin-v * 2 $gutter-thin-h;
+    width: calc(100vw - var(--margin) * 2);
+    padding: $gutter-h var(--margin) $gutter-thin-h;
     justify-content: space-between;
 
     .inner-nav {
@@ -928,7 +935,7 @@ footer {
   }
 
   // Center the content on really big screens
-  @media (min-width: 1800px) {
+  @include screen.desktop {
     &:not(.no-indent) {
       grid-template-columns: minmax(100px, 300px) 3fr minmax(100px, 300px) !important;
 
@@ -948,7 +955,7 @@ footer {
     }
   }
 
-  @media (max-width: $mobile-breakpoint) {
+  @include screen.tablet {
     grid-template-columns: 1fr !important;
     gap: 0 !important;
 
@@ -996,7 +1003,7 @@ footer {
             flex-shrink: 0;
           }
 
-          @media (max-width: $mobile-breakpoint) {
+          @include screen.tablet {
             flex-direction: column;
             .typeface-price {
               margin-top: $gutter-thin-h;
@@ -1035,7 +1042,7 @@ footer {
       margin-top: $gutter-h * 2;
     }
 
-    @media (max-width: $mobile-breakpoint) {
+    @include screen.tablet {
       grid-template-columns: 1fr;
       gap: $gutter-thin-h;
     }
@@ -1060,7 +1067,7 @@ footer {
       .vat-disclaimer {
         text-align: right;
 
-        @media (max-width: $mobile-breakpoint) {
+        @include screen.tablet {
           text-align: initial;
         }
       }
@@ -1165,7 +1172,7 @@ footer {
     pointer-events: all;
   }
 
-  @media (max-width: $mobile-breakpoint) {
+  @include screen.tablet {
     width: calc(100% - #{$gutter-thin-v} * 4);
   }
 }
@@ -1299,7 +1306,7 @@ div:hover > .iconly {
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: $gutter-h;
 
-      @media (max-width: $mobile-breakpoint) {
+      @include screen.tablet {
         grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
       }
 
@@ -1326,7 +1333,7 @@ div:hover > .iconly {
     flex-wrap: wrap;
     gap: 12px;
 
-    @media (max-width: $mobile-breakpoint) {
+    @include screen.tablet {
       position: relative !important;
       justify-content: initial !important;
 
@@ -1765,7 +1772,7 @@ div.dropdown {
   min-width: 420px;
   min-height: 300px;
 
-  @media (max-width: $mobile-breakpoint) {
+  @include screen.tablet {
     min-width: 330px;
     min-height: 200px;
   }
@@ -1832,7 +1839,6 @@ ol {
 }
 
 em {
-  // font-family: "Font Regular 2 Italic";
   font-weight: inherit;
   font-style: italic;
 }
