@@ -1235,7 +1235,7 @@ footer .pages {
 }
 @media (max-width: 1920px) {
   .main-section:not(.no-indent) {
-    grid-template-columns: minmax(100px, 300px) 3fr minmax(100px, 300px);
+    grid-template-columns: 2fr 8fr 2fr;
   }
   .main-section:not(.no-indent) .section-wrapper section {
     max-width: 1480px;
@@ -1254,6 +1254,9 @@ footer .pages {
   }
   .main-section .section-wrapper section {
     padding-top: 0 !important;
+  }
+  .wrapper .container.typeface .main-section .about-section .markdown-text {
+    grid-template-columns: 1fr !important;
   }
 }
 
@@ -1456,7 +1459,7 @@ footer .pages {
   display: flex;
   flex-direction: row;
   margin-top: 4px;
-  font-size: 18px;
+  font-size: 16px;
   gap: 20px;
 }
 .styles-selector .styles .style.active {
@@ -2425,7 +2428,7 @@ h6 {
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
-  line-height: 21px;
+  line-height: 24px;
   font-weight: 400;
 }
 
