@@ -931,7 +931,7 @@ footer {
   // Center the content on really big screens
   @include screen.desktop {
     &:not(.no-indent) {
-      grid-template-columns: minmax(100px, 300px) 3fr minmax(100px, 300px);
+      grid-template-columns: minmax(100px, 300px) 3fr minmax(100px, 300px) !important;
 
       .section-wrapper {
         section {
@@ -1506,11 +1506,6 @@ div:hover > .iconly {
     font-size: 64px;
     line-height: 78px;
     color: var(--grey);
-
-    @include screen.tablet {
-      font-size: 42px;
-      line-height: 52px;
-    }
 
     span.active {
       color: var(--foreground);

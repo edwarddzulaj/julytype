@@ -25,15 +25,16 @@ export default function StyleWeights({ styles }: { styles: Style[] }) {
         };
 
         return (
-          <div key={weight.id}>
+          <>
             {chosenStyle.title !== "Typeface Title" && (
               <Typetester
+                key={weight.id}
                 fontsData={[typetesterData]}
                 typetesterLanguageGroup={weight.typetesterLanguageGroup}
                 defaultOptions={{ lineHeight: lineHeight }}
               />
             )}
-          </div>
+          </>
         );
       })}
     </section>

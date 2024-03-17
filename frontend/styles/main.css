@@ -1235,7 +1235,7 @@ footer .pages {
 }
 @media (max-width: 1920px) {
   .main-section:not(.no-indent) {
-    grid-template-columns: minmax(100px, 300px) 3fr minmax(100px, 300px);
+    grid-template-columns: minmax(100px, 300px) 3fr minmax(100px, 300px) !important;
   }
   .main-section:not(.no-indent) .section-wrapper section {
     max-width: 1480px;
@@ -1956,12 +1956,6 @@ div:hover > .iconly {
   font-size: 64px;
   line-height: 78px;
   color: var(--grey);
-}
-@media (max-width: 780px) {
-  .opentype-features-preview .text-container {
-    font-size: 42px;
-    line-height: 52px;
-  }
 }
 .opentype-features-preview .text-container span.active {
   color: var(--foreground);

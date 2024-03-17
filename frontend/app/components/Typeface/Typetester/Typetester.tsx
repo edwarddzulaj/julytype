@@ -23,7 +23,7 @@ import { ScriptChoiceContext } from "@/app/providers";
 const MIN_FONT_SIZE = 12;
 const MAX_FONT_SIZE = 250;
 const TABLET_BREAKPOINT = 780;
-const DESKTOP_BREAKPOINT = 2750;
+const DESKTOP_BREAKPOINT = 1920;
 
 export default function Typetester({
   fontsData = [
@@ -198,7 +198,7 @@ export default function Typetester({
   const updateTextSample = () => {
     const [sampleText, index, sampleLanguage, defaultFontSize, defaultAlignment, defaultColumns] =
       buildSampleText(typetesterLanguageGroup, typetester.index, isLatin, sampleLang.label);
-    setFontSize(isMobileView ? defaultFontSize * 0.7 : defaultFontSize);
+    setFontSize(isMobileView ? defaultFontSize * 0.3 : defaultFontSize);
     setAlignment(defaultAlignment);
     setTextColumns(defaultColumns);
 
@@ -424,9 +424,9 @@ const countMaxLabelLength = (options: any) => {
 };
 
 const adaptSizeToViewport = (sizeNum: number) => {
-  if (typeof window === "undefined") return `${sizeNum}px`;
+  if (!window) return `${sizeNum}px`;
   const isLargestScreen = window.innerWidth > DESKTOP_BREAKPOINT;
-  const adaptedSize = (sizeNum / window.innerWidth) * 50;
+  const adaptedSize = (sizeNum / window.innerWidth) * 100;
   const adaptedSizeInVW = `${adaptedSize}vw`;
   const adaptedSizeInPixels = `${sizeNum}px`;
 
