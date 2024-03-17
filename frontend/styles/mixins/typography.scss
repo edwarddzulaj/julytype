@@ -1,62 +1,93 @@
-$tablet-breakpoint: 980px;
-$mobile-breakpoint: 840px;
+@use "./screen.scss" as screen;
 
 @mixin base {
-	font-style: normal;
-	font-weight: 400;
+  font-style: normal;
+  font-weight: 600;
 }
 
 @mixin heading-1 {
-	@include base();
-	font-size: 100px;
-	line-height: 100%; /* 100px */
+  @include base();
+  font-size: 80px;
+  line-height: 96px;
+
+  @include screen.notebook {
+    font-size: 72px;
+    line-height: 90px;
+  }
+
+  @include screen.mobile {
+    font-size: 46px;
+    line-height: 58px;
+  }
 }
 
 @mixin heading-2 {
-	@include base();
-	font-size: 80px;
-	line-height: 96px; /* 120% */
-	font-weight: 600;
+  @include base();
+  font-size: 50px;
+  line-height: 60px;
 
-	@media (max-width: $mobile-breakpoint) {
-		font-size: 72px;
-		line-height: 86.4px;
-	}
+  @include screen.notebook {
+    font-size: 40px;
+    line-height: 50px;
+  }
+
+  @include screen.mobile {
+    font-size: 32px;
+    line-height: 40px;
+  }
 }
 
 @mixin heading-3 {
-	@include base();
-	font-size: 32px;
-	line-height: 42px;
-	font-weight: 600;
+  @include base();
+  font-size: 34px;
+  line-height: 40.8px;
 
-	@media (max-width: $mobile-breakpoint) {
-		font-size: 22px;
-		line-height: 38px; /* 118.75% */
-	}
+  @include screen.notebook {
+    font-size: 30px;
+    line-height: 37.5px;
+  }
+
+  @include screen.mobile {
+    font-size: 22px;
+    line-height: 27.5px;
+  }
 }
 
 @mixin heading-4 {
-	@include base();
-	font-size: 28px;
-	line-height: 34px;
-	font-weight: 600;
+  @include base();
+  font-size: 24px;
+  line-height: 30px;
 
-	@media (max-width: $mobile-breakpoint) {
-		font-size: 18px;
-		line-height: 26px; /* 144.444% */
-	}
+  @include screen.notebook {
+    font-size: 20px;
+    line-height: 25px;
+  }
+
+  @include screen.mobile {
+    font-size: 18px;
+    line-height: 22.5px;
+  }
 }
 
 @mixin heading-5 {
-	@include base();
-	font-size: 20px;
-	line-height: 28px;
-	font-weight: 600;
+  @include base();
+  font-size: 18px;
+  line-height: 31.5px;
+
+  @include screen.notebook {
+    font-size: 16px;
+    line-height: 26.4px;
+  }
+
+  @include screen.mobile {
+    font-size: 16px;
+    line-height: 20px;
+  }
 }
 
 @mixin heading-6 {
-	@include base();
-	font-size: 16px;
-	line-height: 24px;
+  @include base();
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
 }
