@@ -1926,15 +1926,13 @@ div:hover > .iconly {
 .font-tester .font-sample.double-column {
   display: block;
 }
-
 .glyph-map .glyph-map-rows {
-  overflow: hidden;
   max-height: -moz-fit-content;
   max-height: fit-content;
+  overflow: hidden;
 }
-.glyph-map-rows collapsed {
-  /* max-height: 52.4664rem; */
-  max-height: calc(3 * (24px + 1px)); 
+.glyph-map .glyph-map-rows.collapsed {
+  max-height: 52.4664rem;
 }
 .glyph-map .glyph-map-rows .glyph-map-row {
   padding: 24px 0;
@@ -1955,6 +1953,7 @@ div:hover > .iconly {
 .glyph-map .show-all-action {
   margin-top: 1.512rem;
 }
+
 
 .opentype-features-preview .text-container {
   font-size: 64px;
