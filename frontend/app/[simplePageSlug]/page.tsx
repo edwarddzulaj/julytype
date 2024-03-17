@@ -42,7 +42,7 @@ export default async function SimplePage({
 
   return (
     <section className="container page">
-      <h2>{title}</h2>
+      <h1>{title}</h1>
       <section className="sections">
         {sections.map((section: PageSection) => {
           return (

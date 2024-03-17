@@ -10,7 +10,7 @@ const downloadString = "```download-typefaces-component```";
 export default function FreeTrials(title: string, sections: any) {
   return (
     <section className="container page free-trials">
-      <h2>{title}</h2>
+      <h1>{title}</h1>
       <section className="sections">
         {sections.map((section: PageSection) => {
           let hasDownloadComponent = false;
@@ -22,11 +22,13 @@ export default function FreeTrials(title: string, sections: any) {
           return (
             <>
               <Section title={section.title} key={section.id}>
-                {/* eslint-disable-next-line react/no-children-prop */}
-                <Markdown linkTarget="_blank" className="markdown-text">
-                  {section.content}
-                </Markdown>
-                {hasDownloadComponent && <DownloadTrialFonts />}
+                <div>
+                  {/* eslint-disable-next-line react/no-children-prop */}
+                  <Markdown linkTarget="_blank" className="markdown-text">
+                    {section.content}
+                  </Markdown>
+                  {hasDownloadComponent && <DownloadTrialFonts />}
+                </div>
               </Section>
             </>
           );

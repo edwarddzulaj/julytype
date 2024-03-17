@@ -692,8 +692,16 @@ nav a {
   width: 100% !important;
   height: auto !important;
 }
+.wrapper .container.page h1 {
+  margin-top: 40px;
+}
 .wrapper .container.page .main-section {
-  margin-bottom: 3.78rem;
+  margin: 64px 0;
+}
+@media (max-width: 780px) {
+  .wrapper .container.page .main-section {
+    margin: 40px 0;
+  }
 }
 .wrapper .container.page .main-section .section-wrapper {
   max-width: 820px;

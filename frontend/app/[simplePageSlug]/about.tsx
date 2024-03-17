@@ -7,7 +7,7 @@ import Markdown from "react-markdown";
 export default function About(title: string, sections: any) {
   return (
     <section className="container page about">
-      <h2>{title}</h2>
+      <h1>{title}</h1>
       <section className="sections">
         {sections.map((section: PageSection) => {
           return (

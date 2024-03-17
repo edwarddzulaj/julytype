@@ -5,7 +5,7 @@ import { getStrapiMedia } from "../utils/api-helpers";
 export default function Custom404() {
   return (
     <section className="container page not-found">
-      <h2>Something went wrong</h2>
+      <h1>Something went wrong</h1>
       <h5>Please try again.</h5>
       <Link className="back-home" href="/">
         Back home
