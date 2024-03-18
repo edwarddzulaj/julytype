@@ -23,7 +23,6 @@ import { ScriptChoiceContext } from "@/app/providers";
 const MIN_FONT_SIZE = 12;
 const MAX_FONT_SIZE = 250;
 const TABLET_BREAKPOINT = 780;
-const DESKTOP_BREAKPOINT = 2750;
 
 export default function Typetester({
   fontsData = [
@@ -198,7 +197,7 @@ export default function Typetester({
   const updateTextSample = () => {
     const [sampleText, index, sampleLanguage, defaultFontSize, defaultAlignment, defaultColumns] =
       buildSampleText(typetesterLanguageGroup, typetester.index, isLatin, sampleLang.label);
-    setFontSize(isMobileView ? defaultFontSize * 0.7 : defaultFontSize);
+    setFontSize(isMobileView ? defaultFontSize * 0.3 : defaultFontSize);
     setAlignment(defaultAlignment);
     setTextColumns(defaultColumns);
 
@@ -297,8 +296,6 @@ export default function Typetester({
                   </span>
                 ))}
               </div>
-            </div>
-            <div className="inner-section">
               <div
                 className="lang extra-option typetester-button"
                 style={
@@ -321,6 +318,8 @@ export default function Typetester({
                   placeholder="Language"
                 />
               </div>
+            </div>
+            <div className="inner-section">
               <div className="opentype-features extra-option typetester-button">
                 <CheckboxDropdown
                   dropdownItems={opentypeFeatures}
@@ -425,10 +424,8 @@ const countMaxLabelLength = (options: any) => {
 
 const adaptSizeToViewport = (sizeNum: number) => {
   if (typeof window === "undefined") return `${sizeNum}px`;
-  const isLargestScreen = window.innerWidth > DESKTOP_BREAKPOINT;
-  const adaptedSize = (sizeNum / window.innerWidth) * 50;
+  const adaptedSize = (sizeNum / window.innerWidth) * 100;
   const adaptedSizeInVW = `${adaptedSize}vw`;
-  const adaptedSizeInPixels = `${sizeNum}px`;
 
-  return isLargestScreen ? adaptedSizeInPixels : adaptedSizeInVW;
+  return adaptedSizeInVW;
 };

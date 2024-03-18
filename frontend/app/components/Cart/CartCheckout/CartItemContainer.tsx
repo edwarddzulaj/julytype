@@ -22,7 +22,10 @@ export default function CartItemContainer({ item, index }: { item: CartItem; ind
   const { licenseTypes, companySize, studentDiscount, wholePackageDiscount } = item.purchaseDetails;
   const companySizeOptionsList = companySizeOptions.options.map((option) => ({
     value: option.value.toString(),
-    label: `Less than ${option.label.replace("<", "")}`,
+    label:
+      option.value === 1
+        ? option.label.replace("<", "")
+        : `Less than ${option.label.replace("<", "")}`,
   }));
   const initialCompanySize = companySizeOptionsList.find((o) => +o.value === companySize);
 

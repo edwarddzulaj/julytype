@@ -294,7 +294,7 @@ nav {
 
       .fixed-controls {
         position: fixed;
-        top: $gutter-h * 9.2;
+        top: $gutter-h * 10;
         left: var(--margin);
         z-index: 1111;
         display: flex;
@@ -330,7 +330,7 @@ nav {
 
       .main-section {
         &:first-of-type {
-          padding-top: $gutter-h * 9;
+          padding-top: $gutter-h * 7.25;
 
           h3 {
             opacity: 0;
@@ -363,11 +363,10 @@ nav {
 
         .about-section {
           .markdown-text {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
             gap: 16px;
+            columns: 2;
 
-            p:nth-of-type(2) {
+            p:nth-of-type(3) {
               padding-top: 0;
             }
           }
@@ -407,7 +406,11 @@ nav {
         }
 
         .section-wrapper {
-          max-width: 820px;
+          max-width: 850px;
+
+          @include screen.notebook {
+            max-width: 650px;
+          }
 
           .download-trial-fonts {
             margin: $gutter-h 0;
@@ -556,6 +559,10 @@ nav {
                 display: block;
                 position: relative;
                 width: fit-content;
+
+                .dropdown {
+                  min-width: 12ch;
+                }
               }
             }
 
@@ -751,9 +758,9 @@ footer {
   }
 
   .wrapper {
-    max-width: calc(100vw - ($gutter-thin-v * 2) * 2);
+    max-width: calc(100vw - var(--margin) * 2);
     min-height: calc(100vh - #{$nav-offset} * 9);
-    padding: $nav-offset * 3 $gutter-thin-v * 2;
+    padding: $nav-offset * 3 var(--margin);
 
     .container {
       &.typeface-preview {
@@ -778,7 +785,7 @@ footer {
 
         .fixed-controls {
           position: relative;
-          top: 0;
+          top: $gutter-h * 3.5;
           left: 0;
           margin-bottom: $gutter-h * 2;
         }
@@ -799,6 +806,12 @@ footer {
 
         .typetesters {
           max-width: calc(100vw - ($gutter-thin-v * 2) * 2);
+        }
+
+        .about-section {
+          .markdown-text {
+            columns: 1 !important;
+          }
         }
 
         .weights-packages {
@@ -907,16 +920,15 @@ footer {
 
   &:not(.no-indent) {
     display: grid;
-    grid-template-columns: minmax(100px, 300px) 3fr 0fr;
+    grid-template-columns: 2fr 8fr 2fr;
     gap: 20px;
 
     .section-wrapper {
       display: grid;
       justify-items: center;
-
       section {
         width: 100%;
-        max-width: 1280px;
+        max-width: 1480px;
         display: grid;
       }
     }
@@ -925,26 +937,8 @@ footer {
   &.no-indent {
     .section-wrapper {
       margin-top: 32px;
-    }
-  }
-
-  // Center the content on really big screens
-  @include screen.desktop {
-    &:not(.no-indent) {
-      grid-template-columns: 2fr 8fr 2fr;
-
-      .section-wrapper {
-        section {
-          max-width: 1480px;
-        }
-      }
-    }
-
-    &.no-indent {
-      .section-wrapper {
-        section {
-          max-width: 1980px;
-        }
+      section {
+        max-width: 1980px;
       }
     }
   }
@@ -1191,7 +1185,7 @@ footer {
   gap: 10px;
 
   &.with-discount {
-    grid-template-columns: minmax(min-content, 9ch) repeat(2, minmax(min-content, 11ch));
+    grid-template-columns: minmax(min-content, 10ch) repeat(2, minmax(min-content, 11ch));
   }
 
   .discount-old-price {
@@ -1214,7 +1208,7 @@ footer {
 }
 
 .choose-weight {
-  margin-top: $gutter-h * 2;
+  margin-top: $gutter-h * 4;
 
   ul > li {
     margin-top: 8px;
@@ -1309,7 +1303,7 @@ div:hover > .iconly {
       overflow: hidden;
       margin-top: $gutter-thin-h;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 8px;
 
       @include screen.tablet {
@@ -1497,19 +1491,19 @@ div:hover > .iconly {
   }
 
   .show-all-action {
-    margin-top: $gutter-h;
+    margin-top: 8px;
   }
 }
 
 .opentype-features-preview {
   .text-container {
-    font-size: 64px;
-    line-height: 78px;
+    font-size: 3vw;
+    line-height: 3.7vw;
     color: var(--grey);
 
     @include screen.tablet {
-      font-size: 42px;
-      line-height: 52px;
+      font-size: 4.9vw;
+      line-height: 6.1vw;
     }
 
     span.active {
@@ -1688,11 +1682,12 @@ div.dropdown {
     }
   }
 
-  ul {
+  ul.dropdown-menu {
     position: relative;
     z-index: 1000;
     padding: 10px 10px 6px;
     padding-top: $gutter-h;
+    background-color: var(--background);
 
     li {
       display: flex;
@@ -1710,9 +1705,9 @@ div.dropdown {
 
 .tooltip {
   max-width: 360px;
-  padding: 8px 12px 8px 8px !important;
-  font-size: 14px !important;
-  line-height: 1.2;
+  padding: 12px 32px 12px 16px !important;
+  font-size: 16px !important;
+  line-height: 24px;
   background-color: var(--background) !important;
   color: var(--foreground) !important;
   border-radius: 8px !important;
@@ -1721,8 +1716,8 @@ div.dropdown {
 
   .close {
     position: absolute;
-    top: 0px;
-    right: -3px;
+    top: 4px;
+    right: 2px;
 
     &:hover {
       cursor: pointer;
@@ -1731,7 +1726,9 @@ div.dropdown {
 }
 
 .show-all-action {
+  margin-top: 8px;
   text-decoration: underline;
+
   .iconly {
     top: 2px;
   }
