@@ -1447,7 +1447,6 @@ div:hover > .iconly {
 
     // Some settings to create the same layout when the div is editable
     white-space-collapse: preserve-breaks;
-    word-break: break-word;
     user-select: none;
 
     &:not(.edit-mode) {

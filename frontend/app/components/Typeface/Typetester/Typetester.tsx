@@ -197,7 +197,7 @@ export default function Typetester({
   const updateTextSample = () => {
     const [sampleText, index, sampleLanguage, defaultFontSize, defaultAlignment, defaultColumns] =
       buildSampleText(typetesterLanguageGroup, typetester.index, isLatin, sampleLang.label);
-    setFontSize(isMobileView ? defaultFontSize * 0.3 : defaultFontSize);
+    setFontSize(isMobileView ? defaultFontSize * 0.6 : defaultFontSize);
     setAlignment(defaultAlignment);
     setTextColumns(defaultColumns);
 
@@ -424,7 +424,7 @@ const countMaxLabelLength = (options: any) => {
 
 const adaptSizeToViewport = (sizeNum: number) => {
   if (typeof window === "undefined") return `${sizeNum}px`;
-  const adaptedSize = (sizeNum / window.innerWidth) * 100;
+  const adaptedSize = (sizeNum / window.innerWidth) * 0.55 * 100;
   const adaptedSizeInVW = `${adaptedSize}vw`;
 
   return adaptedSizeInVW;
