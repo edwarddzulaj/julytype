@@ -4,12 +4,12 @@ import { saveAs } from "file-saver";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { getStrapiURL } from "@/app/utils/api-helpers";
+import { getStrapiMedia, getStrapiURL } from "@/app/utils/api-helpers";
 import { retrieveTrialFonts, TrialFontObject } from "./helpers";
 
 import Iconly, { icons } from "../../UI/Iconly";
 
-export default function DownloadTrialFonts() {
+export default function DownloadTrialFonts({ trialLicense }: any) {
   const [availableTrialFonts, setAvailableTrialFonts] = useState<TrialFontObject[]>([]);
   const [allFontsSelected, setAllFontsSelected] = useState(false);
   const [isLicenseAccepted, setIsLicenseAccepted] = useState(false);
@@ -45,7 +45,7 @@ export default function DownloadTrialFonts() {
 
     fetch("/free-trials/api?endpoint=trialFonts")
       .then((res) => res.json())
-      .then((data) => {
+      .then(async (data) => {
         if (chosenFonts.length > 0) {
           data = data.filter((tf: { id: number }) => chosenFonts.find((f) => f.id === tf.id));
         }
@@ -62,6 +62,12 @@ export default function DownloadTrialFonts() {
 
           return data;
         });
+
+        if (trialLicense) {
+          const trialLicenseFile = await fetch(getStrapiMedia(trialLicense.url));
+          const trialLicenseFileBlob = await trialLicenseFile.blob();
+          zip.file("JulyType-Trial-License" + trialLicense.ext, trialLicenseFileBlob);
+        }
 
         Promise.all(remoteZips)
           .then(() => {
