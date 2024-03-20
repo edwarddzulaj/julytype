@@ -706,85 +706,6 @@ nav a {
     max-width: 650px;
   }
 }
-.wrapper .container.page .main-section .section-wrapper .download-trial-fonts {
-  margin: 1.512rem 0;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.wrapper .container.page .main-section .section-wrapper .download-trial-fonts .download-all {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 21px;
-  font-weight: 400;
-  display: inline-flex;
-  padding: 12px 16px;
-  border-radius: 12px;
-  align-items: center;
-  border: none;
-  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
-  color: var(--white);
-  background-color: var(--blue);
-}
-.wrapper .container.page .main-section .section-wrapper .download-trial-fonts .download-all:hover {
-  cursor: pointer;
-}
-.wrapper .container.page .main-section .section-wrapper .download-trial-fonts .download-all:hover {
-  background-color: var(--black);
-}
-.wrapper .container.page .main-section .section-wrapper .download-trial-fonts .download-all:focus-visible {
-  outline: 2px solid var(--black);
-}
-.wrapper .container.page .main-section .section-wrapper .download-trial-fonts .download-all:focus:not(:focus-visible) {
-  outline: none;
-}
-.wrapper .container.page .main-section .section-wrapper .download-trial-fonts .download-all:active {
-  color: var(--white);
-  background-color: var(--blue);
-}
-.wrapper .container.page .main-section .section-wrapper .download-trial-fonts .download-all:disabled {
-  background-color: var(--grey);
-}
-.wrapper .container.page .main-section .section-wrapper .download-trial-fonts .download-all .iconly {
-  width: 15px;
-  font-size: 24px;
-}
-.wrapper .container.page .main-section .section-wrapper .download-trial-fonts .download-some {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 21px;
-  font-weight: 400;
-  display: inline-flex;
-  padding: 12px 16px;
-  border-radius: 12px;
-  align-items: center;
-  border: none;
-  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
-  color: var(--foreground);
-  background-color: var(--background);
-}
-.wrapper .container.page .main-section .section-wrapper .download-trial-fonts .download-some:hover {
-  cursor: pointer;
-}
-.wrapper .container.page .main-section .section-wrapper .download-trial-fonts .download-some:hover, .wrapper .container.page .main-section .section-wrapper .download-trial-fonts .download-some.selected {
-  background-color: var(--foreground);
-  color: var(--background);
-}
-.wrapper .container.page .main-section .section-wrapper .download-trial-fonts .download-some:focus-visible {
-  outline: 2px solid var(--foreground);
-}
-.wrapper .container.page .main-section .section-wrapper .download-trial-fonts .download-some:focus:not(:focus-visible) {
-  outline: none;
-}
-.wrapper .container.page .main-section .section-wrapper .download-trial-fonts .download-some:active {
-  color: var(--foreground);
-  background-color: var(--background);
-}
-.wrapper .container.page .main-section .section-wrapper .download-trial-fonts .download-some:disabled {
-  color: var(--grey);
-}
 .wrapper .container.page .main-section + h3 {
   margin-top: 6.048rem;
 }
@@ -834,7 +755,7 @@ nav a {
 }
 .wrapper .container.page h4 {
   position: relative;
-  top: -8px;
+  top: -3px;
 }
 .wrapper .container.page h5 {
   font-size: 24px;
@@ -1004,6 +925,79 @@ nav a {
 }
 .wrapper .container.page.not-found .back-home, .wrapper .container.page.success .back-home {
   margin-top: 40px;
+}
+.wrapper .container.page.free-trials .download-trial-fonts {
+  margin: 1.512rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.wrapper .container.page.free-trials .download-trial-fonts a {
+  text-decoration: underline;
+}
+.wrapper .container.page.free-trials .download-trial-fonts .checkbox {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+}
+.wrapper .container.page.free-trials .download-trial-fonts .checkbox label {
+  position: relative;
+  font-weight: 400;
+  letter-spacing: 0em;
+  font-size: 18px;
+  line-height: 28.8px;
+}
+@media (max-width: 1440px) {
+  .wrapper .container.page.free-trials .download-trial-fonts .checkbox label {
+    font-size: 16px;
+    line-height: 25.6px;
+  }
+}
+@media (max-width: 375px) {
+  .wrapper .container.page.free-trials .download-trial-fonts .checkbox label {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+.wrapper .container.page.free-trials .download-trial-fonts .download {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
+  display: inline-flex;
+  padding: 12px 16px;
+  border-radius: 12px;
+  align-items: center;
+  border: none;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+  color: var(--white);
+  background-color: var(--blue);
+  max-width: -moz-max-content;
+  max-width: max-content;
+}
+.wrapper .container.page.free-trials .download-trial-fonts .download:hover {
+  cursor: pointer;
+}
+.wrapper .container.page.free-trials .download-trial-fonts .download:hover {
+  background-color: var(--black);
+}
+.wrapper .container.page.free-trials .download-trial-fonts .download:focus-visible {
+  outline: 2px solid var(--black);
+}
+.wrapper .container.page.free-trials .download-trial-fonts .download:focus:not(:focus-visible) {
+  outline: none;
+}
+.wrapper .container.page.free-trials .download-trial-fonts .download:active {
+  color: var(--white);
+  background-color: var(--blue);
+}
+.wrapper .container.page.free-trials .download-trial-fonts .download:disabled {
+  background-color: var(--grey);
+}
+.wrapper .container.page.free-trials .download-trial-fonts .download .iconly {
+  width: 15px;
+  font-size: 24px;
 }
 .wrapper .container.page.free-trials .globus-image {
   margin: initial;

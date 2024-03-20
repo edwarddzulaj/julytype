@@ -1,6 +1,13 @@
 import { fetchAPI } from "@/app/utils/fetch-api";
 import { Typeface } from "@/@types/contentTypes";
 
+export interface TrialFontObject {
+  name: string;
+  id: number;
+  trialFonts: any[];
+  checked: boolean;
+}
+
 export const retrieveTrialFonts = async () => {
   const path = `/typefaces`;
   const urlParamsObject = {
@@ -15,10 +22,11 @@ export const retrieveTrialFonts = async () => {
 
   responseData.data.forEach((typeface: Typeface) => {
     const { title, trialFonts } = typeface.attributes;
-    let trialFontObject: { name: string; id: number; trialFonts: any[] } = {
+    let trialFontObject: TrialFontObject = {
       id: typeface.id,
       name: title + " Trial",
       trialFonts: [],
+      checked: false,
     };
 
     if (!trialFonts.data || trialFonts.data.length === 0) return;

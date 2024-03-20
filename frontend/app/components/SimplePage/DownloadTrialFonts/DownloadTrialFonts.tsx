@@ -2,24 +2,52 @@
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 
-import { useState } from "react";
-
-import { ChooseTypefacesPopup } from "./ChooseTypefacesPopup";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { getStrapiURL } from "@/app/utils/api-helpers";
+import { retrieveTrialFonts, TrialFontObject } from "./helpers";
+
 import Iconly, { icons } from "../../UI/Iconly";
 
 export default function DownloadTrialFonts() {
+  const [availableTrialFonts, setAvailableTrialFonts] = useState<TrialFontObject[]>([]);
+  const [allFontsSelected, setAllFontsSelected] = useState(false);
+  const [isLicenseAccepted, setIsLicenseAccepted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
 
-  const downloadTrialFonts = (specificTypefaces: string[] = []) => {
-    if (specificTypefaces.length === 0) setIsLoading(true);
+  const getTrialFonts = async () => {
+    const fonts = await retrieveTrialFonts();
+
+    setAvailableTrialFonts(fonts);
+  };
+
+  const handleFontSelection = (e: React.ChangeEvent<HTMLInputElement> | null) => {
+    if (!e) {
+      const updatedFonts = availableTrialFonts.map((f) => ({ ...f, checked: !allFontsSelected }));
+
+      setAvailableTrialFonts([...updatedFonts]);
+      setAllFontsSelected(!allFontsSelected);
+    } else {
+      const fontId = +e.currentTarget.id;
+
+      const font = availableTrialFonts?.find((f) => f.id === fontId);
+      if (font) {
+        font.checked = !font.checked;
+        setAvailableTrialFonts([...availableTrialFonts]);
+      }
+    }
+  };
+
+  const downloadTrialFonts = () => {
+    if (!isLicenseAccepted) return;
+    const chosenFonts = availableTrialFonts.filter((f) => f.checked);
+    setIsLoading(true);
 
     fetch("/free-trials/api?endpoint=trialFonts")
       .then((res) => res.json())
       .then((data) => {
-        if (specificTypefaces.length > 0) {
-          data = data.filter((tf: { id: number }) => specificTypefaces.includes(tf.id.toString()));
+        if (chosenFonts.length > 0) {
+          data = data.filter((tf: { id: number }) => chosenFonts.find((f) => f.id === tf.id));
         }
 
         const zip = new JSZip();
@@ -54,30 +82,62 @@ export default function DownloadTrialFonts() {
       });
   };
 
-  const handleChoosingFonts = () => {
-    setShowPopup(true);
-  };
+  useEffect(() => {
+    getTrialFonts();
+  }, []);
 
   return (
     <div className="download-trial-fonts">
-      {showPopup && (
-        <ChooseTypefacesPopup
-          isOpen={showPopup}
-          closeModal={() => setShowPopup(false)}
-          downloadTrialFonts={downloadTrialFonts}
-        />
+      {availableTrialFonts && (
+        <>
+          <div className="checkboxes">
+            {availableTrialFonts.length > 1 && (
+              <div className="checkbox all-typefaces">
+                <input
+                  type="checkbox"
+                  id="all"
+                  onChange={() => {
+                    handleFontSelection(null);
+                  }}
+                />
+                <label htmlFor="all">All typefaces</label>
+              </div>
+            )}
+            <ul>
+              {availableTrialFonts.map((item: any) => (
+                <li key={item.id} className="checkbox">
+                  <input
+                    type="checkbox"
+                    id={item.id.toString()}
+                    checked={item.checked}
+                    onChange={(e) => handleFontSelection(e)}
+                  />
+                  <label htmlFor={item.id.toString()}> {item.name}</label>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="checkbox license-agreement">
+            <input
+              type="checkbox"
+              id="license-agreement"
+              onChange={() => setIsLicenseAccepted(!isLicenseAccepted)}
+            />
+            <label htmlFor="license-agreement">
+              I agree with <Link href="./licensing">Licensing terms</Link> in order to download the
+              trial fonts
+            </label>
+          </div>
+          <button className="download" onClick={downloadTrialFonts}>
+            {isLoading && <span>Aggregating typefaces...</span>}
+            {!isLoading && (
+              <>
+                Download <Iconly icon={icons.download} />
+              </>
+            )}
+          </button>
+        </>
       )}
-      <button className="download-all" onClick={() => downloadTrialFonts()}>
-        {isLoading && <span>Aggregating typefaces...</span>}
-        {!isLoading && (
-          <>
-            Download all typefaces <Iconly icon={icons.download} />
-          </>
-        )}
-      </button>
-      <button className="download-some" onClick={handleChoosingFonts}>
-        Choose a typeface
-      </button>
     </div>
   );
 }
