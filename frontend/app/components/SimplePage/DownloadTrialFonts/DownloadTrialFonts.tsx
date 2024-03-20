@@ -38,54 +38,40 @@ export default function DownloadTrialFonts({ trialLicense }: any) {
     }
   };
 
-  const downloadTrialFonts = () => {
-    if (!isLicenseAccepted) return;
+  const downloadTrialFonts = async () => {
     const chosenFonts = availableTrialFonts.filter((f) => f.checked);
+    if (!isLicenseAccepted || chosenFonts.length === 0) return;
     setIsLoading(true);
 
-    fetch("/free-trials/api?endpoint=trialFonts")
-      .then((res) => res.json())
-      .then(async (data) => {
-        if (chosenFonts.length > 0) {
-          data = data.filter((tf: { id: number }) => chosenFonts.find((f) => f.id === tf.id));
+    try {
+      const response = await fetch("/free-trials/api?endpoint=trialFonts");
+      let data = await response.json();
+      data = data.filter((tf: { id: number }) => chosenFonts.find((f) => f.id === tf.id));
+
+      const zip = new JSZip();
+
+      for (const font of data) {
+        for (const trialFont of font.trialFonts) {
+          const { name, url } = trialFont.attributes;
+          const response = await fetch(getStrapiURL(url));
+          const data = await response.blob();
+          zip.file(`${font.name}/${name}`, data);
         }
+      }
 
-        const zip = new JSZip();
-        const remoteZips = data.map(async (font: any) => {
-          for (const [_, trialFont] of font.trialFonts.entries()) {
-            const { name, url } = trialFont.attributes;
+      if (trialLicense) {
+        const trialLicenseFile = await fetch(getStrapiMedia(trialLicense.url));
+        const trialLicenseFileBlob = await trialLicenseFile.blob();
+        zip.file("JulyType-Trial-License" + trialLicense.ext, trialLicenseFileBlob);
+      }
 
-            const response = await fetch(getStrapiURL(url));
-            const data = await response.blob();
-            zip.file(`${font.name}/${name}`, data);
-          }
-
-          return data;
-        });
-
-        if (trialLicense) {
-          const trialLicenseFile = await fetch(getStrapiMedia(trialLicense.url));
-          const trialLicenseFileBlob = await trialLicenseFile.blob();
-          zip.file("JulyType-Trial-License" + trialLicense.ext, trialLicenseFileBlob);
-        }
-
-        Promise.all(remoteZips)
-          .then(() => {
-            setTimeout(() => {
-              zip.generateAsync({ type: "blob" }).then((content) => {
-                saveAs(content, "JulyType_Trial_Fonts.zip");
-              });
-
-              setIsLoading(false);
-            }, 500);
-          })
-          .catch(() => {
-            setIsLoading(false);
-          });
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+      const content = await zip.generateAsync({ type: "blob" });
+      saveAs(content, "JulyType_Trial_Fonts.zip");
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error:", error);
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
