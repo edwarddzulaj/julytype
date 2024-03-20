@@ -605,14 +605,8 @@ nav a {
 .wrapper .container.typeface .fixed-controls .choose-script .buttons button.active:active {
   background-color: var(--black);
 }
-.wrapper .container.typeface .main-section:first-of-type h3 {
-  opacity: 0;
-}
 .wrapper .container.typeface .main-section:first-of-type {
   padding-top: 10.962rem;
-}
-.wrapper .container.typeface .main-section:first-of-type h3 {
-  opacity: 0;
 }
 .wrapper .container.typeface .main-section .styles-weights {
   margin-bottom: 9.072rem;
@@ -1127,7 +1121,7 @@ footer .pages {
   .wrapper .container.typeface-preview h2 {
     font-size: 46px !important;
   }
-  .wrapper .container.typeface {
+  .wrapper .container.typeface.with-optical-styles {
     padding-top: 4.536rem;
   }
   .wrapper .container.typeface .quick-buttons .action-buttons {
@@ -1141,11 +1135,14 @@ footer .pages {
     left: 0;
     margin-bottom: 3.024rem;
   }
+  .wrapper .container.typeface .fixed-controls.with-optical-styles {
+    top: 9.072rem;
+  }
   .wrapper .container.typeface .font-tester .font-sample {
     min-height: initial;
   }
   .wrapper .container.typeface .main-section:first-of-type {
-    padding-top: 1.512rem;
+    padding-top: 3.024rem;
   }
   .wrapper .container.typeface .main-section:first-of-type h3 {
     opacity: 1;
@@ -1625,13 +1622,27 @@ footer .pages {
 }
 
 .choose-weight {
-  margin-top: 6.048rem;
+  position: fixed;
+  top: 22.68rem;
+  left: var(--margin);
+  z-index: 99;
 }
 .choose-weight ul > li {
   margin-top: 8px;
   font-size: 16px;
   line-height: 16px;
   text-align: left;
+}
+@media (max-width: 780px) {
+  .choose-weight {
+    display: none;
+  }
+}
+
+.inner-section-background {
+  position: relative;
+  z-index: 100;
+  background-color: var(--background);
 }
 
 div:hover > .iconly {

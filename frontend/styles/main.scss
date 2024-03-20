@@ -322,19 +322,9 @@ nav {
         }
       }
 
-      .main-section:first-of-type {
-        h3 {
-          opacity: 0;
-        }
-      }
-
       .main-section {
         &:first-of-type {
           padding-top: $gutter-h * 7.25;
-
-          h3 {
-            opacity: 0;
-          }
         }
 
         .styles-weights {
@@ -773,7 +763,9 @@ footer {
       }
 
       &.typeface {
-        padding-top: $gutter-h * 3;
+        &.with-optical-styles {
+          padding-top: $gutter-h * 3;
+        }
 
         .quick-buttons {
           .action-buttons {
@@ -786,6 +778,11 @@ footer {
         .fixed-controls {
           position: relative;
           top: $gutter-h * 3.5;
+
+          &.with-optical-styles {
+            top: $gutter-h * 6;
+          }
+
           left: 0;
           margin-bottom: $gutter-h * 2;
         }
@@ -797,7 +794,7 @@ footer {
         }
 
         .main-section:first-of-type {
-          padding-top: $gutter-h;
+          padding-top: $gutter-h * 2;
 
           h3 {
             opacity: 1;
@@ -1208,7 +1205,10 @@ footer {
 }
 
 .choose-weight {
-  margin-top: $gutter-h * 4;
+  position: fixed;
+  top: $gutter-h * 15;
+  left: var(--margin);
+  z-index: 99;
 
   ul > li {
     margin-top: 8px;
@@ -1216,6 +1216,16 @@ footer {
     line-height: 16px;
     text-align: left;
   }
+
+  @include screen.tablet {
+    display: none;
+  }
+}
+
+.inner-section-background {
+  position: relative;
+  z-index: 100;
+  background-color: var(--background);
 }
 
 div:hover > .iconly {

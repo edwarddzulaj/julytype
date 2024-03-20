@@ -57,12 +57,12 @@ export default async function Typeface({ params }: { params: { slug: string } })
   const { title, weights } = style?.attributes ?? { title: "", weights: [] };
   const regularWeight = weights.find((w) => w.title.toLowerCase().includes("regular"));
   const opentypeFeaturesFontTitle = `${title.trim()} ${regularWeight?.title.trim()}`;
-
+  const hasOpticalStyles = styles.data.length > 1;
   return (
     <ScriptChoiceProvider>
       <SelectedStyleProvider>
-        <section className="container typeface">
-          <article className={`quick-buttons ${styles.data.length > 1 ? "with-background" : ""}`}>
+        <section className={`container typeface ${hasOpticalStyles ? "with-optical-styles" : ""}`}>
+          <article className={`quick-buttons ${hasOpticalStyles ? "with-background" : ""}`}>
             {styles.data.length > 1 && <StylesSelector styles={styles.data} />}
             <div className="action-buttons">
               <BuyButton>{`Buy ${typefaceTitle}`}</BuyButton>
@@ -75,39 +75,41 @@ export default async function Typeface({ params }: { params: { slug: string } })
             <ChooseWeight styles={styles.data} />
             <StyleWeights styles={styles.data} />
           </Section>
-          {specimen?.data?.attributes?.url && (
-            <Section title="Specimen">
-              <section className="download">
-                <PDFPreview url={getStrapiMedia(specimen.data.attributes.url)} />
-              </section>
+          <div className="inner-section-background">
+            {specimen?.data?.attributes?.url && (
+              <Section title="Specimen">
+                <section className="download">
+                  <PDFPreview url={getStrapiMedia(specimen.data.attributes.url)} />
+                </section>
+              </Section>
+            )}
+            <Section title={`About ${typefaceTitle}`}>
+              <div className="about-section">
+                {/* eslint-disable-next-line react/no-children-prop */}
+                <Markdown linkTarget="_blank" children={aboutText} className="markdown-text" />
+              </div>
             </Section>
-          )}
-          <Section title={`About ${typefaceTitle}`}>
-            <div className="about-section">
-              {/* eslint-disable-next-line react/no-children-prop */}
-              <Markdown linkTarget="_blank" children={aboutText} className="markdown-text" />
-            </div>
-          </Section>
-          <Section title={`Opentype features preview`}>
-            <OpentypeFeaturesPreview fontFamilyTitle={opentypeFeaturesFontTitle} />
-          </Section>
-          {supportedLanguages && supportedLanguages.length > 0 && (
-            <Section title={`Supported Languages`}>
-              <SupportedLanguages languageData={supportedLanguages} />
+            <Section title={`Opentype features preview`}>
+              <OpentypeFeaturesPreview fontFamilyTitle={opentypeFeaturesFontTitle} />
             </Section>
-          )}
-          {glyphMap && glyphMap.length > 0 && (
-            <Section title={`Glyphs`}>
-              <GlyphMap
-                glyphMap={glyphMap}
-                fontFamilyTitle={opentypeFeaturesFontTitle}
-                showAllButton={true}
-              />
+            {supportedLanguages && supportedLanguages.length > 0 && (
+              <Section title={`Supported Languages`}>
+                <SupportedLanguages languageData={supportedLanguages} />
+              </Section>
+            )}
+            {glyphMap && glyphMap.length > 0 && (
+              <Section title={`Glyphs`}>
+                <GlyphMap
+                  glyphMap={glyphMap}
+                  fontFamilyTitle={opentypeFeaturesFontTitle}
+                  showAllButton={true}
+                />
+              </Section>
+            )}
+            <Section title={`Buy ${typefaceTitle}`} noIndent={true}>
+              <PurchaseSectionWrapper typeface={typeface} />
             </Section>
-          )}
-          <Section title={`Buy ${typefaceTitle}`} noIndent={true}>
-            <PurchaseSectionWrapper typeface={typeface} />
-          </Section>
+          </div>
         </section>
       </SelectedStyleProvider>
     </ScriptChoiceProvider>

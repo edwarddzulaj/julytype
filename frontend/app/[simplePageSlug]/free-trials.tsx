@@ -20,17 +20,13 @@ export default function FreeTrials(title: string, sections: any) {
             section.content = section.content.replace(downloadString, "");
           }
           return (
-            <>
-              <Section title={section.title} key={section.id}>
-                <div>
-                  {/* eslint-disable-next-line react/no-children-prop */}
-                  <Markdown linkTarget="_blank" className="markdown-text">
-                    {section.content}
-                  </Markdown>
-                  {hasDownloadComponent && <DownloadTrialFonts />}
-                </div>
-              </Section>
-            </>
+            <Section title={section.title} key={section.id}>
+              {/* eslint-disable-next-line react/no-children-prop */}
+              <Markdown linkTarget="_blank" className="markdown-text">
+                {section.content}
+              </Markdown>
+              {hasDownloadComponent && <DownloadTrialFonts />}
+            </Section>
           );
         })}
         <Section>
