@@ -1124,8 +1124,8 @@ footer {
     display: flex;
     flex-direction: row;
     margin-top: 4px;
-    font-size: 18px;
     gap: 20px;
+    @include typography.body;
 
     .style {
       &.active {
@@ -1357,6 +1357,10 @@ div:hover > .iconly {
         top: 0 !important;
         right: 0 !important;
       }
+
+      .lang {
+        --min-width: 13ch !important;
+      }
     }
 
     .fontsize {
@@ -1418,6 +1422,7 @@ div:hover > .iconly {
     .typetester-button {
       @include typography.heading-6;
       height: 34px;
+      min-width: var(--min-width);
       border-radius: 10px;
       background: var(--background);
       box-shadow: 1px 2px 6px 0px rgba(102, 102, 102);

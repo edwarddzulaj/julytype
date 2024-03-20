@@ -1461,8 +1461,23 @@ footer .pages {
   display: flex;
   flex-direction: row;
   margin-top: 4px;
-  font-size: 18px;
   gap: 20px;
+  font-weight: 400;
+  letter-spacing: 0em;
+  font-size: 18px;
+  line-height: 28.8px;
+}
+@media (max-width: 1440px) {
+  .styles-selector .styles {
+    font-size: 16px;
+    line-height: 25.6px;
+  }
+}
+@media (max-width: 375px) {
+  .styles-selector .styles {
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
 .styles-selector .styles .style.active {
   text-decoration: underline;
@@ -1800,6 +1815,9 @@ div:hover > .iconly {
     top: 0 !important;
     right: 0 !important;
   }
+  .font-tester .font-tester-header .lang {
+    --min-width: 13ch !important;
+  }
 }
 .font-tester .font-tester-header .fontsize {
   min-width: 25ch;
@@ -1895,6 +1913,7 @@ div:hover > .iconly {
   line-height: 21px;
   font-weight: 400;
   height: 34px;
+  min-width: var(--min-width);
   border-radius: 10px;
   background: var(--background);
   box-shadow: 1px 2px 6px 0px rgb(102, 102, 102);
