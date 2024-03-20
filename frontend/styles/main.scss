@@ -294,12 +294,13 @@ nav {
 
       .fixed-controls {
         position: fixed;
-        top: $gutter-h * 10;
-        left: var(--margin);
+        top: $gutter-h * 10.1;
+        left: calc(var(--margin) + 1px);
         z-index: 1111;
         display: flex;
         flex-direction: column;
         gap: $gutter-h * 2;
+        z-index: 99;
 
         .choose-script {
           position: relative;
@@ -1205,11 +1206,6 @@ footer {
 }
 
 .choose-weight {
-  position: fixed;
-  top: $gutter-h * 15;
-  left: var(--margin);
-  z-index: 99;
-
   ul > li {
     margin-top: 8px;
     font-size: 16px;

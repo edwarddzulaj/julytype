@@ -70,9 +70,9 @@ export default async function Typeface({ params }: { params: { slug: string } })
           </article>
           <article className="fixed-controls">
             <ChooseScript />
+            <ChooseWeight styles={styles.data} />
           </article>
           <Section>
-            <ChooseWeight styles={styles.data} />
             <StyleWeights styles={styles.data} />
           </Section>
           <div className="inner-section-background">
