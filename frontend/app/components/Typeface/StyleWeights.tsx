@@ -13,22 +13,17 @@ export default function StyleWeights({ styles }: { styles: Style[] }) {
   const { style: chosenStyle } = useContext(SelectedStyleContext);
 
   const style = styles.find((s) => s.id == chosenStyle.id) || styles[0];
-  const { title, weights, lineHeight } = style?.attributes ?? { title: "", weights: [] };
+  const { weights, lineHeight } = style?.attributes ?? { title: "", weights: [] };
+  const allTypetesterData = generateTypetesterData(style);
   return (
     <section className="typetesters">
-      {weights.map((weight: TypefaceWeight) => {
-        const fontLabel = `${title.trim()} ${weight.title.trim()}`;
-        const typetesterData: FontsData = {
-          label: fontLabel,
-          value: btoa(weight.title),
-          fontPath: getStrapiMedia(weight.fontFile?.data?.attributes?.url),
-        };
-
+      {weights.map((weight: TypefaceWeight, index) => {
         return (
           <div key={weight.id}>
             {chosenStyle.title !== "Typeface Title" && (
               <Typetester
-                fontsData={[typetesterData]}
+                fontsData={allTypetesterData}
+                selectedFontIndex={index}
                 typetesterLanguageGroup={weight.typetesterLanguageGroup}
                 defaultOptions={{ lineHeight: lineHeight }}
               />
@@ -39,3 +34,16 @@ export default function StyleWeights({ styles }: { styles: Style[] }) {
     </section>
   );
 }
+
+const generateTypetesterData = (style: Style) => {
+  const { title, weights } = style?.attributes ?? { title: "", weights: [] };
+
+  return weights.map((weight: TypefaceWeight) => {
+    const fontLabel = `${title.trim()} ${weight.title.trim()}`;
+    return {
+      label: fontLabel,
+      value: btoa(weight.title),
+      fontPath: getStrapiMedia(weight.fontFile?.data?.attributes?.url),
+    };
+  });
+};

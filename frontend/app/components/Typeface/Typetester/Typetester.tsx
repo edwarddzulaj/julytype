@@ -33,10 +33,12 @@ export default function Typetester({
       fontPath: "",
     },
   ],
+  selectedFontIndex = 0,
   typetesterLanguageGroup,
   defaultOptions,
 }: {
   fontsData: FontsData[];
+  selectedFontIndex?: number;
   typetesterLanguageGroup?: TypetesterTextGroup[] | undefined;
   defaultOptions?: {
     lineHeight?: number;
@@ -46,7 +48,7 @@ export default function Typetester({
 }) {
   const [isMobileView, setIsMobileView] = useState(false);
   const fontTesterRef = useRef<HTMLInputElement>(null);
-  const [fontFamily, setFontFamily] = useState(fontsData[0]);
+  const [fontFamily, setFontFamily] = useState(fontsData[selectedFontIndex]);
   const [fontLoaded, setFontLoaded] = useState(false);
   const [sampleLang, setSampleLang] = useState(languages.latin[0]);
   const [fontSize, setFontSize] = useState(isMobileView ? 52 : 148);
