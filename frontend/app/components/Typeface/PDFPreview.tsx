@@ -11,7 +11,13 @@ export default function PDFPreview({ url }: { url: string | URL }) {
   return (
     <>
       <Document file={url as string}>
-        <Page pageIndex={0} width={2000} renderAnnotationLayer={false} renderTextLayer={false} />
+        <Page
+          pageIndex={0}
+          width={2000}
+          renderAnnotationLayer={false}
+          renderTextLayer={false}
+          devicePixelRatio={1}
+        />
       </Document>
       <div>
         <Link href={url}>
