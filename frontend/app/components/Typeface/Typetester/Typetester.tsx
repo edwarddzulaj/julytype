@@ -225,7 +225,11 @@ export default function Typetester({
   };
 
   return (
-    <article className="font-tester" id={fontFamily.value}>
+    <article
+      className="font-tester"
+      id={fontFamily.value}
+      style={{ zIndex: 100 - selectedFontIndex }}
+    >
       <div
         className={`font-tester-header${
           !(isMobileView && isTextEditable === "false") ? " mobile-view" : ""

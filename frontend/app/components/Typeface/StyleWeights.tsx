@@ -19,16 +19,17 @@ export default function StyleWeights({ styles }: { styles: Style[] }) {
     <section className="typetesters">
       {weights.map((weight: TypefaceWeight, index) => {
         return (
-          <div key={weight.id}>
+          <>
             {chosenStyle.title !== "Typeface Title" && (
               <Typetester
+                key={weight.id}
                 fontsData={allTypetesterData}
                 selectedFontIndex={index}
                 typetesterLanguageGroup={weight.typetesterLanguageGroup}
                 defaultOptions={{ lineHeight: lineHeight }}
               />
             )}
-          </div>
+          </>
         );
       })}
     </section>
