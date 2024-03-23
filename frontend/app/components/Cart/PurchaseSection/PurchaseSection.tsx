@@ -7,7 +7,7 @@ import { companySizeOptions, discountOptions, licenseOptions } from "./purchase-
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
 import { addToCart, CartItem, updateCartItem } from "@/app/redux/cartReducer";
-import { calculatePrices, calculateTotalPrices } from "@/app/utils/cart-helpers";
+import { calculateTotalPrices } from "@/app/utils/cart-helpers";
 import { PurchaseDetails } from "./PurchaseSectionTypes";
 import { SelectedItem } from "@/app/redux/cartReducer";
 import StudentEmailVerificationForm from "./StudentEmailVerificationForm";

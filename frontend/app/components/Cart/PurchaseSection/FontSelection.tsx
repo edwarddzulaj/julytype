@@ -62,11 +62,16 @@ export default function FontSelection({
     setWholePackageSelected(purchaseDetails.wholePackageDiscount);
   }, [purchaseDetails]);
 
-  const handleOptionChange = (weight: TypefaceWeight | undefined, styleId: number | undefined) => {
+  const handleOptionChange = (weight: SelectedItem | undefined, styleId: number | undefined) => {
     if (
       selectedItems.some((addedItem) => addedItem.id === weight!.id && !addedItem.isVariableFont)
     ) {
-      setSelectedItems(selectedItems.filter((i) => i.id !== weight!.id));
+      setSelectedItems(
+        selectedItems.filter((i) => {
+          if (i.isVariableFont) return true;
+          return i.id !== weight!.id;
+        })
+      );
     } else {
       setSelectedItems([...selectedItems, { ...weight, styleId: styleId }]);
     }
@@ -78,7 +83,12 @@ export default function FontSelection({
         (addedItem) => addedItem.id === variableWeight!.id && addedItem.isVariableFont
       )
     ) {
-      setSelectedItems(selectedItems.filter((i) => i.id !== variableWeight!.id));
+      setSelectedItems(
+        selectedItems.filter((i) => {
+          if (!i.isVariableFont) return true;
+          return i.id !== variableWeight!.id;
+        })
+      );
     } else {
       setSelectedItems([...selectedItems, { ...variableWeight, isVariableFont: true }]);
     }
@@ -213,7 +223,7 @@ export default function FontSelection({
                     type="checkbox"
                     value="variable"
                     checked={selectedItems.some(
-                      (item) => item.id === variableFont.id && item.isVariableFont
+                      (item) => item.isVariableFont && item.id === variableFont.id
                     )}
                     onChange={() =>
                       handleVariableOptionChange({

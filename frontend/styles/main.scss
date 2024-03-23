@@ -521,7 +521,7 @@ nav {
 
                   width: max-content;
                   height: min-content;
-                  padding: 10px 10px 7px;
+                  padding: 8px 10px 7px;
                   border: 1px solid $color;
                   border-radius: 8px;
 
@@ -542,7 +542,9 @@ nav {
                 width: fit-content;
 
                 .dropdown {
-                  min-width: 12ch;
+                  min-width: 14ch;
+                  border-radius: 9px;
+                  border: 1px solid var(--foreground);
                 }
               }
             }

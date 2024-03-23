@@ -1,8 +1,7 @@
-import { TypefaceWeight } from "@/@types/components";
 import { CartItem } from "../redux/cartReducer";
 import { licenseRates, specialRules } from "./license-helpers";
 import { PurchaseDetails } from "../components/Cart/PurchaseSection/PurchaseSectionTypes";
-import { Typeface } from "@/@types/contentTypes";
+import { SelectedItem } from "../redux/cartReducer";
 
 export const calculatePrices = (
   prices: {
@@ -40,7 +39,7 @@ export const calculateTotalPricesForCart = (items: Array<CartItem>) => {
 };
 
 export const calculateTotalPrices = (
-  weights: TypefaceWeight[],
+  weights: SelectedItem[],
   purchaseDetails: PurchaseDetails,
   wholePackagePrices?: { price: number; discount: number }
 ) => {
@@ -56,14 +55,33 @@ export const calculateTotalPrices = (
     totalPrice = price;
     discountPrice = priceWithDiscount;
   } else {
-    weights.forEach((weight) => {
+    const variableWeight = weights.find((w) => w.isVariableFont);
+    if (variableWeight) {
       const [price, priceWithDiscount] = calculatePrices(
-        { price: weight.price, discount: weight.discount },
+        { price: variableWeight.price, discount: variableWeight.discount },
         purchaseDetails
       );
+
       totalPrice += price;
       discountPrice += priceWithDiscount;
-    });
+    }
+
+    weights
+      .filter((w) => !w.isVariableFont)
+      .forEach((weight, index) => {
+        let bundleDiscount = 1;
+        const [price, priceWithDiscount] = calculatePrices(
+          { price: weight.price, discount: weight.discount },
+          purchaseDetails
+        );
+
+        if (applyBundleDiscount(index)) {
+          bundleDiscount = 0.5;
+        }
+
+        totalPrice += price * bundleDiscount;
+        discountPrice += priceWithDiscount * bundleDiscount;
+      });
   }
 
   return {
@@ -78,6 +96,10 @@ export function roundToTwoDecimalPlaces(number: number) {
   } else {
     return Math.round(number * 100) / 100;
   }
+}
+
+function applyBundleDiscount(index: number) {
+  return (index + 1) % 2 === 0;
 }
 
 function applyAllLicenses(purchaseDetails: PurchaseDetails | undefined, initialPrice: number) {

@@ -836,7 +836,7 @@ nav a {
   width: max-content;
   height: -moz-min-content;
   height: min-content;
-  padding: 10px 10px 7px;
+  padding: 8px 10px 7px;
   border: 1px solid var(--foreground);
   border-radius: 8px;
 }
@@ -855,7 +855,9 @@ nav a {
 }
 .wrapper .container.page.cart .cart .cart-items .cart-item-container .details-container .add-license .dropdown,
 .wrapper .container.page.cart .cart .cart-items .cart-item-container .details-container .company-sizes .dropdown {
-  min-width: 12ch;
+  min-width: 14ch;
+  border-radius: 9px;
+  border: 1px solid var(--foreground);
 }
 .wrapper .container.page.cart .cart .cart-items .cart-item-container .price-container .price {
   margin-right: 0.6048rem;
