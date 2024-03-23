@@ -43,7 +43,9 @@ export default function Navbar({
               <ThemeSwitcher />
             </div>
             <div className="cart">
-              <Link href={`/cart`}>Cart</Link>
+              <Link href={`/cart`}>
+                Cart <Iconly icon={icons.basket}></Iconly>
+              </Link>
             </div>
           </div>
           <button className="close" onClick={closeMenu}>

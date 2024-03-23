@@ -446,8 +446,17 @@ nav .inner-nav .settings .inner-settings {
   gap: 2.268rem;
   align-items: center;
 }
+nav .inner-nav .settings .inner-settings .theme-switcher {
+  transition: scale 0.3s ease-in-out;
+}
 nav .inner-nav .settings .inner-settings .theme-switcher:hover {
+  scale: 1.1;
   cursor: pointer;
+}
+nav .inner-nav .settings .inner-settings .cart .iconly {
+  padding: 0;
+  top: 2px;
+  font-size: 20px;
 }
 nav .inner-nav .close {
   display: none;
@@ -1068,11 +1077,9 @@ footer .pages {
     display: flex;
     flex-direction: column;
     gap: 24px;
+    align-items: flex-start;
   }
   nav .inner-nav .settings .inner-settings .theme-switcher .iconly {
-    padding: 0;
-    left: -8px;
-    top: 2px;
     font-size: 24px;
   }
   nav .inner-nav .settings .inner-settings .cart {

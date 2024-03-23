@@ -205,8 +205,19 @@ nav {
         align-items: center;
 
         .theme-switcher {
+          transition: scale $duration-s ease-in-out;
+
           &:hover {
+            scale: 1.1;
             cursor: pointer;
+          }
+        }
+
+        .cart {
+          .iconly {
+            padding: 0;
+            top: 2px;
+            font-size: 20px;
           }
         }
       }
@@ -712,12 +723,10 @@ footer {
           display: flex;
           flex-direction: column;
           gap: 24px;
+          align-items: flex-start;
 
           .theme-switcher {
             .iconly {
-              padding: 0;
-              left: -8px;
-              top: 2px;
               font-size: 24px;
             }
           }

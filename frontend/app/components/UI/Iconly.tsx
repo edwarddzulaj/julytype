@@ -4,6 +4,7 @@ const iconlyFont = localFont({ src: "../../assets/fonts/july-type-icons/iconly.w
 
 export const icons: Record<string, string> = {
   contrast: "theme",
+  basket: "basket",
   hamburger: "menu",
   info: "info",
   download: "download",
