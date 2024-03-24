@@ -1217,7 +1217,6 @@ footer {
 
 .buy-button {
   @include buttons.primary;
-  @include typography.body;
 }
 
 .buying-price {
