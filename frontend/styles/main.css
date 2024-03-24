@@ -526,7 +526,7 @@ nav a {
 }
 .wrapper .container.typeface .fixed-controls {
   position: fixed;
-  top: 9.6012rem;
+  top: 6.426rem;
   left: calc(var(--margin) + 1px);
   z-index: 1111;
   display: flex;
@@ -622,7 +622,7 @@ nav a {
   background-color: var(--black);
 }
 .wrapper .container.typeface .main-section:first-of-type {
-  padding-top: 5.292rem;
+  padding-top: 2.268rem;
 }
 .wrapper .container.typeface .main-section .styles-weights {
   margin-bottom: 9.072rem;
@@ -1647,6 +1647,7 @@ footer .pages {
 }
 
 .inner-section-background {
+  margin-top: 12.096rem;
   position: relative;
   z-index: 100;
   background-color: var(--background);
