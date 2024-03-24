@@ -202,7 +202,7 @@ nav {
       .inner-settings {
         display: flex;
         gap: $gutter-h * 1.5;
-        align-items: center;
+        align-items: flex-start;
 
         .theme-switcher {
           transition: scale $duration-s ease-in-out;
@@ -211,9 +211,16 @@ nav {
             scale: 1.1;
             cursor: pointer;
           }
+
+          .iconly {
+            top: -1px;
+          }
         }
 
         .cart {
+          position: relative;
+          top: -3px;
+
           .iconly {
             padding: 0;
             top: 2px;
@@ -1611,6 +1618,10 @@ div:hover > .iconly {
 
         &#email {
           width: 320px;
+
+          @include screen.tablet {
+            width: auto;
+          }
         }
       }
 

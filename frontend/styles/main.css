@@ -444,7 +444,7 @@ nav .inner-nav .pages {
 nav .inner-nav .settings .inner-settings {
   display: flex;
   gap: 2.268rem;
-  align-items: center;
+  align-items: flex-start;
 }
 nav .inner-nav .settings .inner-settings .theme-switcher {
   transition: scale 0.3s ease-in-out;
@@ -452,6 +452,13 @@ nav .inner-nav .settings .inner-settings .theme-switcher {
 nav .inner-nav .settings .inner-settings .theme-switcher:hover {
   scale: 1.1;
   cursor: pointer;
+}
+nav .inner-nav .settings .inner-settings .theme-switcher .iconly {
+  top: -1px;
+}
+nav .inner-nav .settings .inner-settings .cart {
+  position: relative;
+  top: -3px;
 }
 nav .inner-nav .settings .inner-settings .cart .iconly {
   padding: 0;
@@ -2055,6 +2062,11 @@ div:hover > .iconly {
 }
 .student-email-verification form .form-row input#email {
   width: 320px;
+}
+@media (max-width: 780px) {
+  .student-email-verification form .form-row input#email {
+    width: auto;
+  }
 }
 .student-email-verification form .form-row button[type=submit] {
   font-style: normal;
