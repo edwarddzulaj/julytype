@@ -5,7 +5,7 @@
 
 export const BASE_TEXT = `
 <span class="allcaps">«Gelato» •How? @Hodori (Muse)</span><br/>
-Wolf<span class="ss01">g</span>an<span class="ss01">g</span> Moza<span class="ss01">r</span>t 1756 <span class="ss01">& Ж</span>емчуг<br/>
+Wolf<span class="ss01">g</span>an<span class="ss01">g</span> <span class="ss01">M</span>oza<span class="ss01">r</span>t 1756 <span class="ss01">& Ж</span>емчуг<br/>
 <span class="smallcaps">Let’s meet at 18<span class="calt">:</span>46.</span><br/>
 <span class="oldstyle">Henrica Maria Paré 1896–1972</span><br/>
  Just add <span class="frac">1/2, 3/4</span> or <span class="frac">5/8</span> of Cocoa<br/>
