@@ -20,7 +20,7 @@ export default function PDFPreview({ url }: { url: string | URL }) {
         />
       </Document>
       <div>
-        <Link href={url}>
+        <Link href={url} target="_blank" rel="noopener">
           Download PDF Specimen <Iconly icon={icons.download} />
         </Link>
       </div>
