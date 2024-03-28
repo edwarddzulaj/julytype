@@ -551,10 +551,11 @@ nav a {
   gap: 8px;
 }
 .wrapper .container.typeface .fixed-controls .choose-script .buttons button {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
   font-weight: 400;
-  letter-spacing: 0em;
-  font-size: 18px;
-  line-height: 28.8px;
   display: inline-flex;
   padding: 12px 16px;
   border-radius: 12px;
@@ -566,18 +567,6 @@ nav a {
   padding: 6px 12px;
   border-radius: 8px;
   outline: 1px solid var(--foreground);
-}
-@media (max-width: 1440px) {
-  .wrapper .container.typeface .fixed-controls .choose-script .buttons button {
-    font-size: 16px;
-    line-height: 25.6px;
-  }
-}
-@media (max-width: 375px) {
-  .wrapper .container.typeface .fixed-controls .choose-script .buttons button {
-    font-size: 16px;
-    line-height: 24px;
-  }
 }
 .wrapper .container.typeface .fixed-controls .choose-script .buttons button:hover {
   cursor: pointer;
@@ -600,10 +589,11 @@ nav a {
   color: var(--grey);
 }
 .wrapper .container.typeface .fixed-controls .choose-script .buttons button.active {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
   font-weight: 400;
-  letter-spacing: 0em;
-  font-size: 18px;
-  line-height: 28.8px;
   display: inline-flex;
   padding: 12px 16px;
   border-radius: 12px;
@@ -615,18 +605,6 @@ nav a {
   background-color: var(--black);
   padding: 6px 12px;
   border-radius: 8px;
-}
-@media (max-width: 1440px) {
-  .wrapper .container.typeface .fixed-controls .choose-script .buttons button.active {
-    font-size: 16px;
-    line-height: 25.6px;
-  }
-}
-@media (max-width: 375px) {
-  .wrapper .container.typeface .fixed-controls .choose-script .buttons button.active {
-    font-size: 16px;
-    line-height: 24px;
-  }
 }
 .wrapper .container.typeface .fixed-controls .choose-script .buttons button.active:hover {
   cursor: pointer;
@@ -687,10 +665,11 @@ nav a {
 }
 .wrapper .container.typeface .download a {
   margin-top: 1.512rem;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
   font-weight: 400;
-  letter-spacing: 0em;
-  font-size: 18px;
-  line-height: 28.8px;
   display: inline-flex;
   padding: 12px 16px;
   border-radius: 12px;
@@ -702,18 +681,6 @@ nav a {
   padding: 6px 12px;
   border-radius: 8px;
   outline: 1px solid var(--foreground);
-}
-@media (max-width: 1440px) {
-  .wrapper .container.typeface .download a {
-    font-size: 16px;
-    line-height: 25.6px;
-  }
-}
-@media (max-width: 375px) {
-  .wrapper .container.typeface .download a {
-    font-size: 16px;
-    line-height: 24px;
-  }
 }
 .wrapper .container.typeface .download a:hover {
   cursor: pointer;
@@ -765,10 +732,11 @@ nav a {
   margin-top: 6.048rem;
 }
 .wrapper .container.page .back-home {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
   font-weight: 400;
-  letter-spacing: 0em;
-  font-size: 18px;
-  line-height: 28.8px;
   display: inline-flex;
   padding: 12px 16px;
   border-radius: 12px;
@@ -777,18 +745,6 @@ nav a {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--white);
   background-color: var(--blue);
-}
-@media (max-width: 1440px) {
-  .wrapper .container.page .back-home {
-    font-size: 16px;
-    line-height: 25.6px;
-  }
-}
-@media (max-width: 375px) {
-  .wrapper .container.page .back-home {
-    font-size: 16px;
-    line-height: 24px;
-  }
 }
 .wrapper .container.page .back-home:hover {
   cursor: pointer;
@@ -915,9 +871,15 @@ nav a {
 }
 .wrapper .container.page.cart .cart .cart-items .cart-item-container .details-container .add-license .dropdown,
 .wrapper .container.page.cart .cart .cart-items .cart-item-container .details-container .company-sizes .dropdown {
+  height: 100%;
   min-width: 14ch;
+  font-size: 16px;
   border-radius: 9px;
   border: 1px solid var(--foreground);
+}
+.wrapper .container.page.cart .cart .cart-items .cart-item-container .details-container .add-license .dropdown .react-select__control,
+.wrapper .container.page.cart .cart .cart-items .cart-item-container .details-container .company-sizes .dropdown .react-select__control {
+  height: 100%;
 }
 .wrapper .container.page.cart .cart .cart-items .cart-item-container .price-container .price {
   margin-right: 0.6048rem;
@@ -953,10 +915,11 @@ nav a {
   flex-shrink: 0;
 }
 .wrapper .container.page.cart .cart-footer .actions :last-child {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
   font-weight: 400;
-  letter-spacing: 0em;
-  font-size: 18px;
-  line-height: 28.8px;
   display: inline-flex;
   padding: 12px 16px;
   border-radius: 12px;
@@ -965,18 +928,6 @@ nav a {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--white);
   background-color: var(--blue);
-}
-@media (max-width: 1440px) {
-  .wrapper .container.page.cart .cart-footer .actions :last-child {
-    font-size: 16px;
-    line-height: 25.6px;
-  }
-}
-@media (max-width: 375px) {
-  .wrapper .container.page.cart .cart-footer .actions :last-child {
-    font-size: 16px;
-    line-height: 24px;
-  }
 }
 .wrapper .container.page.cart .cart-footer .actions :last-child:hover {
   cursor: pointer;
@@ -1039,10 +990,11 @@ nav a {
   }
 }
 .wrapper .container.page.free-trials .download-trial-fonts .download {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
   font-weight: 400;
-  letter-spacing: 0em;
-  font-size: 18px;
-  line-height: 28.8px;
   display: inline-flex;
   padding: 12px 16px;
   border-radius: 12px;
@@ -1053,18 +1005,6 @@ nav a {
   background-color: var(--blue);
   max-width: -moz-max-content;
   max-width: max-content;
-}
-@media (max-width: 1440px) {
-  .wrapper .container.page.free-trials .download-trial-fonts .download {
-    font-size: 16px;
-    line-height: 25.6px;
-  }
-}
-@media (max-width: 375px) {
-  .wrapper .container.page.free-trials .download-trial-fonts .download {
-    font-size: 16px;
-    line-height: 24px;
-  }
 }
 .wrapper .container.page.free-trials .download-trial-fonts .download:hover {
   cursor: pointer;
@@ -1436,10 +1376,11 @@ footer .pages {
   }
 }
 .purchase-section .checkout-action .cart-link {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
   font-weight: 400;
-  letter-spacing: 0em;
-  font-size: 18px;
-  line-height: 28.8px;
   display: inline-flex;
   padding: 12px 16px;
   border-radius: 12px;
@@ -1449,18 +1390,6 @@ footer .pages {
   color: var(--white);
   background-color: var(--blue);
   padding: 16px;
-}
-@media (max-width: 1440px) {
-  .purchase-section .checkout-action .cart-link {
-    font-size: 16px;
-    line-height: 25.6px;
-  }
-}
-@media (max-width: 375px) {
-  .purchase-section .checkout-action .cart-link {
-    font-size: 16px;
-    line-height: 24px;
-  }
 }
 .purchase-section .checkout-action .cart-link:hover {
   cursor: pointer;
@@ -1512,10 +1441,11 @@ footer .pages {
   font-size: 20px;
 }
 .purchase-option .options.radio label {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
   font-weight: 400;
-  letter-spacing: 0em;
-  font-size: 18px;
-  line-height: 28.8px;
   display: inline-flex;
   padding: 12px 16px;
   border-radius: 12px;
@@ -1528,18 +1458,6 @@ footer .pages {
   border-radius: 8px;
   outline: 1px solid var(--foreground);
   padding: 13px 24px;
-}
-@media (max-width: 1440px) {
-  .purchase-option .options.radio label {
-    font-size: 16px;
-    line-height: 25.6px;
-  }
-}
-@media (max-width: 375px) {
-  .purchase-option .options.radio label {
-    font-size: 16px;
-    line-height: 24px;
-  }
 }
 .purchase-option .options.radio label:hover {
   cursor: pointer;
@@ -1625,10 +1543,11 @@ footer .pages {
 }
 
 .buy-button {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
   font-weight: 400;
-  letter-spacing: 0em;
-  font-size: 18px;
-  line-height: 28.8px;
   display: inline-flex;
   padding: 12px 16px;
   border-radius: 12px;
@@ -1637,18 +1556,6 @@ footer .pages {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--white);
   background-color: var(--blue);
-}
-@media (max-width: 1440px) {
-  .buy-button {
-    font-size: 16px;
-    line-height: 25.6px;
-  }
-}
-@media (max-width: 375px) {
-  .buy-button {
-    font-size: 16px;
-    line-height: 24px;
-  }
 }
 .buy-button:hover {
   cursor: pointer;
@@ -1797,10 +1704,11 @@ div:hover > .iconly {
   gap: 10px;
 }
 .choose-fonts-popup .actions .download-all {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
   font-weight: 400;
-  letter-spacing: 0em;
-  font-size: 18px;
-  line-height: 28.8px;
   display: inline-flex;
   padding: 12px 16px;
   border-radius: 12px;
@@ -1809,18 +1717,6 @@ div:hover > .iconly {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--white);
   background-color: var(--blue);
-}
-@media (max-width: 1440px) {
-  .choose-fonts-popup .actions .download-all {
-    font-size: 16px;
-    line-height: 25.6px;
-  }
-}
-@media (max-width: 375px) {
-  .choose-fonts-popup .actions .download-all {
-    font-size: 16px;
-    line-height: 24px;
-  }
 }
 .choose-fonts-popup .actions .download-all:hover {
   cursor: pointer;
@@ -1842,10 +1738,11 @@ div:hover > .iconly {
   background-color: var(--grey);
 }
 .choose-fonts-popup .actions .download-later {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
   font-weight: 400;
-  letter-spacing: 0em;
-  font-size: 18px;
-  line-height: 28.8px;
   display: inline-flex;
   padding: 12px 16px;
   border-radius: 12px;
@@ -1854,18 +1751,6 @@ div:hover > .iconly {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   color: var(--foreground);
   background-color: var(--background);
-}
-@media (max-width: 1440px) {
-  .choose-fonts-popup .actions .download-later {
-    font-size: 16px;
-    line-height: 25.6px;
-  }
-}
-@media (max-width: 375px) {
-  .choose-fonts-popup .actions .download-later {
-    font-size: 16px;
-    line-height: 24px;
-  }
 }
 .choose-fonts-popup .actions .download-later:hover {
   cursor: pointer;
@@ -1989,10 +1874,11 @@ div:hover > .iconly {
   box-shadow: 1px 1px 6px 0px rgba(0, 139, 248, 0.6) !important;
 }
 .font-tester .font-tester-header .edit-text .edit-button {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
   font-weight: 400;
-  letter-spacing: 0em;
-  font-size: 18px;
-  line-height: 28.8px;
   display: inline-flex;
   padding: 12px 16px;
   border-radius: 12px;
@@ -2011,18 +1897,6 @@ div:hover > .iconly {
   justify-content: center;
   font-family: inherit;
   font-size: inherit;
-}
-@media (max-width: 1440px) {
-  .font-tester .font-tester-header .edit-text .edit-button {
-    font-size: 16px;
-    line-height: 25.6px;
-  }
-}
-@media (max-width: 375px) {
-  .font-tester .font-tester-header .edit-text .edit-button {
-    font-size: 16px;
-    line-height: 24px;
-  }
 }
 .font-tester .font-tester-header .edit-text .edit-button:hover {
   cursor: pointer;
@@ -2185,10 +2059,11 @@ div:hover > .iconly {
   }
 }
 .student-email-verification form .form-row button[type=submit] {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
   font-weight: 400;
-  letter-spacing: 0em;
-  font-size: 18px;
-  line-height: 28.8px;
   display: inline-flex;
   padding: 12px 16px;
   border-radius: 12px;
@@ -2201,18 +2076,6 @@ div:hover > .iconly {
   border-radius: 8px;
   outline: 1px solid var(--foreground);
   height: 36px;
-}
-@media (max-width: 1440px) {
-  .student-email-verification form .form-row button[type=submit] {
-    font-size: 16px;
-    line-height: 25.6px;
-  }
-}
-@media (max-width: 375px) {
-  .student-email-verification form .form-row button[type=submit] {
-    font-size: 16px;
-    line-height: 24px;
-  }
 }
 .student-email-verification form .form-row button[type=submit]:hover {
   cursor: pointer;
@@ -2301,9 +2164,11 @@ input[type=range]::-moz-range-thumb {
 
 div.dropdown {
   min-width: var(--min-width), 17ch;
-  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
   font-weight: 400;
-  letter-spacing: 0em;
   color: var(--foreground);
   border-radius: 8px;
   background-color: var(--background);

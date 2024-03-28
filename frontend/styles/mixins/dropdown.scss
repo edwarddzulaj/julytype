@@ -1,9 +1,9 @@
+@use "./typography.scss" as typography;
+
 @mixin base {
   min-width: var(--min-width), 17ch;
 
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0em;
+  @include typography.heading-6;
   color: var(--foreground);
   border-radius: 8px;
   background-color: var(--background);
