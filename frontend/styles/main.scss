@@ -984,6 +984,7 @@ footer {
   &.no-indent {
     .section-wrapper {
       margin-top: 32px;
+
       section {
         max-width: 1980px;
       }
@@ -1018,8 +1019,8 @@ footer {
 
         .typeface-package {
           margin-top: $gutter-h;
-
           display: flex;
+          gap: 8px;
 
           .typeface-details {
             flex-grow: 1;
@@ -1030,7 +1031,7 @@ footer {
             }
 
             .styles-and-weights {
-              max-width: 900px;
+              max-width: 810px;
               margin-top: 8px;
               padding-left: 25px;
             }
@@ -1072,7 +1073,8 @@ footer {
   .license-options > div,
   .font-selection-options {
     display: grid;
-    grid-template-columns: minmax(270px, 1fr) 10fr;
+    // grid-template-columns: minmax(270px, 1fr) 10fr;
+    grid-template-columns: 2fr 8fr 2fr;
     gap: $gutter-v;
 
     &:not(:first-of-type) {
@@ -1226,13 +1228,13 @@ footer {
 }
 
 .buying-price {
-  display: grid;
+  display: flex;
   align-items: center;
   gap: 10px;
 
-  &.with-discount {
-    grid-template-columns: minmax(min-content, 10ch) repeat(2, minmax(min-content, 11ch));
-  }
+  // &.with-discount {
+  //   grid-template-columns: minmax(min-content, 10ch) repeat(2, minmax(min-content, 11ch));
+  // }
 
   .discount-old-price {
     @include typography.heading-5;

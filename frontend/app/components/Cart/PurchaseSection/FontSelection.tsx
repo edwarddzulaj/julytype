@@ -139,7 +139,7 @@ export default function FontSelection({
     <article className="font-selection">
       <form>
         <div>
-          <p>Buy the whole family</p>
+          <h6>Buy the whole family</h6>
           <div className="typeface-package">
             <div className="typeface-details">
               <div className="checkbox-option">
